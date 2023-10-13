@@ -1,0 +1,25 @@
+@import '../../variables'
+
+.button
+  background: transparent
+  border-top: 1ps solid $dark-color
+  padding: .5rem
+  font-family: $body-font
+  position: relative
+  color: $light-color
+  &:before
+    content: ''
+    height: 100%
+    width: 100%
+    background: $dark-color
+    position: absolute
+    left: 0
+    top: 0
+    z-index: -1
+    transition: all .15s ease-in-out
+  &:hover:before, &:focus:before
+    width: 5px
+    transition: all .15s ease-in-out
+    z-index: -1
+  &:hover, &:focus
+    color: $text-color

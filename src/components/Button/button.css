@@ -1,0 +1,29 @@
+.button {
+  background: transparent;
+  border-top: 1ps solid #32292F;
+  padding: 0.5rem;
+  font-family: "Inconsolata", monospace;
+  position: relative;
+  color: #FEE1C7;
+}
+.button:before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  background: #32292F;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  transition: all 0.15s ease-in-out;
+}
+.button:hover:before, .button:focus:before {
+  width: 5px;
+  transition: all 0.15s ease-in-out;
+  z-index: -1;
+}
+.button:hover, .button:focus {
+  color: #575366;
+}
+
+/*# sourceMappingURL=button.css.map */

@@ -1,0 +1,48 @@
+.inputs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.inputs-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.log-in-feature-icon {
+  max-width: 50px;
+}
+
+.log-in-features {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.log-in-feature {
+  font-weight: 300;
+  text-align: center;
+  max-width: 200px;
+}
+.log-in-feature h2 {
+  margin: 0.2rem;
+}
+
+.log-in-icon {
+  max-width: 30px;
+}
+
+.providers {
+  margin: 1rem 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/*# sourceMappingURL=log-in.css.map */

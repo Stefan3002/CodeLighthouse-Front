@@ -1,0 +1,17 @@
+.landing-page-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #FEE1C7;
+}
+.landing-page-navigation .navigation-wrapper {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/*# sourceMappingURL=landing-page-navigation.css.map */

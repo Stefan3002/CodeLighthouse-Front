@@ -1,0 +1,15 @@
+.input {
+  transition: all 0.15s ease-in-out;
+  background: #FEE1C7;
+  font-family: "Inconsolata", monospace;
+  padding: 0.5rem;
+  border: 1px solid #32292F;
+  color: #32292F;
+}
+.input:focus, .input:hover {
+  background: #32292F;
+  color: #FEE1C7;
+  transition: all 0.15s ease-in-out;
+}
+
+/*# sourceMappingURL=input.css.map */
