@@ -1,10 +1,13 @@
 import './authenticate.css'
 import LogIn from "../LogIn/log-in";
-const Authenticate = () => {
+import Transition from "../../utils/js/transitions";
+const Authenticate = ({mode}) => {
     return (
+        <Transition>
         <div>
-            <LogIn />
+            {mode == 1 ? <LogIn /> : null}
         </div>
+        </Transition>
     )
 }
 export default Authenticate

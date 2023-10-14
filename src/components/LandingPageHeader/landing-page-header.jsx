@@ -3,8 +3,12 @@ import LogoImgNoBg from '../../utils/imgs/logo/LogoSVG.svg'
 import LandingPageHome from "../LandingPageHome/landing-page-home";
 import Button from "../Button/button";
 import {Link} from "react-router-dom";
+import transition from "../../utils/js/transitions";
+import Transition from "../../utils/js/transitions";
+// import transition from "../../utils/js/transitions";
 const LandingPageHeader = () => {
     return (
+        <Transition>
         <div className='landing-page-header slide'>
             <div className="slide-hero">
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
@@ -23,6 +27,7 @@ const LandingPageHeader = () => {
                 </div>
             </div>
         </div>
+        </Transition>
     )
 }
 export default LandingPageHeader

@@ -1,20 +1,18 @@
 import {useCallback} from "react";
+import {json} from "react-router-dom";
 
 const useFetchHook = () => {
     // const [response, setResponse] = useState(initial_state)
-    return useCallback((url, body, method) => {
+    return useCallback(async (url, body, method) => {
         let response
-        fetch(url, {
+        const data = await fetch(url, {
             method,
             body,
             credentials: 'include'
         })
-            .then(data => {
-                data.json().then(jsonData => {
-                    response = jsonData
-                })
-            })
-        return response
+
+        const jsonData = await data.json()
+        return jsonData
     }, [])
 
 }

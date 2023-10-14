@@ -6,8 +6,10 @@ import TeacherSVG from '../../utils/imgs/features/TeacherSVG.svg'
 import StudentSVG from '../../utils/imgs/features/StudentSVG.svg'
 import CompanySVG from '../../utils/imgs/features/CompanySVG.svg'
 import FeaturesText from '../../utils/text/features.json'
+import Transition from "../../utils/js/transitions";
 const LandingPageFeatures = () => {
     return (
+        <Transition>
         <div className='slide'>
             <div className="slide-hero features-hero">
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
@@ -40,8 +42,8 @@ const LandingPageFeatures = () => {
                     </ul>
                 </div>
             </div>
-
         </div>
+        </Transition>
     )
 }
 export default LandingPageFeatures

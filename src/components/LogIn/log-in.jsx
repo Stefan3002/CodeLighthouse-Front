@@ -1,7 +1,7 @@
 import './log-in.css'
 import LogoImgNoBg from "../../utils/imgs/logo/LogoSVG.svg";
 import Button from "../Button/button";
-import {Link} from "react-router-dom";
+import {Link, Navigate, redirect} from "react-router-dom";
 import Input from "../Input/input";
 import TickSVG from '../../utils/imgs/features/TickSVG.svg'
 import SpeedSVG from '../../utils/imgs/features/SpeedSVG.svg'
@@ -11,8 +11,13 @@ import GoogleSVG from '../../utils/imgs/log-in/GoogleSVG.svg'
 import GithubSVG from '../../utils/imgs/log-in/GithubSVG.svg'
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {setIsLoggedIn, setStatus} from "../../utils/store/auth-store/auth-store-actions";
+import {getStatus} from "../../utils/store/auth-store/auth-store-selectors";
 const LogIn = () => {
+    const status = useSelector(getStatus)
     const sendRequest = useFetchHook()
+    const dispatch = useDispatch()
 
     const logUserInEmail = (form) => {
         form.preventDefault()
@@ -20,10 +25,11 @@ const LogIn = () => {
         const email = formData[0].value
         const password = formData[1].value
 
-        sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, {
-            email,
-            password
-        }, 'POST')
+        // TODO: Send request to back for login
+        // sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, {
+        //     email,
+        //     password
+        // }, 'POST')
 
         // fetch(`${process.env.REACT_APP_SERVER_URL}/auth`, {
         //     method: 'POST',
@@ -37,6 +43,10 @@ const LogIn = () => {
         //             console.log(jsonData)
         //         })
         //     })
+        console.log('log in, ', status)
+        dispatch(setStatus('loaded'))
+        dispatch(setIsLoggedIn(true))
+        window.location.href = '/app/complete-profile'
     }
 
     const getFeatureIcon = (icon) => {

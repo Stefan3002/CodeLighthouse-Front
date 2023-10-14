@@ -1,0 +1,21 @@
+@import '../../variables'
+
+.animation-in, .animation-out
+  position: fixed
+  left: 0
+  top: 0
+  //width: 80%
+  height: 100%
+  background: $dark-color
+  display: flex
+  justify-content: center
+  align-items: center
+  img
+    max-width: 300px
+    border-radius: 50%
+    box-shadow: $box-shadow
+.animation-in
+  transform-origin: bottom
+
+.animation-out
+  transform-origin: top
