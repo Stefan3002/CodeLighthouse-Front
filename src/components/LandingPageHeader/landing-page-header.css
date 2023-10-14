@@ -6,21 +6,19 @@
 
 .slide-hero {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-height: 100vh;
+  max-height: 89vh;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   overflow-y: auto;
 }
 .slide-hero .title {
   margin: 0;
 }
 
-.slide-aside {
-  padding: 1rem;
-  background: radial-gradient(circle at 50%, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url("../../utils/imgs/landing-page/Header.jpg");
-  background-position: center;
-  background-size: cover;
+.slide-hero::-webkit-scrollbar {
+  display: none;
 }
 
 .logo-header {

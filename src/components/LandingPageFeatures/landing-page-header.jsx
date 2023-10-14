@@ -7,11 +7,12 @@ import StudentSVG from '../../utils/imgs/features/StudentSVG.svg'
 import CompanySVG from '../../utils/imgs/features/CompanySVG.svg'
 import FeaturesText from '../../utils/text/features.json'
 import Transition from "../../utils/js/transitions";
+import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
 const LandingPageFeatures = () => {
     return (
         <Transition>
         <div className='slide'>
-            <div className="slide-hero features-hero">
+            <div className="slide-hero features-hero slide-hero-features">
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
                 <div className="features">
                     <div className="feature">
@@ -32,16 +33,7 @@ const LandingPageFeatures = () => {
                 </div>
                 {/*Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda fuga quos reiciendis? Accusantium cupiditate, dolorum ducimus est eum eveniet exercitationem illo minus odio possimus, quaerat quasi reiciendis unde, vitae voluptatibus.*/}
             </div>
-            <div className="slide-aside">
-                <div className='landing-page-navigation'>
-                    <ul className='navigation-wrapper'>
-                        <Link to='/' ><li>Home</li></Link>
-                        <Link to='/about' ><li>About</li></Link>
-                        <Link to='/features'><li>Features</li></Link>
-                        <Link to='/auth'><li>Log in</li></Link>
-                    </ul>
-                </div>
-            </div>
+            <LandingPageAsideMenu />
         </div>
         </Transition>
     )

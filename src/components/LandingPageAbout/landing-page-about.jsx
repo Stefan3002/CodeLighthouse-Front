@@ -4,6 +4,10 @@ import Button from "../Button/button";
 import {Link} from "react-router-dom";
 import CodeIMG from '../../utils/imgs/about/CodeIMG.jpg'
 import Transition from "../../utils/js/transitions";
+import aboutText from '../../utils/text/about.json'
+import AboutHighIMG1 from '../../utils/imgs/about/AboutHighIMG1.jpg'
+import AboutHighIMG2 from '../../utils/imgs/about/AboutHighIMG2.jpg'
+import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
 const LandingPageAbout = () => {
     return (
         <Transition>
@@ -11,22 +15,29 @@ const LandingPageAbout = () => {
             <div className="slide-hero about-inner">
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
                 <div className="about">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore excepturi optio provident ut?
-                        Consequuntur enim explicabo itaque quia sint? Cupiditate, exercitationem, veritatis. Ab eius in
-                        laborum odio, similique ullam voluptate?</p>
+                    <p dangerouslySetInnerHTML={{__html: aboutText.description[0].text}}></p>
                     <img src={CodeIMG} alt="" className="about-img"/>
                 </div>
+                {/*<div className="about-highs">*/}
+                {/*    {aboutText.highlights.map((high, idx) => {*/}
+                {/*        return <div style={{background: idx % 2 === 1 ? 'whitesmoke' : null, color: idx % 2 === 1 ? '#575366' : null, textAlign: idx % 2 === 1 ? 'right' : null}} className="about-high">*/}
+                {/*            {idx % 2 === 1 ? <div className="about-high-right">*/}
+                {/*                <img src={idx === 0 ? AboutHighIMG1 : AboutHighIMG2} alt=""/>*/}
+                {/*            </div> : null}*/}
+                {/*            <div className="about-high-left">*/}
+                {/*                <h3>{high.title}</h3>*/}
+                {/*                <p dangerouslySetInnerHTML={{__html: high.text}}></p>*/}
+                {/*                <Button color='light' text='Sign up!' />*/}
+                {/*            </div>*/}
+                {/*            {idx % 2 !== 1 ? <div className="about-high-right">*/}
+                {/*                <img src={idx === 0 ? AboutHighIMG1 : AboutHighIMG2} alt=""/>*/}
+                {/*            </div> : null}*/}
+                {/*        </div>*/}
+                {/*    })}*/}
+                {/*</div>*/}
+
             </div>
-            <div className="slide-aside">
-                <div className='landing-page-navigation'>
-                    <ul className='navigation-wrapper'>
-                        <Link to='/' ><li>Home</li></Link>
-                        <Link to='/about' ><li>About</li></Link>
-                        <Link to='/features'><li>Features</li></Link>
-                        <Link to='/auth'><li>Log in</li></Link>
-                    </ul>
-                </div>
-            </div>
+            <LandingPageAsideMenu />
         </div>
         </Transition>
     )

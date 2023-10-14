@@ -22,6 +22,7 @@
   justify-content: center;
   align-items: stretch;
   flex-wrap: wrap;
+  gap: 2rem;
 }
 
 .log-in-feature {
@@ -31,6 +32,9 @@
 }
 .log-in-feature h2 {
   margin: 0.2rem;
+}
+.log-in-feature p {
+  text-align: justify;
 }
 
 .log-in-icon {

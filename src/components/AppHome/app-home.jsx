@@ -2,7 +2,12 @@ import './app-home.css'
 import Transition from "../../utils/js/transitions";
 import {useEffect, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
+import {Link} from "react-router-dom";
+import parallaxData from "./parallax-data.json";
+import Parallax from "../Parallax/parallax";
+import ParallaxIMG from '../../utils/imgs/headers/HeaderHome.jpg'
 const AppHome = () => {
+
     const sendRequest = useFetchHook()
     const [randChallenge, setRandChallenge] = useState(undefined)
     const runUserCode = (form) => {
@@ -39,18 +44,20 @@ const AppHome = () => {
     if(randChallenge)
     return (
         <Transition mode='fullscreen'>
+        <Parallax parallaxData={parallaxData} img={ParallaxIMG} />
         <div className='app-home wrapper'>
             <div className="random-challenge">
                 <div className="challenge-meta">
                     <p>JavaScript</p>
                     <p>JavaScript</p>
                     <p>JavaScript</p>
-
                 </div>
-                <div className="challenge-description">
-                    <h2>{randChallenge[0].fields.title}</h2>
-                    <p dangerouslySetInnerHTML={{__html: randChallenge[0].fields.description}}></p>
-                </div>
+                <Link to={`/app/challenges/${randChallenge[0].fields.slug}`}>
+                    <div className="challenge-description">
+                        <h2>{randChallenge[0].fields.title}</h2>
+                        <p dangerouslySetInnerHTML={{__html: randChallenge[0].fields.description}}></p>
+                    </div>
+                </Link>
             </div>
             {/*<form onSubmit={runUserCode} >*/}
             {/*    <input type="textarea"/>*/}

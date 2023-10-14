@@ -14,6 +14,7 @@ import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setIsLoggedIn, setStatus} from "../../utils/store/auth-store/auth-store-actions";
 import {getStatus} from "../../utils/store/auth-store/auth-store-selectors";
+import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
 const LogIn = () => {
     const status = useSelector(getStatus)
     const sendRequest = useFetchHook()
@@ -62,7 +63,7 @@ const LogIn = () => {
 
     return (
         <div className='slide'>
-            <div className="slide-hero">
+            <div className="slide-hero slide-hero-login">
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
                 <div className="inputs">
                     <div className="log-in-features">
@@ -89,16 +90,7 @@ const LogIn = () => {
 
                 </div>
             </div>
-            <div className="slide-aside">
-                <div className='landing-page-navigation'>
-                    <ul className='navigation-wrapper'>
-                        <Link to='/' ><li>Home</li></Link>
-                        <Link to='/about' ><li>About</li></Link>
-                        <Link to='/features'><li>Features</li></Link>
-                        <Link to='auth'><li>Log in</li></Link>
-                    </ul>
-                </div>
-            </div>
+            <LandingPageAsideMenu />
         </div>
     )
 }

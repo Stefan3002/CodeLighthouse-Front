@@ -1,0 +1,31 @@
+.challenges-page {
+  margin-top: 2rem;
+}
+
+.challenges {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.challenge {
+  background: #32292F;
+  border-radius: 10px;
+  color: #FEE1C7;
+}
+
+.challenge-content {
+  padding: 1rem;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.challenge-meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FEE1C7;
+  color: #575366;
+}
+
+/*# sourceMappingURL=challenges-page.css.map */

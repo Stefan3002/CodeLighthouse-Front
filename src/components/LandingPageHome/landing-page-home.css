@@ -3,18 +3,21 @@
 }
 
 .features {
-  width: 95%;
   margin: 0 auto;
   margin-top: 3rem;
 }
 
-.about-inner, .inputs {
+.slide-hero {
   width: 80%;
   margin: 0 auto;
 }
 
-.about, .inputs {
+.about, .inputs, .about-inner {
   margin-top: 3rem;
+}
+
+.slide-hero-login, .slide-hero-features, .slide-hero-home, .about-inner {
+  justify-content: center;
 }
 
 .slide:before {
@@ -27,29 +30,13 @@
   width: 10px;
 }
 
-.landing-page-navigation {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  color: #FEE1C7;
-}
-.landing-page-navigation .navigation-wrapper {
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
 @media screen and (min-width: 2000px) {
-  .features, .about, .inputs {
+  .slide-hero {
     width: 50%;
   }
 }
 @media screen and (min-width: 3000px) {
-  .features, .about, .inputs {
+  .slide-hero {
     width: 40%;
   }
 }

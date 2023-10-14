@@ -1,7 +1,7 @@
 import './button.css'
-const Button = ({text}) => {
+const Button = ({text, color='dark'}) => {
     return (
-        <button className='button'>
+        <button  className='button'>
             {text}
         </button>
     )

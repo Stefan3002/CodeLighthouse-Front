@@ -2,10 +2,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 1rem;
 }
 
 .about-img {
-  max-width: 200px;
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+.about-high {
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0 0 0;
+  background: #32292F;
+  color: #FEE1C7;
+  font-weight: 300;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.about-high p {
+  text-align: justify;
+}
+
+.about-high-left {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.about-high-right img {
+  border-radius: 10px;
+  max-width: 300px;
 }
 
 /*# sourceMappingURL=landing-page-about.css.map */

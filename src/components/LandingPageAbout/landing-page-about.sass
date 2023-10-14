@@ -1,7 +1,37 @@
+@import '../../variables'
+
 .about
+
   display: flex
   justify-content: center
   align-items: center
+  gap: 1rem
 .about-img
-  max-width: 200px
+  max-width: 300px
+  border-radius: 10px
   //border-radius: 10px
+
+.about-high
+  border-radius: 10px
+  display: flex
+  justify-content: center
+  align-items: center
+  gap: 1rem
+  margin: 2rem 0 0 0
+  background: $dark-color
+  color: $light-color
+  font-weight: 300
+  box-shadow: $box-shadow
+  p
+    //max-width: 450px
+    text-align: justify
+.about-high-left
+  width: 50%
+  margin: 0 auto
+.about-high-right
+  img
+    border-radius: 10px
+    max-width: 300px
+
+
+

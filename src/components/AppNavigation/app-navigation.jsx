@@ -1,5 +1,5 @@
 import './app-navigation.css'
-import {Outlet} from "react-router-dom";
+import {Link, Outlet} from "react-router-dom";
 import LogoImgNoBg from "../../utils/imgs/logo/LogoSVG.svg";
 const AppNavigation = () => {
     return (
@@ -7,9 +7,9 @@ const AppNavigation = () => {
             <nav className='app-navigation-wrapper'>
                 <img className='logo-header-app-nav' src={LogoImgNoBg} alt=""/>
                 <ul className='app-navigation'>
-                    <li>Home</li>
+                    <Link to='/app/home'><li>Home</li></Link>
                     <li>Lighthouses</li>
-                    <li>Solve</li>
+                    <Link to='/app/challenges'><li>Solve</li></Link>
                     <li>Profile</li>
                 </ul>
             </nav>

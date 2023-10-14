@@ -40,10 +40,10 @@ const Transition = ({children, mode = 'partial'}) => {
         <>
             {children}
             <motion.div style={{width: `${mode === 'partial' ? '80%' : '100%'}`}} className='animation-in' transition={animationParametersOne.transition} initial={animationParametersOne.initial} animate={animationParametersOne.animate} exit={animationParametersOne.exit} >
-                <img className='logo-header' src={LogoImgBG} alt=""/>
+                {/*<img className='logo-header' src={LogoImgBG} alt=""/>*/}
             </motion.div>
             <motion.div style={{width: `${mode === 'partial' ? '80%' : '100%'}`}} className='animation-out' transition={animationParametersTwo.transition} initial={animationParametersTwo.initial} animate={animationParametersTwo.animate} exit={animationParametersTwo.exit} >
-                <img className='logo-header' src={LogoImgBG} alt=""/>
+                {/*<img className='logo-header' src={LogoImgBG} alt=""/>*/}
             </motion.div>
         </>
     )

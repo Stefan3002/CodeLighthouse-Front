@@ -7,18 +7,18 @@
 
 .slide-hero
   display: flex
-  justify-content: center
+  //justify-content: center
   align-items: center
   flex-direction: column
-  max-height: 100vh
+  max-height: 89vh
+  scrollbar-width: none
+  -ms-overflow-style: none
   overflow-y: auto
   .title
     margin: 0
-.slide-aside
-  padding: 1rem
-  background: radial-gradient(circle at 50%, rgba(0,0,0,0), rgba(0,0,0,.8)), url("../../utils/imgs/landing-page/Header.jpg")
-  background-position: center
-  background-size: cover
+.slide-hero::-webkit-scrollbar
+  display: none  /* Safari and Chrome */
+
 
 .logo-header
   max-width: 400px
