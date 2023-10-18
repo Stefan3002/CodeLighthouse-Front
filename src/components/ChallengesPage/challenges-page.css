@@ -15,6 +15,7 @@
 }
 
 .challenge-content {
+  text-align: center;
   padding: 1rem;
   max-height: 400px;
   overflow-y: auto;

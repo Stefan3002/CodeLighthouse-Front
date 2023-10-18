@@ -19,6 +19,7 @@ import ChallengePage from "./components/ChallengePage/challenge-page";
 import ChallengesPage from "./components/ChallengesPage/challenges-page";
 import ErrorModal from "./components/Error/error";
 import AddChallengePage from "./components/AddChallengePage/add-challenge-page";
+import ProfilePage from "./components/ProfilePage/profile-page";
 
 function App() {
     const location = useLocation()
@@ -44,6 +45,7 @@ function App() {
                         <Route path='challenges/:slug' element={<ChallengePage />} />
                         <Route path='challenges' element={<ChallengesPage />} />
                         <Route path='add' element={<AddChallengePage />} />
+                        <Route path='users/:id' element={<ProfilePage />} />
                     </Route>
                 </Routes>
             </AnimatePresence>

@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["challenges-page.sass","../../variables.sass"],"names":[],"mappings":"AAEA;EACE;;;AAEF;EACE;EACA;EACA;;;AAGF;EACE,YCPW;EDQX;EACA,OCPY;;;ADQd;EACE;EACA;EACA;;;AACF;EACE;EACA;EACA;EACA,YChBY;EDiBZ,OCfW","file":"challenges-page.css"}
+{"version":3,"sourceRoot":"","sources":["challenges-page.sass","../../variables.sass"],"names":[],"mappings":"AAEA;EACE;;;AAEF;EACE;EACA;EACA;;;AAGF;EACE,YCPW;EDQX;EACA,OCPY;;;ADQd;EACE;EACA;EACA;EACA;;;AACF;EACE;EACA;EACA;EACA,YCjBY;EDkBZ,OChBW","file":"challenges-page.css"}

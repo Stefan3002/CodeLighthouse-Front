@@ -1,8 +1,10 @@
 @import "../../variables"
 
 .random-challenge
+  max-width: 500px
   text-align: center
   display: flex
+  flex-direction: column
   justify-content: center
   align-items: center
   gap: 2rem
@@ -10,8 +12,11 @@
   border-radius: 10px
 .app-home
   margin-top: 2rem
+  display: flex
+  justify-content: center
+  align-items: center
 .challenge-description
-  //max-width: 500px
+  max-width: 500px
   //overflow: auto
   background: $dark-color
   color: $light-color
@@ -19,6 +24,8 @@
   padding: 1rem
   max-height: 400px
   overflow-y: auto
-
+.challenge-navigation
+  display: flex
+  gap: 1rem
 .challenge-meta
   padding: 0 0 0 2rem

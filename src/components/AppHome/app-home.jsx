@@ -33,11 +33,14 @@ const AppHome = () => {
                 })
             })
     }
+    const getChallenge = async () => {
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/random-challenge`, undefined, 'GET')
+        setRandChallenge(res)
+    }
 
     useEffect(() => {
         (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/random-challenge`, undefined, 'GET')
-            setRandChallenge(res)
+            await getChallenge()
         })()
     }, []);
 
@@ -58,6 +61,10 @@ const AppHome = () => {
                         <p dangerouslySetInnerHTML={{__html: randChallenge[0].fields.description}}></p>
                     </div>
                 </Link>
+                <div className="challenge-navigation">
+                    <p>Play</p>
+                    <p onClick={async () => await getChallenge()}>Next</p>
+                </div>
             </div>
             {/*<form onSubmit={runUserCode} >*/}
             {/*    <input type="textarea"/>*/}
