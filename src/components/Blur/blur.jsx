@@ -1,7 +1,15 @@
 import './blur.css'
-const Blur = () => {
+import {setError} from "../../utils/store/utils-store/utils-store-actions";
+import {useDispatch} from "react-redux";
+const Blur = ({error}) => {
+    const dispatch = useDispatch()
+    const closeUpperElement = () => {
+        if(error)
+            dispatch(setError(null))
+    }
+
     return (
-        <div className='blur' />
+        <div onClick={closeUpperElement} className='blur' />
     )
 }
 export default Blur

@@ -12,4 +12,9 @@
   transition: all 0.15s ease-in-out;
 }
 
+.text-area-input {
+  resize: none;
+  overflow: auto;
+}
+
 /*# sourceMappingURL=input.css.map */

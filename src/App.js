@@ -12,19 +12,23 @@ import {AnimatePresence} from "framer-motion";
 import ProtectedRoute from "./components/ProtectedRoute/protected-route";
 import CompleteProfilePage from "./components/CompleteProfilePage/complete-profile-page";
 import {useSelector} from "react-redux";
-import {getLoading} from "./utils/store/utils-store/utils-store-selectors";
+import {getError, getLoading} from "./utils/store/utils-store/utils-store-selectors";
 import Spinner from "./components/Spinner/spinner";
 import Blur from "./components/Blur/blur";
 import ChallengePage from "./components/ChallengePage/challenge-page";
 import ChallengesPage from "./components/ChallengesPage/challenges-page";
+import ErrorModal from "./components/Error/error";
+import AddChallengePage from "./components/AddChallengePage/add-challenge-page";
 
 function App() {
     const location = useLocation()
     const loading = useSelector(getLoading)
+    const error = useSelector(getError)
     return (
         <div className="App">
 
             {loading ? <><Blur /><Spinner /></> : null}
+            {error ? <><Blur error={true} /><ErrorModal error={error} /></> : null}
 
             <AnimatePresence mode='wait'>
                 <Routes key={location.pathname} location={location}>
@@ -39,6 +43,7 @@ function App() {
                         <Route path='home' element={<AppHome />} />
                         <Route path='challenges/:slug' element={<ChallengePage />} />
                         <Route path='challenges' element={<ChallengesPage />} />
+                        <Route path='add' element={<AddChallengePage />} />
                     </Route>
                 </Routes>
             </AnimatePresence>

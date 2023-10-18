@@ -1,0 +1,40 @@
+.error-wrapper {
+  max-width: 400px;
+  background: #32292F;
+  color: #FEE1C7;
+  border-radius: 10px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  text-align: center;
+}
+
+.error-header {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px 10px 0 0;
+  padding: 1.5rem;
+  background: #FEE1C7;
+  color: #575366;
+}
+.error-header img {
+  max-width: 80px;
+}
+.error-header h2 {
+  margin: 0;
+}
+
+.error-content {
+  padding: 0.5rem;
+  font-weight: 300;
+}
+
+.error-message {
+  font-weight: 500;
+}
+
+/*# sourceMappingURL=error.css.map */

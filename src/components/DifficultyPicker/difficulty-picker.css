@@ -1,0 +1,21 @@
+.difficulty-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.difficulty img {
+  max-width: 110px;
+  border-radius: 50%;
+  transition: all 0.15s;
+  border: 2px solid #32292F;
+}
+.difficulty img:hover, .difficulty img:focus {
+  transform: scale(1.1);
+  transition: all 0.15s;
+}
+
+/*# sourceMappingURL=difficulty-picker.css.map */

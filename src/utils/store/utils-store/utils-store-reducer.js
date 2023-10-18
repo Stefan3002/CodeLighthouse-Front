@@ -1,5 +1,6 @@
 const INITIAL_VALUE = {
-    loading: false
+    loading: false,
+    error: null
 }
 
 const utilsReducer = (action, state = INITIAL_VALUE) => {
@@ -11,6 +12,11 @@ const utilsReducer = (action, state = INITIAL_VALUE) => {
             return {
                 ...state,
                 loading: payload
+            }
+        case 'SET_ERROR':
+            return {
+                ...state,
+                error: payload
             }
         default:
             return state

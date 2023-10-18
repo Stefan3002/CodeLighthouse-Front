@@ -31,7 +31,8 @@ const ChallengesPage = () => {
                                 <p dangerouslySetInnerHTML={{__html: challenge.fields.description}}></p>
                             </div>
                             <div className="challenge-meta">
-                                <p>Stefanel Secrierus</p>
+                                <p>{challenge.fields.author[0]}</p>
+                                <p>{challenge.fields.author[1]}</p>
                             </div>
                         </div>
                         </Link>

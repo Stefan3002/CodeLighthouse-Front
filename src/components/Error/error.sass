@@ -1,0 +1,32 @@
+@import '../../variables'
+
+.error-wrapper
+  max-width: 400px
+  background: $dark-color
+  color: $light-color
+  border-radius: 10px
+  position: fixed
+  left: 50%
+  top: 50%
+  transform: translate(-50%, -50%)
+  z-index: 11
+  text-align: center
+.error-header
+  display: flex
+  gap: 1rem
+  justify-content: center
+  align-items: center
+  img
+    max-width: 80px
+  h2
+    margin: 0
+  border-radius: 10px 10px 0 0
+  padding: 1.5rem
+  background: $light-color
+  color: $text-color
+
+.error-content
+  padding: .5rem
+  font-weight: 300
+.error-message
+  font-weight: 500
