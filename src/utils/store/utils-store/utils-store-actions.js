@@ -11,3 +11,17 @@ export const setError = (payload) => {
         payload
     }
 }
+
+export const setLanguagePicker = (payload) => {
+    return {
+        type: 'SET_LANGUAGE_PICKER',
+        payload
+    }
+}
+
+export const setLanguage = (payload) => {
+    return {
+        type: 'SET_LANGUAGE',
+        payload
+    }
+}

@@ -1,0 +1,20 @@
+.language-picker {
+  position: relative;
+  display: flex;
+}
+
+.language-picker-option {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #32292F;
+  width: fit-content;
+  padding: 0.2rem;
+}
+.language-picker-option img {
+  max-width: 60px;
+  border-radius: 50%;
+}
+
+/*# sourceMappingURL=language-selector.css.map */

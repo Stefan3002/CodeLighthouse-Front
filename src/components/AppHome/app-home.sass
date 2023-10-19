@@ -1,31 +1,27 @@
 @import "../../variables"
 
-.random-challenge
-  max-width: 500px
-  text-align: center
-  display: flex
-  flex-direction: column
-  justify-content: center
-  align-items: center
-  gap: 2rem
-  background: $white
-  border-radius: 10px
+
 .app-home
   margin-top: 2rem
   display: flex
   justify-content: center
-  align-items: center
-.challenge-description
-  max-width: 500px
-  //overflow: auto
-  background: $dark-color
-  color: $light-color
-  border-radius: 10px
-  padding: 1rem
-  max-height: 400px
-  overflow-y: auto
+  flex-direction: column
+  align-items: stretch
 .challenge-navigation
+  margin-top: 1rem
   display: flex
+  justify-content: center
+  align-items: center
   gap: 1rem
-.challenge-meta
-  padding: 0 0 0 2rem
+  img
+    transition: all .15s
+    width: 50px
+    &:hover, &:focus
+      transform: scale(1.1)
+      transition: all .15s
+
+.challenges-cards
+  display: flex
+  justify-content: center
+  align-items: stretch
+  //gap: 1rem

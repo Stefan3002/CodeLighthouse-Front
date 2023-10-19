@@ -20,6 +20,7 @@ import ChallengesPage from "./components/ChallengesPage/challenges-page";
 import ErrorModal from "./components/Error/error";
 import AddChallengePage from "./components/AddChallengePage/add-challenge-page";
 import ProfilePage from "./components/ProfilePage/profile-page";
+import CodePage from "./components/CodePage/code-page";
 
 function App() {
     const location = useLocation()
@@ -43,6 +44,7 @@ function App() {
                         <Route path='complete-profile' element={<CompleteProfilePage />} />
                         <Route path='home' element={<AppHome />} />
                         <Route path='challenges/:slug' element={<ChallengePage />} />
+                        <Route path='challenges/:slug/code' element={<CodePage />} />
                         <Route path='challenges' element={<ChallengesPage />} />
                         <Route path='add' element={<AddChallengePage />} />
                         <Route path='users/:id' element={<ProfilePage />} />

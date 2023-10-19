@@ -1,0 +1,14 @@
+.code-page {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.code-page-text {
+  width: 50%;
+  text-align: left;
+}
+
+/*# sourceMappingURL=code-page.css.map */

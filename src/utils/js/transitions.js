@@ -1,7 +1,7 @@
 import {motion} from "framer-motion"
 import './transitions.css'
 import LogoImgBG from "../imgs/logo/Logo_White_BG.png";
-const Transition = ({children, mode = 'partial'}) => {
+const Transition = ({children, mode = 'partial', delay = .2, scaleY = 1}) => {
     const animationParametersOne = {
         initial: {
             scaleY: 0
@@ -10,7 +10,7 @@ const Transition = ({children, mode = 'partial'}) => {
             scaleY: 0
         },
         exit: {
-            scaleY: 1
+            scaleY
         },
         transition: {
             ease: 'easeInOut',
@@ -19,7 +19,7 @@ const Transition = ({children, mode = 'partial'}) => {
     }
     const animationParametersTwo = {
         initial: {
-            scaleY: 1
+            scaleY
         },
         animate: {
             scaleY: 0
@@ -28,7 +28,7 @@ const Transition = ({children, mode = 'partial'}) => {
             scaleY: 0
         },
         transition: {
-            delay: .2,
+            delay,
             ease: 'easeInOut',
             duration: .4
         }

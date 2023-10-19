@@ -6,6 +6,10 @@ import {Link} from "react-router-dom";
 import parallaxData from "./parallax-data.json";
 import Parallax from "../Parallax/parallax";
 import ParallaxIMG from '../../utils/imgs/headers/HeaderHome.jpg'
+import ChallengeCard from "../ChallengeCard/challenge-card";
+import PlaySVG from '../../utils/imgs/SVGs/Play.svg'
+import NextSVG from '../../utils/imgs/SVGs/Next.svg'
+import gsap from 'gsap'
 const AppHome = () => {
 
     const sendRequest = useFetchHook()
@@ -34,7 +38,7 @@ const AppHome = () => {
             })
     }
     const getChallenge = async () => {
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/random-challenge`, undefined, 'GET')
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/0/3`, undefined, 'GET', true)
         setRandChallenge(res)
     }
 
@@ -44,27 +48,38 @@ const AppHome = () => {
         })()
     }, []);
 
+    const nextChallengeAnimation = () => {
+        // This is only to be able to compute 100% + 1rem in JS
+        // This is one rem
+        let fontSizePx = window.getComputedStyle(document.body).fontSize
+        fontSizePx = parseFloat(fontSizePx) * 0
+        const elementWidth = document.querySelector('.challenge-card').offsetWidth
+        const transitionAmount = fontSizePx + elementWidth
+        const challenges = document.querySelectorAll('.challenge-card')
+        gsap.to(challenges[1], {duration: .3, x: `-${transitionAmount}px`, scale: '.7'})
+        gsap.to(challenges[2], {duration: .3, x: `-${transitionAmount}px`, scale: '1'})
+        gsap.to(challenges[0], {duration: .3, x: `${transitionAmount * 2}`, scale: '.7'})
+        setTimeout(() => {
+            setRandChallenge([randChallenge[1], randChallenge[2], randChallenge[0]])
+            gsap.set(challenges, {clearProps: 'all'})
+            gsap.set(challenges[0], {scale: '.7'})
+            gsap.set(challenges[2], {scale: '.7'})
+        }, 350)
+    }
+
     if(randChallenge)
     return (
         <Transition mode='fullscreen'>
         <Parallax parallaxData={parallaxData} img={ParallaxIMG} />
         <div className='app-home wrapper'>
-            <div className="random-challenge">
-                <div className="challenge-meta">
-                    <p>JavaScript</p>
-                    <p>JavaScript</p>
-                    <p>JavaScript</p>
-                </div>
-                <Link to={`/app/challenges/${randChallenge[0].fields.slug}`}>
-                    <div className="challenge-description">
-                        <h2>{randChallenge[0].fields.title}</h2>
-                        <p dangerouslySetInnerHTML={{__html: randChallenge[0].fields.description}}></p>
-                    </div>
-                </Link>
-                <div className="challenge-navigation">
-                    <p>Play</p>
-                    <p onClick={async () => await getChallenge()}>Next</p>
-                </div>
+            <div className="challenges-cards">
+                {randChallenge.map((challenge, idx) => {
+                    return <ChallengeCard challenge={challenge} idx={idx} />
+                })}
+            </div>
+            <div className="challenge-navigation">
+                <Link to={`/app/challenges/${randChallenge[1].fields.slug}`}><img src={PlaySVG} alt=""/></Link>
+                <img onClick={nextChallengeAnimation} src={NextSVG} alt=""/>
             </div>
             {/*<form onSubmit={runUserCode} >*/}
             {/*    <input type="textarea"/>*/}

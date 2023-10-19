@@ -1,6 +1,8 @@
 const INITIAL_VALUE = {
     loading: false,
-    error: null
+    error: null,
+    languagePicker: false,
+    language: 'javascript'
 }
 
 const utilsReducer = (action, state = INITIAL_VALUE) => {
@@ -17,6 +19,16 @@ const utilsReducer = (action, state = INITIAL_VALUE) => {
             return {
                 ...state,
                 error: payload
+            }
+        case 'SET_LANGUAGE_PICKER':
+            return {
+                ...state,
+                languagePicker: payload
+            }
+        case 'SET_LANGUAGE':
+            return {
+                ...state,
+                language: payload
             }
         default:
             return state

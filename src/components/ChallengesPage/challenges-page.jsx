@@ -6,6 +6,7 @@ import Parallax from "../Parallax/parallax";
 import parallaxData from './parallax-data.json'
 import ParallaxIMG from '../../utils/imgs/headers/HeaderChallenges.jpg'
 import {Link} from "react-router-dom";
+import AuthorName from "../AuthorName/author-name";
 
 const ChallengesPage = () => {
     const sendRequest = useFetchHook()
@@ -31,7 +32,7 @@ const ChallengesPage = () => {
                                 <p dangerouslySetInnerHTML={{__html: challenge.fields.description}}></p>
                             </div>
                             <div className="challenge-meta">
-                                <Link to={`/app/users/${challenge.fields.author[2]}`}><p>{challenge.fields.author[0]}</p></Link>
+                                <AuthorName author={challenge.fields.author}/>
                                 <p>{challenge.fields.author[1]}</p>
                             </div>
                         </div>

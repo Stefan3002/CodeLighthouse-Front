@@ -1,39 +1,31 @@
-.random-challenge {
-  max-width: 500px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-  background: white;
-  border-radius: 10px;
-}
-
 .app-home {
   margin-top: 2rem;
   display: flex;
   justify-content: center;
-  align-items: center;
-}
-
-.challenge-description {
-  max-width: 500px;
-  background: #32292F;
-  color: #FEE1C7;
-  border-radius: 10px;
-  padding: 1rem;
-  max-height: 400px;
-  overflow-y: auto;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .challenge-navigation {
+  margin-top: 1rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 1rem;
 }
+.challenge-navigation img {
+  transition: all 0.15s;
+  width: 50px;
+}
+.challenge-navigation img:hover, .challenge-navigation img:focus {
+  transform: scale(1.1);
+  transition: all 0.15s;
+}
 
-.challenge-meta {
-  padding: 0 0 0 2rem;
+.challenges-cards {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
 }
 
 /*# sourceMappingURL=app-home.css.map */

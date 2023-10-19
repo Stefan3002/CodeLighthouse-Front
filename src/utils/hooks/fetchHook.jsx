@@ -6,8 +6,9 @@ import {setError, setLoading} from "../store/utils-store/utils-store-actions";
 const useFetchHook = () => {
     const dispatch = useDispatch()
     // const [response, setResponse] = useState(initial_state)
-    return useCallback(async (url, body, method) => {
-        dispatch(setLoading(true))
+    return useCallback(async (url, body, method, silentLoad = false) => {
+        if(!silentLoad)
+            dispatch(setLoading(true))
         try {
             const data = await fetch(url, {
                 method,
@@ -17,11 +18,14 @@ const useFetchHook = () => {
 
             const jsonData = await data.json()
 
-            dispatch(setLoading(false))
+            if(!silentLoad)
+                dispatch(setLoading(false))
             return jsonData
         }catch(err){
             console.log(err)
             dispatch(setError(err.toString()))
+            if(!silentLoad)
+                dispatch(setLoading(false))
         }
     }, [])
 

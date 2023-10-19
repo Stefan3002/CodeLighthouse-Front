@@ -10,7 +10,7 @@ const ProfilePage = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`, undefined, 'GET')
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`, undefined, 'GET', true)
             setData(res[0])
         })()
     }, []);
