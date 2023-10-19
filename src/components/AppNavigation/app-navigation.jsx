@@ -8,7 +8,7 @@ const AppNavigation = () => {
                 <img className='logo-header-app-nav' src={LogoImgNoBg} alt=""/>
                 <ul className='app-navigation'>
                     <Link to='/app/home'><li>Home</li></Link>
-                    <li>Lighthouses</li>
+                    <Link to='/app/lighthouses'><li>Lighthouses</li></Link>
                     <Link to='/app/challenges'><li>Solve</li></Link>
                     <li>Profile</li>
                 </ul>

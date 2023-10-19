@@ -2,7 +2,9 @@ const INITIAL_VALUE = {
     loading: false,
     error: null,
     languagePicker: false,
-    language: 'javascript'
+    language: 'javascript',
+    modalOpened: false,
+    modalContent: undefined
 }
 
 const utilsReducer = (action, state = INITIAL_VALUE) => {
@@ -29,6 +31,16 @@ const utilsReducer = (action, state = INITIAL_VALUE) => {
             return {
                 ...state,
                 language: payload
+            }
+        case 'SET_MODAL_OPENED':
+            return {
+                ...state,
+                modalOpened: payload
+            }
+        case 'SET_MODAL_CONTENT':
+            return {
+                ...state,
+                modalContent: payload
             }
         default:
             return state

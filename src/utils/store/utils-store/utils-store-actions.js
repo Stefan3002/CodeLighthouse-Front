@@ -25,3 +25,17 @@ export const setLanguage = (payload) => {
         payload
     }
 }
+
+export const setModal = (payload) => {
+    return {
+        type: 'SET_MODAL_OPENED',
+        payload
+    }
+}
+
+export const setModalContent = (payload) => {
+    return {
+        type: 'SET_MODAL_CONTENT',
+        payload
+    }
+}

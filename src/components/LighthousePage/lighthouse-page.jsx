@@ -1,0 +1,32 @@
+import './lighthouse-page.css'
+import {Outlet, useParams} from "react-router-dom";
+import Transition from "../../utils/js/transitions";
+import useFetchHook from "../../utils/hooks/fetchHook";
+import {useEffect, useState} from "react";
+import LighthouseNavigation from "../LighthouseNavigation/lighthouse-navigation";
+const LighthousePage = () => {
+    const lighthouseID = useParams()['id']
+    const sendRequest = useFetchHook()
+    const [data, setData] = useState(undefined)
+
+    useEffect(() => {
+        (async () => {
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseID}`, undefined, 'GET', true)
+            setData(res[0])
+        })()
+    }, []);
+
+
+    if(data)
+    return (
+        <Transition mode='fullscreen'>
+            <LighthouseNavigation />
+            <div className='wrapper lighthouse-page'>
+                <h1>{data.fields.name}</h1>
+                <p>{data.fields.author[0]}</p>
+            </div>
+            <Outlet />
+        </Transition>
+    )
+}
+export default LighthousePage
