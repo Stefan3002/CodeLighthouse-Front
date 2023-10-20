@@ -1,7 +1,7 @@
 .lighthouses-page {
   margin-top: 2rem;
   display: flex;
-  justify-content: space-between;
+  gap: 1rem;
   align-items: stretch;
 }
 

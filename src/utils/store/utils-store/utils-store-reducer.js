@@ -7,9 +7,7 @@ const INITIAL_VALUE = {
     modalContent: undefined
 }
 
-const utilsReducer = (action, state = INITIAL_VALUE) => {
-    if(!action)
-        return state
+const utilsReducer = (state = INITIAL_VALUE, action) => {
     const {type, payload} = action
     switch (type) {
         case 'SET_LOADING':

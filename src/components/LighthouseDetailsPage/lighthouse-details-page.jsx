@@ -1,10 +1,11 @@
 import './lighthouse-details-page.css'
 import Transition from "../../utils/js/transitions";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
+import AuthorName from "../AuthorName/author-name";
 const LighthouseDetailsPage = () => {
     const user = useSelector(getUser)
     const lighthouseID = useParams()['id']
@@ -14,7 +15,7 @@ const LighthouseDetailsPage = () => {
     useEffect(() => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseID}`, undefined, 'GET', true)
-            setData(res[0])
+            setData(res)
         })()
     }, []);
     console.log(user, data)
@@ -24,17 +25,20 @@ const LighthouseDetailsPage = () => {
             <div className='wrapper lighthouse-details-page'>
                 <div className="lighthouse-details-header">
                     <div className="enrollment-details-main">
-                        {data.fields.description ? data.fields.description : 'Why did you not provide a description???'}
+                        {data.description ? data.description : 'Why did you not provide a description???'}
                     </div>
-                    {user.pk === data.fields.author[2] ? <div className="enrollment-code-wrapper">
+                    {user.id === data.author.id ? <div className="enrollment-code-wrapper">
                         <p><b>Enrollment Code:</b></p>
-                        <p className='enrollment-code'>{data.fields.enrollment_code}</p>
+                        <p className='enrollment-code'>{data.enrollment_code}</p>
+                        <p><b>Lighthouse ID:</b></p>
+                        <p className='enrollment-code'>{data.id}</p>
                     </div> : null}
 
                 </div>
-                <div>
-                    {data.fields.people.map(person => {
-                        return <p>{person[0]}</p>
+                <div className='enrollment-details-people'>
+                    <h2>Other people in this lighthouse ({data.people.length}):</h2>
+                    {data.people.map(person => {
+                        return <AuthorName author={person} />
                     })}
                 </div>
 

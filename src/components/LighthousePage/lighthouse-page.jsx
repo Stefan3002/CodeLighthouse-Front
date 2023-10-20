@@ -12,7 +12,7 @@ const LighthousePage = () => {
     useEffect(() => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseID}`, undefined, 'GET', true)
-            setData(res[0])
+            setData(res)
         })()
     }, []);
 
@@ -22,8 +22,8 @@ const LighthousePage = () => {
         <Transition mode='fullscreen'>
             <LighthouseNavigation />
             <div className='wrapper lighthouse-page'>
-                <h1>{data.fields.name}</h1>
-                <p>{data.fields.author[0]}</p>
+                <h1>{data.name}</h1>
+                <p>{data.author.username}</p>
             </div>
             <Outlet />
         </Transition>

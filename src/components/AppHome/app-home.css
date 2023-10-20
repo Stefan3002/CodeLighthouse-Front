@@ -1,4 +1,5 @@
 .app-home {
+  text-align: center;
   margin-top: 2rem;
   display: flex;
   justify-content: center;
@@ -26,6 +27,13 @@
   display: flex;
   justify-content: center;
   align-items: stretch;
+}
+
+.recent-lighthouses {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=app-home.css.map */

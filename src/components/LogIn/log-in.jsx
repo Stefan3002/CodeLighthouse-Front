@@ -20,7 +20,10 @@ const LogIn = () => {
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
 
-    const logUserInEmail = (form) => {
+    const successLogIn = () => {
+        window.location.href = '/app/home'
+    }
+    const logUserInEmail = async (form) => {
         form.preventDefault()
         const formData = form.target
         const email = formData[0].value
@@ -31,6 +34,15 @@ const LogIn = () => {
         //     email,
         //     password
         // }, 'POST')
+
+        const data = {
+            email,
+            password
+        }
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, JSON.stringify(data), 'POST', false, successLogIn)
+
+        // if(res.ok)
+        //     window.location.href = '/app/complete-profile'
 
         // fetch(`${process.env.REACT_APP_SERVER_URL}/auth`, {
         //     method: 'POST',
@@ -47,7 +59,7 @@ const LogIn = () => {
         console.log('log in, ', status)
         dispatch(setStatus('loaded'))
         dispatch(setIsLoggedIn(true))
-        window.location.href = '/app/complete-profile'
+
     }
 
     const getFeatureIcon = (icon) => {

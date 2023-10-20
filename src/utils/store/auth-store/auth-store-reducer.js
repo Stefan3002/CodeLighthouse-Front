@@ -4,9 +4,7 @@ const INITIAL_VALUE = {
     user: null
 }
 
-const authReducer = (action, state = INITIAL_VALUE) => {
-    if(!action)
-        return state
+const authReducer = (state = INITIAL_VALUE, action) => {
     const {type, payload} = action
     switch (type) {
         case 'SET_IS_LOGGED_IN':

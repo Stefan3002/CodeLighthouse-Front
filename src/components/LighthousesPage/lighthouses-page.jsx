@@ -8,33 +8,34 @@ import useFetchHook from "../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import Button from "../Button/button";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import {getUser} from "../../utils/store/user-store/user-store-selectors";
 const LighthousesPage = () => {
     const sendRequest = useFetchHook()
-    const [data, setData] = useState(undefined)
+    const user = useSelector(getUser)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/0/10`, undefined, 'GET', true)
-            setData(res)
-        })()
-    }, []);
+    // useEffect(() => {
+    //     (async () => {
+    //         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/0/10`, undefined, 'GET', true)
+    //         setData(res)
+    //     })()
+    // }, []);
 
     const joinLighthouse = () => {
         dispatch(setModal(true))
         dispatch(setModalContent('joinLighthouse'))
     }
 
-    if(data)
+    if(user)
     return (
         <Transition mode='fullscreen'>
             <Parallax parallaxData={parallaxData} img={LighthouseIMG}/>
             <Button callback={joinLighthouse} type='plus' />
             <div className='wrapper lighthouses-page'>
-                {data.map(lighthouse => {
-                    return <Link to={`${lighthouse.pk}`}><LighthouseCard data={lighthouse} /></Link>
+                {user.enrolled_lighthouses.map(lighthouse => {
+                    return <LighthouseCard data={lighthouse} />
                 })}
             </div>
         </Transition>

@@ -25,6 +25,7 @@ import LighthousesPage from "./components/LighthousesPage/lighthouses-page";
 import LighthousePage from "./components/LighthousePage/lighthouse-page";
 import LighthouseDetailsPage from "./components/LighthouseDetailsPage/lighthouse-details-page";
 import {setUser} from "./utils/store/user-store/user-store-actions";
+import useFetchHook from "./utils/hooks/fetchHook";
 
 function App() {
     const location = useLocation()
@@ -32,15 +33,19 @@ function App() {
     const error = useSelector(getError)
     const dispatch = useDispatch()
     const modalOpened = useSelector(getModalOpened)
+    const sendRequest = useFetchHook()
 
     useEffect(() => {
-        dispatch(setUser({
-            fields: {
-                username: 'stefan',
-                email: 'stefan.secrieru02@e-uvt.ro',
-            },
-            pk: 1
-        }))
+        (async () => {
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/1`, undefined, 'GET', true)
+            dispatch(setUser(res))
+        })()
+
+        // dispatch(setUser({
+        //     username: 'stefan',
+        //     email: 'stefan.secrieru02@e-uvt.ro',
+        //     pk: 1
+        // }))
     }, []);
 
     return (

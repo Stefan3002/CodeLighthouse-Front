@@ -10,8 +10,12 @@ import ChallengeCard from "../ChallengeCard/challenge-card";
 import PlaySVG from '../../utils/imgs/SVGs/Play.svg'
 import NextSVG from '../../utils/imgs/SVGs/Next.svg'
 import gsap from 'gsap'
+import {useSelector} from "react-redux";
+import {getUser} from "../../utils/store/user-store/user-store-selectors";
+import LighthouseCard from "../LighthouseCard/lighthouse-card";
+import Heading from "../Heading/heading";
 const AppHome = () => {
-
+    const user = useSelector(getUser)
     const sendRequest = useFetchHook()
     const [randChallenge, setRandChallenge] = useState(undefined)
     const runUserCode = (form) => {
@@ -67,11 +71,12 @@ const AppHome = () => {
         }, 350)
     }
 
-    if(randChallenge)
+    if(randChallenge && user)
     return (
         <Transition mode='fullscreen'>
         <Parallax parallaxData={parallaxData} img={ParallaxIMG} />
         <div className='app-home wrapper'>
+            <Heading text='Latest Challenges' />
             <div className="challenges-cards">
                 {randChallenge.map((challenge, idx) => {
                     return <ChallengeCard challenge={challenge} idx={idx} />
@@ -80,6 +85,12 @@ const AppHome = () => {
             <div className="challenge-navigation">
                 <Link to={`/app/challenges/${randChallenge[1].fields.slug}`}><img src={PlaySVG} alt=""/></Link>
                 <img onClick={nextChallengeAnimation} src={NextSVG} alt=""/>
+            </div>
+            <Heading text='Recently joined Lighthouses' />
+            <div className='recent-lighthouses'>
+                {user.enrolled_lighthouses.map(lighthouse => {
+                    return <LighthouseCard data={lighthouse} />
+                })}
             </div>
             {/*<form onSubmit={runUserCode} >*/}
             {/*    <input type="textarea"/>*/}

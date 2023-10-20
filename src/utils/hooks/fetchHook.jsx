@@ -6,21 +6,30 @@ import {setError, setLoading} from "../store/utils-store/utils-store-actions";
 const useFetchHook = () => {
     const dispatch = useDispatch()
     // const [response, setResponse] = useState(initial_state)
-    return useCallback(async (url, body, method, silentLoad = false) => {
+    return useCallback(async (url, body, method, silentLoad = false, successCallback = () => {}) => {
         if(!silentLoad)
             dispatch(setLoading(true))
         try {
             const data = await fetch(url, {
                 method,
                 body,
-                credentials: 'include'
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
 
             const jsonData = await data.json()
 
             if(!silentLoad)
                 dispatch(setLoading(false))
-            return jsonData
+            if(data.ok) {
+                successCallback()
+                return jsonData
+            }
+            else{
+                dispatch(setError(jsonData.data))
+            }
         }catch(err){
             console.log(err)
             dispatch(setError(err.toString()))

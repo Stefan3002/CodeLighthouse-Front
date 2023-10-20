@@ -2,11 +2,9 @@ const INITIAL_VALUE = {
     user: null
 }
 
-const userReducer = (action, state = INITIAL_VALUE) => {
-    if(!action)
-        return state
+const userReducer = (state = INITIAL_VALUE, action) => {
     const {type, payload} = action
-    switch (type) {
+    switch (type){
         case 'SET_USER':
             return {
                 ...state,

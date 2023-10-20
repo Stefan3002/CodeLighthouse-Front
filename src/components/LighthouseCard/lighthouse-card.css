@@ -5,6 +5,7 @@
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
   background: white;
   position: relative;
+  transition: all 0.15s;
 }
 .lighthouse-card h2 {
   margin: 0;
@@ -18,6 +19,12 @@
   position: absolute;
   left: 0;
   bottom: 0;
+}
+.lighthouse-card:focus, .lighthouse-card:hover {
+  transform: scale(1.1);
+  transition: all 0.15s;
+  background: #32292F;
+  color: #FEE1C7;
 }
 
 /*# sourceMappingURL=lighthouse-card.css.map */
