@@ -23,16 +23,16 @@ const LighthousesPage = () => {
     //     })()
     // }, []);
 
-    const joinLighthouse = () => {
+    const menuLighthouse = () => {
         dispatch(setModal(true))
-        dispatch(setModalContent('joinLighthouse'))
+        dispatch(setModalContent('menuLighthouse'))
     }
 
     if(user)
     return (
         <Transition mode='fullscreen'>
             <Parallax parallaxData={parallaxData} img={LighthouseIMG}/>
-            <Button callback={joinLighthouse} type='plus' />
+            <Button callback={menuLighthouse} type='plus' />
             <div className='wrapper lighthouses-page'>
                 {user.enrolled_lighthouses.map(lighthouse => {
                     return <LighthouseCard data={lighthouse} />

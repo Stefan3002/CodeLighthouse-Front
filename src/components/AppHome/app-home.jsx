@@ -18,29 +18,7 @@ const AppHome = () => {
     const user = useSelector(getUser)
     const sendRequest = useFetchHook()
     const [randChallenge, setRandChallenge] = useState(undefined)
-    const runUserCode = (form) => {
-        form.preventDefault()
-        fetch(`${process.env.REACT_APP_SERVER_URL}/run`, {
-            method: 'GET',
-            credentials: 'include'
-        })
-            .then((data) => {
-                data.json().then((dataJson) => {
-                    console.log(dataJson)
-                })
-            })
 
-
-        fetch(`${process.env.REACT_APP_SERVER_URL}/run`, {
-            method: 'POST',
-            credentials: 'include'
-        })
-            .then((data) => {
-                data.json().then((dataJson) => {
-                    console.log(dataJson)
-                })
-            })
-    }
     const getChallenge = async () => {
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/0/3`, undefined, 'GET', true)
         setRandChallenge(res)
@@ -70,7 +48,7 @@ const AppHome = () => {
             gsap.set(challenges[2], {scale: '.7'})
         }, 350)
     }
-
+    console.log('user = ', user, randChallenge)
     if(randChallenge && user)
     return (
         <Transition mode='fullscreen'>
@@ -83,7 +61,7 @@ const AppHome = () => {
                 })}
             </div>
             <div className="challenge-navigation">
-                <Link to={`/app/challenges/${randChallenge[1].fields.slug}`}><img src={PlaySVG} alt=""/></Link>
+                <Link to={`/app/challenges/${randChallenge[1].slug}`}><img src={PlaySVG} alt=""/></Link>
                 <img onClick={nextChallengeAnimation} src={NextSVG} alt=""/>
             </div>
             <Heading text='Recently joined Lighthouses' />

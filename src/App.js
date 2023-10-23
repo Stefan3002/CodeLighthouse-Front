@@ -12,7 +12,7 @@ import {AnimatePresence} from "framer-motion";
 import ProtectedRoute from "./components/ProtectedRoute/protected-route";
 import CompleteProfilePage from "./components/CompleteProfilePage/complete-profile-page";
 import {useDispatch, useSelector} from "react-redux";
-import {getError, getLoading, getModalOpened} from "./utils/store/utils-store/utils-store-selectors";
+import {getError, getLoading, getModalContent, getModalOpened} from "./utils/store/utils-store/utils-store-selectors";
 import Spinner from "./components/Spinner/spinner";
 import Blur from "./components/Blur/blur";
 import ChallengePage from "./components/ChallengePage/challenge-page";
@@ -34,26 +34,27 @@ function App() {
     const dispatch = useDispatch()
     const modalOpened = useSelector(getModalOpened)
     const sendRequest = useFetchHook()
+    const modalType = useSelector(getModalContent)
 
-    useEffect(() => {
-        (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/1`, undefined, 'GET', true)
-            dispatch(setUser(res))
-        })()
-
-        // dispatch(setUser({
-        //     username: 'stefan',
-        //     email: 'stefan.secrieru02@e-uvt.ro',
-        //     pk: 1
-        // }))
-    }, []);
+    // useEffect(() => {
+    //     (async () => {
+    //         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/1`, undefined, 'GET', true)
+    //         dispatch(setUser(res))
+    //     })()
+    //
+    //     // dispatch(setUser({
+    //     //     username: 'stefan',
+    //     //     email: 'stefan.secrieru02@e-uvt.ro',
+    //     //     pk: 1
+    //     // }))
+    // }, []);
 
     return (
         <div className="App">
 
             {loading ? <><Blur /><Spinner /></> : null}
             {error ? <><Blur error={true} /><Modal error={error} /></> : null}
-            {modalOpened ? <><Blur modal={true} /><Modal type='joinLighthouse' /></> : null}
+            {modalOpened ? <><Blur modal={true} /><Modal type={modalType} /></> : null}
 
             <AnimatePresence mode='wait'>
                 <Routes key={location.pathname} location={location}>

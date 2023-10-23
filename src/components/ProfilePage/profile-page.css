@@ -1,5 +1,18 @@
+.profile-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
 .profile-header {
   text-align: center;
+}
+
+.profile-lighthouses {
+  display: flex;
+  gap: 1rem;
 }
 
 /*# sourceMappingURL=profile-page.css.map */

@@ -1,8 +1,8 @@
 import './input.css'
-const Input = ({placeholder, type='text'}) => {
+const Input = ({placeholder, type='text', rows = 40, cols = 100}) => {
     if(type === 'textarea')
         return (
-            <textarea rows='40' cols='100' className='input text-area-input' placeholder={placeholder}>
+            <textarea rows={rows} cols={cols} className='input text-area-input' placeholder={placeholder}>
 
             </textarea>
         )

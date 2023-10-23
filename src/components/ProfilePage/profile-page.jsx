@@ -4,6 +4,7 @@ import useFetchHook from "../../utils/hooks/fetchHook";
 import {useParams} from "react-router-dom";
 import Transition from "../../utils/js/transitions";
 import LighthouseCard from "../LighthouseCard/lighthouse-card";
+import Heading from "../Heading/heading";
 const ProfilePage = () => {
     const userID = useParams()['id']
     const sendRequest = useFetchHook()
@@ -22,6 +23,7 @@ const ProfilePage = () => {
             <div className="profile-header">
                 <h1>{data.username}</h1>
             </div>
+            <Heading text='Enrolled Lighthouses' />
             <div className="profile-lighthouses">
                 {data.enrolled_lighthouses.map(lighthouse => {
                     return <LighthouseCard data={lighthouse} />

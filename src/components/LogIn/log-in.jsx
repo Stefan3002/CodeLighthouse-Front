@@ -15,12 +15,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {setIsLoggedIn, setStatus} from "../../utils/store/auth-store/auth-store-actions";
 import {getStatus} from "../../utils/store/auth-store/auth-store-selectors";
 import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
+import {setUser} from "../../utils/store/user-store/user-store-actions";
 const LogIn = () => {
     const status = useSelector(getStatus)
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
 
-    const successLogIn = () => {
+    const successLogIn = (user) => {
+        dispatch(setUser(user))
         window.location.href = '/app/home'
     }
     const logUserInEmail = async (form) => {
@@ -40,7 +42,7 @@ const LogIn = () => {
             password
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, JSON.stringify(data), 'POST', false, successLogIn)
-
+        console.log('+++', res)
         // if(res.ok)
         //     window.location.href = '/app/complete-profile'
 

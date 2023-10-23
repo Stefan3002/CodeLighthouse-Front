@@ -5,14 +5,19 @@ import App from './App';
 import {Provider} from "react-redux";
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Router} from "react-router-dom";
-import {store} from "./utils/store/store";
+import {persistor, store} from "./utils/store/store";
+import {PersistGate} from "redux-persist/integration/react";
+import Blur from "./components/Blur/blur";
+import Spinner from "./components/Spinner/spinner";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <BrowserRouter>
           <Provider store={store}>
-              <App />
+              <PersistGate loading={<><Blur /><Spinner /></>} persistor={persistor}>
+                  <App />
+              </PersistGate>
           </Provider>
       </BrowserRouter>
   </React.StrictMode>
