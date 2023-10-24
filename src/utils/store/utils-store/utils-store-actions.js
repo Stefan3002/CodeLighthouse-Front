@@ -39,3 +39,10 @@ export const setModalContent = (payload) => {
         payload
     }
 }
+
+export const setSelectedChallenge = (payload) => {
+    return {
+        type: 'SET_SELECTED_CHALLENGE',
+        payload
+    }
+}

@@ -4,7 +4,8 @@ const INITIAL_VALUE = {
     languagePicker: false,
     language: 'javascript',
     modalOpened: false,
-    modalContent: undefined
+    modalContent: undefined,
+    selectedChallenge: undefined
 }
 
 const utilsReducer = (state = INITIAL_VALUE, action) => {
@@ -39,6 +40,11 @@ const utilsReducer = (state = INITIAL_VALUE, action) => {
             return {
                 ...state,
                 modalContent: payload
+            }
+        case 'SET_SELECTED_CHALLENGE':
+            return {
+                ...state,
+                selectedChallenge: payload
             }
         default:
             return state

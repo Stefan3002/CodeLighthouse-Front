@@ -1,6 +1,6 @@
 import './button.css'
 import PlusSVG from '../../utils/imgs/SVGs/PlusSVG.svg'
-const Button = ({text, color='dark', type='normal', callback, buttonType = ''}) => {
+const Button = ({text, color='dark', type='normal', callback = () => {}, buttonType = ''}) => {
     if(type === 'normal')
         return (
             <button onClick={() => callback ? callback() : null} type={buttonType}  className='button'>

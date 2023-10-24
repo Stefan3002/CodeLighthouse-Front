@@ -7,6 +7,7 @@ import useFetchHook from "../../utils/hooks/fetchHook";
 import {useSelector} from "react-redux";
 import {getLanguage} from "../../utils/store/utils-store/utils-store-selectors";
 import LanguageSelector from "../LanguageSelector/language-selector";
+import Button from "../Button/button";
 const CodePage = () => {
     const slug = useParams()['slug']
     const sendRequest = useFetchHook()
@@ -30,6 +31,7 @@ const CodePage = () => {
                 </div>
                 {/*<div className="code-page-editor">*/}
                     <Editor width='50%' height='300px' defaultLanguage={lang} />
+                    <Button text='Send.' />
                 {/*</div>*/}
             </div>
         </Transition>

@@ -1,0 +1,21 @@
+.challenge-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.challenges-picker {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.challenge-picker-input {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=challenge-picker.css.map */

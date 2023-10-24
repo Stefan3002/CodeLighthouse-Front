@@ -31,3 +31,20 @@
   background: $white
   border-radius: 10px
   box-shadow: $box-shadow
+
+.challenge-card-small
+  background: $light-color
+  color: $text-color
+  padding: .2rem
+  border-radius: 10px
+  box-shadow: $box-shadow
+  transition: all .15s
+  &:hover, &:focus
+    transform: scale(1.1)
+    animation: all .15s
+    color: $light-color
+    background: $dark-color
+
+.selected-challenge
+  color: $light-color
+  background: $dark-color

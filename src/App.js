@@ -26,6 +26,7 @@ import LighthousePage from "./components/LighthousePage/lighthouse-page";
 import LighthouseDetailsPage from "./components/LighthouseDetailsPage/lighthouse-details-page";
 import {setUser} from "./utils/store/user-store/user-store-actions";
 import useFetchHook from "./utils/hooks/fetchHook";
+import LighthouseAssignmentsPage from "./components/LighthouseAssignmentsPage/lighthouse-assignments-page";
 
 function App() {
     const location = useLocation()
@@ -75,6 +76,7 @@ function App() {
                         <Route path='users/:id' element={<ProfilePage />} />
                         <Route path='lighthouses/:id' element={<LighthousePage />} >
                             <Route path='people' element={<LighthouseDetailsPage />} />
+                            <Route path='assignments' element={<LighthouseAssignmentsPage />} />
                         </Route>
                     </Route>
                 </Routes>

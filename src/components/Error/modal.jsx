@@ -3,19 +3,23 @@ import Transition from "../../utils/js/transitions";
 import ErrorSVG from '../../utils/imgs/ErrorSVG.svg'
 import LighthouseSVG from '../../utils/imgs/SVGs/LighthouseSVG.svg'
 import {useDispatch, useSelector} from "react-redux";
-import {getModalContent} from "../../utils/store/utils-store/utils-store-selectors";
+import {getModalContent, getSelectedChallenge} from "../../utils/store/utils-store/utils-store-selectors";
 import Input from "../Input/input";
 import Button from "../Button/button";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import {setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import {useState} from "react";
+import ChallengePicker from "../ChallengePicker/challenge-picker";
+import {useParams} from "react-router-dom";
 const Modal = ({error, type='error'}) => {
     const modalContent = useSelector(getModalContent)
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
     const dispatch = useDispatch()
-
+    const selectedChallenge = useSelector(getSelectedChallenge)
+    const lighthouseId = useParams()
+    console.log('aaaaaaaaa', lighthouseId)
     const joinLighthouse = () => {
         dispatch(setModalContent('joinLighthouse'))
     }
@@ -35,6 +39,16 @@ const Modal = ({error, type='error'}) => {
 
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseId}`,JSON.stringify(data) , 'POST', false)
         // setData(res)
+
+    }
+
+    const assignLighthouseChallenge = async () => {
+        const data = {
+            selectedChallenge
+        }
+        console.log(lighthouseId)
+        // TODO: Change the 11 to the lighthouseID from Redux store
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/assignments/11`,JSON.stringify(data) , 'POST', false)
 
     }
 
@@ -149,6 +163,27 @@ const Modal = ({error, type='error'}) => {
                         {/*    <Input type='text' placeholder='Id of the Lighthouse.' />*/}
                         {/*    <Button buttonType='submit' text='Join' type='normal' />*/}
                         {/*</form>*/}
+
+                    </div>
+                </div>
+                // </Transition>
+            )
+        }
+        else
+        if(type === 'assignChallenge') {
+            return (
+                // <Transition mode='fullscreen'>
+                <div className='error-wrapper'>
+                    <div className="error-header">
+                        <img src={LighthouseSVG} alt=""/>
+                        <h2>Create a new assignment!</h2>
+                    </div>
+                    <div className="error-content">
+                        <p>Select the <b>challenge</b> to enlighten your students:</p>
+                        <div className='enroll-inputs'>
+                            <ChallengePicker />
+                            <Button callback={assignLighthouseChallenge} text='Create' type='normal' />
+                        </div>
 
                     </div>
                 </div>

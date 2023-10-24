@@ -8,6 +8,8 @@ import aboutText from '../../utils/text/about.json'
 import AboutHighIMG1 from '../../utils/imgs/about/AboutHighIMG1.jpg'
 import AboutHighIMG2 from '../../utils/imgs/about/AboutHighIMG2.jpg'
 import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
+import Typewriter from "../Typewriter/typewriter";
+import Heading from "../Heading/heading";
 const LandingPageAbout = () => {
     return (
         <Transition>
@@ -15,8 +17,18 @@ const LandingPageAbout = () => {
             <div className="slide-hero about-inner">
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
                 <div className="about">
-                    <p dangerouslySetInnerHTML={{__html: aboutText.description[0].text}}></p>
+
+                    <div className="about-left">
+                        <div className="about-typewriter">
+                            <p><b>CodeLighthouse</b> is for:</p>
+                            <Typewriter />
+                            <Heading />
+                        </div>
+                        <p dangerouslySetInnerHTML={{__html: aboutText.description[0].text}}></p>
+                    </div>
                     <img src={CodeIMG} alt="" className="about-img"/>
+
+
                 </div>
                 {/*<div className="about-highs">*/}
                 {/*    {aboutText.highlights.map((high, idx) => {*/}

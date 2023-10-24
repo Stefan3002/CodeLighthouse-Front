@@ -1,7 +1,12 @@
 import './app-navigation.css'
 import {Link, Outlet} from "react-router-dom";
 import LogoImgNoBg from "../../utils/imgs/logo/LogoSVG.svg";
+import {useSelector} from "react-redux";
+import {getUser} from "../../utils/store/user-store/user-store-selectors";
 const AppNavigation = () => {
+
+    const user = useSelector(getUser)
+
     return (
         <>
             <nav className='app-navigation-wrapper'>
@@ -10,7 +15,7 @@ const AppNavigation = () => {
                     <Link to='/app/home'><li>Home</li></Link>
                     <Link to='/app/lighthouses'><li>Lighthouses</li></Link>
                     <Link to='/app/challenges'><li>Solve</li></Link>
-                    <li>Profile</li>
+                    <Link to={`/app/users/${user.id}`}><li>{user.username}</li></Link>
                 </ul>
             </nav>
             <Outlet />

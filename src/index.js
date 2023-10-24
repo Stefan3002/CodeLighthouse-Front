@@ -12,7 +12,7 @@ import Spinner from "./components/Spinner/spinner";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
       <BrowserRouter>
           <Provider store={store}>
               <PersistGate loading={<><Blur /><Spinner /></>} persistor={persistor}>
@@ -20,6 +20,6 @@ root.render(
               </PersistGate>
           </Provider>
       </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 reportWebVitals();

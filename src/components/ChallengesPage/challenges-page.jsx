@@ -26,14 +26,14 @@ const ChallengesPage = () => {
             <div className='wrapper challenges-page'>
                 <div className="challenges">
                     {data.map(challenge => {
-                        return <Link to={`${challenge.fields.slug}`}><div className='challenge' key={challenge.fields.slug}>
+                        return <Link to={`${challenge.slug}`}><div className='challenge' key={challenge.slug}>
                             <div className="challenge-content">
-                                <h2>{challenge.fields.title}</h2>
-                                <p dangerouslySetInnerHTML={{__html: challenge.fields.description}}></p>
+                                <h2>{challenge.title}</h2>
+                                <p dangerouslySetInnerHTML={{__html: challenge.description}}></p>
                             </div>
                             <div className="challenge-meta">
-                                <AuthorName author={challenge.fields.author}/>
-                                <p>{challenge.fields.author[1]}</p>
+                                <AuthorName author={challenge.author}/>
+                                <p>{challenge.author.username}</p>
                             </div>
                         </div>
                         </Link>

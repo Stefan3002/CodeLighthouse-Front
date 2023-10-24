@@ -14,8 +14,8 @@ const LandingPageHeader = () => {
             <div className="slide-hero slide-hero-home">
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
                 {/*<h1 className='title'>CodeLighthouse</h1>*/}
-                <p className='subtitle'>Enlighten your coding skills</p>
-                <Button text='But how?' />
+                <p className='subtitle'>Enlighten your <b>coding</b> skills.</p>
+                <Link to='/about'><Button text='But how?' /></Link>
             </div>
             <LandingPageAsideMenu />
         </div>

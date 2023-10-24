@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import AuthorName from "../AuthorName/author-name";
+import Missing from "../Missing/missing";
 const LighthouseDetailsPage = () => {
     const user = useSelector(getUser)
     const lighthouseID = useParams()['id']
@@ -37,9 +38,9 @@ const LighthouseDetailsPage = () => {
                 </div>
                 <div className='enrollment-details-people'>
                     <h2>Other people in this lighthouse ({data.people.length}):</h2>
-                    {data.people.map(person => {
+                    {data.people.length > 1 ? data.people.map(person => {
                         return <AuthorName author={person} />
-                    })}
+                    }) : <Missing text='You are the only one here!' />}
                 </div>
 
             </div>

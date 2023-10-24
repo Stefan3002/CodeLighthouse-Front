@@ -5,3 +5,4 @@ export const getLanguagePicker = (state) => state.utilsStore.languagePicker
 export const getLanguage = (state) => state.utilsStore.language
 export const getModalOpened = (state) => state.utilsStore.modalOpened
 export const getModalContent = (state) => state.utilsStore.modalContent
+export const getSelectedChallenge = (state) => state.utilsStore.selectedChallenge
