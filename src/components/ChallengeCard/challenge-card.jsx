@@ -6,6 +6,8 @@ import Difficulty from "../Difficulty/difficulty";
 import {useDispatch, useSelector} from "react-redux";
 import {setSelectedChallenge} from "../../utils/store/utils-store/utils-store-actions";
 import {getSelectedChallenge} from "../../utils/store/utils-store/utils-store-selectors";
+import calendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
+import clockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 
 const ChallengeCard = ({challenge, idx, type = 'Big'}) => {
     const dispatch = useDispatch()
@@ -13,7 +15,6 @@ const ChallengeCard = ({challenge, idx, type = 'Big'}) => {
     const selectChallenge = () => {
         dispatch(setSelectedChallenge(challenge.slug))
     }
-
 
     if(type === 'Big')
     return (
@@ -30,6 +31,33 @@ const ChallengeCard = ({challenge, idx, type = 'Big'}) => {
             </div>
         </div>
     )
+    else
+    if(type === 'assignment')
+        return (
+            <div style={{transform: idx === 2 || idx === 0 ? 'scale(.8)' : 'scale(1)'}} className="challenge-card">
+                <div className="challenge-meta-card" >
+                    <AuthorName author={challenge.challenge.author} />
+                    <Difficulty difficulty={challenge.challenge.difficulty} />
+                </div>
+                <div className="challenge-description-card" >
+                    <Link to={`/app/challenges/${challenge.challenge.slug}`}>
+                        <h2>{challenge.challenge.title}</h2>
+                        <p dangerouslySetInnerHTML={{__html: challenge.challenge.description.slice(0, 200)}}></p>
+                    </Link>
+                </div>
+                <div className="assignment-metas">
+                    <div className="assignment-meta">
+                        <img className='icon-svg' src={clockSVG} alt=""/>
+                        <p>{challenge.due_time}</p>
+                    </div>
+                    <div className="assignment-meta">
+                        <img className='icon-svg' src={calendarSVG} alt=""/>
+                        <p>{challenge.due_date}</p>
+                    </div>
+                </div>
+
+            </div>
+        )
     else
         if(type === 'small')
             return (

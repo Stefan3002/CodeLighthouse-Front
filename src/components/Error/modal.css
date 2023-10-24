@@ -52,4 +52,9 @@
   align-items: center;
 }
 
+.assignment-inputs-due {
+  display: flex;
+  gap: 0.5rem;
+}
+
 /*# sourceMappingURL=modal.css.map */

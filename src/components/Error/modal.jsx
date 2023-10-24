@@ -42,9 +42,17 @@ const Modal = ({error, type='error'}) => {
 
     }
 
-    const assignLighthouseChallenge = async () => {
+    const assignLighthouseChallenge = async (event) => {
+        event.preventDefault()
+        const dueDate = event.target[0].value
+        const dueTime = event.target[1].value
         const data = {
-            selectedChallenge
+            selectedChallenge,
+            dueDate,
+            dueTime,
+            users: [
+                'af8db712-3bd7-4243-a81c-b1b550b6b0a2'
+            ]
         }
         console.log(lighthouseId)
         // TODO: Change the 11 to the lighthouseID from Redux store
@@ -182,7 +190,14 @@ const Modal = ({error, type='error'}) => {
                         <p>Select the <b>challenge</b> to enlighten your students:</p>
                         <div className='enroll-inputs'>
                             <ChallengePicker />
-                            <Button callback={assignLighthouseChallenge} text='Create' type='normal' />
+                        <p><b>Due?</b> Select a date and a time!</p>
+                            <form className='assignment-inputs' onSubmit={assignLighthouseChallenge}>
+                                <div className='assignment-inputs-due'>
+                                    <Input type='date'/>
+                                    <Input type='time'/>
+                                </div>
+                                <Button buttonType='submit' text='Create' type='normal' />
+                            </form>
                         </div>
 
                     </div>

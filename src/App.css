@@ -43,6 +43,10 @@ a:focus:before, a:hover:before {
   transition: all 0.15s ease-in-out;
 }
 
+.icon-svg {
+  max-width: 30px;
+}
+
 .wrapper {
   width: 80%;
   margin: 0 auto;

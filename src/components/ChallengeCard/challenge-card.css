@@ -54,4 +54,15 @@
   background: #32292F;
 }
 
+.assignment-meta {
+  line-height: 1px;
+}
+
+.assignment-metas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
 /*# sourceMappingURL=challenge-card.css.map */

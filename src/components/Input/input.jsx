@@ -7,9 +7,8 @@ const Input = ({placeholder, type='text', rows = 40, cols = 100}) => {
             </textarea>
         )
     else
-    if(type === 'text')
         return (
-            <input className='input' placeholder={placeholder}>
+            <input className='input' type={type} placeholder={placeholder}>
 
             </input>
         )
