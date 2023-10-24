@@ -16,7 +16,10 @@ const LighthouseAssignmentsPage = () => {
     const user = useSelector(getUser)
    const assignChallenge = () => {
        dispatch(setModal(true))
-       dispatch(setModalContent('assignChallenge'))
+       dispatch(setModalContent({
+           type: 'assignChallenge',
+           data: lighthouseId
+       }))
    }
     useEffect(() => {
         (async () => {

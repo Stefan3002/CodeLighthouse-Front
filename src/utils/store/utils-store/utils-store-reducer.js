@@ -4,7 +4,15 @@ const INITIAL_VALUE = {
     languagePicker: false,
     language: 'javascript',
     modalOpened: false,
-    modalContent: undefined,
+    modalContent: {
+        type: undefined,
+        data: undefined
+    },
+    sidePanel: {
+        opened: false,
+        type: undefined,
+        data: undefined
+    },
     selectedChallenge: undefined
 }
 
@@ -45,6 +53,11 @@ const utilsReducer = (state = INITIAL_VALUE, action) => {
             return {
                 ...state,
                 selectedChallenge: payload
+            }
+        case 'SET_SIDE_PANEL':
+            return {
+                ...state,
+                sidePanel: payload
             }
         default:
             return state

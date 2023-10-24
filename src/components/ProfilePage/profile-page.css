@@ -15,4 +15,12 @@
   gap: 1rem;
 }
 
+.unfinished-assignments {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+}
+
 /*# sourceMappingURL=profile-page.css.map */

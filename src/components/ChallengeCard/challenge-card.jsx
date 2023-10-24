@@ -9,7 +9,7 @@ import {getSelectedChallenge} from "../../utils/store/utils-store/utils-store-se
 import calendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import clockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 
-const ChallengeCard = ({challenge, idx, type = 'Big'}) => {
+const ChallengeCard = ({challenge, idx, type = 'Big', detailedAssignment = false}) => {
     const dispatch = useDispatch()
     const selectedChallenge = useSelector(getSelectedChallenge)
     const selectChallenge = () => {
@@ -34,7 +34,7 @@ const ChallengeCard = ({challenge, idx, type = 'Big'}) => {
     else
     if(type === 'assignment')
         return (
-            <div style={{transform: idx === 2 || idx === 0 ? 'scale(.8)' : 'scale(1)'}} className="challenge-card">
+            <div style={{opacity: challenge.finished ? '.4' : null}} className="challenge-card">
                 <div className="challenge-meta-card" >
                     <AuthorName author={challenge.challenge.author} />
                     <Difficulty difficulty={challenge.challenge.difficulty} />
@@ -46,6 +46,7 @@ const ChallengeCard = ({challenge, idx, type = 'Big'}) => {
                     </Link>
                 </div>
                 <div className="assignment-metas">
+                    {detailedAssignment ? <><Link to={`/app/lighthouses/${challenge.lighthouse}/assignments`}><p>{challenge.lighthouse}</p></Link></> : null}
                     <div className="assignment-meta">
                         <img className='icon-svg' src={clockSVG} alt=""/>
                         <p>{challenge.due_time}</p>

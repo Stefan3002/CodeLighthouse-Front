@@ -16,16 +16,12 @@ const LighthousesPage = () => {
     const user = useSelector(getUser)
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     (async () => {
-    //         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/0/10`, undefined, 'GET', true)
-    //         setData(res)
-    //     })()
-    // }, []);
-
     const menuLighthouse = () => {
         dispatch(setModal(true))
-        dispatch(setModalContent('menuLighthouse'))
+        dispatch(setModalContent({
+            type: 'menuLighthouse',
+            data: undefined
+        }))
     }
 
     if(user)

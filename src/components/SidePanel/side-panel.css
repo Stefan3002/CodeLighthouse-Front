@@ -1,0 +1,36 @@
+.side-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 30vw;
+  z-index: 11;
+  color: #FEE1C7;
+  background: #32292F;
+}
+
+.side-panel-header {
+  background: #FEE1C7;
+  color: #575366;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.side-panel-header h2 {
+  margin: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.side-panel-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  flex-direction: column;
+}
+
+/*# sourceMappingURL=side-panel.css.map */

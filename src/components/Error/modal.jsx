@@ -8,7 +8,7 @@ import Input from "../Input/input";
 import Button from "../Button/button";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
-import {setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import {setModalContent, setSidePanel} from "../../utils/store/utils-store/utils-store-actions";
 import {useState} from "react";
 import ChallengePicker from "../ChallengePicker/challenge-picker";
 import {useParams} from "react-router-dom";
@@ -18,13 +18,17 @@ const Modal = ({error, type='error'}) => {
     const user = useSelector(getUser)
     const dispatch = useDispatch()
     const selectedChallenge = useSelector(getSelectedChallenge)
-    const lighthouseId = useParams()
-    console.log('aaaaaaaaa', lighthouseId)
     const joinLighthouse = () => {
-        dispatch(setModalContent('joinLighthouse'))
+        dispatch(setModalContent({
+            type: 'joinLighthouse',
+            data: undefined
+        }))
     }
     const createLighthouse = () => {
-        dispatch(setModalContent('createLighthouse'))
+        dispatch(setModalContent({
+            type: 'createLighthouse',
+            data: undefined
+        }))
     }
 
     const enrollLighthouse = async (event) => {
@@ -54,9 +58,7 @@ const Modal = ({error, type='error'}) => {
                 'af8db712-3bd7-4243-a81c-b1b550b6b0a2'
             ]
         }
-        console.log(lighthouseId)
-        // TODO: Change the 11 to the lighthouseID from Redux store
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/assignments/11`,JSON.stringify(data) , 'POST', false)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/assignments/${modalContent.data}`,JSON.stringify(data) , 'POST', false)
 
     }
 
@@ -73,7 +75,18 @@ const Modal = ({error, type='error'}) => {
         }
 
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/create-lighthouses`,JSON.stringify(data) , 'POST', false)
-        dispatch(setModalContent('success'))
+        dispatch(setModalContent({
+            type: 'success',
+            data: undefined
+        }))
+    }
+
+    const openStudentSelection = () => {
+        dispatch(setSidePanel({
+            opened: true,
+            type: 'students',
+            data: undefined
+        }))
     }
 
     if(type === 'error')
@@ -190,6 +203,8 @@ const Modal = ({error, type='error'}) => {
                         <p>Select the <b>challenge</b> to enlighten your students:</p>
                         <div className='enroll-inputs'>
                             <ChallengePicker />
+                        <p>Not for everyone? <b>Select</b> the students you want!</p>
+                            <Button callback={openStudentSelection} text='Select' />
                         <p><b>Due?</b> Select a date and a time!</p>
                             <form className='assignment-inputs' onSubmit={assignLighthouseChallenge}>
                                 <div className='assignment-inputs-due'>

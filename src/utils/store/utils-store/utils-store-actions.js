@@ -46,3 +46,10 @@ export const setSelectedChallenge = (payload) => {
         payload
     }
 }
+
+export const setSidePanel = (payload) => {
+    return {
+        type: 'SET_SIDE_PANEL',
+        payload
+    }
+}
