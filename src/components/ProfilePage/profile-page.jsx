@@ -6,7 +6,10 @@ import Transition from "../../utils/js/transitions";
 import LighthouseCard from "../LighthouseCard/lighthouse-card";
 import Heading from "../Heading/heading";
 import ChallengeCard from "../ChallengeCard/challenge-card";
+import {useSelector} from "react-redux";
+import {getUser} from "../../utils/store/user-store/user-store-selectors";
 const ProfilePage = () => {
+    const user = useSelector(getUser)
     const userID = useParams()['id']
     const sendRequest = useFetchHook()
     const [data, setData] = useState(undefined)
@@ -17,6 +20,9 @@ const ProfilePage = () => {
             setData(res)
         })()
     }, []);
+
+    console.log(userID, user)
+
     if(data)
     return (
         <Transition mode='fullscreen'>
@@ -30,15 +36,18 @@ const ProfilePage = () => {
                     return <LighthouseCard data={lighthouse} />
                 })}
             </div>
-            <Heading text='Unfinished Assignments' />
-            <div className="unfinished-assignments">
-                {data.enrolled_lighthouses.map(lighthouse => {
-                    return lighthouse.assignments.map(assignment => {
-                        return <ChallengeCard type='assignment' detailedAssignment={true} challenge={assignment} />
-                    })
-                })}
-            </div>
-
+            {userID == user.id ? <><Heading text='Assignments' />
+                <div className="unfinished-assignments">
+                    {data.enrolled_lighthouses.map(lighthouse => {
+                        return lighthouse.assignments.map(assignment => {
+                            return assignment.users.map(assignedUser => {
+                                if (assignedUser.user_id === user.user_id)
+                                    return <ChallengeCard type='assignment' detailedAssignment={true}
+                                                          challenge={assignment}/>
+                            })
+                        })
+                    })}
+                </div></> : null}
         </div>
         </Transition>
     )

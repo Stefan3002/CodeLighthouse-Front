@@ -34,7 +34,12 @@ const LighthouseAssignmentsPage = () => {
             {!data.assignments.length ? <Missing text='No assignments yet!' /> :
                 <>
                     {data.assignments.map(assignment => {
-                        return <ChallengeCard challenge={assignment} type='assignment' />
+                        return assignment.users.map(assignedUser => {
+                            if(assignedUser.user_id === user.user_id)
+                                return <ChallengeCard challenge={assignment} type='assignment' />
+                        })
+
+
                     })}
                 </>
             }

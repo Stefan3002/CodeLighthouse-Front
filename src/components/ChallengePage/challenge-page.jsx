@@ -24,11 +24,11 @@ const ChallengePage = () => {
             <Transition mode='fullscreen'>
                 <div className='wrapper challenge-page'>
                     <div className="challenge-page-meta">
-                        <Difficulty difficulty={data[0].fields.difficulty}/>
-                        <h1>{data[0].fields.title}</h1>
+                        <Difficulty difficulty={data.difficulty}/>
+                        <h1>{data.title}</h1>
                     </div>
                     <div className="challenge-page-content">
-                        <p dangerouslySetInnerHTML={{__html: data[0].fields.description}}></p>
+                        <p dangerouslySetInnerHTML={{__html: data.description}}></p>
                     </div>
                     <div className="challenge-page-language">
                         <LanguageSelector/>

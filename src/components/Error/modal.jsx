@@ -54,9 +54,7 @@ const Modal = ({error, type='error'}) => {
             selectedChallenge,
             dueDate,
             dueTime,
-            users: [
-                'af8db712-3bd7-4243-a81c-b1b550b6b0a2'
-            ]
+            users: [...modalContent.selectedPeople, user.user_id]
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/assignments/${modalContent.data}`,JSON.stringify(data) , 'POST', false)
 
@@ -81,11 +79,13 @@ const Modal = ({error, type='error'}) => {
         }))
     }
 
-    const openStudentSelection = () => {
+    const openStudentSelection = async () => {
+
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${modalContent.data}`,undefined , 'GET', false)
         dispatch(setSidePanel({
             opened: true,
             type: 'students',
-            data: undefined
+            data: res
         }))
     }
 
@@ -179,6 +179,7 @@ const Modal = ({error, type='error'}) => {
                     </div>
                     <div className="error-content">
                         <p>The request was <b>successful</b>!</p>
+                        <p>{modalContent.data}</p>
                         {/*<form className='enroll-inputs' onSubmit={enrollLighthouse}>*/}
                         {/*    <Input type='text' placeholder='Enrollment code' />*/}
                         {/*    <Input type='text' placeholder='Id of the Lighthouse.' />*/}
@@ -205,6 +206,7 @@ const Modal = ({error, type='error'}) => {
                             <ChallengePicker />
                         <p>Not for everyone? <b>Select</b> the students you want!</p>
                             <Button callback={openStudentSelection} text='Select' />
+                            <p>{modalContent.selectedPeople ? modalContent.selectedPeople.length : 'No'} students selected.</p>
                         <p><b>Due?</b> Select a date and a time!</p>
                             <form className='assignment-inputs' onSubmit={assignLighthouseChallenge}>
                                 <div className='assignment-inputs-due'>

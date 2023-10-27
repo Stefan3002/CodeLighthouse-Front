@@ -17,4 +17,10 @@
   overflow: auto;
 }
 
+.checkbox-input {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 /*# sourceMappingURL=input.css.map */

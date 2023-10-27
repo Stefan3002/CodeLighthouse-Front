@@ -66,8 +66,9 @@ const AppHome = () => {
             </div>
             <Heading text='Recently joined Lighthouses' />
             <div className='recent-lighthouses'>
-                {user.enrolled_lighthouses.map(lighthouse => {
-                    return <LighthouseCard data={lighthouse} />
+                {user.enrolled_lighthouses.map((lighthouse, idx) => {
+                    if(idx <= 4)
+                        return <LighthouseCard data={lighthouse} />
                 })}
             </div>
             {/*<form onSubmit={runUserCode} >*/}

@@ -7,6 +7,17 @@ const Input = ({placeholder, type='text', rows = 40, cols = 100}) => {
             </textarea>
         )
     else
+    if(type === 'checkbox')
+        return (
+            <div className='checkbox-input'>
+                <input className='input' type={type}>
+
+                </input>
+                <p>{placeholder}</p>
+            </div>
+
+        )
+    else
         return (
             <input className='input' type={type} placeholder={placeholder}>
 

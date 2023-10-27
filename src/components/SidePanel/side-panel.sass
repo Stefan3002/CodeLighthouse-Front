@@ -31,3 +31,33 @@
   align-items: center
   padding: 1rem
   flex-direction: column
+
+.side-panel-search
+  display: flex
+  gap: .5rem
+
+.side-panel-people
+  margin-top: 1rem
+  display: flex
+  flex-direction: column
+  gap: .5rem
+  p
+    margin: 0
+
+.side-panel-helpers
+  margin-top: .5rem
+  display: flex
+  gap:  .5rem
+
+.person-selected
+  background: $light-color
+  color: $text-color
+  border-radius: 5px
+  padding: .5rem
+  transition: all .15s
+  &:hover, &:focus
+    transform: scale(1.1)
+
+.person
+  transition: all .15s
+  padding: .5rem

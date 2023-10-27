@@ -4,10 +4,10 @@
   background: #32292F;
   color: #FEE1C7;
   border-radius: 10px;
-  position: fixed;
+  position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  top: 10px;
+  transform: translate(-50%);
   z-index: 11;
   text-align: center;
 }

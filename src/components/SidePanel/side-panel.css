@@ -33,4 +33,41 @@
   flex-direction: column;
 }
 
+.side-panel-search {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.side-panel-people {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.side-panel-people p {
+  margin: 0;
+}
+
+.side-panel-helpers {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.person-selected {
+  background: #FEE1C7;
+  color: #575366;
+  border-radius: 5px;
+  padding: 0.5rem;
+  transition: all 0.15s;
+}
+.person-selected:hover, .person-selected:focus {
+  transform: scale(1.1);
+}
+
+.person {
+  transition: all 0.15s;
+  padding: 0.5rem;
+}
+
 /*# sourceMappingURL=side-panel.css.map */
