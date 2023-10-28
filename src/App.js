@@ -34,6 +34,8 @@ import {setUser} from "./utils/store/user-store/user-store-actions";
 import useFetchHook from "./utils/hooks/fetchHook";
 import LighthouseAssignmentsPage from "./components/LighthouseAssignmentsPage/lighthouse-assignments-page";
 import SidePanel from "./components/SidePanel/side-panel";
+import ChallengesNav from "./components/ChallengesNav/challenges-nav";
+import CommentsPage from "./components/CommentsPage/comments-page";
 
 function App() {
     const location = useLocation()
@@ -64,9 +66,12 @@ function App() {
                         <Route path='complete-profile' element={<CompleteProfilePage />} />
                         <Route path='home' element={<AppHome />} />
                         <Route path='lighthouses' element={<LighthousesPage />} />
-                        <Route path='challenges/:slug' element={<ChallengePage />} />
-                        <Route path='challenges/:slug/code' element={<CodePage />} />
                         <Route path='challenges' element={<ChallengesPage />} />
+                        <Route path='challenges/:slug' element={<ChallengesNav />}>
+                            <Route index element={<ChallengePage />} />
+                            <Route path='comments' element={<CommentsPage />} />
+                            <Route path='code' element={<CodePage />} />
+                        </Route>
                         <Route path='add' element={<AddChallengePage />} />
                         <Route path='users/:id' element={<ProfilePage />} />
                         <Route path='lighthouses/:id' element={<LighthousePage />} >

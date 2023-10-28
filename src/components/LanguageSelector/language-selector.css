@@ -4,12 +4,13 @@
 }
 
 .language-picker-option {
+  background: #32292F;
+  color: #FEE1C7;
   display: flex;
   gap: 0.5rem;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   border: 1px solid #32292F;
-  width: fit-content;
   padding: 0.2rem;
 }
 .language-picker-option img {

@@ -6,16 +6,17 @@ import {getLanguage, getLanguagePicker} from "../../utils/store/utils-store/util
 import LanguagePickerExtension from "../LanguagePickerExtension/language-picker-extension";
 import {setLanguagePicker} from "../../utils/store/utils-store/utils-store-actions";
 import {useEffect, useState} from "react";
-const LanguageSelector = ({modifiable = true}) => {
+const LanguageSelector = ({modifiable = true, down = true}) => {
     const isExtended = useSelector(getLanguagePicker)
     const dispatch = useDispatch()
+    const languagePickerOpened = useSelector(getLanguagePicker)
     const selectedLang = useSelector(getLanguage)
     const [lang, setLang] = useState({
         name: 'JavaScript',
         img: JS
     })
     const openLanguagePicker = () => {
-        dispatch(setLanguagePicker(true))
+        dispatch(setLanguagePicker(!languagePickerOpened))
     }
 
     useEffect(() => {
@@ -42,7 +43,7 @@ const LanguageSelector = ({modifiable = true}) => {
                 <img src={lang.img} alt=""/>
                 <p>{lang.name}</p>
             </div>
-            {modifiable && isExtended ? <LanguagePickerExtension /> : null}
+            {modifiable && isExtended ? <LanguagePickerExtension down={down} /> : null}
         </div>
     )
 }

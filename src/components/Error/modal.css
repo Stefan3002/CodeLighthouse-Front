@@ -53,9 +53,27 @@
   align-items: center;
 }
 
+.success-wrapper {
+  max-width: fit-content;
+  width: fit-content;
+}
+
 .assignment-inputs-due {
   display: flex;
   gap: 0.5rem;
+}
+
+.create-challenge-wrapper {
+  max-width: 90%;
+  width: 90%;
+  height: fit-content;
+}
+
+.create-challenge-content-top, .create-challenge-content-bottom {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
 /*# sourceMappingURL=modal.css.map */

@@ -9,6 +9,7 @@ import {getLanguage} from "../../utils/store/utils-store/utils-store-selectors";
 import LanguageSelector from "../LanguageSelector/language-selector";
 import Button from "../Button/button";
 import {setError, setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import ChallengeMeta from "../ChallengeMeta/challenge-meta";
 const CodePage = () => {
     const slug = useParams()['slug']
     const sendRequest = useFetchHook()
@@ -48,7 +49,6 @@ const CodePage = () => {
         <Transition mode='fullscreen'>
             <div className='wrapper code-page'>
                 <div className="code-page-text">
-                    <LanguageSelector modifiable={false} />
                     <p dangerouslySetInnerHTML={{__html: data.description}}></p>
                 </div>
                 {/*<div className="code-page-editor">*/}
@@ -56,6 +56,7 @@ const CodePage = () => {
                     <Button callback={sendCodeForCompilation} text='Send.' />
                 {/*</div>*/}
             </div>
+            <ChallengeMeta data={data} />
         </Transition>
     )
 }

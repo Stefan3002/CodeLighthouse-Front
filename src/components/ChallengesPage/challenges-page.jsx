@@ -7,10 +7,14 @@ import parallaxData from './parallax-data.json'
 import ParallaxIMG from '../../utils/imgs/headers/HeaderChallenges.jpg'
 import {Link} from "react-router-dom";
 import AuthorName from "../AuthorName/author-name";
+import Button from "../Button/button";
+import {useDispatch} from "react-redux";
+import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 
 const ChallengesPage = () => {
     const sendRequest = useFetchHook()
     const [data, setData] = useState(undefined)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         (async () => {
@@ -18,6 +22,15 @@ const ChallengesPage = () => {
             setData(res)
         })()
     }, []);
+
+
+    const createChallenge = () => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'createChallenge',
+            data: undefined
+        }))
+    }
 
     if(data)
     return (
@@ -40,6 +53,7 @@ const ChallengesPage = () => {
                     })}
                 </div>
             </div>
+            <Button callback={createChallenge} type='plus' />
         </Transition>
     )
 }
