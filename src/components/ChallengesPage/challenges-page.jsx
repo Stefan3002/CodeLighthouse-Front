@@ -10,6 +10,8 @@ import AuthorName from "../AuthorName/author-name";
 import Button from "../Button/button";
 import {useDispatch} from "react-redux";
 import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import Difficulty from "../Difficulty/difficulty";
+import DifficultyPicker from "../DifficultyPicker/difficulty-picker";
 
 const ChallengesPage = () => {
     const sendRequest = useFetchHook()
@@ -37,6 +39,9 @@ const ChallengesPage = () => {
         <Transition mode='fullscreen'>
             <Parallax parallaxData={parallaxData} img={ParallaxIMG} />
             <div className='wrapper challenges-page'>
+                <div className="challenges-filters">
+                    <DifficultyPicker />
+                </div>
                 <div className="challenges">
                     {data.map(challenge => {
                         return <Link to={`${challenge.slug}`}><div className='challenge' key={challenge.slug}>
@@ -46,7 +51,7 @@ const ChallengesPage = () => {
                             </div>
                             <div className="challenge-meta">
                                 <AuthorName author={challenge.author}/>
-                                <p>{challenge.author.username}</p>
+                                <Difficulty difficulty={challenge.difficulty} />
                             </div>
                         </div>
                         </Link>

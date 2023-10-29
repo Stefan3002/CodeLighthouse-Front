@@ -8,11 +8,14 @@ import Input from "../Input/input";
 import Button from "../Button/button";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
-import {setModalContent, setSidePanel} from "../../utils/store/utils-store/utils-store-actions";
+import {setModal, setModalContent, setSidePanel} from "../../utils/store/utils-store/utils-store-actions";
 import {useState} from "react";
 import ChallengePicker from "../ChallengePicker/challenge-picker";
 import {useParams} from "react-router-dom";
+import {Editor} from "@monaco-editor/react";
+import MaximizeSVG from '../../utils/imgs/SVGs/MaximizeSVG.svg'
 const Modal = ({error, type='error'}) => {
+    const [code, setCode] = useState(undefined)
     const modalContent = useSelector(getModalContent)
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
@@ -232,6 +235,23 @@ const Modal = ({error, type='error'}) => {
                         </div>
 
                     </div>
+                </div>
+                // </Transition>
+            )
+        }
+        else
+        if(type === 'code') {
+            return (
+                // <Transition mode='fullscreen'>
+                <div className='editor-wrapper big-editor'>
+                    <div className="editor-wrapper-header">
+                        <img onClick={() => {dispatch(setModal(true))
+                            dispatch(setModalContent({
+                                type: 'code'
+                            }))
+                        }} className='icon-svg code-editor-icon' src={MaximizeSVG} alt=""/>
+                    </div>
+                    <Editor defaultValue={modalContent.data.code} onChange={(code) => setCode(code)} width='100%' height='100%' defaultLanguage={modalContent.data.lang} />
                 </div>
                 // </Transition>
             )

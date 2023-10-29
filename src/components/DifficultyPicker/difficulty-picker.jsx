@@ -10,37 +10,43 @@ import Dark3 from '../../utils/imgs/difficulties/Dark3.png'
 import Dark2 from '../../utils/imgs/difficulties/Dark2.png'
 import Dark1 from '../../utils/imgs/difficulties/Dark1.png'
 const DifficultyPicker = () => {
+
+    const setDifficulty = (difficulty) => {
+
+    }
+
+
     return (
         <div className='difficulty-picker'>
-            <div className="difficulty">
+            <div onClick={() => setDifficulty(-5)} className="difficulty">
                 <img src={Dark5} alt=""/>
             </div>
-            <div className="difficulty">
+            <div onClick={() => setDifficulty(-4)} className="difficulty">
                 <img src={Dark4} alt=""/>
             </div>
-            <div className="difficulty">
+            <div onClick={() => setDifficulty(-3)} className="difficulty">
                 <img src={Dark3} alt=""/>
             </div>
-            <div className="difficulty">
+            <div onClick={() => setDifficulty(-2)} className="difficulty">
                 <img src={Dark2} alt=""/>
             </div>
-            <div className="difficulty">
+            <div onClick={() => setDifficulty(-1)} className="difficulty">
                 <img src={Dark1} alt=""/>
             </div>
 
-            <div className="difficulty">
+            <div onClick={() => setDifficulty(1)} className="difficulty">
                 <img src={Light1} alt=""/>
             </div>
-            <div className="difficulty">
+            <div onClick={() => setDifficulty(2)} className="difficulty">
                 <img src={Light2} alt=""/>
             </div>
-            <div className="difficulty">
+            <div onClick={() => setDifficulty(3)} className="difficulty">
                 <img src={Light3} alt=""/>
             </div>
-            <div className="difficulty">
+            <div onClick={() => setDifficulty(4)} className="difficulty">
                 <img src={Light4} alt=""/>
             </div>
-            <div className="difficulty">
+            <div onClick={() => setDifficulty(5)} className="difficulty">
                 <img src={Light5} alt=""/>
             </div>
         </div>

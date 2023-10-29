@@ -11,4 +11,15 @@
   text-align: left;
 }
 
+.editor-wrapper {
+  width: 600px;
+  height: 300px;
+}
+
+.editor-wrapper-header {
+  background: #32292F;
+  padding: 0.3rem;
+  border-radius: 10px 10px 0 0;
+}
+
 /*# sourceMappingURL=code-page.css.map */

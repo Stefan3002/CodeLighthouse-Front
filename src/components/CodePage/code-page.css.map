@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["code-page.sass"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;EACA;EACA;;;AACF;EACE;EACA","file":"code-page.css"}
+{"version":3,"sourceRoot":"","sources":["code-page.sass","../../variables.sass"],"names":[],"mappings":"AAEA;EACE;EACA;EACA;EACA;EACA;;;AACF;EACE;EACA;;;AAMF;EACE;EACA;;;AAEF;EACE,YChBW;EDiBX;EACA","file":"code-page.css"}

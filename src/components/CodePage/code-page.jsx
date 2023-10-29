@@ -10,6 +10,9 @@ import LanguageSelector from "../LanguageSelector/language-selector";
 import Button from "../Button/button";
 import {setError, setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import ChallengeMeta from "../ChallengeMeta/challenge-meta";
+import {editor} from "monaco-editor";
+import Blur from "../Blur/blur";
+import MaximizeSVG from '../../utils/imgs/SVGs/MaximizeSVG.svg'
 const CodePage = () => {
     const slug = useParams()['slug']
     const sendRequest = useFetchHook()
@@ -17,7 +20,6 @@ const CodePage = () => {
     const [code, setCode] = useState(undefined)
     const [data, setData] = useState(undefined)
     const dispatch = useDispatch()
-    console.log('dataa is', data)
 
     const sendCodeForCompilation = async () => {
 
@@ -52,7 +54,20 @@ const CodePage = () => {
                     <p dangerouslySetInnerHTML={{__html: data.description}}></p>
                 </div>
                 {/*<div className="code-page-editor">*/}
-                    <Editor onChange={(code) => setCode(code)} width='50%' height='300px' defaultLanguage={lang} />
+                <div className='editor-wrapper'>
+                    <div className="editor-wrapper-header">
+                        <img onClick={() => {dispatch(setModal(true))
+                            dispatch(setModalContent({
+                                type: 'code',
+                                data: {
+                                    lang,
+                                    code
+                                }
+                            }))
+                        }} className='icon-svg code-editor-icon' src={MaximizeSVG} alt=""/>
+                    </div>
+                    <Editor onChange={(code) => setCode(code)} width='100%' height='400px' defaultLanguage={lang} />
+                </div>
                     <Button callback={sendCodeForCompilation} text='Send.' />
                 {/*</div>*/}
             </div>
