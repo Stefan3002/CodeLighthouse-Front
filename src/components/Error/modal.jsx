@@ -11,14 +11,16 @@ import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import {setModal, setModalContent, setSidePanel} from "../../utils/store/utils-store/utils-store-actions";
 import {useState} from "react";
 import ChallengePicker from "../ChallengePicker/challenge-picker";
-import {redirect, useParams} from "react-router-dom";
+import {redirect, useNavigate, useParams} from "react-router-dom";
 import {Editor} from "@monaco-editor/react";
 import MaximizeSVG from '../../utils/imgs/SVGs/MaximizeSVG.svg'
+import {slugify} from "../../utils/js/slugify";
 const Modal = ({error, type='error'}) => {
     const [code, setCode] = useState(undefined)
     const modalContent = useSelector(getModalContent)
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const selectedChallenge = useSelector(getSelectedChallenge)
     const joinLighthouse = () => {
@@ -106,8 +108,8 @@ const Modal = ({error, type='error'}) => {
 
     }
     const updateChallengeSuccess = (newSlug) => {
-        alert(newSlug)
-        redirect('/app/challenges/' + newSlug)
+        dispatch(setModal(false))
+        navigate(`/app/challenges/${slugify(newSlug)}`)
     }
     const updateChallenge = async (event) => {
         event.preventDefault()

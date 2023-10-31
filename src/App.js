@@ -36,6 +36,7 @@ import LighthouseAssignmentsPage from "./components/LighthouseAssignmentsPage/li
 import SidePanel from "./components/SidePanel/side-panel";
 import ChallengesNav from "./components/ChallengesNav/challenges-nav";
 import CommentsPage from "./components/CommentsPage/comments-page";
+import StatsPage from "./components/StatsPage/stats-page";
 
 function App() {
     const location = useLocation()
@@ -70,6 +71,7 @@ function App() {
                         <Route path='challenges/:slug' element={<ChallengesNav />}>
                             <Route index element={<ChallengePage />} />
                             <Route path='comments' element={<CommentsPage />} />
+                            <Route path='stats' element={<StatsPage />} />
                             <Route path='code' element={<CodePage />} />
                         </Route>
                         <Route path='add' element={<AddChallengePage />} />

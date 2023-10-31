@@ -11,6 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import ModifySVG from '../../utils/imgs/SVGs/ModifySVG.svg'
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import ChallengeMeta from "../ChallengeMeta/challenge-meta";
 const ChallengePage = () => {
     const slug = useParams().slug
     const [data, setData] = useState(undefined)
@@ -45,11 +46,12 @@ const ChallengePage = () => {
                     <div className="challenge-page-content">
                         <p dangerouslySetInnerHTML={{__html: data.description}}></p>
                     </div>
-                    <div className="challenge-page-language">
-                        <LanguageSelector/>
-                        <Link to='code'><Button text='Code!'/></Link>
-                    </div>
+                    {/*<div className="challenge-page-language">*/}
+                    {/*    <LanguageSelector/>*/}
+                    {/*    <Link to='code'><Button text='Code!'/></Link>*/}
+                    {/*</div>*/}
                 </div>
+                <ChallengeMeta type='restricted' data={data} />
             </Transition>
         );
 }
