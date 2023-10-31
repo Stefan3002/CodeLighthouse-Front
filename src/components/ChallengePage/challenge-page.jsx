@@ -7,6 +7,7 @@ import Difficulty from "../Difficulty/difficulty";
 import {Editor} from "@monaco-editor/react";
 import LanguageSelector from "../LanguageSelector/language-selector";
 import Button from "../Button/button";
+import TickSVG from '../../utils/imgs/SVGs/TickSVG.svg'
 import {useDispatch, useSelector} from "react-redux";
 import ModifySVG from '../../utils/imgs/SVGs/ModifySVG.svg'
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
@@ -40,6 +41,7 @@ const ChallengePage = () => {
                 <div className='wrapper challenge-page'>
                     <div className="challenge-page-meta">
                         <Difficulty difficulty={data.difficulty}/>
+                        {user.solved_challenges.includes(data.id) ? <img src={TickSVG} className='icon-svg' alt="Solved!"/> : null }
                         <h1>{data.title}</h1>
                         {user.user_id === data.author.user_id ? <img onClick={modifyChallenge} className='icon-svg' src={ModifySVG} alt=""/> : null}
                     </div>
@@ -51,7 +53,7 @@ const ChallengePage = () => {
                     {/*    <Link to='code'><Button text='Code!'/></Link>*/}
                     {/*</div>*/}
                 </div>
-                <ChallengeMeta type='restricted' data={data} />
+                <ChallengeMeta type='restricted' solved={user.solved_challenges.includes(data.id)} data={data} />
             </Transition>
         );
 }

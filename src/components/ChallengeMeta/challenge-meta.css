@@ -23,6 +23,11 @@
   font-weight: 300;
 }
 
+.solved {
+  background: #FEE1C7;
+  color: #32292F;
+}
+
 .question-svg {
   width: 65px;
 }

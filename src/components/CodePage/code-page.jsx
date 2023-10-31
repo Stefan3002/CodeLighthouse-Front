@@ -13,7 +13,9 @@ import ChallengeMeta from "../ChallengeMeta/challenge-meta";
 import {editor} from "monaco-editor";
 import Blur from "../Blur/blur";
 import MaximizeSVG from '../../utils/imgs/SVGs/MaximizeSVG.svg'
+import {getUser} from "../../utils/store/user-store/user-store-selectors";
 const CodePage = () => {
+    const user = useSelector(getUser)
     const slug = useParams()['slug']
     const sendRequest = useFetchHook()
     const lang = useSelector(getLanguage)
@@ -24,7 +26,8 @@ const CodePage = () => {
     const sendCodeForCompilation = async () => {
 
         const data = {
-            code
+            code,
+            userId: user.user_id
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run/${slug}`,JSON.stringify(data) , 'POST', false)
         if(res.OK) {

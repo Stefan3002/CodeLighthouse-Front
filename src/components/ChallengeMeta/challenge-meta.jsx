@@ -13,7 +13,7 @@ import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import Button from "../Button/button";
 import {setUser} from "../../utils/store/user-store/user-store-actions";
 
-const ChallengeMeta = ({data, type = 'expanded'}) => {
+const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
     const [likeIMG, setLikeIMG] = useState(undefined)
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
@@ -67,12 +67,12 @@ const ChallengeMeta = ({data, type = 'expanded'}) => {
     else
         if(type === 'restricted')
             return (
-                <div className='challenge-meta-bottom'>
+                <div className={`challenge-meta-bottom ${solved ? 'solved' : null}`}>
                     <div className="challenge-meta-left">
                         <p><b>{data.title}</b></p>
                         <AuthorName author={data.author} />
                     </div>
-                    <LanguageSelector down={false} modifiable={true} />
+                    <LanguageSelector lightColored = {solved} down={false} modifiable={true} />
                     <Link to='code'><Button text='Code!'/></Link>
                     <img onClick={likeChallenge} src={likeIMG} className='icon-svg' alt=""/>
                     <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><img className='icon-svg' src={QuestionSVG} alt=""/></Link>
