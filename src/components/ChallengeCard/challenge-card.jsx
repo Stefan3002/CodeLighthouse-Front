@@ -67,5 +67,15 @@ const ChallengeCard = ({challenge, idx, type = 'Big', detailedAssignment = false
                     <AuthorName author={challenge.author} />
                 </div>
             )
+    else
+        if(type === 'small-card')
+            return (
+                <Link to={`/app/challenges/${challenge.slug}`}>
+                <div className='challenge-card-small challenge-card-small-profile'>
+                    <h3>{challenge.title}</h3>
+                    {/*<AuthorName author={challenge.author} />*/}
+                </div>
+                </Link>
+            )
 }
 export default ChallengeCard

@@ -48,6 +48,13 @@ const ProfilePage = () => {
                         })
                     })}
                 </div></> : null}
+
+            {userID == user.id ? <><Heading text='Authored Challenges' />
+                <div className="unfinished-assignments">
+                    {data.authored_challenges.map(challenge => {
+                        return <ChallengeCard type='small-card' challenge={challenge}/>
+                    })}
+                </div></> : null}
         </div>
         </Transition>
     )
