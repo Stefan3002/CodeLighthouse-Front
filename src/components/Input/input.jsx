@@ -1,8 +1,15 @@
 import './input.css'
-const Input = ({placeholder, type='text', rows = 40, cols = 100}) => {
+import {useState} from "react";
+const Input = ({placeholder, type='text', rows = 40, cols = 100, value = undefined}) => {
+    const [actualValue, setActualValue] = useState(value)
+
+    const changeActualValue = (newValue) => {
+        setActualValue(newValue.value)
+    }
+
     if(type === 'textarea')
         return (
-            <textarea rows={rows} cols={cols} className='input text-area-input' placeholder={placeholder}>
+            <textarea onChange={changeActualValue} value={actualValue} rows={rows} cols={cols} className='input text-area-input' placeholder={placeholder}>
 
             </textarea>
         )
@@ -19,7 +26,7 @@ const Input = ({placeholder, type='text', rows = 40, cols = 100}) => {
         )
     else
         return (
-            <input className='input' type={type} placeholder={placeholder}>
+            <input onChange={changeActualValue} className='input' value={actualValue} type={type} placeholder={placeholder}>
 
             </input>
         )

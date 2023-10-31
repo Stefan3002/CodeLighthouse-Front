@@ -1,18 +1,22 @@
 import './profile-page.css'
 import {useEffect, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
-import {useParams} from "react-router-dom";
+import {redirect, useNavigate, useParams} from "react-router-dom";
 import Transition from "../../utils/js/transitions";
 import LighthouseCard from "../LighthouseCard/lighthouse-card";
 import Heading from "../Heading/heading";
 import ChallengeCard from "../ChallengeCard/challenge-card";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
+import {setIsLoggedIn, setStatus} from "../../utils/store/auth-store/auth-store-actions";
+import {setUser} from "../../utils/store/user-store/user-store-actions";
 const ProfilePage = () => {
     const user = useSelector(getUser)
     const userID = useParams()['id']
     const sendRequest = useFetchHook()
     const [data, setData] = useState(undefined)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         (async () => {
@@ -21,7 +25,12 @@ const ProfilePage = () => {
         })()
     }, []);
 
-    console.log(userID, user)
+    const logOut = () => {
+        dispatch(setIsLoggedIn(false))
+        dispatch(setStatus('idle'))
+        // dispatch(setUser(null))
+        navigate('/auth')
+    }
 
     if(data)
     return (
@@ -29,6 +38,7 @@ const ProfilePage = () => {
         <div className='wrapper profile-page'>
             <div className="profile-header">
                 <h1>{data.username}</h1>
+                <p onClick={logOut}>Log out</p>
             </div>
             <Heading text='Enrolled Lighthouses' />
             <div className="profile-lighthouses">

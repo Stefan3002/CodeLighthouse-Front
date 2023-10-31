@@ -63,8 +63,8 @@ function App() {
                     <Route path='/about' element={<LandingPageAbout />} />
                     <Route path='/auth' element={<Authenticate mode='1' />} />
                     <Route path='/app' element={<ProtectedRoute> <AppNavigation /> </ProtectedRoute>} >
+                        <Route index element={<AppHome />} />
                         <Route path='complete-profile' element={<CompleteProfilePage />} />
-                        <Route path='home' element={<AppHome />} />
                         <Route path='lighthouses' element={<LighthousesPage />} />
                         <Route path='challenges' element={<ChallengesPage />} />
                         <Route path='challenges/:slug' element={<ChallengesNav />}>

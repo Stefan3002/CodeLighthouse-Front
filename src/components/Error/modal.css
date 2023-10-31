@@ -69,6 +69,10 @@
   height: fit-content;
 }
 
+.super-error, .super-success {
+  z-index: 15;
+}
+
 .create-challenge-content-top, .create-challenge-content-bottom {
   display: flex;
   gap: 1rem;

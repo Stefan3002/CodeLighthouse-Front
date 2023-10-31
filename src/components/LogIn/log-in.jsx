@@ -1,7 +1,7 @@
 import './log-in.css'
 import LogoImgNoBg from "../../utils/imgs/logo/LogoSVG.svg";
 import Button from "../Button/button";
-import {Link, Navigate, redirect} from "react-router-dom";
+import {Link, Navigate, redirect, useNavigate} from "react-router-dom";
 import Input from "../Input/input";
 import TickSVG from '../../utils/imgs/features/TickSVG.svg'
 import SpeedSVG from '../../utils/imgs/features/SpeedSVG.svg'
@@ -20,48 +20,30 @@ const LogIn = () => {
     const status = useSelector(getStatus)
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const successLogIn = (user) => {
         dispatch(setUser(user))
-        window.location.href = '/app/home'
+        navigate('/app')
+        // window.location.href = '/app/home'
     }
     const logUserInEmail = async (form) => {
+        dispatch(setStatus('loading'))
         form.preventDefault()
         const formData = form.target
         const email = formData[0].value
         const password = formData[1].value
 
-        // TODO: Send request to back for login
-        // sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, {
-        //     email,
-        //     password
-        // }, 'POST')
 
         const data = {
             email,
             password
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, JSON.stringify(data), 'POST', false, successLogIn)
-        console.log('+++', res)
-        // if(res.ok)
-        //     window.location.href = '/app/complete-profile'
 
-        // fetch(`${process.env.REACT_APP_SERVER_URL}/auth`, {
-        //     method: 'POST',
-        //     body: {
-        //         email,
-        //         password
-        //     }
-        // })
-        //     .then(data => {
-        //         data.json().then(jsonData => {
-        //             console.log(jsonData)
-        //         })
-        //     })
         console.log('log in, ', status)
-        dispatch(setStatus('loaded'))
         dispatch(setIsLoggedIn(true))
-
+        dispatch(setStatus('loaded'))
     }
 
     const getFeatureIcon = (icon) => {

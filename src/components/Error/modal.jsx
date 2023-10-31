@@ -11,7 +11,7 @@ import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import {setModal, setModalContent, setSidePanel} from "../../utils/store/utils-store/utils-store-actions";
 import {useState} from "react";
 import ChallengePicker from "../ChallengePicker/challenge-picker";
-import {useParams} from "react-router-dom";
+import {redirect, useParams} from "react-router-dom";
 import {Editor} from "@monaco-editor/react";
 import MaximizeSVG from '../../utils/imgs/SVGs/MaximizeSVG.svg'
 const Modal = ({error, type='error'}) => {
@@ -105,11 +105,28 @@ const Modal = ({error, type='error'}) => {
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges`,JSON.stringify(data) , 'POST', false)
 
     }
+    const updateChallengeSuccess = (newSlug) => {
+        alert(newSlug)
+        redirect('/app/challenges/' + newSlug)
+    }
+    const updateChallenge = async (event) => {
+        event.preventDefault()
+        const title = event.target[0].value
+        const description = event.target[1].value
+        const trueFunction = event.target[2].value
+        const randomFunction = event.target[3].value
+
+        const data = {
+            title, description, trueFunction, randomFunction
+        }
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${modalContent.data.slug}`,JSON.stringify(data) , 'PUT', false, () => updateChallengeSuccess(title))
+
+    }
 
     if(type === 'error')
         return (
             // <Transition mode='fullscreen'>
-            <div className='error-wrapper'>
+            <div className='error-wrapper super-error'>
                 <div className="error-header">
                     <img src={ErrorSVG} alt=""/>
                     <h2>Error!</h2>
@@ -189,7 +206,7 @@ const Modal = ({error, type='error'}) => {
         if(type === 'success') {
             return (
                 // <Transition mode='fullscreen'>
-                <div className='error-wrapper success-wrapper'>
+                <div className='error-wrapper success-wrapper super-success'>
                     <div className="error-header">
                         <img src={LighthouseSVG} alt=""/>
                         <h2>Success!</h2>
@@ -298,6 +315,42 @@ const Modal = ({error, type='error'}) => {
                 </form>
             </div>
             // </Transition>
+        )
+    }
+    else
+    if(type === 'modifyChallenge') {
+        return (
+            // <Transition mode='fullscreen'>
+            <div className='error-wrapper create-challenge-wrapper'>
+                <div className="error-header create-challenge-header">
+                    <img src={LighthouseSVG} alt=""/>
+                    <h2>Update your challenge!</h2>
+                </div>
+                <form onSubmit={updateChallenge} className="error-content create-challenge-content">
+                    <p>Give your challenge a <b>new, awesome name.</b></p>
+                    <Input type='text' placeholder='Name' value={modalContent.data.title}/>
+                    <div className="create-challenge-content-top">
+                        <div className="create-challenge-content-group">
+                            <p>And the <b>statement.</b> Write plain <b>html</b> for this part.</p>
+                            <Input value={modalContent.data.description} type='textarea' rows='30' cols='80'/>
+                        </div>
+                        <div className="create-challenge-content-group">
+                            <p>Write the <b>true function</b> of the challenge. </p>
+                            <Input value={modalContent.data.solution} type='textarea' rows='30' cols='80'/>
+                        </div>
+
+                    </div>
+                    <div className="create-challenge-content-bottom">
+                        <div className="create-challenge-content-group">
+                            <p>Finally, write the <b>random function</b> that will generate the random inputs.</p>
+                            <Input value={modalContent.data.random_tests} type='textarea' rows='30' cols='80'/>
+                        </div>
+                    </div>
+
+                    <Button buttonType='submit' text='Update' type='normal'/>
+
+                </form>
+            </div>
         )
     }
 }
