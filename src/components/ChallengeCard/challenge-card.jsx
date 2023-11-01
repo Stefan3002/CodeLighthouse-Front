@@ -9,7 +9,7 @@ import {getSelectedChallenge} from "../../utils/store/utils-store/utils-store-se
 import calendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import clockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 
-const ChallengeCard = ({challenge, idx, type = 'Big', detailedAssignment = false}) => {
+const ChallengeCard = ({completed, challenge, idx, type = 'Big', detailedAssignment = false}) => {
     const dispatch = useDispatch()
     const selectedChallenge = useSelector(getSelectedChallenge)
     const selectChallenge = () => {
@@ -34,7 +34,7 @@ const ChallengeCard = ({challenge, idx, type = 'Big', detailedAssignment = false
     else
     if(type === 'assignment')
         return (
-            <div style={{opacity: challenge.finished ? '.4' : null}} className="challenge-card">
+            <div style={{opacity: completed ? '.4' : null}} className="challenge-card">
                 <div className="challenge-meta-card" >
                     <AuthorName author={challenge.challenge.author} />
                     <Difficulty difficulty={challenge.challenge.difficulty} />

@@ -10,6 +10,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import {setIsLoggedIn, setStatus} from "../../utils/store/auth-store/auth-store-actions";
 import {setUser} from "../../utils/store/user-store/user-store-actions";
+import Score from "../Score/score";
+import Button from "../Button/button";
 const ProfilePage = () => {
     const user = useSelector(getUser)
     const userID = useParams()['id']
@@ -39,6 +41,7 @@ const ProfilePage = () => {
         <div className='wrapper profile-page'>
             <div className="profile-header">
                 <h1>{data.username}</h1>
+                <Score data={data.score} />
                 <p onClick={logOut}>Log out</p>
             </div>
             <Heading text='Enrolled Lighthouses' />
@@ -48,12 +51,17 @@ const ProfilePage = () => {
                 })}
             </div>
             {userID == user.id ? <><Heading text='Assignments' />
+                <div className="profile-assignments-filters">
+                    <Button type='normal' text='All' />
+                    <Button type='normal' text='Finished' />
+                    <Button type='normal' text='Unfinished' />
+                </div>
                 <div className="unfinished-assignments">
                     {data.enrolled_lighthouses.map(lighthouse => {
                         return lighthouse.assignments.map(assignment => {
                             return assignment.users.map(assignedUser => {
                                 if (assignedUser.user_id === user.user_id)
-                                    return <ChallengeCard type='assignment' detailedAssignment={true}
+                                    return <ChallengeCard completed={user.solved_challenges.includes(assignment.challenge.id)} type='assignment' detailedAssignment={true}
                                                           challenge={assignment}/>
                             })
                         })

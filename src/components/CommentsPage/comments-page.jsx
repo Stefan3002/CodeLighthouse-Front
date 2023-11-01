@@ -4,10 +4,25 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import ChallengeMeta from "../ChallengeMeta/challenge-meta";
+import Input from "../Input/input";
+import Button from "../Button/button";
+import {useDispatch} from "react-redux";
+import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import Comment from "../Comment/comment";
 const CommentsPage = () => {
     const challengeSlug = useParams()['slug']
     const [data, setData] = useState(undefined)
     const sendRequest = useFetchHook()
+    const dispatch = useDispatch()
+
+    const newComment = () => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'newComment',
+            data
+        }))
+    }
+
 
     useEffect(() => {
         (async () => {
@@ -20,9 +35,15 @@ const CommentsPage = () => {
     return (
         <Transition mode='fullscreen'>
             <div className='wrapper comments-page'>
-
+                <div className="comments">
+                    {data.comments.map(comment => {
+                        return <Comment data={comment} />
+                    })}
+                </div>
             </div>
-            <ChallengeMeta data={data} />
+            <Button callback={newComment} type='plus' />
+
+            {/*<ChallengeMeta type='stats' data={data} />*/}
         </Transition>
     )
 }
