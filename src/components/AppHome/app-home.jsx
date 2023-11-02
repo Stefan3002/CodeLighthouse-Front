@@ -48,15 +48,15 @@ const AppHome = () => {
         gsap.set(challengesAfterRerender, {clearProps: 'all'})
         if(indeces.direction === 'right') {
             gsap.set(challengesAfterRerender[0], {scale: '.7'})
-            gsap.set(challengesAfterRerender[2], {opacity: '0'})
-            gsap.to(challengesAfterRerender[2], {duration: .3, opacity: '1'})
-            gsap.to(challengesAfterRerender[2], {duration: .3, delay: .3, scale: '.7'})
+            gsap.set(challengesAfterRerender[2], {opacity: '0', y: '-20%'})
+            gsap.to(challengesAfterRerender[2], {duration: .3, opacity: '1', scale: '.7'})
+            gsap.to(challengesAfterRerender[2], {duration: .3, delay: .05, y: 0})
         }
         else{
             gsap.set(challengesAfterRerender[2], {scale: '.7'})
-            gsap.set(challengesAfterRerender[0], {opacity: '0'})
-            gsap.to(challengesAfterRerender[0], {duration: .3, opacity: '1'})
-            gsap.to(challengesAfterRerender[0], {duration: .3, delay: .3, scale: '.7'})
+            gsap.set(challengesAfterRerender[0], {opacity: '0', y: '-20%'})
+            gsap.to(challengesAfterRerender[0], {duration: .3, opacity: '1', scale: '.7'})
+            gsap.to(challengesAfterRerender[0], {duration: .3, delay: .05, y: 0})
         }
     }, [indeces]);
 
