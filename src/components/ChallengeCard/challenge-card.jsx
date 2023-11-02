@@ -18,7 +18,7 @@ const ChallengeCard = ({completed, challenge, idx, type = 'Big', detailedAssignm
 
     if(type === 'Big')
     return (
-        <div style={{transform: idx === 2 || idx === 0 ? 'scale(.8)' : 'scale(1)'}} className="challenge-card">
+        <div style={{transform: idx === 2 || idx === 0 ? 'scale(.8)' : 'scale(1)'}} className="challenge-card challenge-card-home-page">
             <div className="challenge-meta-card" >
                 <AuthorName author={challenge.author} />
                 <Difficulty difficulty={challenge.difficulty} />
@@ -26,7 +26,7 @@ const ChallengeCard = ({completed, challenge, idx, type = 'Big', detailedAssignm
             <div className="challenge-description-card" >
                 <Link to={`/app/challenges/${challenge.slug}`}>
                     <h2>{challenge.title}</h2>
-                    <p dangerouslySetInnerHTML={{__html: challenge.description.slice(0, 200)}}></p>
+                    <p dangerouslySetInnerHTML={{__html: challenge.description}}></p>
                 </Link>
             </div>
         </div>

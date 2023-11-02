@@ -12,6 +12,7 @@ import {setIsLoggedIn, setStatus} from "../../utils/store/auth-store/auth-store-
 import {setUser} from "../../utils/store/user-store/user-store-actions";
 import Score from "../Score/score";
 import Button from "../Button/button";
+import LogOutSVG from '../../utils/imgs/SVGs/SignOutSVG.svg'
 const ProfilePage = () => {
     const user = useSelector(getUser)
     const userID = useParams()['id']
@@ -40,9 +41,11 @@ const ProfilePage = () => {
         <Transition mode='fullscreen'>
         <div className='wrapper profile-page'>
             <div className="profile-header">
+                <div className="profile-rank">
+                    <Score data={data.score} />
+                </div>
                 <h1>{data.username}</h1>
-                <Score data={data.score} />
-                <p onClick={logOut}>Log out</p>
+                <img onClick={logOut} className='icon-svg' src={LogOutSVG} alt=""/>
             </div>
             <Heading text='Enrolled Lighthouses' />
             <div className="profile-lighthouses">

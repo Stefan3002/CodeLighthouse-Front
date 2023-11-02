@@ -70,6 +70,10 @@ a:focus:before, a:hover:before {
   .wrapper {
     width: 35%;
   }
+
+  .code-page-wrapper {
+    width: 80%;
+  }
 }
 
 /*# sourceMappingURL=App.css.map */

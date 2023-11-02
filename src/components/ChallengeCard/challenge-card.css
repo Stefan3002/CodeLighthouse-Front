@@ -69,4 +69,11 @@
   padding: 0.5rem;
 }
 
+.challenge-card-home-page {
+  height: 500px;
+}
+.challenge-card-home-page .challenge-description-card {
+  overflow: auto;
+}
+
 /*# sourceMappingURL=challenge-card.css.map */

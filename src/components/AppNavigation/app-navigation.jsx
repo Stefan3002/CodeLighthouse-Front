@@ -12,7 +12,7 @@ const AppNavigation = () => {
             <nav className='app-navigation-wrapper'>
                 <img className='logo-header-app-nav' src={LogoImgNoBg} alt=""/>
                 <ul className='app-navigation'>
-                    <Link to='/app/home'><li>Home</li></Link>
+                    <Link to='/app'><li>Home</li></Link>
                     <Link to='/app/lighthouses'><li>Lighthouses</li></Link>
                     <Link to='/app/challenges'><li>Solve</li></Link>
                     <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/creating-challenges.html'><li>Docs</li></Link>

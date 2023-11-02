@@ -52,7 +52,7 @@ const CodePage = () => {
     if(data)
     return (
         <Transition mode='fullscreen'>
-            <div className='wrapper code-page'>
+            <div className='wrapper code-page-wrapper code-page'>
                 <div className="code-page-text">
                     <p dangerouslySetInnerHTML={{__html: data.description}}></p>
                 </div>
