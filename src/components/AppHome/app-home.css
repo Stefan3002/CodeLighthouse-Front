@@ -36,4 +36,8 @@
   align-items: center;
 }
 
+.prev-icon {
+  transform: rotate(180deg);
+}
+
 /*# sourceMappingURL=app-home.css.map */

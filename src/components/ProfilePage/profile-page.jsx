@@ -13,6 +13,7 @@ import {setUser} from "../../utils/store/user-store/user-store-actions";
 import Score from "../Score/score";
 import Button from "../Button/button";
 import LogOutSVG from '../../utils/imgs/SVGs/SignOutSVG.svg'
+import AssignmentsList from "../AssignmentsList/assignments-list";
 const ProfilePage = () => {
     const user = useSelector(getUser)
     const userID = useParams()['id']
@@ -20,6 +21,7 @@ const ProfilePage = () => {
     const [data, setData] = useState(undefined)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [filter, setFilter] = useState('All')
 
     useEffect(() => {
         (async () => {
@@ -34,6 +36,10 @@ const ProfilePage = () => {
         dispatch(setStatus('idle'))
         // dispatch(setUser(null))
         navigate('/auth')
+    }
+
+    const filterAssignments = (category) => {
+        setFilter(category)
     }
 
     if(data)
@@ -55,20 +61,12 @@ const ProfilePage = () => {
             </div>
             {userID == user.id ? <><Heading text='Assignments' />
                 <div className="profile-assignments-filters">
-                    <Button type='normal' text='All' />
-                    <Button type='normal' text='Finished' />
-                    <Button type='normal' text='Unfinished' />
+                    <Button callback={() => filterAssignments('All')} type='normal' text='All' />
+                    <Button callback={() => filterAssignments('Finished')} type='normal' text='Finished' />
+                    <Button callback={() => filterAssignments('Unfinished')} type='normal' text='Unfinished' />
                 </div>
                 <div className="unfinished-assignments">
-                    {data.enrolled_lighthouses.map(lighthouse => {
-                        return lighthouse.assignments.map(assignment => {
-                            return assignment.users.map(assignedUser => {
-                                if (assignedUser.user_id === user.user_id)
-                                    return <ChallengeCard completed={user.solved_challenges.includes(assignment.challenge.id)} type='assignment' detailedAssignment={true}
-                                                          challenge={assignment}/>
-                            })
-                        })
-                    })}
+                    <AssignmentsList user={user} data={data} filter={filter} />
                 </div></> : null}
 
             {userID == user.id ? <><Heading text='Authored Challenges' />

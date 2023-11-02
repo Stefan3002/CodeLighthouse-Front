@@ -49,12 +49,14 @@ const AppHome = () => {
         if(indeces.direction === 'right') {
             gsap.set(challengesAfterRerender[0], {scale: '.7'})
             gsap.set(challengesAfterRerender[2], {opacity: '0'})
-            gsap.to(challengesAfterRerender[2], {duration: .3, opacity: '1', scale: '.7'})
+            gsap.to(challengesAfterRerender[2], {duration: .3, opacity: '1'})
+            gsap.to(challengesAfterRerender[2], {duration: .3, delay: .3, scale: '.7'})
         }
         else{
             gsap.set(challengesAfterRerender[2], {scale: '.7'})
             gsap.set(challengesAfterRerender[0], {opacity: '0'})
-            gsap.to(challengesAfterRerender[0], {duration: .3, opacity: '1', scale: '.7'})
+            gsap.to(challengesAfterRerender[0], {duration: .3, opacity: '1'})
+            gsap.to(challengesAfterRerender[0], {duration: .3, delay: .3, scale: '.7'})
         }
     }, [indeces]);
 
@@ -121,7 +123,7 @@ const AppHome = () => {
                 })}
             </div>
             <div className="challenge-navigation">
-                <img onClick={() => nextChallengeAnimation(true)} src={NextSVG} alt=""/>
+                <img className='prev-icon' onClick={() => nextChallengeAnimation(true)} src={NextSVG} alt=""/>
                 <Link to={`/app/challenges/${randChallenge[indeces.min_index + 1].slug}`}><img src={PlaySVG} alt=""/></Link>
                 <img onClick={() => nextChallengeAnimation(false)} src={NextSVG} alt=""/>
             </div>

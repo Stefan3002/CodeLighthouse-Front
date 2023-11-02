@@ -15,6 +15,10 @@
   align-items: center;
 }
 
+.profile-assignments-filters {
+  margin-bottom: 1rem;
+}
+
 .profile-lighthouses {
   display: flex;
   gap: 1rem;
