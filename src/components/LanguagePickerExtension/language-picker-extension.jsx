@@ -13,11 +13,11 @@ const LanguagePickerExtension = ({lightColored = false, down}) => {
 
     return (
         <div className="language-picker-extension" style={{transform: down ? 'translate(-50%, +26%)' : 'translate(-50%, -126%)'}}>
-            <div onClick={() => selectLanguage('javascript')} className={`language-picker-option ${lightColored ? 'light-colored' : null}`}>
+            <div onClick={() => selectLanguage('Javascript')} className={`language-picker-option ${lightColored ? 'light-colored' : null}`}>
                 <img src={JS} alt=""/>
                 <p>JavaScript</p>
             </div>
-            <div onClick={() => selectLanguage('python')} className={`language-picker-option ${lightColored ? 'light-colored' : null}`}>
+            <div onClick={() => selectLanguage('Python')} className={`language-picker-option ${lightColored ? 'light-colored' : null}`}>
                 <img src={Python} alt=""/>
                 <p>Python 3</p>
             </div>

@@ -16,6 +16,8 @@ import {Editor} from "@monaco-editor/react";
 import MaximizeSVG from '../../utils/imgs/SVGs/MaximizeSVG.svg'
 import {slugify} from "../../utils/js/slugify";
 import DifficultyPicker from "../DifficultyPicker/difficulty-picker";
+import CreateChallengeModal from "../Modals/CreateChallengeModal/create-challenge-modal";
+import AssignChallengeModal from "../Modals/AssignChallengeModal/assign-challenge-modal";
 const Modal = ({error, type='error'}) => {
     const [code, setCode] = useState(undefined)
     const modalContent = useSelector(getModalContent)
@@ -23,7 +25,6 @@ const Modal = ({error, type='error'}) => {
     const user = useSelector(getUser)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const selectedChallenge = useSelector(getSelectedChallenge)
     const selectedLang = useSelector(getLanguage)
     const joinLighthouse = () => {
         dispatch(setModalContent({
@@ -37,7 +38,6 @@ const Modal = ({error, type='error'}) => {
             data: undefined
         }))
     }
-    console.log('HEEEI!', modalContent.data.codes.filter(code => code.language === selectedLang), selectedLang)
 
     const enrollLighthouse = async (event) => {
         event.preventDefault()
@@ -54,19 +54,7 @@ const Modal = ({error, type='error'}) => {
 
     }
 
-    const assignLighthouseChallenge = async (event) => {
-        event.preventDefault()
-        const dueDate = event.target[0].value
-        const dueTime = event.target[1].value
-        const data = {
-            selectedChallenge,
-            dueDate,
-            dueTime,
-            users: [...modalContent.selectedPeople, user.user_id]
-        }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/assignments/${modalContent.data}`,JSON.stringify(data) , 'POST', false)
 
-    }
 
     const createNewLighthouse = async (event) => {
         console.log('user', user)
@@ -87,29 +75,9 @@ const Modal = ({error, type='error'}) => {
         }))
     }
 
-    const openStudentSelection = async () => {
 
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${modalContent.data}`,undefined , 'GET', false)
-        dispatch(setSidePanel({
-            opened: true,
-            type: 'students',
-            data: res
-        }))
-    }
 
-    const createNewChallenge = async (event) => {
-        event.preventDefault()
-        const title = event.target[0].value
-        const description = event.target[1].value
-        const trueFunction = event.target[2].value
-        const randomFunction = event.target[3].value
 
-        const data = {
-            title, description, trueFunction, randomFunction
-        }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges`,JSON.stringify(data) , 'POST', false)
-
-    }
 
     const createNewComment = async (event) => {
         event.preventDefault()
@@ -134,7 +102,7 @@ const Modal = ({error, type='error'}) => {
         const randomFunction = event.target[3].value
 
         const data = {
-            title, description, trueFunction, randomFunction
+            title, description, trueFunction, randomFunction, language: selectedLang
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${modalContent.data.slug}`,JSON.stringify(data) , 'PUT', false, () => updateChallengeSuccess(title))
 
@@ -243,46 +211,16 @@ const Modal = ({error, type='error'}) => {
             )
         }
         else
-        if(type === 'assignChallenge') {
-            return (
-                // <Transition mode='fullscreen'>
-                <div className='error-wrapper'>
-                    <div className="error-header">
-                        <img src={LighthouseSVG} alt=""/>
-                        <h2>Create a new assignment!</h2>
-                    </div>
-                    <div className="error-content">
-                        <p>Select the <b>challenge</b> to enlighten your students:</p>
-                        <div className='enroll-inputs'>
-                            <ChallengePicker />
-                        <p>Not for everyone? <b>Select</b> the students you want!</p>
-                            <Button callback={openStudentSelection} text='Select' />
-                            <p>{modalContent.selectedPeople ? modalContent.selectedPeople.length : 'No'} students selected.</p>
-                        <p><b>Due?</b> Select a date and a time!</p>
-                            <form className='assignment-inputs' onSubmit={assignLighthouseChallenge}>
-                                <div className='assignment-inputs-due'>
-                                    <Input type='date'/>
-                                    <Input type='time'/>
-                                </div>
-                                <Button buttonType='submit' text='Create' type='normal' />
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-                // </Transition>
-            )
-        }
+        if(type === 'assignChallenge')
+            return <AssignChallengeModal />
         else
         if(type === 'code') {
             return (
                 // <Transition mode='fullscreen'>
                 <div className='editor-wrapper big-editor'>
                     <div className="editor-wrapper-header">
-                        <img onClick={() => {dispatch(setModal(true))
-                            dispatch(setModalContent({
-                                type: 'code'
-                            }))
+                        <img onClick={() => {dispatch(setModal(false))
+
                         }} className='icon-svg code-editor-icon' src={MaximizeSVG} alt=""/>
                     </div>
                     <Editor defaultValue={modalContent.data.code} onChange={(code) => setCode(code)} width='100%' height='100%' defaultLanguage={modalContent.data.lang} />
@@ -291,49 +229,8 @@ const Modal = ({error, type='error'}) => {
             )
         }
         else
-    if(type === 'createChallenge') {
-        return (
-            // <Transition mode='fullscreen'>
-            <div className='error-wrapper create-challenge-wrapper'>
-                <div className="error-header create-challenge-header">
-                    <img src={LighthouseSVG} alt=""/>
-                    <h2>Create a new challenge!</h2>
-                </div>
-                <form onSubmit={createNewChallenge} className="error-content create-challenge-content">
-                    <p>Give your challenge a <b>name.</b></p>
-                    <Input type='text' placeholder='Name' />
-                    <div className="create-challenge-content-top">
-                        <div className="create-challenge-content-group">
-                            <p>And the <b>statement.</b> Write plain <b>html</b> for this part.</p>
-                            <Input type='textarea' rows='30' cols='80' placeholder='E.g: <p>This is my challenge</p>' />
-                        </div>
-                        <div className="create-challenge-content-group">
-                            <p>Write the <b>true function</b> of the challenge. </p>
-                            <Input type='textarea' rows='30' cols='80' placeholder='E.g: def true_function(inputs):
-    a = inputs[0]
-    b = inputs[1]
-    return a * b' />
-                        </div>
-
-                    </div>
-                    <div className="create-challenge-content-bottom">
-                        <div className="create-challenge-content-group">
-                            <p>Finally, write the <b>random function</b> that will generate the random inputs.</p>
-                            <Input type='textarea' rows='30' cols='80' placeholder='E.g: def random_function():
-    tests = []
-    for i in range(1, 100):
-        tests.append((i, i + 1))
-    return tests' />
-                        </div>
-                    </div>
-
-                    <Button buttonType='submit' text='Create' type='normal' />
-
-                </form>
-            </div>
-            // </Transition>
-        )
-    }
+    if(type === 'createChallenge')
+        return <CreateChallengeModal />
     else
     if(type === 'newComment') {
         return (

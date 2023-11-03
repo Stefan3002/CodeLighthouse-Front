@@ -23,23 +23,31 @@ const CodePage = () => {
     const [data, setData] = useState(undefined)
     const dispatch = useDispatch()
 
+    const successCallback = (data) => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'success',
+            data: data.data
+        }))
+    }
+
     const sendCodeForCompilation = async () => {
 
         const data = {
             code,
             userId: user.user_id,
-            language: 'javascript'
+            language: lang
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run/${slug}`,JSON.stringify(data) , 'POST', false)
-        if(res.OK) {
-            dispatch(setModal(true))
-            dispatch(setModalContent({
-                type: 'success',
-                data: res.data
-            }))
-        }
-        else
-            dispatch(setError(res.data))
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run/${slug}`,JSON.stringify(data) , 'POST', false, successCallback)
+        // if(res.OK) {
+        //     dispatch(setModal(true))
+        //     dispatch(setModalContent({
+        //         type: 'success',
+        //         data: res.data
+        //     }))
+        // }
+        // else
+        //     dispatch(setError(res.data))
 
     }
 

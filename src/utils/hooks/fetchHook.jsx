@@ -24,7 +24,6 @@ const useFetchHook = () => {
             if(!silentLoad)
                 dispatch(setLoading(false))
             if(data.ok) {
-                console.log('---', jsonData)
                 if(successCallback)
                     successCallback(jsonData)
                 return jsonData

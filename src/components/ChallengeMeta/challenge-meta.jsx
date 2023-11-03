@@ -59,7 +59,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
                     <p><b>{data.title}</b></p>
                     <AuthorName author={data.author} />
                 </div>
-                <LanguageSelector down={false} modifiable={true} />
+                {/*<LanguageSelector down={false} modifiable={true} />*/}
                 <Difficulty difficulty={data.difficulty} />
                 <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><img className='question-svg' src={QuestionSVG} alt=""/></Link>
             </div>
