@@ -18,4 +18,12 @@
   transition: all 0.15s;
 }
 
+.language img {
+  width: 80px;
+}
+
+.languages {
+  margin-top: 1rem;
+}
+
 /*# sourceMappingURL=difficulty-picker.css.map */

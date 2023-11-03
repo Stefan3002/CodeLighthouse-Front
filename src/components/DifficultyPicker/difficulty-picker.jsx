@@ -9,13 +9,30 @@ import Dark4 from '../../utils/imgs/difficulties/Dark4.png'
 import Dark3 from '../../utils/imgs/difficulties/Dark3.png'
 import Dark2 from '../../utils/imgs/difficulties/Dark2.png'
 import Dark1 from '../../utils/imgs/difficulties/Dark1.png'
-const DifficultyPicker = () => {
+import Javascript from '../../utils/imgs/languages/JS.svg'
+import Python from '../../utils/imgs/languages/Python.svg'
+const DifficultyPicker = ({type = 'difficulties'}) => {
+
+    const languages = [
+        {
+            name: 'Javascript',
+            img: Javascript
+        },
+        {
+            name: 'Python',
+            img: Python
+        }
+    ]
 
     const setDifficulty = (difficulty) => {
 
     }
 
+    const setLang = () => {
 
+    }
+
+    if(type === 'difficulties')
     return (
         <div className='difficulty-picker'>
             <div onClick={() => setDifficulty(-5)} className="difficulty">
@@ -51,5 +68,16 @@ const DifficultyPicker = () => {
             </div>
         </div>
     )
+    else
+        if(type === 'languages')
+            return (
+                <div className='difficulty-picker languages'>
+                    {languages.map(lang => {
+                        return <div onClick={() => setLang(lang.name)} className="difficulty language">
+                            <img src={lang.img} alt=""/>
+                        </div>
+                    })}
+                </div>
+            )
 }
 export default DifficultyPicker

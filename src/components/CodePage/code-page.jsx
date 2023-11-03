@@ -27,7 +27,8 @@ const CodePage = () => {
 
         const data = {
             code,
-            userId: user.user_id
+            userId: user.user_id,
+            language: 'javascript'
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run/${slug}`,JSON.stringify(data) , 'POST', false)
         if(res.OK) {

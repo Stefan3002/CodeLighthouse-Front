@@ -15,6 +15,7 @@ import {redirect, useNavigate, useParams} from "react-router-dom";
 import {Editor} from "@monaco-editor/react";
 import MaximizeSVG from '../../utils/imgs/SVGs/MaximizeSVG.svg'
 import {slugify} from "../../utils/js/slugify";
+import DifficultyPicker from "../DifficultyPicker/difficulty-picker";
 const Modal = ({error, type='error'}) => {
     const [code, setCode] = useState(undefined)
     const modalContent = useSelector(getModalContent)
@@ -358,9 +359,11 @@ const Modal = ({error, type='error'}) => {
                     <img src={LighthouseSVG} alt=""/>
                     <h2>Update your challenge!</h2>
                 </div>
+
                 <form onSubmit={updateChallenge} className="error-content create-challenge-content">
                     <p>Give your challenge a <b>new, awesome name.</b></p>
                     <Input type='text' placeholder='Name' value={modalContent.data.title}/>
+                    <DifficultyPicker type='languages' />
                     <div className="create-challenge-content-top">
                         <div className="create-challenge-content-group">
                             <p>And the <b>statement.</b> Write plain <b>html</b> for this part.</p>
