@@ -11,7 +11,12 @@ import Dark2 from '../../utils/imgs/difficulties/Dark2.png'
 import Dark1 from '../../utils/imgs/difficulties/Dark1.png'
 import Javascript from '../../utils/imgs/languages/JS.svg'
 import Python from '../../utils/imgs/languages/Python.svg'
+import {useDispatch, useSelector} from "react-redux";
+import {setLanguage} from "../../utils/store/utils-store/utils-store-actions";
+import {getLanguage} from "../../utils/store/utils-store/utils-store-selectors";
 const DifficultyPicker = ({type = 'difficulties'}) => {
+    const dispatch = useDispatch()
+    const selectedLang = useSelector(getLanguage)
 
     const languages = [
         {
@@ -28,8 +33,8 @@ const DifficultyPicker = ({type = 'difficulties'}) => {
 
     }
 
-    const setLang = () => {
-
+    const setLang = (lang) => {
+        dispatch(setLanguage(lang))
     }
 
     if(type === 'difficulties')
@@ -73,7 +78,7 @@ const DifficultyPicker = ({type = 'difficulties'}) => {
             return (
                 <div className='difficulty-picker languages'>
                     {languages.map(lang => {
-                        return <div onClick={() => setLang(lang.name)} className="difficulty language">
+                        return <div onClick={() => setLang(lang.name)} className={`difficulty language ${selectedLang === lang.name ? 'selected-language-challenge' : null}`}>
                             <img src={lang.img} alt=""/>
                         </div>
                     })}

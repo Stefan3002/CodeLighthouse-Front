@@ -22,6 +22,10 @@
   width: 80px;
 }
 
+.selected-language-challenge {
+  transform: scale(1.2);
+}
+
 .languages {
   margin-top: 1rem;
 }

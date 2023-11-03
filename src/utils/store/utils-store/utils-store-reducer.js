@@ -2,7 +2,7 @@ const INITIAL_VALUE = {
     loading: false,
     error: null,
     languagePicker: false,
-    language: 'javascript',
+    language: 'Python',
     modalOpened: false,
     modalContent: {
         type: undefined,

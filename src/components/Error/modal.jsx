@@ -3,7 +3,7 @@ import Transition from "../../utils/js/transitions";
 import ErrorSVG from '../../utils/imgs/ErrorSVG.svg'
 import LighthouseSVG from '../../utils/imgs/SVGs/LighthouseSVG.svg'
 import {useDispatch, useSelector} from "react-redux";
-import {getModalContent, getSelectedChallenge} from "../../utils/store/utils-store/utils-store-selectors";
+import {getLanguage, getModalContent, getSelectedChallenge} from "../../utils/store/utils-store/utils-store-selectors";
 import Input from "../Input/input";
 import Button from "../Button/button";
 import useFetchHook from "../../utils/hooks/fetchHook";
@@ -24,6 +24,7 @@ const Modal = ({error, type='error'}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const selectedChallenge = useSelector(getSelectedChallenge)
+    const selectedLang = useSelector(getLanguage)
     const joinLighthouse = () => {
         dispatch(setModalContent({
             type: 'joinLighthouse',
@@ -36,6 +37,7 @@ const Modal = ({error, type='error'}) => {
             data: undefined
         }))
     }
+    console.log('HEEEI!', modalContent.data.codes.filter(code => code.language === selectedLang), selectedLang)
 
     const enrollLighthouse = async (event) => {
         event.preventDefault()
@@ -371,14 +373,14 @@ const Modal = ({error, type='error'}) => {
                         </div>
                         <div className="create-challenge-content-group">
                             <p>Write the <b>true function</b> of the challenge. </p>
-                            <Input value={modalContent.data.solution} type='textarea' rows='30' cols='80'/>
+                            <Input value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].solution} type='textarea' rows='30' cols='80'/>
                         </div>
 
                     </div>
                     <div className="create-challenge-content-bottom">
                         <div className="create-challenge-content-group">
                             <p>Finally, write the <b>random function</b> that will generate the random inputs.</p>
-                            <Input value={modalContent.data.random_tests} type='textarea' rows='30' cols='80'/>
+                            <Input value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].random_tests} type='textarea' rows='30' cols='80'/>
                         </div>
                     </div>
 

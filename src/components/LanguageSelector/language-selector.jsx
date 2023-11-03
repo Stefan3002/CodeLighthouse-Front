@@ -20,15 +20,14 @@ const LanguageSelector = ({lightColored = false, modifiable = true, down = true}
     }
 
     useEffect(() => {
-        console.log(selectedLang)
         switch (selectedLang){
-            case 'javascript':
+            case 'Javascript':
                 setLang({
                     name: 'JavaScript',
                     img: JS
                 })
                 break
-            case 'python':
+            case 'Python':
                 setLang({
                     name: 'Python',
                     img: Python
