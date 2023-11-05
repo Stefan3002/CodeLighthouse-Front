@@ -8,6 +8,7 @@ import {setSelectedChallenge} from "../../utils/store/utils-store/utils-store-ac
 import {getSelectedChallenge} from "../../utils/store/utils-store/utils-store-selectors";
 import calendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import clockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
+import DateTime from "../DateTime/date-time";
 
 const ChallengeCard = ({completed, challenge, idx, type = 'Big', detailedAssignment = false}) => {
     const dispatch = useDispatch()
@@ -47,14 +48,8 @@ const ChallengeCard = ({completed, challenge, idx, type = 'Big', detailedAssignm
                 </div>
                 <div className="assignment-metas">
                     {detailedAssignment ? <><Link to={`/app/lighthouses/${challenge.lighthouse}/assignments`}><p>{challenge.lighthouse}</p></Link></> : null}
-                    <div className="assignment-meta">
-                        <img className='icon-svg' src={clockSVG} alt=""/>
-                        <p>{challenge.due_time}</p>
-                    </div>
-                    <div className="assignment-meta">
-                        <img className='icon-svg' src={calendarSVG} alt=""/>
-                        <p>{challenge.due_date}</p>
-                    </div>
+                    <DateTime icon={clockSVG} data={challenge.due_time} />
+                    <DateTime icon={calendarSVG} data={challenge.due_date} />
                 </div>
 
             </div>

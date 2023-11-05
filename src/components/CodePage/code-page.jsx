@@ -14,6 +14,7 @@ import {editor} from "monaco-editor";
 import Blur from "../Blur/blur";
 import MaximizeSVG from '../../utils/imgs/SVGs/MaximizeSVG.svg'
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
+import EditorCard from "../EditorCard/editor-card";
 const CodePage = () => {
     const user = useSelector(getUser)
     const slug = useParams()['slug']
@@ -66,20 +67,7 @@ const CodePage = () => {
                     <p dangerouslySetInnerHTML={{__html: data.description}}></p>
                 </div>
                 {/*<div className="code-page-editor">*/}
-                <div className='editor-wrapper'>
-                    <div className="editor-wrapper-header">
-                        <img onClick={() => {dispatch(setModal(true))
-                            dispatch(setModalContent({
-                                type: 'code',
-                                data: {
-                                    lang,
-                                    code
-                                }
-                            }))
-                        }} className='icon-svg code-editor-icon' src={MaximizeSVG} alt=""/>
-                    </div>
-                    <Editor onChange={(code) => setCode(code)} width='100%' height='400px' defaultLanguage={lang} />
-                </div>
+                <EditorCard type='code' />
                     <Button callback={sendCodeForCompilation} text='Send.' />
                 {/*</div>*/}
             </div>

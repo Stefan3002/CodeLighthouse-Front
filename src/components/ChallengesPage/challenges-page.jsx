@@ -46,11 +46,13 @@ const ChallengesPage = () => {
                     {data.map(challenge => {
                         return <Link to={`${challenge.slug}`}><div className='challenge' key={challenge.slug}>
                             <div className="challenge-content">
-                                <h2>{challenge.title}</h2>
                                 <p dangerouslySetInnerHTML={{__html: challenge.description}}></p>
                             </div>
                             <div className="challenge-meta">
-                                <AuthorName author={challenge.author}/>
+                                <div className='challenge-meta-author-div'>
+                                    <h2>{challenge.title}</h2>
+                                    <AuthorName author={challenge.author}/>
+                                </div>
                                 <Difficulty difficulty={challenge.difficulty} />
                             </div>
                         </div>

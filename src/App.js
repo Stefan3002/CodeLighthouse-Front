@@ -37,6 +37,7 @@ import SidePanel from "./components/SidePanel/side-panel";
 import ChallengesNav from "./components/ChallengesNav/challenges-nav";
 import CommentsPage from "./components/CommentsPage/comments-page";
 import StatsPage from "./components/StatsPage/stats-page";
+import SubmissionsPage from "./components/SubmissionsPage/submissions-page";
 
 function App() {
     const location = useLocation()
@@ -73,6 +74,7 @@ function App() {
                             <Route path='comments' element={<CommentsPage />} />
                             <Route path='stats' element={<StatsPage />} />
                             <Route path='code' element={<CodePage />} />
+                            <Route path='submissions' element={<SubmissionsPage />} />
                         </Route>
                         <Route path='add' element={<AddChallengePage />} />
                         <Route path='users/:id' element={<ProfilePage />} />

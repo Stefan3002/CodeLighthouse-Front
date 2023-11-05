@@ -4,6 +4,7 @@ import Transition from "../../utils/js/transitions";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
 import LighthouseNavigation from "../LighthouseNavigation/lighthouse-navigation";
+import Button from "../Button/button";
 const LighthousePage = () => {
     const lighthouseID = useParams()['id']
     const sendRequest = useFetchHook()
@@ -26,6 +27,7 @@ const LighthousePage = () => {
                 <p>{data.author.username}</p>
             </div>
             <Outlet />
+            {/*<Button type='plus' />*/}
         </Transition>
     )
 }

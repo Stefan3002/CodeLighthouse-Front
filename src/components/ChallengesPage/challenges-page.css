@@ -28,6 +28,11 @@
   background: #FEE1C7;
   color: #575366;
   gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.challenge-meta-author-div {
+  text-align: center;
 }
 
 /*# sourceMappingURL=challenges-page.css.map */
