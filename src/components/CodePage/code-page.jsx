@@ -5,7 +5,7 @@ import Transition from "../../utils/js/transitions";
 import {useEffect, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {useDispatch, useSelector} from "react-redux";
-import {getLanguage} from "../../utils/store/utils-store/utils-store-selectors";
+import {getCode, getLanguage} from "../../utils/store/utils-store/utils-store-selectors";
 import LanguageSelector from "../LanguageSelector/language-selector";
 import Button from "../Button/button";
 import {setError, setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
@@ -20,7 +20,7 @@ const CodePage = () => {
     const slug = useParams()['slug']
     const sendRequest = useFetchHook()
     const lang = useSelector(getLanguage)
-    const [code, setCode] = useState(undefined)
+    const code = useSelector(getCode)
     const [data, setData] = useState(undefined)
     const dispatch = useDispatch()
 

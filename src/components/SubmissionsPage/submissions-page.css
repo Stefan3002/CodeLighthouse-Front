@@ -1,5 +1,14 @@
 .submissions-page {
   margin-top: 3rem;
+  text-align: center;
+}
+
+.submissions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
 }
 
 /*# sourceMappingURL=submissions-page.css.map */

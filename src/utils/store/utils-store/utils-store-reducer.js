@@ -13,7 +13,8 @@ const INITIAL_VALUE = {
         type: undefined,
         data: undefined
     },
-    selectedChallenge: undefined
+    selectedChallenge: undefined,
+    code: undefined
 }
 
 const utilsReducer = (state = INITIAL_VALUE, action) => {
@@ -58,6 +59,11 @@ const utilsReducer = (state = INITIAL_VALUE, action) => {
             return {
                 ...state,
                 sidePanel: payload
+            }
+        case 'SET_CODE':
+            return {
+                ...state,
+                code: payload
             }
         default:
             return state

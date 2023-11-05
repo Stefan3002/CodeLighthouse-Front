@@ -47,6 +47,10 @@ a:focus:before, a:hover:before {
   transition: all 0.15s ease-in-out;
 }
 
+.rounded-img {
+  border-radius: 50%;
+}
+
 .icon-svg {
   max-width: 30px;
   transition: all 0.15s;
@@ -71,7 +75,7 @@ a:focus:before, a:hover:before {
     width: 35%;
   }
 
-  .code-page-wrapper {
+  .code-page-wrapper, .submissions-page {
     width: 80%;
   }
 }

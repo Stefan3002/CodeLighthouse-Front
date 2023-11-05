@@ -53,3 +53,10 @@ export const setSidePanel = (payload) => {
         payload
     }
 }
+
+export const setCode = (payload) => {
+    return {
+        type: 'SET_CODE',
+        payload
+    }
+}

@@ -7,3 +7,4 @@ export const getModalOpened = (state) => state.utilsStore.modalOpened
 export const getModalContent = (state) => state.utilsStore.modalContent
 export const getSelectedChallenge = (state) => state.utilsStore.selectedChallenge
 export const getSidePanel = (state) => state.utilsStore.sidePanel
+export const getCode = (state) => state.utilsStore.code
