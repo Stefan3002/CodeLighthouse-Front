@@ -30,7 +30,7 @@ const ProfilePage = () => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`, undefined, 'GET', true)
             setData(res)
-            if(userID === res.id)
+            if(user.id === res.id)
                 dispatch(setUser(res))
         })()
     }, []);

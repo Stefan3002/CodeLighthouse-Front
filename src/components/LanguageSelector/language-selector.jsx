@@ -1,6 +1,7 @@
 import './language-selector.css'
 import JS from '../../utils/imgs/languages/JS.svg'
 import Python from '../../utils/imgs/languages/Python.svg'
+import Ruby from '../../utils/imgs/languages/Ruby.svg'
 import {useDispatch, useSelector} from "react-redux";
 import {getLanguage, getLanguagePicker} from "../../utils/store/utils-store/utils-store-selectors";
 import LanguagePickerExtension from "../LanguagePickerExtension/language-picker-extension";
@@ -34,6 +35,12 @@ const LanguageSelector = ({lightColored = false, modifiable = true, down = true,
                         img: Python
                     })
                     break
+                case 'Ruby':
+                    setLang({
+                        name: 'Ruby',
+                        img: Ruby
+                    })
+                    break
             }
         else
             switch (selectedLang){
@@ -47,6 +54,12 @@ const LanguageSelector = ({lightColored = false, modifiable = true, down = true,
                     setLang({
                         name: 'Python',
                         img: Python
+                    })
+                    break
+                case 'Ruby':
+                    setLang({
+                        name: 'Ruby',
+                        img: Ruby
                     })
                     break
             }

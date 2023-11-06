@@ -11,6 +11,7 @@ import Dark2 from '../../utils/imgs/difficulties/Dark2.png'
 import Dark1 from '../../utils/imgs/difficulties/Dark1.png'
 import Javascript from '../../utils/imgs/languages/JS.svg'
 import Python from '../../utils/imgs/languages/Python.svg'
+import Ruby from '../../utils/imgs/languages/Ruby.svg'
 import {useDispatch, useSelector} from "react-redux";
 import {setLanguage} from "../../utils/store/utils-store/utils-store-actions";
 import {getLanguage} from "../../utils/store/utils-store/utils-store-selectors";
@@ -26,6 +27,10 @@ const DifficultyPicker = ({type = 'difficulties'}) => {
         {
             name: 'Python',
             img: Python
+        },
+        {
+            name: 'Ruby',
+            img: Ruby
         }
     ]
 

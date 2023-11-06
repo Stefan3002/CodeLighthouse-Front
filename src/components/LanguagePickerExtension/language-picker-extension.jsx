@@ -1,6 +1,7 @@
 import './language-picker-extension.css'
 import JS from "../../utils/imgs/languages/JS.svg";
 import Python from "../../utils/imgs/languages/Python.svg";
+import Ruby from "../../utils/imgs/languages/Ruby.svg";
 import {useDispatch} from "react-redux";
 import {setLanguage, setLanguagePicker} from "../../utils/store/utils-store/utils-store-actions";
 const LanguagePickerExtension = ({lightColored = false, down}) => {
@@ -20,6 +21,10 @@ const LanguagePickerExtension = ({lightColored = false, down}) => {
             <div onClick={() => selectLanguage('Python')} className={`language-picker-option ${lightColored ? 'light-colored' : null}`}>
                 <img src={Python} alt=""/>
                 <p>Python 3</p>
+            </div>
+            <div onClick={() => selectLanguage('Ruby')} className={`language-picker-option ${lightColored ? 'light-colored' : null}`}>
+                <img src={Ruby} alt=""/>
+                <p>Ruby</p>
             </div>
         </div>
     )

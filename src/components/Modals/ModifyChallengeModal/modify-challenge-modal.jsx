@@ -57,14 +57,20 @@ const ModifyChallengeModal = () => {
                     </div>
                     <div className="create-challenge-content-group">
                         <p>Write the <b>true function</b> of the challenge. </p>
-                        <Input value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].solution} type='textarea' rows='30' cols='80'/>
+                        {modalContent.data.codes.filter(code => code.language === selectedLang).length ?
+                            <Input value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].solution} type='textarea' rows='30' cols='80'/>
+                            : <Input value='Code here!' type='textarea' rows='30' cols='80'/>
+                        }
                     </div>
 
                 </div>
                 <div className="create-challenge-content-bottom">
                     <div className="create-challenge-content-group">
                         <p>Finally, write the <b>random function</b> that will generate the random inputs.</p>
-                        <Input value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].random_tests} type='textarea' rows='30' cols='80'/>
+                        {modalContent.data.codes.filter(code => code.language === selectedLang).length ?
+                            <Input value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].random_tests} type='textarea' rows='30' cols='80'/>
+                            : <Input value='Code here!' type='textarea' rows='30' cols='80'/>
+                        }
                     </div>
                 </div>
 
