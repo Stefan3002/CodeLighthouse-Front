@@ -3,9 +3,14 @@ import LighthouseSVG from "../../../utils/imgs/SVGs/LighthouseSVG.svg";
 import Input from "../../Input/input";
 import Button from "../../Button/button";
 import useFetchHook from "../../../utils/hooks/fetchHook";
+import {useSelector} from "react-redux";
+import {getLanguage} from "../../../utils/store/utils-store/utils-store-selectors";
+import LanguageSelector from "../../LanguageSelector/language-selector";
+import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 const CreateChallengeModal = () => {
-
+    const language = useSelector(getLanguage)
     const sendRequest = useFetchHook()
+    const user = useSelector(getUser)
 
     const createNewChallenge = async (event) => {
         event.preventDefault()
@@ -14,8 +19,9 @@ const CreateChallengeModal = () => {
         const trueFunction = event.target[2].value
         const randomFunction = event.target[3].value
 
+
         const data = {
-            title, description, trueFunction, randomFunction
+            title, description, trueFunction, randomFunction, language, userId: user.user_id
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges`,JSON.stringify(data) , 'POST', false)
 
@@ -32,6 +38,7 @@ const CreateChallengeModal = () => {
             <form onSubmit={createNewChallenge} className="error-content create-challenge-content">
                 <p>Give your challenge a <b>name.</b></p>
                 <Input type='text' placeholder='Name' />
+                <LanguageSelector />
                 <div className="create-challenge-content-top">
                     <div className="create-challenge-content-group">
                         <p>And the <b>statement.</b> Write plain <b>html</b> for this part.</p>

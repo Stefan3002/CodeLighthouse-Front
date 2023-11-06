@@ -13,6 +13,8 @@ import ModifySVG from '../../utils/imgs/SVGs/ModifySVG.svg'
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import ChallengeMeta from "../ChallengeMeta/challenge-meta";
+import TopSection from "../TopSection/top-section";
+import AuthorName from "../AuthorName/author-name";
 const ChallengePage = () => {
     const slug = useParams().slug
     const [data, setData] = useState(undefined)
@@ -38,11 +40,12 @@ const ChallengePage = () => {
     if(data)
         return (
             <Transition mode='fullscreen'>
+                <TopSection title={data.title} nameOfPage='Challenge' children={<> <AuthorName author={data.author} /> <Difficulty difficulty={data.difficulty}/> </>} />
                 <div className='wrapper challenge-page'>
                     <div className="challenge-page-meta">
-                        <Difficulty difficulty={data.difficulty}/>
+                        {/*<Difficulty difficulty={data.difficulty}/>*/}
                         {user.solved_challenges.includes(data.id) ? <img src={TickSVG} className='icon-svg' alt="Solved!"/> : null }
-                        <h1>{data.title}</h1>
+                        {/*<h1>{data.title}</h1>*/}
                         {user.user_id === data.author.user_id ? <img onClick={modifyChallenge} className='icon-svg' src={ModifySVG} alt=""/> : null}
                     </div>
                     <div className="challenge-page-content">

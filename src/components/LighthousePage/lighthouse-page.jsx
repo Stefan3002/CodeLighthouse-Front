@@ -5,6 +5,8 @@ import useFetchHook from "../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
 import LighthouseNavigation from "../LighthouseNavigation/lighthouse-navigation";
 import Button from "../Button/button";
+import TopSection from "../TopSection/top-section";
+import AuthorName from "../AuthorName/author-name";
 const LighthousePage = () => {
     const lighthouseID = useParams()['id']
     const sendRequest = useFetchHook()
@@ -22,12 +24,11 @@ const LighthousePage = () => {
     return (
         <Transition mode='fullscreen'>
             <LighthouseNavigation />
+            <TopSection nameOfPage='Lighthouse' children={<AuthorName author={data.author} />} title={data.name} />
             <div className='wrapper lighthouse-page'>
-                <h1>{data.name}</h1>
-                <p>{data.author.username}</p>
+
             </div>
             <Outlet />
-            {/*<Button type='plus' />*/}
         </Transition>
     )
 }

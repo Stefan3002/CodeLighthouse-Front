@@ -14,6 +14,9 @@ import Score from "../Score/score";
 import Button from "../Button/button";
 import LogOutSVG from '../../utils/imgs/SVGs/SignOutSVG.svg'
 import AssignmentsList from "../AssignmentsList/assignments-list";
+import TopSection from "../TopSection/top-section";
+import AuthorName from "../AuthorName/author-name";
+import Difficulty from "../Difficulty/difficulty";
 const ProfilePage = () => {
     const user = useSelector(getUser)
     const userID = useParams()['id']
@@ -27,7 +30,8 @@ const ProfilePage = () => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`, undefined, 'GET', true)
             setData(res)
-            dispatch(setUser(res))
+            if(userID === res.id)
+                dispatch(setUser(res))
         })()
     }, []);
 
@@ -42,17 +46,23 @@ const ProfilePage = () => {
     const filterAssignments = (category) => {
         setFilter(category)
     }
-
     if(data)
     return (
         <Transition mode='fullscreen'>
-        <div className='wrapper profile-page'>
+            <TopSection title={data.username} nameOfPage='Profile' children={
+                <>
+                    <AuthorName author={data} />
+                    <div className='profile-top-bar'>
+                        <Score data={data.score} />
+                        {+userID === user.id ? <img onClick={logOut} className='icon-svg' src={LogOutSVG} alt=""/> : null}
+                    </div>
+                </>
+            } />
+
+            <div className='wrapper profile-page'>
             <div className="profile-header">
-                <div className="profile-rank">
-                    <Score data={data.score} />
-                </div>
-                <h1>{data.username}</h1>
-                <img onClick={logOut} className='icon-svg' src={LogOutSVG} alt=""/>
+
+
             </div>
             <Heading text='Enrolled Lighthouses' />
             <div className="profile-lighthouses">

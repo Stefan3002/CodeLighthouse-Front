@@ -8,6 +8,9 @@ import {Editor} from "@monaco-editor/react";
 import EditorCard from "../EditorCard/editor-card";
 import Heading from "../Heading/heading";
 import {useParams} from "react-router-dom";
+import TopSection from "../TopSection/top-section";
+import AuthorName from "../AuthorName/author-name";
+import Difficulty from "../Difficulty/difficulty";
 const SubmissionsPage = () => {
     const sendRequest = useFetchHook()
     const [data, setData] = useState(undefined)
@@ -25,7 +28,8 @@ const SubmissionsPage = () => {
     if(data)
     return (
         <Transition mode='fullscreen'>
-        <div className='wrapper submissions-page'>
+            <TopSection title={data.title} nameOfPage='Challenge' children={<> <AuthorName author={data.author} /> <Difficulty difficulty={data.difficulty}/> </>} />
+            <div className='wrapper submissions-page'>
             <Heading text='Your submissions' />
             <div className="submissions">
                 {user.submissions.map(submission => {

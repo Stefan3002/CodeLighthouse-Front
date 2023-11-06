@@ -4,6 +4,9 @@ import ChallengeMeta from "../ChallengeMeta/challenge-meta";
 import {useEffect, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {useParams} from "react-router-dom";
+import TopSection from "../TopSection/top-section";
+import AuthorName from "../AuthorName/author-name";
+import Difficulty from "../Difficulty/difficulty";
 const StatsPage = () => {
     const slug = useParams().slug
     const sendRequest = useFetchHook()
@@ -19,7 +22,9 @@ const StatsPage = () => {
     if(data)
     return (
         <Transition mode='fullscreen'>
-        <div className='wrapper stats-page'>
+            <TopSection title={data.title} nameOfPage='Challenge' children={<> <AuthorName author={data.author} /> <Difficulty difficulty={data.difficulty}/> </>} />
+
+            <div className='wrapper stats-page'>
             <p>{data.likes_received}</p>
         </div>
             <ChallengeMeta type='stats' data={data} />

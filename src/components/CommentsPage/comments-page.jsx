@@ -9,6 +9,9 @@ import Button from "../Button/button";
 import {useDispatch} from "react-redux";
 import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import Comment from "../Comment/comment";
+import TopSection from "../TopSection/top-section";
+import AuthorName from "../AuthorName/author-name";
+import Difficulty from "../Difficulty/difficulty";
 const CommentsPage = () => {
     const challengeSlug = useParams()['slug']
     const [data, setData] = useState(undefined)
@@ -34,6 +37,8 @@ const CommentsPage = () => {
     if(data)
     return (
         <Transition mode='fullscreen'>
+            <TopSection title={data.title} nameOfPage='Challenge' children={<> <AuthorName author={data.author} /> <Difficulty difficulty={data.difficulty}/> </>} />
+
             <div className='wrapper comments-page'>
                 <div className="comments">
                     {data.comments.map(comment => {

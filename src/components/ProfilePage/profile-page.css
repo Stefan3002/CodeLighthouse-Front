@@ -32,4 +32,10 @@
   align-items: stretch;
 }
 
+.profile-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /*# sourceMappingURL=profile-page.css.map */
