@@ -1,0 +1,62 @@
+.not-found-page {
+  font-weight: 300;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: "hero one" "hero two";
+  height: 92vh;
+  width: 100vw;
+}
+
+.not-found-hero {
+  grid-area: hero;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  color: #FEE1C7;
+  font-size: 2rem;
+  background: radial-gradient(circle at 50%, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.9)), url("../../utils/imgs/landing-page/404IMG.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.not-found-hero img {
+  max-width: 150px;
+}
+.not-found-hero h2 {
+  margin: 0;
+}
+.not-found-hero p {
+  margin: 0;
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.not-found-one {
+  grid-area: one;
+  padding: 1rem;
+  text-align: center;
+}
+
+.not-found-two {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  grid-area: two;
+  padding: 1rem;
+  text-align: center;
+  background: #32292F;
+  color: #FEE1C7;
+}
+
+@media screen and (max-width: 1000px) {
+  .not-found-page {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/*# sourceMappingURL=not-found-page.css.map */

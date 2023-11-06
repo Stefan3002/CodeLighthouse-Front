@@ -1,0 +1,57 @@
+@import '../../variables'
+
+.not-found-page
+  font-weight: 300
+  display: grid
+  grid-template-columns: 3fr 1fr
+  grid-template-rows: 1fr 1fr
+  grid-template-areas: 'hero one' 'hero two'
+  height: 92vh
+  width: 100vw
+
+.not-found-hero
+  img
+    max-width: 150px
+  h2
+    margin: 0
+  p
+    margin: 0
+    font-weight: 500
+    font-size: 1.5rem
+  grid-area: hero
+  display: flex
+  flex-direction: column
+  text-align: center
+  justify-content: center
+  align-items: center
+  padding: 1rem
+  color: $light-color
+  font-size: 2rem
+  background: radial-gradient(circle at 50%, rgba(0,0,0,0), rgba(0,0,0,.9)), url('../../utils/imgs/landing-page/404IMG.jpg')
+  background-position: center
+  background-size: cover
+  background-repeat: no-repeat
+
+.not-found-one
+  grid-area: one
+  padding: 1rem
+  text-align: center
+  //display: flex
+  //justify-content: center
+  //align-items: center
+
+.not-found-two
+  display: flex
+  //justify-content: center
+  align-items: center
+  flex-direction: column
+  grid-area: two
+  padding: 1rem
+  text-align: center
+  background: $dark-color
+  color: $light-color
+
+@media screen and (max-width: $phone-bp)
+  .not-found-page
+    display: flex
+    flex-direction: column

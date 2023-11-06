@@ -16,7 +16,7 @@ const AppNavigation = () => {
                     <Link to='/app/lighthouses'><li>Lighthouses</li></Link>
                     <Link to='/app/challenges'><li>Solve</li></Link>
                     <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/creating-challenges.html'><li>Docs</li></Link>
-                    <Link to={`/app/users/${user.id}`}><li>{user.username}</li></Link>
+                    <Link to={`/app/users/${user?.id}`}><li>{user ? user.username : 'Profile'}</li></Link>
                 </ul>
             </nav>
             <Outlet />

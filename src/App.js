@@ -38,6 +38,7 @@ import ChallengesNav from "./components/ChallengesNav/challenges-nav";
 import CommentsPage from "./components/CommentsPage/comments-page";
 import StatsPage from "./components/StatsPage/stats-page";
 import SubmissionsPage from "./components/SubmissionsPage/submissions-page";
+import NotFoundPage from "./components/NotFoundPage/not-found-page";
 
 function App() {
     const location = useLocation()
@@ -82,6 +83,10 @@ function App() {
                             <Route path='people' element={<LighthouseDetailsPage />} />
                             <Route path='assignments' element={<LighthouseAssignmentsPage />} />
                         </Route>
+                    </Route>
+                {/*    404 Route here!*/}
+                    <Route path='*' element={<AppNavigation />} >
+                        <Route path='*' element={<NotFoundPage />} />
                     </Route>
                 </Routes>
             </AnimatePresence>

@@ -33,6 +33,7 @@ const ProfilePage = () => {
 
     const logOut = () => {
         dispatch(setIsLoggedIn(false))
+        dispatch(setUser(null))
         dispatch(setStatus('idle'))
         // dispatch(setUser(null))
         navigate('/auth')
