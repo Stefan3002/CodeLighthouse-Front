@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import {useEffect, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import ChallengeCard from "../ChallengeCard/challenge-card";
 const LighthouseAssignmentsPage = () => {
@@ -27,7 +27,7 @@ const LighthouseAssignmentsPage = () => {
             setData(res)
         })()
     }, []);
-    console.log(data)
+
    if (data)
     return (
         <div className='wrapper assignments-page'>
@@ -36,7 +36,14 @@ const LighthouseAssignmentsPage = () => {
                     {data.assignments.map(assignment => {
                         return assignment.users.map(assignedUser => {
                             if(assignedUser.user_id === user.user_id)
-                                return <ChallengeCard completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
+                                if(user.user_id === data.author.user_id)
+                                    return <div className='expanded-challenge-card'>
+                                        <div className='expanded-challenge-card-header'>
+                                            <Link to={`/app/lighthouses/${lighthouseId}/submissions/${assignment.id}`}><p>See submissions</p></Link>
+                                        </div>
+                                        <ChallengeCard completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
+                                </div>
+                                else return <ChallengeCard completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
                         })
 
 

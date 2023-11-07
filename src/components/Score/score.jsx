@@ -19,20 +19,32 @@ const Score = ({data}) => {
             case (data < 1000):
                 setIMG(Dark5)
                 break
-            case (data > 1000 && data < 5000):
+            case (data >= 1000 && data < 8000):
                 setIMG(Dark4)
                 break
-            case (data > 5000 && data < 15000):
+            case (data >= 8000 && data < 14000):
                 setIMG(Dark3)
                 break
-            case (data < 1000):
-                setIMG(Dark5)
+            case (data >= 14000 && data < 20000):
+                setIMG(Dark2)
                 break
-            case (data < 1000):
-                setIMG(Dark5)
+            case (data >= 20000 && data < 50000):
+                setIMG(Dark1)
                 break
-            case (data < 1000):
-                setIMG(Dark5)
+            case (data >= 50000 && data < 60000):
+                setIMG(Light1)
+                break
+            case (data >= 60000 && data < 80000):
+                setIMG(Light2)
+                break
+            case (data >= 80000 && data < 100000):
+                setIMG(Light3)
+                break
+            case (data >= 100000 && data < 150000):
+                setIMG(Light4)
+                break
+            case (data >= 150000):
+                setIMG(Light5)
                 break
         }
     }, []);

@@ -7,4 +7,19 @@
   flex-wrap: wrap;
 }
 
+.expanded-challenge-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.expanded-challenge-card-header {
+  background: #32292F;
+  color: #FEE1C7;
+  width: 100%;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+}
+
 /*# sourceMappingURL=lighthouse-assignments-page.css.map */

@@ -2,8 +2,10 @@ import './not-found-page.css'
 import LighthouseSVG from '../../utils/imgs/SVGs/LighthouseSVG.svg'
 import Button from "../Button/button";
 import {Link} from "react-router-dom";
+import Transition from "../../utils/js/transitions";
 const NotFoundPage = () => {
     return (
+        <Transition mode='fullscreen'>
         <div className='not-found-page'>
             <div className="not-found-hero">
                 <img src={LighthouseSVG} alt=""/>
@@ -21,6 +23,7 @@ const NotFoundPage = () => {
                 <Link to='/app'><Button text='Home!' /></Link>
             </div>
         </div>
+        </Transition>
     )
 }
 export default NotFoundPage

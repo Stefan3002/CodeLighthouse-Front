@@ -4,4 +4,22 @@
   top: 50%;
 }
 
+.language-picker-option {
+  background: #32292F;
+  color: #FEE1C7;
+  display: flex;
+  gap: 0.5rem;
+  border: 1px solid #32292F;
+  padding: 0.2rem;
+}
+.language-picker-option img {
+  max-width: 60px;
+  border-radius: 50%;
+}
+
+.light-colored {
+  background: #FEE1C7;
+  color: #32292F;
+}
+
 /*# sourceMappingURL=language-picker-extension.css.map */

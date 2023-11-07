@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["language-picker-extension.sass"],"names":[],"mappings":"AAAA;EACE;EACA;EACA","file":"language-picker-extension.css"}
+{"version":3,"sourceRoot":"","sources":["language-picker-extension.sass","../../variables.sass"],"names":[],"mappings":"AAEA;EACE;EACA;EACA;;;AAGF;EACE,YCJW;EDKX,OCHY;EDIZ;EACA;EACA;EACA;;AACA;EACE;EACA;;;AACJ;EACE,YCZY;EDaZ,OCfW","file":"language-picker-extension.css"}
