@@ -9,6 +9,7 @@ import CreateLighthouseModal from "../Modals/CreateLighthouseModal/create-lighth
 import LighthouseMenuModal from "../Modals/LighthouseMenuModal/lighthouse-menu-modal";
 import ErrorModal from "../Modals/ErrorModal/error-modal";
 import ExpandedCodeModal from "../Modals/ExpandedCodeModal/expanded-code-modal";
+import SubmissionsModal from "../Modals/SubmissionsModal/submissions-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -32,6 +33,8 @@ const Modal = ({error, type='error'}) => {
             return <CreateCommentModal/>
         case 'modifyChallenge':
             return <ModifyChallengeModal/>
+        case 'submissions':
+            return <SubmissionsModal/>
         default:
             return <></>
     }

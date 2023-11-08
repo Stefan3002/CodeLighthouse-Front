@@ -57,7 +57,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
             <div className='challenge-meta-bottom'>
                 <div className="challenge-meta-left">
                     <p><b>{data.title}</b></p>
-                    <AuthorName author={data.author} />
+                    <AuthorName color='light' author={data.author} />
                 </div>
                 {/*<LanguageSelector down={false} modifiable={true} />*/}
                 <Difficulty difficulty={data.difficulty} />
@@ -70,7 +70,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
                 <div className={`challenge-meta-bottom ${solved ? 'solved' : null}`}>
                     <div className="challenge-meta-left">
                         <p><b>{data.title}</b></p>
-                        <AuthorName author={data.author} />
+                        <AuthorName color='dark' author={data.author} />
                     </div>
                     <LanguageSelector lightColored = {solved} down={false} modifiable={true} />
                     <Link to='code'><Button text='Code!'/></Link>

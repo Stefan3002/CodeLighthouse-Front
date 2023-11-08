@@ -5,4 +5,14 @@
   justify-content: center;
 }
 
+.submission-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #FEE1C7;
+}
+.submission-header p {
+  margin: 0;
+}
+
 /*# sourceMappingURL=editor-card.css.map */

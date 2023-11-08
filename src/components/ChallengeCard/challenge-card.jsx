@@ -10,7 +10,7 @@ import calendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import clockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 import DateTime from "../DateTime/date-time";
 
-const ChallengeCard = ({completed, challenge, idx, type = 'Big', detailedAssignment = false}) => {
+const ChallengeCard = ({authoColor = 'light', completed, challenge, idx, type = 'Big', detailedAssignment = false}) => {
     const dispatch = useDispatch()
     const selectedChallenge = useSelector(getSelectedChallenge)
     const selectChallenge = () => {
@@ -21,7 +21,7 @@ const ChallengeCard = ({completed, challenge, idx, type = 'Big', detailedAssignm
     return (
         <div style={{transform: idx === 2 || idx === 0 ? 'scale(.8)' : 'scale(1)'}} className="challenge-card challenge-card-home-page">
             <div className="challenge-meta-card" >
-                <AuthorName author={challenge.author} />
+                <AuthorName color={authoColor} author={challenge.author} />
                 <Difficulty difficulty={challenge.difficulty} />
             </div>
             <div className="challenge-description-card" >
@@ -37,7 +37,7 @@ const ChallengeCard = ({completed, challenge, idx, type = 'Big', detailedAssignm
         return (
             <div style={{opacity: completed ? '.4' : null}} className="challenge-card">
                 <div className="challenge-meta-card" >
-                    <AuthorName author={challenge.challenge.author} />
+                    <AuthorName color={authoColor} author={challenge.challenge.author} />
                     <Difficulty difficulty={challenge.challenge.difficulty} />
                 </div>
                 <div className="challenge-description-card" >
@@ -59,7 +59,7 @@ const ChallengeCard = ({completed, challenge, idx, type = 'Big', detailedAssignm
             return (
                 <div onClick={selectChallenge} className={selectedChallenge === challenge.slug ? 'challenge-card-small selected-challenge' : 'challenge-card-small'}>
                     <p>{challenge.slug}</p>
-                    <AuthorName author={challenge.author} />
+                    <AuthorName color={authoColor} author={challenge.author} />
                 </div>
             )
     else

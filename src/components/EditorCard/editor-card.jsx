@@ -10,11 +10,12 @@ import DateTime from "../DateTime/date-time";
 import ClockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 import CalendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import LanguageSelector from "../LanguageSelector/language-selector";
-const EditorCard = ({type = 'code', author, submission = null}) => {
+const EditorCard = ({seeAllSubmissions = undefined, assignmentSubmission = false, color = 'dark', type = 'code', author, submission = null}) => {
     const dispatch = useDispatch()
     const lang = useSelector(getLanguage)
     const code = useSelector(getCode)
     // const [code, setCode] = useState(undefined)
+
 
     if(type === 'code')
         return (
@@ -37,11 +38,16 @@ const EditorCard = ({type = 'code', author, submission = null}) => {
         if(type === 'submission')
             return (
                 <div className='editor-wrapper'>
-                    <div className="editor-wrapper-header submission-editor-header">
-                        <AuthorName color='light' author={author} />
+                    <div style={{background: color === 'light' ? '#FEE1C7' : null}} className="editor-wrapper-header submission-editor-header">
+                        {assignmentSubmission ?
+                        <div className='submission-header'>
+                            <AuthorName color={color === 'light' ? 'dark' : 'light'} author={author} />
+                            <p onClick={seeAllSubmissions}>See all</p>
+                        </div>
+                            : null }
                         <LanguageSelector customLanguage={submission.language} type='simple-icon' />
-                        <DateTime icon={CalendarSVG} color='light' data={submission.date} />
-                        <DateTime icon={ClockSVG} color='light' data={submission.time} />
+                        <DateTime icon={CalendarSVG} color={color === 'light' ? 'dark' : 'light'} data={submission.date} />
+                        <DateTime icon={ClockSVG} color={color === 'light' ? 'dark' : 'light'} data={submission.time} />
                     </div>
                     <Editor value={submission.code} onChange={(code) => dispatch(setCode(code))} width='100%' height='70%' defaultLanguage={lang} />
                 </div>

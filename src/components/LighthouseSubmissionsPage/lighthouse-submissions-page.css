@@ -1,3 +1,15 @@
+.submissions-assignment-page {
+  margin-top: 3rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
 
+.submission {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 /*# sourceMappingURL=lighthouse-submissions-page.css.map */

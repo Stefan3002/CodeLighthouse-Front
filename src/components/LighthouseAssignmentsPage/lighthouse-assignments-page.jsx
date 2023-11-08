@@ -41,9 +41,9 @@ const LighthouseAssignmentsPage = () => {
                                         <div className='expanded-challenge-card-header'>
                                             <Link to={`/app/lighthouses/${lighthouseId}/submissions/${assignment.id}`}><p>See submissions</p></Link>
                                         </div>
-                                        <ChallengeCard completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
+                                        <ChallengeCard authoColor='dark' completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
                                 </div>
-                                else return <ChallengeCard completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
+                                else return <ChallengeCard authorColor='dark' completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
                         })
 
 

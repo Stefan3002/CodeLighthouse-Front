@@ -39,7 +39,7 @@ const LighthouseDetailsPage = () => {
                 <div className='enrollment-details-people'>
                     <h2>Other people in this lighthouse ({data.people.length}):</h2>
                     {data.people.length > 1 ? data.people.map(person => {
-                        return <AuthorName author={person} />
+                        return <AuthorName color='dark' author={person} />
                     }) : <Missing text='You are the only one here!' />}
                 </div>
 

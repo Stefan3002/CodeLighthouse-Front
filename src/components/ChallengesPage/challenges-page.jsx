@@ -51,7 +51,7 @@ const ChallengesPage = () => {
                             <div className="challenge-meta">
                                 <div className='challenge-meta-author-div'>
                                     <h2>{challenge.title}</h2>
-                                    <AuthorName author={challenge.author}/>
+                                    <AuthorName color='dark' author={challenge.author}/>
                                 </div>
                                 <Difficulty difficulty={challenge.difficulty} />
                             </div>
