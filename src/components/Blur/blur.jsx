@@ -1,7 +1,7 @@
 import './blur.css'
 import {setError, setModal, setSidePanel} from "../../utils/store/utils-store/utils-store-actions";
 import {useDispatch} from "react-redux";
-const Blur = () => {
+const Blur = ({type = 'transparent'}) => {
     const dispatch = useDispatch()
     const closeUpperElement = () => {
         dispatch(setError(null))
@@ -13,8 +13,13 @@ const Blur = () => {
         }))
     }
 
-    return (
-        <div onClick={closeUpperElement} className='blur' />
-    )
+    if(type == 'transparent')
+        return (
+            <div onClick={closeUpperElement} className='blur' />
+        )
+    else
+        return (
+            <div onClick={closeUpperElement} className='blur-dark' />
+        )
 }
 export default Blur

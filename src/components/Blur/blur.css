@@ -1,4 +1,4 @@
-.blur {
+.blur, .blur-dark {
   position: fixed;
   left: 0;
   top: 0;
@@ -6,6 +6,10 @@
   right: 0;
   background: rgba(0, 0, 0, 0.6);
   z-index: 10;
+}
+
+.blur-dark {
+  background: #32292F;
 }
 
 /*# sourceMappingURL=blur.css.map */

@@ -12,7 +12,7 @@ import GithubSVG from '../../utils/imgs/log-in/GithubSVG.svg'
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {setIsLoggedIn, setStatus} from "../../utils/store/auth-store/auth-store-actions";
+import {setIsLoggedIn, setStatus, setToken} from "../../utils/store/auth-store/auth-store-actions";
 import {getStatus} from "../../utils/store/auth-store/auth-store-selectors";
 import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
 import {setUser} from "../../utils/store/user-store/user-store-actions";
@@ -23,7 +23,12 @@ const LogIn = () => {
     const navigate = useNavigate()
 
     const successLogIn = (user) => {
-        dispatch(setUser(user))
+        // console.log('useru', user)
+        dispatch(setUser(user.user))
+        dispatch(setToken({
+            token: user.access,
+            refresh: user.refresh
+        }))
         navigate('/app')
         // window.location.href = '/app/home'
     }

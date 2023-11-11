@@ -51,7 +51,7 @@ const AssignChallengeModal = () => {
             <div className="error-content">
                 <p>Select the <b>challenge</b> to enlighten your students:</p>
                 <div className='enroll-inputs'>
-                    <ChallengePicker />
+                    <ChallengePicker authorColor='dark' />
                     <p>Not for everyone? <b>Select</b> the students you want!</p>
                     <Button callback={openStudentSelection} text='Select' />
                     <p>{modalContent.selectedPeople ? modalContent.selectedPeople.length : 'No'} students selected.</p>

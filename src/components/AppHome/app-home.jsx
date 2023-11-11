@@ -119,7 +119,7 @@ const AppHome = () => {
             <div className="challenges-cards">
                 {randChallenge.map((challenge, idx) => {
                     if(idx >= indeces.min_index && idx < indeces.max_index - 1)
-                        return <ChallengeCard challenge={challenge} idx={idx} />
+                        return <ChallengeCard authoColor='dark' challenge={challenge} idx={idx} />
                 })}
             </div>
             <div className="challenge-navigation">

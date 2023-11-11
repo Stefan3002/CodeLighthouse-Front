@@ -1,7 +1,8 @@
 const INITIAL_VALUE = {
     status: 'idle',
     isLoggedIn: true,
-    user: null
+    user: null,
+    token: null
 }
 
 const authReducer = (state = INITIAL_VALUE, action) => {
@@ -16,6 +17,11 @@ const authReducer = (state = INITIAL_VALUE, action) => {
             return {
                 ...state,
                 status: payload
+            }
+        case 'SET_TOKEN':
+            return {
+                ...state,
+                token: payload
             }
         default:
             return state

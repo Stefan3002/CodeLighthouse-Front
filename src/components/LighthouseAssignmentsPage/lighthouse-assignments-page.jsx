@@ -43,7 +43,7 @@ const LighthouseAssignmentsPage = () => {
                                         </div>
                                         <ChallengeCard authoColor='dark' completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
                                 </div>
-                                else return <ChallengeCard authorColor='dark' completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
+                                else return <ChallengeCard authoColor='dark' completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
                         })
 
 

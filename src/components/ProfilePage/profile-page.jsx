@@ -28,7 +28,7 @@ const ProfilePage = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`, undefined, 'GET', true)
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`, undefined, 'GET', false)
             setData(res)
             if(user.id === res.id)
                 dispatch(setUser(res))
@@ -83,7 +83,7 @@ const ProfilePage = () => {
             {userID == user.id ? <><Heading text='Authored Challenges' />
                 <div className="unfinished-assignments">
                     {data.authored_challenges.map(challenge => {
-                        return <ChallengeCard type='small-card' challenge={challenge}/>
+                        return <ChallengeCard authoColor='dark' type='small-card' challenge={challenge}/>
                     })}
                 </div></> : null}
         </div>

@@ -53,7 +53,7 @@ function App() {
     return (
         <div className="App">
 
-            {loading ? <><Blur /><Spinner /></> : null}
+            {loading ? <><Blur type='dark' /><Spinner /></> : null}
             {error ? <><Blur /><Modal error={error} /></> : null}
             {modalOpened ? <><Blur /><Modal type={modalType} /></> : null}
             {sidePanel.opened ? <SidePanel type={sidePanel.type} /> : null}

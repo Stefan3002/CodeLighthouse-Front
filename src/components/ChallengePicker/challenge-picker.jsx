@@ -4,7 +4,7 @@ import useFetchHook from "../../utils/hooks/fetchHook";
 import ChallengeCard from "../ChallengeCard/challenge-card";
 import Input from "../Input/input";
 import Button from "../Button/button";
-const ChallengePicker = () => {
+const ChallengePicker = ({authorColor}) => {
     const [challenges, setChallenges] = useState([])
     const sendRequest = useFetchHook()
 
@@ -30,7 +30,7 @@ const ChallengePicker = () => {
             </form>
             <div className="challenges-picker">
                 {challenges.map(challenge => {
-                    return <ChallengeCard type='small' challenge={challenge} />
+                    return <ChallengeCard authoColor={authorColor} type='small' challenge={challenge} />
                 })}
             </div>
         </div>
