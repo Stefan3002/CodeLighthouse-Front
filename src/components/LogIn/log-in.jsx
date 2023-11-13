@@ -16,6 +16,7 @@ import {setIsLoggedIn, setStatus, setToken} from "../../utils/store/auth-store/a
 import {getStatus} from "../../utils/store/auth-store/auth-store-selectors";
 import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
 import {setUser} from "../../utils/store/user-store/user-store-actions";
+import {getTokenFirebase, logInGoogleProviderFirebase} from "../../utils/firebase/oauth-login";
 const LogIn = () => {
     const status = useSelector(getStatus)
     const sendRequest = useFetchHook()
@@ -24,6 +25,8 @@ const LogIn = () => {
 
     const successLogIn = (user) => {
         // console.log('useru', user)
+        dispatch(setIsLoggedIn(true))
+        dispatch(setStatus('loaded'))
         dispatch(setUser(user.user))
         dispatch(setToken({
             token: user.access,
@@ -47,8 +50,7 @@ const LogIn = () => {
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, JSON.stringify(data), 'POST', false, successLogIn)
 
         console.log('log in, ', status)
-        dispatch(setIsLoggedIn(true))
-        dispatch(setStatus('loaded'))
+
     }
 
     const getFeatureIcon = (icon) => {
@@ -61,6 +63,19 @@ const LogIn = () => {
                 return PowerfulSVG
         }
     }
+
+    const logInGoogleProvider = async () => {
+        const result = await logInGoogleProviderFirebase()
+        const email = result.user.email
+        // console.log(result)
+        const idToken = await getTokenFirebase()
+        const data = {
+            idToken,
+            email
+        }
+        await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth/google`, JSON.stringify(data), 'POST', false, successLogIn)
+    }
+
 
     return (
         <div className='slide'>
@@ -84,7 +99,7 @@ const LogIn = () => {
                             <Button text='Log In' />
                         </form>
                         <div className="providers">
-                            <img className='log-in-icon' src={GoogleSVG} alt=""/>
+                            <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG} alt=""/>
                             <img className='log-in-icon' src={GithubSVG} alt=""/>
                         </div>
                     </div>
