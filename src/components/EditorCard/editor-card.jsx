@@ -10,7 +10,7 @@ import DateTime from "../DateTime/date-time";
 import ClockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 import CalendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import LanguageSelector from "../LanguageSelector/language-selector";
-const EditorCard = ({seeAllSubmissions = undefined, assignmentSubmission = false, color = 'dark', type = 'code', author, submission = null}) => {
+const EditorCard = ({seeAllSubmissions = undefined,showAuthor = true , assignmentSubmission = false, color = 'dark', type = 'code', author, submission = null}) => {
     const dispatch = useDispatch()
     const lang = useSelector(getLanguage)
     const code = useSelector(getCode)
@@ -39,6 +39,9 @@ const EditorCard = ({seeAllSubmissions = undefined, assignmentSubmission = false
             return (
                 <div className='editor-wrapper'>
                     <div style={{background: color === 'light' ? '#FEE1C7' : null}} className="editor-wrapper-header submission-editor-header">
+                        {showAuthor ?
+                            <AuthorName color={color === 'light' ? 'dark' : 'light'} author={author} />
+                         : null}
                         {assignmentSubmission ?
                         <div className='submission-header'>
                             <AuthorName color={color === 'light' ? 'dark' : 'light'} author={author} />

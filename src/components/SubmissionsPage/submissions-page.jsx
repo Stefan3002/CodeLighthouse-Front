@@ -34,7 +34,7 @@ const SubmissionsPage = () => {
             <div className="submissions">
                 {user.submissions.map(submission => {
                     if(submission.challenge === slug)
-                        return <EditorCard author={user} type='submission' submission={submission} />
+                        return <EditorCard author={user} type='submission' showAuthor={true} submission={submission} />
                 })}
             </div>
             {user.solved_challenges.includes(data.id) ?
@@ -43,7 +43,7 @@ const SubmissionsPage = () => {
                 <div className="submissions">
                         {data.submissions.map(submission => {
                             if(submission.user.user_id !== user.user_id )
-                                return <EditorCard author={submission.user} type='submission' submission={submission} />
+                                return <EditorCard author={submission.user} showAuthor={true} type='submission' submission={submission} />
                         })}
                 </div>
                 </>: null}
