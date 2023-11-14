@@ -71,7 +71,7 @@
   height: fit-content;
 }
 
-.super-error, .super-success {
+.super-success {
   z-index: 15;
 }
 

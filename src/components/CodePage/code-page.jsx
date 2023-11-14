@@ -1,18 +1,13 @@
 import './code-page.css'
-import {Editor} from "@monaco-editor/react";
 import {useParams} from "react-router-dom";
 import Transition from "../../utils/js/transitions";
 import {useEffect, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {useDispatch, useSelector} from "react-redux";
 import {getCode, getLanguage} from "../../utils/store/utils-store/utils-store-selectors";
-import LanguageSelector from "../LanguageSelector/language-selector";
 import Button from "../Button/button";
-import {setError, setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import ChallengeMeta from "../ChallengeMeta/challenge-meta";
-import {editor} from "monaco-editor";
-import Blur from "../Blur/blur";
-import MaximizeSVG from '../../utils/imgs/SVGs/MaximizeSVG.svg'
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import EditorCard from "../EditorCard/editor-card";
 const CodePage = () => {

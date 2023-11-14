@@ -109,8 +109,8 @@ const AppHome = () => {
         }, 350)
 
     }
-
-    if(randChallenge.length && user)
+    console.log(randChallenge, user)
+    if(randChallenge && randChallenge.length && user)
     return (
         <Transition mode='fullscreen'>
         <Parallax parallaxData={parallaxData} img={ParallaxIMG} />

@@ -75,7 +75,9 @@ const LogIn = () => {
         const idToken = await getTokenFirebase()
         const data = {
             idToken,
-            email
+            email,
+            username: result.user.displayName,
+            photoURL: result.user.photoURL
         }
         await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth/provider`, JSON.stringify(data), 'POST', false, successLogIn)
     }

@@ -6,10 +6,18 @@ import {setModalContent} from "../../../utils/store/utils-store/utils-store-acti
 import {useDispatch, useSelector} from "react-redux";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
+import {setUser} from "../../../utils/store/user-store/user-store-actions";
+import {useEffect} from "react";
+import useUpdateData from "../../../utils/hooks/updateDataHook";
 const CreateLighthouseModal = () => {
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
     const dispatch = useDispatch()
+    const updateUserData = useUpdateData()
+
+    const successCallback = async () => {
+       await updateUserData()
+    }
 
     const createNewLighthouse = async (event) => {
         event.preventDefault()
@@ -22,7 +30,7 @@ const CreateLighthouseModal = () => {
             'user_id': user.user_id
         }
 
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/create-lighthouses`,JSON.stringify(data) , 'POST', false)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/create-lighthouses`,JSON.stringify(data) , 'POST', false, successCallback)
         dispatch(setModalContent({
             type: 'success',
             data: undefined

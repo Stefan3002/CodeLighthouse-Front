@@ -11,10 +11,18 @@ import Button from "../Button/button";
 import {useDispatch, useSelector} from "react-redux";
 import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
+import useUpdateData from "../../utils/hooks/updateDataHook";
 const LighthousesPage = () => {
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
     const dispatch = useDispatch()
+    const updateUserData = useUpdateData()
+
+    useEffect(() => {
+        (async () => {
+            await updateUserData()
+        })()
+    }, []);
 
     const menuLighthouse = () => {
         dispatch(setModal(true))
