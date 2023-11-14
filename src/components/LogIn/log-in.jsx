@@ -16,7 +16,11 @@ import {setIsLoggedIn, setStatus, setToken} from "../../utils/store/auth-store/a
 import {getStatus} from "../../utils/store/auth-store/auth-store-selectors";
 import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
 import {setUser} from "../../utils/store/user-store/user-store-actions";
-import {getTokenFirebase, logInGoogleProviderFirebase} from "../../utils/firebase/oauth-login";
+import {
+    getTokenFirebase,
+    logInGithubProviderFirebase,
+    logInGoogleProviderFirebase
+} from "../../utils/firebase/oauth-login";
 const LogIn = () => {
     const status = useSelector(getStatus)
     const sendRequest = useFetchHook()
@@ -73,7 +77,21 @@ const LogIn = () => {
             idToken,
             email
         }
-        await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth/google`, JSON.stringify(data), 'POST', false, successLogIn)
+        await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth/provider`, JSON.stringify(data), 'POST', false, successLogIn)
+    }
+
+    const logInGithubProvider = async () => {
+        const result = await logInGithubProviderFirebase()
+        const email = result.user.email
+        console.log(result)
+        const idToken = await getTokenFirebase()
+        const data = {
+            idToken: idToken,
+            email,
+            username: result.user.displayName,
+            photoURL: result.user.photoURL
+        }
+        await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth/provider`, JSON.stringify(data), 'POST', false, successLogIn)
     }
 
 
@@ -100,7 +118,7 @@ const LogIn = () => {
                         </form>
                         <div className="providers">
                             <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG} alt=""/>
-                            <img className='log-in-icon' src={GithubSVG} alt=""/>
+                            <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG} alt=""/>
                         </div>
                     </div>
 

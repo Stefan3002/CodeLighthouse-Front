@@ -32,6 +32,7 @@ const useFetchHook = () => {
                 return jsonData
             }
             else if(data.status === 401) {
+                dispatch(setError(jsonData.data))
                 navigate('/auth')
                 return;
             }
