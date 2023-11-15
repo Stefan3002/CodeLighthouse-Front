@@ -8,7 +8,7 @@ import Heading from "../Heading/heading";
 import ChallengeCard from "../ChallengeCard/challenge-card";
 import {useDispatch, useSelector} from "react-redux";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
-import {setIsLoggedIn, setStatus} from "../../utils/store/auth-store/auth-store-actions";
+import {setIsLoggedIn, setStatus, setToken} from "../../utils/store/auth-store/auth-store-actions";
 import {setUser} from "../../utils/store/user-store/user-store-actions";
 import Score from "../Score/score";
 import Button from "../Button/button";
@@ -38,6 +38,7 @@ const ProfilePage = () => {
     const logOut = () => {
         dispatch(setIsLoggedIn(false))
         dispatch(setUser(null))
+        dispatch(setToken(null))
         dispatch(setStatus('idle'))
         // dispatch(setUser(null))
         navigate('/auth')

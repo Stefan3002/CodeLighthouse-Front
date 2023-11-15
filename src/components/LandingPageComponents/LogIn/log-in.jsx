@@ -130,7 +130,7 @@ const LogIn = () => {
                     <div>
                         <form onSubmit={logUserInEmail} className='inputs-form'>
                             <Input placeholder='E-mail' />
-                            <Input placeholder='Password' />
+                            <Input type='password' placeholder='Password' />
                             <Button text='Log In' />
                         </form>
                         <div className="providers">

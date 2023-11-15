@@ -7,11 +7,19 @@ import {getToken} from "../store/auth-store/auth-store-selectors";
 const useFetchHook = () => {
     const dispatch = useDispatch()
     const JWT = useSelector(getToken)
+    console.log(JWT)
     const navigate = useNavigate()
     // const [response, setResponse] = useState(initial_state)
     return useCallback(async (url, body, method, silentLoad = false, successCallback) => {
         if(!silentLoad)
             dispatch(setLoading(true))
+
+        let authorization = undefined
+        if(JWT && JWT.token)
+            authorization = `Bearer ${JWT.token}`
+        else
+            authorization = undefined
+
         try {
             const data = await fetch(url, {
                 method,
@@ -19,7 +27,7 @@ const useFetchHook = () => {
                 credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${JWT.token}`
+                    'Authorization': authorization
                 }
             })
 
