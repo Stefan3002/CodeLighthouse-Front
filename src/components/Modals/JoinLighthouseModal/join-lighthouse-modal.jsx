@@ -7,9 +7,21 @@ import {useDispatch, useSelector} from "react-redux";
 import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
+import useUpdateData from "../../../utils/hooks/updateDataHook";
+import {setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 const JoinLighthouseModal = () => {
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
+    const updateUserData = useUpdateData()
+    const dispatch = useDispatch()
+
+    const successCallback = async () => {
+        dispatch(setModalContent({
+            type: 'success',
+            data: undefined
+        }))
+        await updateUserData()
+    }
     const enrollLighthouse = async (event) => {
         event.preventDefault()
         const code = event.target[0].value
@@ -20,7 +32,7 @@ const JoinLighthouseModal = () => {
             enrollment_code: code
         }
 
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseId}`,JSON.stringify(data) , 'POST', false)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseId}`,JSON.stringify(data) , 'POST', false, successCallback)
         // setData(res)
 
     }

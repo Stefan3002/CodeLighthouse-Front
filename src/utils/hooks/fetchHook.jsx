@@ -1,7 +1,7 @@
 import {useCallback} from "react";
 import {json, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setError, setLoading} from "../store/utils-store/utils-store-actions";
+import {setError, setLoading, setModal} from "../store/utils-store/utils-store-actions";
 import {getToken} from "../store/auth-store/auth-store-selectors";
 
 const useFetchHook = () => {
@@ -46,6 +46,7 @@ const useFetchHook = () => {
             }
             else{
                 dispatch(setError(jsonData.data))
+                dispatch(setModal(false))
             }
         }catch(err){
             dispatch(setError(err.toString()))
