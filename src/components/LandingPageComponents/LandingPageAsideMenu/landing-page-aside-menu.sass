@@ -1,8 +1,8 @@
-@import '../../variables'
+@import '../../../variables'
 
 .slide-aside
   padding: 1rem
-  background: radial-gradient(circle at 50%, rgba(0,0,0,0), rgba(0,0,0,.8)), url("../../utils/imgs/landing-page/Header.jpg")
+  background: radial-gradient(circle at 50%, rgba(0,0,0,0), rgba(0,0,0,.8)), url("../../../utils/imgs/landing-page/Header.jpg")
   background-position: center
   background-size: cover
 
@@ -25,3 +25,13 @@
     align-items: center
     gap: 10px
 
+@media screen and (max-width: 1100px)
+  .slide-aside
+    box-shadow: $box-shadow
+    position: fixed
+    bottom: 0
+    left: 0
+    width: 100%
+  .navigation-wrapper
+    flex-direction: row !important
+    gap: 1rem !important

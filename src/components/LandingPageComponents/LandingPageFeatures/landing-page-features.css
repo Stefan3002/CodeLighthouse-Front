@@ -1,5 +1,5 @@
 .features-hero {
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
 .features {
@@ -32,6 +32,17 @@
   border: 2px solid #FEE1C7;
   padding: 0.5rem;
   border-radius: 50%;
+}
+
+@media screen and (min-width: 1101px) {
+  .slide-hero-features {
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .features {
+    flex-direction: column;
+  }
 }
 
 /*# sourceMappingURL=landing-page-features.css.map */

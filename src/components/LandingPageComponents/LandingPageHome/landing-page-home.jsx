@@ -1,4 +1,5 @@
 import './landing-page-home.css'
+import '../landing-page-common-style.css'
 import LandingPageHeader from "../LandingPageHeader/landing-page-header";
 import {motion, AnimatePresence} from "framer-motion"
 // import transition from "../../utils/js/transitions";

@@ -1,16 +1,28 @@
 import './landing-page-features.css'
-import LogoImgNoBg from "../../utils/imgs/logo/LogoSVG.svg";
-import Button from "../Button/button";
+import LogoImgNoBg from "../../../utils/imgs/logo/LogoSVG.svg";
+import Button from "../../Button/button";
 import {Link} from "react-router-dom";
-import TeacherSVG from '../../utils/imgs/features/TeacherSVG.svg'
-import StudentSVG from '../../utils/imgs/features/StudentSVG.svg'
-import CompanySVG from '../../utils/imgs/features/CompanySVG.svg'
-import FeaturesText from '../../utils/text/features.json'
-import Transition from "../../utils/js/transitions";
+import TeacherSVG from '../../../utils/imgs/features/TeacherSVG.svg'
+import StudentSVG from '../../../utils/imgs/features/StudentSVG.svg'
+import CompanySVG from '../../../utils/imgs/features/CompanySVG.svg'
+import FeaturesText from '../../../utils/text/features.json'
+import Transition from "../../../utils/js/transitions";
 import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
+import {useEffect, useState} from "react";
 const LandingPageFeatures = () => {
+
+    const [windowSize, setWindowSize] = useState(window.innerWidth)
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowSize(window.innerWidth)
+        }
+        window.addEventListener('resize', () => handleResize)
+        return () => window.removeEventListener('resize', () => handleResize)
+    }, []);
+
     return (
-        <Transition>
+        <Transition mode={windowSize <= 1100 ? 'fullscreen' : 'partial'}>
         <div className='slide'>
             <div className="slide-hero features-hero slide-hero-features">
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>

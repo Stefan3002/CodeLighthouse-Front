@@ -1,9 +1,9 @@
 import './App.css';
 import {Route, Routes, useLocation} from "react-router-dom";
 import AppNavigation from "./components/AppNavigation/app-navigation";
-import LandingPageHome from "./components/LandingPageHome/landing-page-home";
-import LandingPageFeatures from "./components/LandingPageFeatures/landing-page-header";
-import LandingPageAbout from "./components/LandingPageAbout/landing-page-about";
+import LandingPageHome from "./components/LandingPageComponents/LandingPageHome/landing-page-home";
+import LandingPageFeatures from "./components/LandingPageComponents/LandingPageFeatures/landing-page-header";
+import LandingPageAbout from "./components/LandingPageComponents/LandingPageAbout/landing-page-about";
 import {useEffect} from "react";
 import jsonParser from "./utils/js/json-parser";
 import AppHome from "./components/AppHome/app-home";

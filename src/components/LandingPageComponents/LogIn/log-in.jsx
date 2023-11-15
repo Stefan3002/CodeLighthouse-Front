@@ -1,31 +1,45 @@
 import './log-in.css'
-import LogoImgNoBg from "../../utils/imgs/logo/LogoSVG.svg";
-import Button from "../Button/button";
+import LogoImgNoBg from "../../../utils/imgs/logo/LogoSVG.svg";
+import Button from "../../Button/button";
 import {Link, Navigate, redirect, useNavigate} from "react-router-dom";
-import Input from "../Input/input";
-import TickSVG from '../../utils/imgs/features/TickSVG.svg'
-import SpeedSVG from '../../utils/imgs/features/SpeedSVG.svg'
-import PowerfulSVG from '../../utils/imgs/features/PowerfulSVG.svg'
-import LogInFeatures from '../../utils/text/log-in-features'
-import GoogleSVG from '../../utils/imgs/log-in/GoogleSVG.svg'
-import GithubSVG from '../../utils/imgs/log-in/GithubSVG.svg'
-import useFetchHook from "../../utils/hooks/fetchHook";
-import {useEffect} from "react";
+import Input from "../../Input/input";
+import TickSVG from '../../../utils/imgs/features/TickSVG.svg'
+import SpeedSVG from '../../../utils/imgs/features/SpeedSVG.svg'
+import PowerfulSVG from '../../../utils/imgs/features/PowerfulSVG.svg'
+import LogInFeatures from '../../../utils/text/log-in-features.json'
+import GoogleSVG from '../../../utils/imgs/log-in/GoogleSVG.svg'
+import GithubSVG from '../../../utils/imgs/log-in/GithubSVG.svg'
+import useFetchHook from "../../../utils/hooks/fetchHook";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {setIsLoggedIn, setStatus, setToken} from "../../utils/store/auth-store/auth-store-actions";
-import {getStatus} from "../../utils/store/auth-store/auth-store-selectors";
+import {setIsLoggedIn, setStatus, setToken} from "../../../utils/store/auth-store/auth-store-actions";
+import {getStatus} from "../../../utils/store/auth-store/auth-store-selectors";
 import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
-import {setUser} from "../../utils/store/user-store/user-store-actions";
+import {setUser} from "../../../utils/store/user-store/user-store-actions";
 import {
     getTokenFirebase,
     logInGithubProviderFirebase,
     logInGoogleProviderFirebase
-} from "../../utils/firebase/oauth-login";
+} from "../../../utils/firebase/oauth-login";
+import Transition from "../../../utils/js/transitions";
 const LogIn = () => {
     const status = useSelector(getStatus)
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+
+    const [windowSize, setWindowSize] = useState(window.innerWidth)
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowSize(window.innerWidth)
+        }
+        window.addEventListener('resize', () => handleResize)
+        return () => window.removeEventListener('resize', () => handleResize)
+    }, []);
+
+
 
     const successLogIn = (user) => {
         // console.log('useru', user)
@@ -98,6 +112,7 @@ const LogIn = () => {
 
 
     return (
+        <Transition mode={windowSize <= 1100 ? 'fullscreen' : 'partial'}>
         <div className='slide'>
             <div className="slide-hero slide-hero-login">
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
@@ -128,6 +143,7 @@ const LogIn = () => {
             </div>
             <LandingPageAsideMenu />
         </div>
+        </Transition>
     )
 }
 export default LogIn

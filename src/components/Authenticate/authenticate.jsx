@@ -1,5 +1,5 @@
 import './authenticate.css'
-import LogIn from "../LogIn/log-in";
+import LogIn from "../LandingPageComponents/LogIn/log-in";
 import Transition from "../../utils/js/transitions";
 const Authenticate = ({mode}) => {
     return (

@@ -53,4 +53,10 @@
   max-width: 300px;
 }
 
+@media screen and (max-width: 1100px) {
+  .about {
+    flex-direction: column;
+  }
+}
+
 /*# sourceMappingURL=landing-page-about.css.map */
