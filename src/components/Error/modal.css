@@ -75,13 +75,6 @@
   z-index: 15;
 }
 
-.create-challenge-content-top, .create-challenge-content-bottom {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: center;
-}
-
 .big-editor {
   position: absolute;
   left: 50%;

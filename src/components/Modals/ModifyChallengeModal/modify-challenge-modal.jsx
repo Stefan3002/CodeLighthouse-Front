@@ -3,7 +3,7 @@ import LighthouseSVG from "../../../utils/imgs/SVGs/LighthouseSVG.svg";
 import Input from "../../Input/input";
 import DifficultyPicker from "../../DifficultyPicker/difficulty-picker";
 import Button from "../../Button/button";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getLanguage, getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
 import useFetchHook from "../../../utils/hooks/fetchHook";
@@ -11,6 +11,7 @@ import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 import {useNavigate} from "react-router-dom";
 import {setModal} from "../../../utils/store/utils-store/utils-store-actions";
 import {slugify} from "../../../utils/js/slugify";
+import EditorCard from "../../EditorCard/editor-card";
 const ModifyChallengeModal = () => {
     const modalContent = useSelector(getModalContent)
     const sendRequest = useFetchHook()
@@ -18,16 +19,28 @@ const ModifyChallengeModal = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    const [trueFunctionCode, setTrueFunctionCode] = useState(modalContent.data.codes.filter(code => code.language === selectedLang)[0]?.solution)
+    const [description, setDescription] = useState(modalContent.data.description)
+    const [randomFunctionCode, setRandomFunctionCode] = useState(modalContent.data.codes.filter(code => code.language === selectedLang)[0]?.random_tests)
+
+
+    useEffect(() => {
+        // Update the state when changing languages!
+        setTrueFunctionCode(modalContent.data.codes.filter(code => code.language === selectedLang)[0]?.solution)
+        setRandomFunctionCode(modalContent.data.codes.filter(code => code.language === selectedLang)[0]?.random_tests)
+        setDescription(modalContent.data.description)
+    }, [selectedLang]);
+
     const updateChallenge = async (event) => {
         event.preventDefault()
         const title = event.target[0].value
-        const description = event.target[1].value
-        const trueFunction = event.target[2].value
-        const randomFunction = event.target[3].value
+        // const description = event.target[1].value
+        // const trueFunction = event.target[2].value
+        // const randomFunction = event.target[3].value
 
 
         const data = {
-            title, description, trueFunction, randomFunction, language: selectedLang
+            title, description, trueFunction: trueFunctionCode || 'No code!', randomFunction: randomFunctionCode || 'No code!', language: selectedLang
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${modalContent.data.slug}`,JSON.stringify(data) , 'PUT', false, () => updateChallengeSuccess(title))
 
@@ -37,6 +50,9 @@ const ModifyChallengeModal = () => {
         dispatch(setModal(false))
         navigate(`/app/challenges/${slugify(newSlug)}`)
     }
+
+
+
 
     return (
         // <Transition mode='fullscreen'>
@@ -53,13 +69,14 @@ const ModifyChallengeModal = () => {
                 <div className="create-challenge-content-top">
                     <div className="create-challenge-content-group">
                         <p>And the <b>statement.</b> Write plain <b>html</b> for this part.</p>
-                        <Input value={modalContent.data.description} type='textarea' rows='30' cols='80'/>
+                        <EditorCard value={modalContent.data.description} onChangeHandler={description => setDescription(description)} showAuthor={false} color='light' type='challenge-code' />
+                        {/*<Input value={modalContent.data.description} type='textarea' rows='30' cols='80'/>*/}
                     </div>
                     <div className="create-challenge-content-group">
                         <p>Write the <b>true function</b> of the challenge. </p>
                         {modalContent.data.codes.filter(code => code.language === selectedLang).length ?
-                            <Input value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].solution} type='textarea' rows='30' cols='80'/>
-                            : <Input value='Code here!' type='textarea' rows='30' cols='80'/>
+                            <EditorCard value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].solution} onChangeHandler={code => setTrueFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
+                            : <EditorCard onChangeHandler={code => setTrueFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
                         }
                     </div>
 
@@ -68,8 +85,8 @@ const ModifyChallengeModal = () => {
                     <div className="create-challenge-content-group">
                         <p>Finally, write the <b>random function</b> that will generate the random inputs.</p>
                         {modalContent.data.codes.filter(code => code.language === selectedLang).length ?
-                            <Input value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].random_tests} type='textarea' rows='30' cols='80'/>
-                            : <Input value='Code here!' type='textarea' rows='30' cols='80'/>
+                            <EditorCard value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].random_tests} onChangeHandler={code => setRandomFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
+                            : <EditorCard onChangeHandler={code => setRandomFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
                         }
                     </div>
                 </div>

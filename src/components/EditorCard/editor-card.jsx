@@ -10,13 +10,20 @@ import DateTime from "../DateTime/date-time";
 import ClockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 import CalendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import LanguageSelector from "../LanguageSelector/language-selector";
-const EditorCard = ({seeAllSubmissions = undefined,showAuthor = true , assignmentSubmission = false, color = 'dark', type = 'code', author, submission = null}) => {
+const EditorCard = ({value = 'No code was given for this language!', onChangeHandler = undefined, seeAllSubmissions = undefined,showAuthor = true , assignmentSubmission = false, color = 'dark', type = 'code', author, submission = null}) => {
     const dispatch = useDispatch()
     const lang = useSelector(getLanguage)
     const code = useSelector(getCode)
     // const [code, setCode] = useState(undefined)
 
 
+    if(type === 'challenge-code')
+        return (
+            <div className='editor-wrapper'>
+                <Editor value={value} onChange={code => onChangeHandler(code)} width='100%' height='100%' defaultLanguage={lang} />
+            </div>
+        )
+    else
     if(type === 'code')
         return (
             <div className='editor-wrapper'>

@@ -15,12 +15,18 @@ import {setModal, setModalContent} from "../../utils/store/utils-store/utils-sto
 import ChallengeMeta from "../ChallengeMeta/challenge-meta";
 import TopSection from "../TopSection/top-section";
 import AuthorName from "../AuthorName/author-name";
+import useUpdateData from "../../utils/hooks/updateDataHook";
 const ChallengePage = () => {
     const slug = useParams().slug
     const [data, setData] = useState(undefined)
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
     const dispatch = useDispatch()
+    const updateData = useUpdateData()
+
+    useEffect(() => {
+        updateData(false)
+    }, [])
 
     useEffect(() => {
         (async () => {
