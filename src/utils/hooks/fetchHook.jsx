@@ -50,6 +50,7 @@ const useFetchHook = () => {
             }
         }catch(err){
             dispatch(setError(err.toString()))
+            dispatch(setModal(false))
             if(!silentLoad)
                 dispatch(setLoading(false))
         }

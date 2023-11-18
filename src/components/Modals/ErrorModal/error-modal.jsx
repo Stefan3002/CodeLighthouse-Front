@@ -14,7 +14,7 @@ const ErrorModal = ({error}) => {
             </div>
             <div className="error-content">
                 <p>We <b>apologize</b>. We got something <b>wrong.</b></p>
-                <p className='error-message'>{error}</p>
+                <p className='error-message' dangerouslySetInnerHTML={{__html: error}}></p>
             </div>
         </div>
         // </Transition>
