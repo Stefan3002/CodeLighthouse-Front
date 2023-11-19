@@ -52,11 +52,13 @@ const Transition = ({children, mode = 'partial', delay = .2, scaleY = 1}) => {
 
     const animationParametersModal = {
         initial: {
+            y: '-100%',
             x: '-50%',
             scale: '0',
             opacity: 0
         },
         animate: {
+            y: 0,
             scale: '1',
             opacity: 1
         },
