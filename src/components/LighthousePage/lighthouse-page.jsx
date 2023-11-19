@@ -14,7 +14,7 @@ const LighthousePage = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseID}`, undefined, 'GET', true)
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseID}`, undefined, 'GET', false)
             setData(res)
         })()
     }, []);

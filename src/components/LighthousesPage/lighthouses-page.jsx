@@ -20,7 +20,7 @@ const LighthousesPage = () => {
 
     useEffect(() => {
         (async () => {
-            await updateUserData()
+            await updateUserData(false)
         })()
     }, []);
 
