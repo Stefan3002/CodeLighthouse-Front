@@ -1,0 +1,13 @@
+.pop-up-modal {
+  background: rgba(0, 128, 0, 0.5);
+  border: rgba(0, 128, 0, 0.5) double 10px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  z-index: 1000;
+  color: whitesmoke;
+}
+.pop-up-modal p {
+  margin: 0;
+}
+
+/*# sourceMappingURL=pop-up-modal.css.map */

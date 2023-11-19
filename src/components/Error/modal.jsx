@@ -10,6 +10,9 @@ import LighthouseMenuModal from "../Modals/LighthouseMenuModal/lighthouse-menu-m
 import ErrorModal from "../Modals/ErrorModal/error-modal";
 import ExpandedCodeModal from "../Modals/ExpandedCodeModal/expanded-code-modal";
 import SubmissionsModal from "../Modals/SubmissionsModal/submissions-modal";
+import PopUpModal from "../Modals/PopUpModal/pop-up-modal";
+import Transition from "../../utils/js/transitions";
+import {AnimatePresence} from "framer-motion";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -35,6 +38,8 @@ const Modal = ({error, type='error'}) => {
             return <ModifyChallengeModal/>
         case 'submissions':
             return <SubmissionsModal/>
+        case 'pop-up':
+            return <PopUpModal/>
         default:
             return <></>
     }

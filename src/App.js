@@ -40,6 +40,7 @@ import StatsPage from "./components/StatsPage/stats-page";
 import SubmissionsPage from "./components/SubmissionsPage/submissions-page";
 import NotFoundPage from "./components/NotFoundPage/not-found-page";
 import LighthouseSubmissionsPage from "./components/LighthouseSubmissionsPage/lighthouse-submissions-page";
+import Transition from "./utils/js/transitions";
 
 function App() {
     const location = useLocation()
@@ -54,8 +55,8 @@ function App() {
         <div className="App">
 
             {loading ? <><Blur type='dark' /><Spinner /></> : null}
-            {error ? <><Blur /><Modal error={error} /></> : null}
-            {modalOpened ? <><Blur /><Modal type={modalType} /></> : null}
+            {error ? <><Blur /><Transition mode='modal'><Modal error={error} /></Transition></> : null}
+            {modalOpened && modalType !== 'pop-up' ? <><Blur /><Transition mode='modal'><Modal type={modalType} /></Transition></> : modalOpened && modalType === 'pop-up' ? <AnimatePresence><Transition mode='pop-up'><Modal type={modalType} /></Transition></AnimatePresence> : null}
             {sidePanel.opened ? <SidePanel type={sidePanel.type} /> : null}
 
             <AnimatePresence mode='wait'>

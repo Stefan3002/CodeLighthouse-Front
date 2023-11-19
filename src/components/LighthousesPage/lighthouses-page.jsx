@@ -12,15 +12,18 @@ import {useDispatch, useSelector} from "react-redux";
 import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import useUpdateData from "../../utils/hooks/updateDataHook";
+import Heading from "../Heading/heading";
 const LighthousesPage = () => {
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
     const dispatch = useDispatch()
     const updateUserData = useUpdateData()
+    const [communities, setCommunities] = useState([])
 
     useEffect(() => {
         (async () => {
             await updateUserData(false)
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/communities`, null , 'GET', false, (communities) => setCommunities(communities))
         })()
     }, []);
 
@@ -32,15 +35,29 @@ const LighthousesPage = () => {
         }))
     }
 
-    if(user)
+    if(user && communities)
     return (
         <Transition mode='fullscreen'>
             <Parallax parallaxData={parallaxData} img={LighthouseIMG}/>
             <Button callback={menuLighthouse} type='plus' />
-            <div className='wrapper lighthouses-page'>
-                {user.enrolled_lighthouses.map(lighthouse => {
-                    return <LighthouseCard data={lighthouse} />
-                })}
+            <div className="wrapper">
+                <div className='lighthouses-page'>
+                    <Heading text='Enrolled Lighthouses' />
+                    <div className="lighthouses-wrapper">
+                        {user.enrolled_lighthouses.map(lighthouse => {
+                            return <LighthouseCard data={lighthouse} />
+                        })}
+                    </div>
+
+
+                    <Heading text='Public Communities' />
+                    <div className="lighthouses-wrapper">
+                        {communities.map(community => {
+                            return <LighthouseCard type='community' data={community} />
+                        })}
+                    </div>
+
+                    </div>
             </div>
         </Transition>
     )

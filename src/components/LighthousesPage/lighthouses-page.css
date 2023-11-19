@@ -1,5 +1,9 @@
 .lighthouses-page {
   margin-top: 2rem;
+  text-align: center;
+}
+
+.lighthouses-wrapper {
   display: flex;
   gap: 1rem;
   align-items: stretch;

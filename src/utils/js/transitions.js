@@ -33,6 +33,43 @@ const Transition = ({children, mode = 'partial', delay = .2, scaleY = 1}) => {
             duration: .4
         }
     }
+
+    const animationParametersPopUp = {
+        initial: {
+            y: '-100%'
+        },
+        animate: {
+            y: 0
+        },
+        exit: {
+            y: '100%'
+        },
+        transition: {
+            ease: 'easeInOut',
+            duration: .5
+        }
+    }
+
+    const animationParametersModal = {
+        initial: {
+            x: '-50%',
+            scale: '0',
+            opacity: 0
+        },
+        animate: {
+            scale: '1',
+            opacity: 1
+        },
+        exit: {
+            scale: '0',
+            opacity: 0
+        },
+        transition: {
+            ease: 'easeInOut',
+            duration: .3
+        }
+    }
+    if(mode === 'partial' || mode === 'fullscreen')
     return (
         // <motion.div transition={animationParameters.transition} initial={animationParameters.initial} animate={animationParameters.animate} exit={animationParameters.exit}>
         //     {children}
@@ -47,5 +84,19 @@ const Transition = ({children, mode = 'partial', delay = .2, scaleY = 1}) => {
             </motion.div>
         </>
     )
+    else
+        if(mode === 'pop-up')
+            return (
+                <motion.div className='pop-up-animation' transition={animationParametersPopUp.transition} initial={animationParametersPopUp.initial} animate={animationParametersPopUp.animate} exit={animationParametersPopUp.exit} >
+                    {children}
+                </motion.div>
+            )
+    else
+        if(mode === 'modal')
+            return (
+                <motion.div key='modal' className='modal-animation' {...animationParametersModal} >
+                    {children}
+                </motion.div>
+            )
 }
 export default Transition
