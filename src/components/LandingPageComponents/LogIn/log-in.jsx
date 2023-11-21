@@ -33,10 +33,10 @@ const LogIn = () => {
     const [windowSize, setWindowSize] = useState(window.innerWidth)
 
 
-    useEffect(() => {
-        if(isLoggedIn)
-            navigate('/app')
-    }, []);
+    // useEffect(() => {
+    //     if(isLoggedIn)
+    //         navigate('/app')
+    // }, []);
 
     useEffect(() => {
         const handleResize = () => {
