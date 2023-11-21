@@ -3,7 +3,7 @@
   "description":"Description",
   "theme_color":"#32292f",
   "background_color":"#fee1c7",
-  "display":"browser",
+  "display":"standalone",
   "orientation":"portrait",
   "scope":"/",
   "start_url":"/app",
