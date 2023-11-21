@@ -1,49 +1,46 @@
-// Perform install steps
-let CACHE_NAME = 'my-cache';
-let urlsToCache = [
-    'css/style.css',
-    'images/myIcon.png',
-    'scripts/index.js'
 
-];
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js');
 
-self.addEventListener('install', function(event) {
-// Perform install steps
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(function(cache) {
-                console.log('Opened cache');
-                return cache.addAll(urlsToCache);
+const routing = workbox.routing;
+const strategies = workbox.strategies;
+
+workbox.routing.registerRoute(
+    /.(?:css|js|jsx|json)(?|$)/,
+    new workbox.strategies.StaleWhileRevalidate({
+        "cacheName": "assets",
+        plugins: [
+            new workbox.expiration.Plugin({
+                maxEntries: 1000,
+                maxAgeSeconds: 31536000
             })
-    );
-});
+        ]
+    })
+);
 
+workbox.routing.registerRoute(
+    /.(?:png|jpg|jpeg|gif|woff2)$/,
+    new workbox.strategies.CacheFirst({
+        "cacheName": "images",
+        plugins: [
+            new workbox.expiration.Plugin({
+                maxEntries: 1000,
+                maxAgeSeconds: 31536000
+            })
+        ]
+    })
+);
 
-self.addEventListener('fetch', function(event) {
-    event.respondWith(
-        caches.match(event.request)
-            .then(function(response) {
-                    // Cache hit - return response
-                    if (response) {
-                        return response;
-                    }
-                    return fetch(event.request);
-                }
-            )
-    );
-});
+workbox.routing.registerRoute(
+    /(\/)$/,
+    new workbox.strategies.StaleWhileRevalidate({
+        "cacheName": "startPage",
+        plugins: [
+            new workbox.expiration.Plugin({
+                maxEntries: 1000,
+                maxAgeSeconds: 31536000
+            })
+        ]
+    })
+);
 
-self.addEventListener('activate', function(event) {
-    var cacheWhitelist = ['pigment'];
-    event.waitUntil(
-        caches.keys().then(function(cacheNames) {
-            return Promise.all(
-                cacheNames.map(function(cacheName) {
-                    if (cacheWhitelist.indexOf(cacheName) === -1) {
-                        return caches.delete(cacheName);
-                    }
-                })
-            );
-        })
-    );
-});
+        
