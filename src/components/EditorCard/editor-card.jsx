@@ -51,7 +51,7 @@ const EditorCard = ({value = 'No code was given for this language!', onChangeHan
                          : null}
                         {assignmentSubmission ?
                         <div className='submission-header'>
-                            <AuthorName color={color === 'light' ? 'dark' : 'light'} author={author} />
+                            {/*<AuthorName color={color === 'light' ? 'dark' : 'light'} author={author} />*/}
                             <p onClick={seeAllSubmissions}>See all</p>
                         </div>
                             : null }

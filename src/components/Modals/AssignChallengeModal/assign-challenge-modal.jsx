@@ -7,14 +7,21 @@ import {useDispatch, useSelector} from "react-redux";
 import {getModalContent, getSelectedChallenge} from "../../../utils/store/utils-store/utils-store-selectors";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 import useFetchHook from "../../../utils/hooks/fetchHook";
-import {setSidePanel} from "../../../utils/store/utils-store/utils-store-actions";
+import {setModal, setSidePanel} from "../../../utils/store/utils-store/utils-store-actions";
+import useUpdateData from "../../../utils/hooks/updateDataHook";
 const AssignChallengeModal = () => {
     const selectedChallenge = useSelector(getSelectedChallenge)
     const modalContent = useSelector(getModalContent)
     const user = useSelector(getUser)
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
+    const updateUserData = useUpdateData()
 
+    const successCallback = async () => {
+        await updateUserData()
+        dispatch(setModal(false))
+        dispatch(setSidePanel(false))
+    }
 
     const assignLighthouseChallenge = async (event) => {
         event.preventDefault()
@@ -26,7 +33,7 @@ const AssignChallengeModal = () => {
             dueTime,
             users: [...modalContent.selectedPeople, user.user_id]
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/assignments/${modalContent.data}`,JSON.stringify(data) , 'POST', false)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/assignments/${modalContent.data}`,JSON.stringify(data) , 'POST', false, successCallback)
 
     }
 

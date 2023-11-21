@@ -38,7 +38,6 @@ const LighthousesPage = () => {
             data: undefined
         }))
     }
-
     if(user && communities)
     return (
         <Transition mode='fullscreen'>
@@ -48,16 +47,18 @@ const LighthousesPage = () => {
                 <div className='lighthouses-page'>
                     <Heading text='Enrolled Lighthouses' />
                     <div className="lighthouses-wrapper">
-                        {user.enrolled_lighthouses.map(lighthouse => {
-                            return <LighthouseCard data={lighthouse} />
+                        {user.enrolled_lighthouses.map((lighthouse, idx) => {
+                            {
+                                console.log(idx)}
+                            return <LighthouseCard animationDelay={idx + 1} data={lighthouse} />
                         })}
                     </div>
 
 
                     <Heading text='Public Communities' />
                     <div className="lighthouses-wrapper">
-                        {communities.map(community => {
-                            return <LighthouseCard type='community' data={community} />
+                        {communities.map((community, idx) => {
+                            return <LighthouseCard animationDelay={idx + 1} type='community' data={community} />
                         })}
                     </div>
 

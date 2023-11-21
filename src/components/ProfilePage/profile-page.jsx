@@ -17,6 +17,7 @@ import AssignmentsList from "../AssignmentsList/assignments-list";
 import TopSection from "../TopSection/top-section";
 import AuthorName from "../AuthorName/author-name";
 import Difficulty from "../Difficulty/difficulty";
+import {AnimatePresence} from "framer-motion";
 const ProfilePage = () => {
     const user = useSelector(getUser)
     const userID = useParams()['id']
@@ -49,6 +50,7 @@ const ProfilePage = () => {
     }
     if(data)
     return (
+        <AnimatePresence>
         <Transition mode='fullscreen'>
             <TopSection title={data.username} nameOfPage='Profile' children={
                 <>
@@ -61,34 +63,36 @@ const ProfilePage = () => {
             } />
 
             <div className='wrapper profile-page'>
-            <div className="profile-header">
+                <div className="profile-header">
 
 
-            </div>
-            <Heading text='Enrolled Lighthouses' />
-            <div className="profile-lighthouses">
-                {data.enrolled_lighthouses.map(lighthouse => {
-                    return <LighthouseCard data={lighthouse} />
-                })}
-            </div>
-            {userID == user.id ? <><Heading text='Assignments' />
-                <div className="profile-assignments-filters">
-                    <Button callback={() => filterAssignments('All')} type='normal' text='All' />
-                    <Button callback={() => filterAssignments('Finished')} type='normal' text='Finished' />
-                    <Button callback={() => filterAssignments('Unfinished')} type='normal' text='Unfinished' />
                 </div>
-                <div className="unfinished-assignments">
-                    <AssignmentsList user={user} data={data} filter={filter} />
-                </div></> : null}
-
-            {userID == user.id ? <><Heading text='Authored Challenges' />
-                <div className="unfinished-assignments">
-                    {data.authored_challenges.map(challenge => {
-                        return <ChallengeCard authoColor='dark' type='small-card' challenge={challenge}/>
+                <Heading text='Enrolled Lighthouses' />
+                <div className="profile-lighthouses">
+                    {data.enrolled_lighthouses.map(lighthouse => {
+                        return <LighthouseCard data={lighthouse} />
                     })}
-                </div></> : null}
+                </div>
+
+                {userID == user.id ? <><Heading text='Assignments' />
+                    <div className="profile-assignments-filters">
+                        <Button callback={() => filterAssignments('All')} type='normal' text='All' />
+                        <Button callback={() => filterAssignments('Finished')} type='normal' text='Finished' />
+                        <Button callback={() => filterAssignments('Unfinished')} type='normal' text='Unfinished' />
+                    </div>
+                    <div className="unfinished-assignments">
+                        <AssignmentsList filters={true} user={user} data={data} filter={filter} />
+                    </div></> : null}
+
+                {userID == user.id ? <><Heading text='Authored Challenges' />
+                    <div className="unfinished-assignments">
+                        {data.authored_challenges.map(challenge => {
+                            return <ChallengeCard authoColor='dark' type='small-card' challenge={challenge}/>
+                        })}
+                    </div></> : null}
         </div>
         </Transition>
+        </AnimatePresence>
     )
 }
 export default ProfilePage

@@ -1,6 +1,14 @@
 @import '../../variables'
 
 .lighthouse-card
+  animation: pop-up
+  animation-duration: .4s
+  animation-fill-mode: forwards
+  //animation-delay: 1s
+  opacity: 0
+  transform: scale(0)
+
+
   width: fit-content
   padding: 1rem
   border-radius: 10px
@@ -24,3 +32,12 @@
     transition: all .15s
     background: $dark-color
     color: $light-color
+
+
+@keyframes pop-up
+  from
+    transform: scale(0)
+    opacity: 0
+  to
+    transform: scale(1)
+    opacity: 1

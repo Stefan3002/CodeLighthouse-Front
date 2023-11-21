@@ -23,13 +23,12 @@ const CreateChallengeModal = () => {
     const [description, setDescription] = useState('')
     const [randomFunctionCode, setRandomFunctionCode] = useState('')
 
-
-    const successCallback = () => {
+    const successCallback = async () => {
         dispatch(setModalContent({
             type: 'success',
             data: 'Challenge created!'
         }))
-        updateData(true)
+        await updateData(true)
     }
 
     const createNewChallenge = async (event) => {

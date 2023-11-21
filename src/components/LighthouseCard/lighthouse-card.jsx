@@ -4,7 +4,7 @@ import CopySVG from '../../utils/imgs/SVGs/CopySVG.svg'
 import AuthorName from "../AuthorName/author-name";
 import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import {useDispatch} from "react-redux";
-const LighthouseCard = ({type = 'lighthouse', data}) => {
+const LighthouseCard = ({animationDelay, type = 'lighthouse', data}) => {
     const dispatch = useDispatch()
     const copyCodeToClipboard = () => {
         navigator.clipboard.writeText(data.enrollment_code)
@@ -15,11 +15,10 @@ const LighthouseCard = ({type = 'lighthouse', data}) => {
         }))
     }
 
-
     if(type === 'lighthouse')
     return (
         <Link to={`/app/lighthouses/${data.id}`}>
-        <div className='lighthouse-card'>
+        <div style={{animationDelay: `.${animationDelay * 10}s`}} className='lighthouse-card'>
             <div className="lighthouse-card-header">
                 <h2>{data.name}</h2>
                 {/*<AuthorName color='dark' author={data.author} />*/}
@@ -34,7 +33,7 @@ const LighthouseCard = ({type = 'lighthouse', data}) => {
     else
         if(type === 'community')
             return (
-                <div className='lighthouse-card'>
+                <div style={{animationDelay: `.${animationDelay * 10}s`}} className='lighthouse-card'>
                     <img onClick={copyCodeToClipboard} src={CopySVG} className='icon-svg' alt="Copy code"/>
                     <Link to={`/app/lighthouses/${data.id}`}>
                     <div className="lighthouse-card-header">

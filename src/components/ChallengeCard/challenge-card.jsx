@@ -1,6 +1,6 @@
 import './challenge-card.css'
 import {Link} from "react-router-dom";
-import {motion} from "framer-motion"
+import {AnimatePresence, motion} from "framer-motion"
 import AuthorName from "../AuthorName/author-name";
 import Difficulty from "../Difficulty/difficulty";
 import {useDispatch, useSelector} from "react-redux";
@@ -15,6 +15,25 @@ const ChallengeCard = ({authoColor = 'light', completed, challenge, idx, type = 
     const selectedChallenge = useSelector(getSelectedChallenge)
     const selectChallenge = () => {
         dispatch(setSelectedChallenge(challenge.slug))
+    }
+
+    const assignmentCardAnimationParams = {
+        initial: {
+            scale: 0,
+            opacity: 0
+        },
+        animate: {
+            scale: 1,
+            opacity: 1
+        },
+        exit: {
+            opacity: 0,
+            scale: 0
+        },
+        transition: {
+            ease: 'easeInOut',
+            duration: .3
+        }
     }
 
     if(type === 'Big')
@@ -35,7 +54,7 @@ const ChallengeCard = ({authoColor = 'light', completed, challenge, idx, type = 
     else
     if(type === 'assignment')
         return (
-            <div style={{opacity: completed ? '.4' : null}} className="challenge-card">
+            <motion.div key={`challenge-${challenge.id}`} {...assignmentCardAnimationParams} style={{opacity: completed ? '.4' : null}} className="challenge-card">
                 <div className="challenge-meta-card" >
                     <AuthorName color={authoColor} author={challenge.challenge.author} />
                     <Difficulty difficulty={challenge.challenge.difficulty} />
@@ -52,7 +71,7 @@ const ChallengeCard = ({authoColor = 'light', completed, challenge, idx, type = 
                     <DateTime icon={calendarSVG} data={challenge.due_date} />
                 </div>
 
-            </div>
+            </motion.div>
         )
     else
         if(type === 'small')

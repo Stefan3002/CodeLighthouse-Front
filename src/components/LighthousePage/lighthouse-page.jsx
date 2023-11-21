@@ -7,9 +7,13 @@ import LighthouseNavigation from "../LighthouseNavigation/lighthouse-navigation"
 import Button from "../Button/button";
 import TopSection from "../TopSection/top-section";
 import AuthorName from "../AuthorName/author-name";
+import AssignmentsList from "../AssignmentsList/assignments-list";
+import {useSelector} from "react-redux";
+import {getUser} from "../../utils/store/user-store/user-store-selectors";
 const LighthousePage = () => {
     const lighthouseID = useParams()['id']
     const sendRequest = useFetchHook()
+    const user = useSelector(getUser)
     const [data, setData] = useState(undefined)
 
     useEffect(() => {
@@ -20,13 +24,13 @@ const LighthousePage = () => {
     }, []);
 
 
-    if(data)
+    if(data && user)
     return (
         <Transition mode='fullscreen'>
             <LighthouseNavigation />
             <TopSection nameOfPage='Lighthouse' children={<AuthorName author={data.author} />} title={data.name} />
             <div className='wrapper lighthouse-page'>
-
+                {/*<AssignmentsList limit={1} filters={false} user={user} data={user} filter='All' />*/}
             </div>
             <Outlet />
         </Transition>
