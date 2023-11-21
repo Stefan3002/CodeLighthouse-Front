@@ -69,6 +69,10 @@ a:focus:before, a:hover:before {
   html {
     font-size: 16px;
   }
+
+  .wrapper {
+    width: 95%;
+  }
 }
 @media screen and (min-width: 2000px) {
   .wrapper {

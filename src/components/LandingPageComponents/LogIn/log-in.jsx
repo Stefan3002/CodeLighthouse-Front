@@ -13,7 +13,7 @@ import useFetchHook from "../../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setIsLoggedIn, setStatus, setToken} from "../../../utils/store/auth-store/auth-store-actions";
-import {getStatus} from "../../../utils/store/auth-store/auth-store-selectors";
+import {getIsLoggedIn, getStatus} from "../../../utils/store/auth-store/auth-store-selectors";
 import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
 import {setUser} from "../../../utils/store/user-store/user-store-actions";
 import {
@@ -27,9 +27,16 @@ const LogIn = () => {
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const isLoggedIn = useSelector(getIsLoggedIn)
 
 
     const [windowSize, setWindowSize] = useState(window.innerWidth)
+
+
+    useEffect(() => {
+        if(isLoggedIn)
+            navigate('/app')
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {

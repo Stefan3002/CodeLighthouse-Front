@@ -33,6 +33,7 @@
   right: 10px;
   bottom: 10px;
   transition: all 0.15s;
+  z-index: 1;
 }
 .plus-button:focus, .plus-button:hover {
   transition: all 0.15s;

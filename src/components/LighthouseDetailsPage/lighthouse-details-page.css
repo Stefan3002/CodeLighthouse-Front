@@ -24,6 +24,12 @@
   text-align: center;
 }
 
+.enrollment-details-people-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
 .enrollment-code-wrapper {
   background: #32292F;
   color: #FEE1C7;

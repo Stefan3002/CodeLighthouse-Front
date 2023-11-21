@@ -17,6 +17,13 @@
   gap: 1rem;
 }
 
+.menu-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+}
+
 .logo-header-app-nav {
   max-width: 200px;
 }
