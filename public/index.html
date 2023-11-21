@@ -2,16 +2,27 @@
 <html lang="en">
   <head>
 <!--      PWA-->
-      <link rel="manifest" href="manifest.json" />
+      <link rel="manifest" href="manifest.json">
+      <script>
+          if ('serviceWorker' in navigator) {
+              window.addEventListener("load", () => {
+                  navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+                      console.log('ServiceWorker registered');
+                  }).catch(function(err) {
+                      console.log('ServiceWorker error: ', err);
+                  });
+              })
+          }
+      </script>
       <!-- ios support -->
-      <link rel="apple-touch-icon" href="pwa/icons/72x72.png" />
-      <link rel="apple-touch-icon" href="pwa/icons/96x96.png" />
-      <link rel="apple-touch-icon" href="pwa/icons/128x128.png" />
-      <link rel="apple-touch-icon" href="pwa/icons/144x144.png" />
-      <link rel="apple-touch-icon" href="pwa/icons/152x152.png" />
-      <link rel="apple-touch-icon" href="pwa/icons/192x192.png" />
-      <link rel="apple-touch-icon" href="pwa/icons/384x384.png" />
-      <link rel="apple-touch-icon" href="pwa/icons/512x512.png" />
+      <link rel="apple-touch-icon" href="icons/72x72.png" />
+      <link rel="apple-touch-icon" href="icons/96x96.png" />
+      <link rel="apple-touch-icon" href="icons/128x128.png" />
+      <link rel="apple-touch-icon" href="icons/144x144.png" />
+      <link rel="apple-touch-icon" href="icons/152x152.png" />
+      <link rel="apple-touch-icon" href="icons/192x192.png" />
+      <link rel="apple-touch-icon" href="icons/384x384.png" />
+      <link rel="apple-touch-icon" href="icons/512x512.png" />
       <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
       <meta name="theme-color" content="#db4938" />
 
