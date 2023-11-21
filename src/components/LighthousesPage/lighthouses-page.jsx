@@ -23,9 +23,13 @@ const LighthousesPage = () => {
     useEffect(() => {
         (async () => {
             await updateUserData(false)
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/communities`, null , 'GET', false, (communities) => setCommunities(communities))
         })()
     }, []);
+    useEffect(() => {
+        ( async () => {
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/communities`, null , 'GET', true, (communities) => setCommunities(communities))
+        })()
+    }, [user]);
 
     const menuLighthouse = () => {
         dispatch(setModal(true))

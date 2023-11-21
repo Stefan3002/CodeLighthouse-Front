@@ -23,17 +23,19 @@ const CreateLighthouseModal = () => {
         event.preventDefault()
         const name = event.target[0].value
         const description = event.target[1].value
+        const community = event.target[2].checked
 
         const data = {
             name,
             description,
+            community,
             'user_id': user.user_id
         }
 
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/create-lighthouses`,JSON.stringify(data) , 'POST', false, successCallback)
         dispatch(setModalContent({
             type: 'success',
-            data: undefined
+            data: undefined,
         }))
     }
 
@@ -44,14 +46,15 @@ const CreateLighthouseModal = () => {
                 <img src={LighthouseSVG} alt=""/>
                 <h2>Create Lighthouse!</h2>
             </div>
-            <div className="error-content">
+            <div className="error-content create-lighthouse-content">
                 <p>Let's configure the <b>Lighthouse</b> to enlighten people!</p>
                 <form className='enroll-inputs' onSubmit={createNewLighthouse}>
                     <Input type='text' placeholder='Name.' />
                     <Input type='textarea' rows='12' cols='40' placeholder='Description.' />
+                    <p>Make it a community? (public lighthouse)</p>
+                    <Input type='checkbox' placeholder='Yes, make it public!' />
                     <Button buttonType='submit' text='Create' type='normal' />
                 </form>
-
             </div>
         </div>
         // </Transition>
