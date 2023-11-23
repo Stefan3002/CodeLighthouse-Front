@@ -7,6 +7,12 @@
 }
 
 .about-typewriter {
+  animation-name: pop-up;
+  animation-duration: 0.4s;
+  animation-delay: 0.5s;
+  opacity: 0;
+  transform: scale(0);
+  animation-fill-mode: forwards;
   text-align: center;
   background: #32292F;
   color: #FEE1C7;

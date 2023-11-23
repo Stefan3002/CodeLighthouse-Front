@@ -1,0 +1,17 @@
+{
+  "features": [
+    {
+      "title": "For Teachers",
+      "description": "Are you a <strong>teacher</strong>? We've got your <b>back</b>! You can create your <b>own classes</b> of students on CodeLighthouse and assign them <strong>differentiated coding challenges</strong>."
+    },
+    {
+      "title": "For Individuals",
+      "description": "Just passioned about <b>CS</b>? No problem. Start solving tens of <b>CS challenges</b> right now and reach the <strong>ultimate enlightening level</strong>!"
+    },
+    {
+      "title": "For Companies",
+      "description": "Want to <strong>cut hours</strong> of tech interviews? Get your <b>candidates</b> here to see just how <b>enlightened they are</b> in CS."
+    }
+  ]
+
+}

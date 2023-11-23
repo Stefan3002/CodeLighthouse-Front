@@ -69,8 +69,8 @@ const ProfilePage = () => {
                 </div>
                 <Heading text='Enrolled Lighthouses' />
                 <div className="profile-lighthouses">
-                    {data.enrolled_lighthouses.map(lighthouse => {
-                        return <LighthouseCard data={lighthouse} />
+                    {data.enrolled_lighthouses.map((lighthouse, idx) => {
+                        return <LighthouseCard animationDelay={idx} data={lighthouse} />
                     })}
                 </div>
 

@@ -44,6 +44,7 @@ const ChallengesPage = () => {
                 </div>
                 <div className="challenges">
                     {data.map(challenge => {
+                        if(challenge.public)
                         return <Link to={`${challenge.slug}`}><div className='challenge' key={challenge.slug}>
                             <div className="challenge-content">
                                 <p dangerouslySetInnerHTML={{__html: challenge.description}}></p>

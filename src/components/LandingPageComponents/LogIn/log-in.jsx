@@ -1,4 +1,5 @@
 import './log-in.css'
+import {motion} from "framer-motion"
 import LogoImgNoBg from "../../../utils/imgs/logo/LogoSVG.svg";
 import Button from "../../Button/button";
 import {Link, Navigate, redirect, useNavigate} from "react-router-dom";
@@ -22,6 +23,7 @@ import {
     logInGoogleProviderFirebase
 } from "../../../utils/firebase/oauth-login";
 import Transition from "../../../utils/js/transitions";
+import {exponentialDelay} from "../../../utils/js/exponentialDelay";
 const LogIn = () => {
     const status = useSelector(getStatus)
     const sendRequest = useFetchHook()
@@ -125,8 +127,8 @@ const LogIn = () => {
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
                 <div className="inputs">
                     <div className="log-in-features">
-                        {LogInFeatures.features.map((feature) => {
-                            return <div className="log-in-feature">
+                        {LogInFeatures.features.map((feature, idx) => {
+                            return <div key={`Feature-${feature.title}`} style={{animationDelay: `${exponentialDelay(idx)}ms`}} className="log-in-feature">
                                 <img className='log-in-feature-icon' src={getFeatureIcon(feature.title)} alt=""/>
                                 <h2 className='log-in-feature-title'>{feature.title}</h2>
                                 <p className='log-in-feature-description' dangerouslySetInnerHTML={{__html: feature.description}}></p>

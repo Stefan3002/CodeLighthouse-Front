@@ -87,6 +87,12 @@ const ChallengeCard = ({authoColor = 'light', completed, challenge, idx, type = 
                 <Link to={`/app/challenges/${challenge.slug}`}>
                 <div className='challenge-card-small challenge-card-small-profile'>
                     <h3>{challenge.title}</h3>
+                    {!challenge.private && challenge.public ? <p>Public.</p> :
+                        !challenge.private ? <>
+                        <p>Not yet public!</p>
+                        <p>{challenge.status}</p>
+                         </> : <p>Private.</p>}
+
                     {/*<AuthorName author={challenge.author} />*/}
                 </div>
                 </Link>

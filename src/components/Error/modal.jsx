@@ -13,6 +13,7 @@ import SubmissionsModal from "../Modals/SubmissionsModal/submissions-modal";
 import PopUpModal from "../Modals/PopUpModal/pop-up-modal";
 import Transition from "../../utils/js/transitions";
 import {AnimatePresence} from "framer-motion";
+import AdminModal from "../Modals/AdminModal/admin-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -40,6 +41,8 @@ const Modal = ({error, type='error'}) => {
             return <SubmissionsModal/>
         case 'pop-up':
             return <PopUpModal/>
+        case 'admin':
+            return <AdminModal/>
         default:
             return <></>
     }

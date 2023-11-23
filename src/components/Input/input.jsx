@@ -1,6 +1,6 @@
 import './input.css'
 import {useState} from "react";
-const Input = ({placeholder, type='text', rows = 40, cols = 100, value = undefined}) => {
+const Input = ({defaultValue, placeholder, type='text', rows = 40, cols = 100, value = undefined}) => {
     const [actualValue, setActualValue] = useState(value)
 
     const changeActualValue = (newValue) => {
@@ -17,10 +17,13 @@ const Input = ({placeholder, type='text', rows = 40, cols = 100, value = undefin
     if(type === 'checkbox')
         return (
             <div className='checkbox-input'>
-                <input className='input' type={type}>
+                {defaultValue === 'checked' ? <input id='checkbox-item' defaultChecked={true} className='input' type={type}>
 
-                </input>
-                <p>{placeholder}</p>
+                </input> : <input id='checkbox-item' className='input' type={type}>
+
+                </input>}
+
+                <label htmlFor='checkbox-item'>{placeholder}</label>
             </div>
 
         )

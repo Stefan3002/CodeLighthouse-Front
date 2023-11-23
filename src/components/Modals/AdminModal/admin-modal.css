@@ -1,0 +1,9 @@
+.admin-verdict-buttons {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+/*# sourceMappingURL=admin-modal.css.map */

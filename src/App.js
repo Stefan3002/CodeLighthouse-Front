@@ -2,7 +2,7 @@ import './App.css';
 import {Route, Routes, useLocation} from "react-router-dom";
 import AppNavigation from "./components/AppNavigation/app-navigation";
 import LandingPageHome from "./components/LandingPageComponents/LandingPageHome/landing-page-home";
-import LandingPageFeatures from "./components/LandingPageComponents/LandingPageFeatures/landing-page-header";
+import LandingPageFeatures from "./components/LandingPageComponents/LandingPageFeatures/landing-page-features";
 import LandingPageAbout from "./components/LandingPageComponents/LandingPageAbout/landing-page-about";
 import {useEffect} from "react";
 import jsonParser from "./utils/js/json-parser";
@@ -41,6 +41,9 @@ import SubmissionsPage from "./components/SubmissionsPage/submissions-page";
 import NotFoundPage from "./components/NotFoundPage/not-found-page";
 import LighthouseSubmissionsPage from "./components/LighthouseSubmissionsPage/lighthouse-submissions-page";
 import Transition from "./utils/js/transitions";
+import AdminPage from "./components/AdminPage/admin-page";
+import AdminNavigation from "./components/AdminNavigation/admin-navigation";
+import AdminDeniedPage from "./components/AdminDeniedPage/admin-denied-page";
 
 function App() {
     const location = useLocation()
@@ -85,6 +88,11 @@ function App() {
                             <Route path='people' element={<LighthouseDetailsPage />} />
                             <Route path='assignments' element={<LighthouseAssignmentsPage />} />
                             <Route path='submissions/:assignmentId' element={<LighthouseSubmissionsPage />} />
+                        </Route>
+                        <Route path='admin' element={<AdminNavigation />}>
+                            {/*<Route index element={<AdminPage />} />*/}
+                            <Route path='pending' element={<AdminPage />} />
+                            <Route path='denied' element={<AdminDeniedPage />} />
                         </Route>
                     </Route>
                 {/*    404 Route here!*/}

@@ -34,6 +34,7 @@ const CreateChallengeModal = () => {
     const createNewChallenge = async (event) => {
         event.preventDefault()
         const title = event.target[0].value
+        const privateChallenge = event.target[4].checked
         // const description = event.target[1].value
         // const trueFunction = event.target[2].value
         // const randomFunction = event.target[3].value
@@ -41,7 +42,7 @@ const CreateChallengeModal = () => {
 
 
         const data = {
-            title, description, trueFunction: trueFunctionCode, randomFunction: randomFunctionCode, language, userId: user.user_id
+            privateChallenge, title, description, trueFunction: trueFunctionCode, randomFunction: randomFunctionCode, language, userId: user.user_id
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges`,JSON.stringify(data) , 'POST', false, successCallback)
 
@@ -85,6 +86,7 @@ const CreateChallengeModal = () => {
 
                     </div>
                 </div>
+                <Input type="checkbox" defaultValue='checked' placeholder='Private? this means only you and your students can see it. No need to be verified by the community.'/>
 
                 <Button buttonType='submit' text='Create' type='normal' />
 

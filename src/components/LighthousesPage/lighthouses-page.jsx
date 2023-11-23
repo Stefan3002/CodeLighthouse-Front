@@ -50,7 +50,7 @@ const LighthousesPage = () => {
                         {user.enrolled_lighthouses.map((lighthouse, idx) => {
                             {
                                 console.log(idx)}
-                            return <LighthouseCard animationDelay={idx + 1} data={lighthouse} />
+                            return <LighthouseCard animationDelay={idx} data={lighthouse} />
                         })}
                     </div>
 

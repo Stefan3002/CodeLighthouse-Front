@@ -43,6 +43,14 @@ const ChallengePage = () => {
         }))
     }
 
+    const openAdminModal = () => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'admin',
+            content: data
+        }))
+    }
+
     if(data)
         return (
             <Transition mode='fullscreen'>
@@ -52,7 +60,10 @@ const ChallengePage = () => {
                         {/*<Difficulty difficulty={data.difficulty}/>*/}
                         {user.solved_challenges.includes(data.id) ? <img src={TickSVG} className='icon-svg' alt="Solved!"/> : null }
                         {/*<h1>{data.title}</h1>*/}
-                        {user.user_id === data.author.user_id ? <img onClick={modifyChallenge} className='icon-svg' src={ModifySVG} alt=""/> : null}
+                        {user.user_id === data.author.user_id || user.admin_user ? <img onClick={modifyChallenge} className='icon-svg' src={ModifySVG} alt=""/> : null}
+                        {user.admin_user ?
+                            <p onClick={openAdminModal}>Admin menu.</p>
+                            : null}
                     </div>
                     <div className="challenge-page-content">
                         <p dangerouslySetInnerHTML={{__html: data.description}}></p>

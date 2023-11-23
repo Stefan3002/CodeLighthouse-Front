@@ -18,6 +18,11 @@
 }
 
 .feature {
+  opacity: 0;
+  transform: scale(0);
+  animation-fill-mode: forwards;
+  animation-duration: 0.4s;
+  animation-name: pop-up;
   font-weight: 300;
   background: #32292F;
   padding: 0.9rem;

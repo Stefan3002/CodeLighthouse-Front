@@ -7,6 +7,7 @@ import UserSVG from '../../utils/imgs/SVGs/User SVG.svg'
 import AttachmentSVG from '../../utils/imgs/SVGs/AttachmentSVG.svg'
 import HomeSVG from '../../utils/imgs/SVGs/HomeSVG.svg'
 import CodeSVG from '../../utils/imgs/SVGs/CodeSVG.svg'
+import AdminSVG from '../../utils/imgs/SVGs/AdminSVG.svg'
 import LighthouseSVG from '../../utils/imgs/SVGs/LighthouseSVG.svg'
 const AppNavigation = () => {
 
@@ -22,11 +23,11 @@ const AppNavigation = () => {
                     <Link to='/app/challenges'><li className='menu-item'><img className='icon-svg' src={CodeSVG} alt=""/>Solve</li></Link>
                     <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/creating-challenges.html'><li className='menu-item'><img className='icon-svg' src={AttachmentSVG} alt=""/>Docs</li></Link>
                     <Link to={`/app/users/${user?.id}`}><li className='menu-item'><img className='icon-svg' src={UserSVG} alt=""/>{user ? user.username : 'Profile'}</li></Link>
+                    <Link to={`/app/admin/pending`}>{user.admin_user ?<li className='menu-item'><img className='icon-svg' src={AdminSVG} alt=""/>Admin</li> : null}</Link>
                 </ul>
             </nav>
             <Outlet />
         </>
-
     )
 }
 export default AppNavigation
