@@ -28,7 +28,7 @@ const LighthousePage = () => {
     return (
         <Transition mode='fullscreen'>
             <LighthouseNavigation />
-            <TopSection nameOfPage='Lighthouse' children={<AuthorName author={data.author} />} title={data.name} />
+            <TopSection nameOfPage='Lighthouse' children={<AuthorName author={data.author} />} title={data.archived ? `${data.name} (archived)` : data.name} />
             <div className='wrapper lighthouse-page'>
                 {/*<AssignmentsList limit={1} filters={false} user={user} data={user} filter='All' />*/}
             </div>

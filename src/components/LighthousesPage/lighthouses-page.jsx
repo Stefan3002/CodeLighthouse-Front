@@ -58,7 +58,8 @@ const LighthousesPage = () => {
                     <Heading text='Public Communities' />
                     <div className="lighthouses-wrapper">
                         {communities.map((community, idx) => {
-                            return <LighthouseCard animationDelay={idx + 1} type='community' data={community} />
+                            if(!community.archived)
+                                return <LighthouseCard animationDelay={idx + 1} type='community' data={community} />
                         })}
                     </div>
 

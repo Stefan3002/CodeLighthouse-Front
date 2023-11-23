@@ -50,7 +50,9 @@ const LighthouseAssignmentsPage = () => {
                     })}
                 </>
             }
-            {user.user_id === data.author.user_id ? <Button type='plus' callback={assignChallenge} /> : null}
+            {data.archived ? null :
+                user.user_id === data.author.user_id ? <Button type='plus' callback={assignChallenge} /> : null
+            }
 
         </div>
     )

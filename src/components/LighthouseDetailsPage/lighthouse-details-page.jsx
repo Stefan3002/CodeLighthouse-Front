@@ -9,6 +9,7 @@ import AuthorName from "../AuthorName/author-name";
 import Missing from "../Missing/missing";
 import CopySVG from "../../utils/imgs/SVGs/CopySVG.svg";
 import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import Button from "../Button/button";
 const LighthouseDetailsPage = () => {
     const user = useSelector(getUser)
     const lighthouseID = useParams()['id']
@@ -32,16 +33,28 @@ const LighthouseDetailsPage = () => {
         }))
     }
 
+    const successCallback = () => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'success',
+            content: 'Lighthouse archived!'
+        }))
+    }
+
+    const archiveLighthouse = async () => {
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseID}`, undefined, 'DELETE', false, successCallback)
+    }
 
     if(user && data)
     return (
-
-
-
         <Transition mode='fullscreen'>
             <div className='wrapper lighthouse-details-page'>
                 <div className="lighthouse-details-header">
                     <div className="enrollment-details-main">
+                        {user.user_id === data.author.user_id ?
+                            <Button callback={archiveLighthouse} text='Archive this Lighthouse' type='normal' />
+                            : null
+                        }
                         {data.description ? data.description : 'Why did you not provide a description???'}
                     </div>
                     {user.id === data.author.id ? <div className="enrollment-code-wrapper">

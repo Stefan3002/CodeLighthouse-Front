@@ -54,7 +54,7 @@ const ChallengePage = () => {
     if(data)
         return (
             <Transition mode='fullscreen'>
-                <TopSection title={data.title} nameOfPage='Challenge' children={<> <AuthorName author={data.author} /> <Difficulty difficulty={data.difficulty}/> </>} />
+                <TopSection title={data.private ? `${data.title} (private)` : data.title} nameOfPage='Challenge' children={<> <AuthorName author={data.author} /> <Difficulty difficulty={data.difficulty}/> </>} />
                 <div className='wrapper challenge-page'>
                     <div className="challenge-page-meta">
                         {/*<Difficulty difficulty={data.difficulty}/>*/}
