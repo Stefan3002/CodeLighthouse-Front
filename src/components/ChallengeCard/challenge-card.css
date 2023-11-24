@@ -76,6 +76,11 @@
   overflow: auto;
 }
 
+.challenge-card-report {
+  padding: 1rem;
+  text-align: center;
+}
+
 @media screen and (max-width: 1100px) {
   .challenge-card {
     min-width: 100%;

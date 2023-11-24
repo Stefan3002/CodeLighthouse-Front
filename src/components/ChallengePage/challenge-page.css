@@ -21,4 +21,11 @@
   gap: 0.5rem;
 }
 
+.challenge-top-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 /*# sourceMappingURL=challenge-page.css.map */

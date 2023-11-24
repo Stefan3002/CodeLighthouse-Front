@@ -1,6 +1,6 @@
 import './lighthouse-navigation.css'
-import Transition from "../../utils/js/transitions";
-import LogoImgNoBg from "../../utils/imgs/logo/LogoSVG.svg";
+import Transition from "../../../utils/js/transitions";
+import LogoImgNoBg from "../../../utils/imgs/logo/LogoSVG.svg";
 import {Link} from "react-router-dom";
 const LighthouseNavigation = () => {
     return (

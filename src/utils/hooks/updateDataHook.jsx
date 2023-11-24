@@ -7,11 +7,13 @@ import {getUser} from "../store/user-store/user-store-selectors";
 import {setUser} from "../store/user-store/user-store-actions";
 import useFetchHook from "./fetchHook";
 
-const useUpdateData = () => {
+const useUpdateData = (explicitUrl = undefined) => {
     const user = useSelector(getUser)
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
-    const url = `${process.env.REACT_APP_SERVER_URL}/users/${user.id}`
+    let url = explicitUrl
+    if(!explicitUrl)
+        url = `${process.env.REACT_APP_SERVER_URL}/users/${user.id}`
     return useCallback(async (silentLoad = true) => {
         const updatedData = await sendRequest(url, null, 'GET', true)
         dispatch(setUser(updatedData))

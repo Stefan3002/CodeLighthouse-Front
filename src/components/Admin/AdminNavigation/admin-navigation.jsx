@@ -1,6 +1,6 @@
 import './admin-navigation.css'
 import {Link, Outlet} from "react-router-dom";
-import Transition from "../../utils/js/transitions";
+import Transition from "../../../utils/js/transitions";
 const AdminNavigation = () => {
     return (
         <Transition mode='fullscreen'>
@@ -9,6 +9,7 @@ const AdminNavigation = () => {
                 <ul className='app-navigation'>
                     <Link to='pending'><li>Pending</li></Link>
                     <Link to='denied'><li>Denied</li></Link>
+                    <Link to='reports'><li>Reports</li></Link>
                 </ul>
             </nav>
             <Outlet />

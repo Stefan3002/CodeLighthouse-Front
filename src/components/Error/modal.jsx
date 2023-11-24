@@ -14,6 +14,9 @@ import PopUpModal from "../Modals/PopUpModal/pop-up-modal";
 import Transition from "../../utils/js/transitions";
 import {AnimatePresence} from "framer-motion";
 import AdminModal from "../Modals/AdminModal/admin-modal";
+import ReportModal from "../Modals/ReportModal/report-modal";
+import ReportDescriptionModal from "../Modals/ReportDescriptionModal/report-description-modal";
+import AnnouncementModal from "../Modals/AnnouncementModal/announcement-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -43,6 +46,12 @@ const Modal = ({error, type='error'}) => {
             return <PopUpModal/>
         case 'admin':
             return <AdminModal/>
+        case 'report':
+            return <ReportModal/>
+        case 'report-description':
+            return <ReportDescriptionModal />
+        case 'announcement':
+            return <AnnouncementModal />
         default:
             return <></>
     }

@@ -1,11 +1,11 @@
 import './lighthouse-submissions-page.css'
 import {useEffect, useState} from "react";
-import useFetchHook from "../../utils/hooks/fetchHook";
-import Transition from "../../utils/js/transitions";
+import useFetchHook from "../../../utils/hooks/fetchHook";
+import Transition from "../../../utils/js/transitions";
 import {useParams} from "react-router-dom";
-import EditorCard from "../EditorCard/editor-card";
+import EditorCard from "../../EditorCard/editor-card";
 import {useDispatch} from "react-redux";
-import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 const LighthouseSubmissionsPage = () => {
     const sendRequest = useFetchHook()
     const [data, setData] = useState(undefined)

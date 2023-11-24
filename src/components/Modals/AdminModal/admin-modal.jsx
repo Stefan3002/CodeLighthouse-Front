@@ -44,6 +44,9 @@ const AdminModal = () => {
                     <Button callback={() => verdictChallenge('send-back')} buttonType='normal' text='Send back' color='success' />
                     <Button callback={() => verdictChallenge('deny')} buttonType='normal' text='Deny' color='danger' />
                 </div>
+                <div className="admin-verdict-buttons">
+                    <Button callback={() => verdictChallenge('approve')} buttonType='normal' text='Difficulty' color='light' />
+                </div>
             </div>
         </div>
     )

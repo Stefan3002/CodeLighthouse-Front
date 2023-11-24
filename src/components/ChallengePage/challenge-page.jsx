@@ -16,6 +16,8 @@ import ChallengeMeta from "../ChallengeMeta/challenge-meta";
 import TopSection from "../TopSection/top-section";
 import AuthorName from "../AuthorName/author-name";
 import useUpdateData from "../../utils/hooks/updateDataHook";
+import ExclamationSVG from '../../utils/imgs/SVGs/ExclamationSVG.svg'
+import AdminSVG from '../../utils/imgs/SVGs/AdminSVG.svg'
 const ChallengePage = () => {
     const slug = useParams().slug
     const [data, setData] = useState(undefined)
@@ -51,19 +53,52 @@ const ChallengePage = () => {
         }))
     }
 
+    const reportChallenge = () => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'report',
+            content: data
+        }))
+    }
+
+
     if(data)
         return (
             <Transition mode='fullscreen'>
-                <TopSection title={data.private ? `${data.title} (private)` : data.title} nameOfPage='Challenge' children={<> <AuthorName author={data.author} /> <Difficulty difficulty={data.difficulty}/> </>} />
+                <TopSection title={data.private ? `${data.title} (private)` : data.title} nameOfPage='Challenge' children={
+                    <>
+                        <AuthorName author={data.author} />
+                        <div className='challenge-top-section'>
+                            <Difficulty difficulty={data.difficulty}/>
+                            <div onClick={reportChallenge}>
+                                <img className='icon-svg' src={ExclamationSVG} alt="!"/><p>Report</p>
+                            </div>
+                            <div onClick={openAdminModal}>
+                                {user.admin_user ?
+                                    <>
+                                        <img className='icon-svg' src={AdminSVG} alt='Admin' />
+                                        <p>Admin menu</p>
+                                    < />
+                                    : null}
+                            </div>
+                            <div onClick={modifyChallenge}>
+                            {user.user_id === data.author.user_id || user.admin_user ?
+                                <>
+                                    <img className='icon-svg' src={ModifySVG} alt=""/>
+                                    <p>Modify</p>
+                                </>
+                                : null}
+                            </div>
+                        </div>
+                    </>
+                }
+                />
                 <div className='wrapper challenge-page'>
                     <div className="challenge-page-meta">
                         {/*<Difficulty difficulty={data.difficulty}/>*/}
                         {user.solved_challenges.includes(data.id) ? <img src={TickSVG} className='icon-svg' alt="Solved!"/> : null }
                         {/*<h1>{data.title}</h1>*/}
-                        {user.user_id === data.author.user_id || user.admin_user ? <img onClick={modifyChallenge} className='icon-svg' src={ModifySVG} alt=""/> : null}
-                        {user.admin_user ?
-                            <p onClick={openAdminModal}>Admin menu.</p>
-                            : null}
+
                     </div>
                     <div className="challenge-page-content">
                         <p dangerouslySetInnerHTML={{__html: data.description}}></p>

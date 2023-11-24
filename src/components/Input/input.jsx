@@ -1,6 +1,6 @@
 import './input.css'
 import {useState} from "react";
-const Input = ({defaultValue, placeholder, type='text', rows = 40, cols = 100, value = undefined}) => {
+const Input = ({required = false, defaultValue, placeholder, type='text', rows = 40, cols = 100, value = undefined}) => {
     const [actualValue, setActualValue] = useState(value)
 
     const changeActualValue = (newValue) => {
@@ -29,7 +29,7 @@ const Input = ({defaultValue, placeholder, type='text', rows = 40, cols = 100, v
         )
     else
         return (
-            <input onChange={changeActualValue} className='input' value={actualValue} type={type} placeholder={placeholder}>
+            <input required={required} onChange={changeActualValue} className='input' value={actualValue} type={type} placeholder={placeholder}>
 
             </input>
         )

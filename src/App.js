@@ -29,7 +29,7 @@ import ProfilePage from "./components/ProfilePage/profile-page";
 import CodePage from "./components/CodePage/code-page";
 import LighthousesPage from "./components/LighthousesPage/lighthouses-page";
 import LighthousePage from "./components/LighthousePage/lighthouse-page";
-import LighthouseDetailsPage from "./components/LighthouseDetailsPage/lighthouse-details-page";
+import LighthouseDetailsPage from "./components/Lighthouse/LighthouseDetailsPage/lighthouse-details-page";
 import {setUser} from "./utils/store/user-store/user-store-actions";
 import useFetchHook from "./utils/hooks/fetchHook";
 import LighthouseAssignmentsPage from "./components/LighthouseAssignmentsPage/lighthouse-assignments-page";
@@ -39,11 +39,13 @@ import CommentsPage from "./components/CommentsPage/comments-page";
 import StatsPage from "./components/StatsPage/stats-page";
 import SubmissionsPage from "./components/SubmissionsPage/submissions-page";
 import NotFoundPage from "./components/NotFoundPage/not-found-page";
-import LighthouseSubmissionsPage from "./components/LighthouseSubmissionsPage/lighthouse-submissions-page";
+import LighthouseSubmissionsPage from "./components/Lighthouse/LighthouseSubmissionsPage/lighthouse-submissions-page";
 import Transition from "./utils/js/transitions";
-import AdminPage from "./components/AdminPage/admin-page";
-import AdminNavigation from "./components/AdminNavigation/admin-navigation";
-import AdminDeniedPage from "./components/AdminDeniedPage/admin-denied-page";
+import AdminPage from "./components/Admin/AdminPage/admin-page";
+import AdminNavigation from "./components/Admin/AdminNavigation/admin-navigation";
+import AdminDeniedPage from "./components/Admin/AdminDeniedPage/admin-denied-page";
+import AdminReportsPage from "./components/Admin/AdminReportsPage/admin-reports-page";
+import LighthouseHomePage from "./components/Lighthouse/LighthouseHomePage/lighthouse-home-page";
 
 function App() {
     const location = useLocation()
@@ -85,6 +87,7 @@ function App() {
                         <Route path='add' element={<AddChallengePage />} />
                         <Route path='users/:id' element={<ProfilePage />} />
                         <Route path='lighthouses/:id' element={<LighthousePage />} >
+                            <Route index element={<LighthouseHomePage />} />
                             <Route path='people' element={<LighthouseDetailsPage />} />
                             <Route path='assignments' element={<LighthouseAssignmentsPage />} />
                             <Route path='submissions/:assignmentId' element={<LighthouseSubmissionsPage />} />
@@ -93,6 +96,7 @@ function App() {
                             {/*<Route index element={<AdminPage />} />*/}
                             <Route path='pending' element={<AdminPage />} />
                             <Route path='denied' element={<AdminDeniedPage />} />
+                            <Route path='reports' element={<AdminReportsPage />} />
                         </Route>
                     </Route>
                 {/*    404 Route here!*/}

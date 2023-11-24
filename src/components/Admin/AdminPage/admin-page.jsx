@@ -1,8 +1,8 @@
 import './admin-page.css'
 import {useEffect, useState} from "react";
-import useFetchHook from "../../utils/hooks/fetchHook";
-import ChallengeCard from "../ChallengeCard/challenge-card";
-import Heading from "../Heading/heading";
+import useFetchHook from "../../../utils/hooks/fetchHook";
+import ChallengeCard from "../../ChallengeCard/challenge-card";
+import Heading from "../../Heading/heading";
 const AdminPage = () => {
     const [data, setData] = useState([])
     const sendRequest = useFetchHook()

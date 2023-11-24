@@ -1,15 +1,15 @@
 import './lighthouse-details-page.css'
-import Transition from "../../utils/js/transitions";
+import Transition from "../../../utils/js/transitions";
 import {Link, useParams} from "react-router-dom";
-import useFetchHook from "../../utils/hooks/fetchHook";
+import useFetchHook from "../../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getUser} from "../../utils/store/user-store/user-store-selectors";
-import AuthorName from "../AuthorName/author-name";
-import Missing from "../Missing/missing";
-import CopySVG from "../../utils/imgs/SVGs/CopySVG.svg";
-import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
-import Button from "../Button/button";
+import {getUser} from "../../../utils/store/user-store/user-store-selectors";
+import AuthorName from "../../AuthorName/author-name";
+import Missing from "../../Missing/missing";
+import CopySVG from "../../../utils/imgs/SVGs/CopySVG.svg";
+import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
+import Button from "../../Button/button";
 const LighthouseDetailsPage = () => {
     const user = useSelector(getUser)
     const lighthouseID = useParams()['id']

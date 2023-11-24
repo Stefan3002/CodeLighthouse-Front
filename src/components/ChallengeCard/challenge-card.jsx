@@ -9,8 +9,9 @@ import {getSelectedChallenge} from "../../utils/store/utils-store/utils-store-se
 import calendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import clockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 import DateTime from "../DateTime/date-time";
+import Button from "../Button/button";
 
-const ChallengeCard = ({authoColor = 'light', completed, challenge, idx, type = 'Big', detailedAssignment = false}) => {
+const ChallengeCard = ({callback = undefined, report = undefined, authoColor = 'light', completed, challenge, idx, type = 'Big', detailedAssignment = false}) => {
     const dispatch = useDispatch()
     const selectedChallenge = useSelector(getSelectedChallenge)
     const selectChallenge = () => {
@@ -96,6 +97,20 @@ const ChallengeCard = ({authoColor = 'light', completed, challenge, idx, type = 
                     {/*<AuthorName author={challenge.author} />*/}
                 </div>
                 </Link>
+            )
+        else
+        if(type === 'report')
+            return (
+
+                    <div className='challenge-card-small challenge-card-report'>
+                        <Link to={`/app/challenges/${report.challenge.slug}`}>
+                            <h3>{report.challenge.title}</h3>
+                            <p>{report.reason}</p>
+                        </Link>
+                        <AuthorName color='dark' author={report.challenge.author} />
+                        <Button callback={callback} text='Close report' color='dark' type='normal' />
+                    </div>
+
             )
 }
 export default ChallengeCard

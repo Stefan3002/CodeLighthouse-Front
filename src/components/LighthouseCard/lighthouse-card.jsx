@@ -21,9 +21,9 @@ const LighthouseCard = ({animationDelay, type = 'lighthouse', data}) => {
         <Link to={`/app/lighthouses/${data.id}`}>
         <div style={{animationDelay: `${exponentialDelay(animationDelay)}ms`}} className='lighthouse-card'>
             <div className="lighthouse-card-header">
-                <h2>{data.archived ? `${data.name} (archived)` : data.name}</h2>
-                {/*<AuthorName color='dark' author={data.author} />*/}
-                <p>{data.author.username}</p>
+                <h2>{data.archived ? `${data.name} (archived)` : data.public ? `${data.name} {community}` : data.name}</h2>
+                <AuthorName color='dark' author={data.author} />
+                {/*<p>{data.author.username}</p>*/}
             </div>
             <div className="lighthouse-card-content">
 
@@ -39,12 +39,12 @@ const LighthouseCard = ({animationDelay, type = 'lighthouse', data}) => {
                     <Link to={`/app/lighthouses/${data.id}`}>
                     <div className="lighthouse-card-header">
                         <h2>{data.name}</h2>
-                        {/*<AuthorName color='dark' author={data.author} />*/}
-                        <p>{data.author.username}</p>
+                        <AuthorName color='dark' author={data.author} />
+                        {/*<p>{data.author.username}</p>*/}
                     </div>
                     <div className="lighthouse-card-content">
-                        <p>{data.enrollment_code}</p>
-                        <p>{data.id}</p>
+                        <p>Enrollment Code: {data.enrollment_code}</p>
+                        <p>ID: {data.id}</p>
                     </div>
                     </Link>
                 </div>
