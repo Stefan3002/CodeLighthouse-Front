@@ -1,10 +1,10 @@
 import './lighthouse-card.css'
 import {Link} from "react-router-dom";
-import CopySVG from '../../utils/imgs/SVGs/CopySVG.svg'
-import AuthorName from "../AuthorName/author-name";
-import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import CopySVG from '../../../utils/imgs/SVGs/CopySVG.svg'
+import AuthorName from "../../AuthorName/author-name";
+import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import {useDispatch} from "react-redux";
-import {exponentialDelay} from "../../utils/js/exponentialDelay";
+import {exponentialDelay} from "../../../utils/js/exponentialDelay";
 const LighthouseCard = ({animationDelay, type = 'lighthouse', data}) => {
     const dispatch = useDispatch()
     const copyCodeToClipboard = () => {

@@ -6,6 +6,7 @@ import {useEffect, useState} from "react";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {useParams} from "react-router-dom";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
+import Announcement from "../Announcement/announcement";
 const LighthouseHomePage = () => {
     const dispatch = useDispatch()
     const [data, setData] = useState(undefined)
@@ -33,11 +34,13 @@ const LighthouseHomePage = () => {
         return (
             <>
                 <div className='wrapper lighthouse-home-page'>
-                    {data.announcements.map(announcement=> {
-                            return announcement.content
-                    })}
+                    <div className="announcements">
+                        {data.announcements.map(announcement=> {
+                            return <Announcement data={announcement} />
+                        })}
+                    </div>
                 </div>
-                {user.user_id === data.author.user_id ?
+                {!data.archived && user.user_id === data.author.user_id ?
                     <Button type='plus' callback={openAnnouncementModal}/>
                     : null
                 }

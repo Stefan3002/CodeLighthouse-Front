@@ -3,7 +3,7 @@ import Parallax from "../Parallax/parallax";
 import parallaxData from './parallax-data.json'
 import Transition from "../../utils/js/transitions";
 import LighthouseIMG from '../../utils/imgs/headers/Lighthouse.jpg'
-import LighthouseCard from "../LighthouseCard/lighthouse-card";
+import LighthouseCard from "../Lighthouse/LighthouseCard/lighthouse-card";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";

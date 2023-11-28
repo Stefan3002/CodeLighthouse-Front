@@ -1,15 +1,15 @@
 import './lighthouse-page.css'
 import {Outlet, useParams} from "react-router-dom";
-import Transition from "../../utils/js/transitions";
-import useFetchHook from "../../utils/hooks/fetchHook";
+import Transition from "../../../utils/js/transitions";
+import useFetchHook from "../../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
-import LighthouseNavigation from "../Lighthouse/LighthouseNavigation/lighthouse-navigation";
-import Button from "../Button/button";
-import TopSection from "../TopSection/top-section";
-import AuthorName from "../AuthorName/author-name";
-import AssignmentsList from "../AssignmentsList/assignments-list";
+import LighthouseNavigation from "../LighthouseNavigation/lighthouse-navigation";
+import Button from "../../Button/button";
+import TopSection from "../../TopSection/top-section";
+import AuthorName from "../../AuthorName/author-name";
+import AssignmentsList from "../../AssignmentsList/assignments-list";
 import {useSelector} from "react-redux";
-import {getUser} from "../../utils/store/user-store/user-store-selectors";
+import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 const LighthousePage = () => {
     const lighthouseID = useParams()['id']
     const sendRequest = useFetchHook()

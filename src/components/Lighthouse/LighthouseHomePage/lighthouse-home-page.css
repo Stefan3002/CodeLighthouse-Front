@@ -1,3 +1,10 @@
-
+.announcements {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
 
 /*# sourceMappingURL=lighthouse-home-page.css.map */

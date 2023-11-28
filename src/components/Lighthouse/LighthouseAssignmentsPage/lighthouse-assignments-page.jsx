@@ -1,13 +1,13 @@
 import './lighthouse-assignments-page.css'
-import Missing from "../Missing/missing";
-import Button from "../Button/button";
+import Missing from "../../Missing/missing";
+import Button from "../../Button/button";
 import {useDispatch, useSelector} from "react-redux";
-import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import {useEffect, useState} from "react";
-import useFetchHook from "../../utils/hooks/fetchHook";
+import useFetchHook from "../../../utils/hooks/fetchHook";
 import {Link, useParams} from "react-router-dom";
-import {getUser} from "../../utils/store/user-store/user-store-selectors";
-import ChallengeCard from "../ChallengeCard/challenge-card";
+import {getUser} from "../../../utils/store/user-store/user-store-selectors";
+import ChallengeCard from "../../ChallengeCard/challenge-card";
 const LighthouseAssignmentsPage = () => {
     const dispatch = useDispatch()
     const [data, setData] = useState(undefined)

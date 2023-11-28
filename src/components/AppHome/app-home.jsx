@@ -12,7 +12,7 @@ import NextSVG from '../../utils/imgs/SVGs/Next.svg'
 import gsap from 'gsap'
 import {useSelector} from "react-redux";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
-import LighthouseCard from "../LighthouseCard/lighthouse-card";
+import LighthouseCard from "../Lighthouse/LighthouseCard/lighthouse-card";
 import Heading from "../Heading/heading";
 const AppHome = () => {
     const [indeces, setIndeces] = useState({

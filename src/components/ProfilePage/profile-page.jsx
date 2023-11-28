@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {redirect, useNavigate, useParams} from "react-router-dom";
 import Transition from "../../utils/js/transitions";
-import LighthouseCard from "../LighthouseCard/lighthouse-card";
+import LighthouseCard from "../Lighthouse/LighthouseCard/lighthouse-card";
 import Heading from "../Heading/heading";
 import ChallengeCard from "../ChallengeCard/challenge-card";
 import {useDispatch, useSelector} from "react-redux";
