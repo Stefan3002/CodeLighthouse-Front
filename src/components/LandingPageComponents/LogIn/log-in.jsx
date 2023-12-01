@@ -92,6 +92,7 @@ const LogIn = () => {
     }
 
     const logInGoogleProvider = async () => {
+        dispatch(setStatus('loading'))
         const result = await logInGoogleProviderFirebase()
         const email = result.user.email
         // console.log(result)
@@ -106,6 +107,7 @@ const LogIn = () => {
     }
 
     const logInGithubProvider = async () => {
+        dispatch(setStatus('loading'))
         const result = await logInGithubProviderFirebase()
         const email = result.user.email
         console.log(result)

@@ -9,6 +9,7 @@ import useFetchHook from "../../../utils/hooks/fetchHook";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
 import {setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
+import BackSVG from "../../../utils/imgs/SVGs/BackSVG.svg";
 const JoinLighthouseModal = () => {
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
@@ -37,10 +38,18 @@ const JoinLighthouseModal = () => {
 
     }
 
+    const backOneStep = () => {
+        dispatch(setModalContent({
+            type: 'menuLighthouse',
+            content: undefined
+        }))
+    }
+
     return (
         // <Transition mode='fullscreen'>
         <div className='error-wrapper'>
             <div className="error-header">
+                <img onClick={backOneStep} className='icon-svg' src={BackSVG} alt="Back"/>
                 <img src={LighthouseSVG} alt=""/>
                 <h2>Join Lighthouse!</h2>
             </div>
@@ -49,7 +58,7 @@ const JoinLighthouseModal = () => {
                 <form className='enroll-inputs' onSubmit={enrollLighthouse}>
                     <Input type='text' placeholder='Enrollment code' />
                     <Input type='text' placeholder='Id of the Lighthouse.' />
-                    <Button buttonType='submit' text='Join' type='normal' />
+                    <Button color='light' buttonType='submit' text='Join' type='normal' />
                 </form>
 
             </div>

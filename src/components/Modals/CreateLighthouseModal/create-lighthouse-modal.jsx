@@ -9,6 +9,7 @@ import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 import {setUser} from "../../../utils/store/user-store/user-store-actions";
 import {useEffect} from "react";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
+import BackSVG from "../../../utils/imgs/SVGs/BackSVG.svg";
 const CreateLighthouseModal = () => {
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
@@ -39,10 +40,18 @@ const CreateLighthouseModal = () => {
         }))
     }
 
+    const backOneStep = () => {
+        dispatch(setModalContent({
+            type: 'menuLighthouse',
+            content: undefined
+        }))
+    }
+
     return (
         // <Transition mode='fullscreen'>
         <div className='error-wrapper'>
             <div className="error-header">
+                <img onClick={backOneStep} className='icon-svg' src={BackSVG} alt="Back"/>
                 <img src={LighthouseSVG} alt=""/>
                 <h2>Create Lighthouse!</h2>
             </div>

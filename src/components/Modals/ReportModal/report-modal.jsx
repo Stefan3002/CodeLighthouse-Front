@@ -4,7 +4,7 @@ import Button from "../../Button/button";
 import {useDispatch, useSelector} from "react-redux";
 import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
 import AuthorName from "../../AuthorName/author-name";
-import {setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
+import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 const ReportModal = () => {
     const challenge = useSelector(getModalContent).content
@@ -39,7 +39,7 @@ const ReportModal = () => {
     }
 
     return (
-        <div className='error-wrapper report-modal'>
+        <div key={`report-${challenge.title}`} className='error-wrapper report-modal'>
             <div className="error-header">
                 <img src={LighthouseSVG} alt=""/>
                 <h2>Report menu</h2>

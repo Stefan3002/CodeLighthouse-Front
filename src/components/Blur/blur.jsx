@@ -19,7 +19,7 @@ const Blur = ({type = 'transparent'}) => {
         )
     else
         return (
-            <div onClick={closeUpperElement} className='blur-dark' />
+            <div key={`blur-${type}`} onClick={closeUpperElement} className='blur-dark' />
         )
 }
 export default Blur

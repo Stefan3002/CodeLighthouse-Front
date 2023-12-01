@@ -50,19 +50,11 @@ import LighthouseHomePage from "./components/Lighthouse/LighthouseHomePage/light
 function App() {
     const location = useLocation()
     const loading = useSelector(getLoading)
-    const error = useSelector(getError)
-    const dispatch = useDispatch()
-    const modalOpened = useSelector(getModalOpened)
-    const sendRequest = useFetchHook()
-    const modalType = useSelector(getModalContent).type
-    const sidePanel = useSelector(getSidePanel)
+
     return (
         <div className="App">
 
             {loading ? <><Blur type='dark' /><Spinner /></> : null}
-            {error ? <><Blur /><Transition mode='modal'><Modal error={error} /></Transition></> : null}
-            {modalOpened && modalType !== 'pop-up' ? <><Blur /><Transition mode='modal'><Modal type={modalType} /></Transition></> : modalOpened && modalType === 'pop-up' ? <AnimatePresence><Transition mode='pop-up'><Modal type={modalType} /></Transition></AnimatePresence> : null}
-            {sidePanel.opened ? <SidePanel type={sidePanel.type} /> : null}
 
             <AnimatePresence mode='wait'>
                 <Routes key={location.pathname} location={location}>

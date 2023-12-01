@@ -3,6 +3,8 @@
   padding: 1rem;
   border-radius: 10px;
   color: #32292F;
+  max-height: 700px;
+  overflow-y: auto;
 }
 
 /*# sourceMappingURL=code-of-conduct.css.map */

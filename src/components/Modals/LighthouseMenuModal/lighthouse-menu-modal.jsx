@@ -30,8 +30,8 @@ const LighthouseMenuModal = () => {
             <div className="error-content">
                 <p>What's it going to be? <b>Creating</b> or <b>joining</b> a lighthouse?</p>
                 <div className="modal-buttons">
-                    <Button callback={createLighthouse} buttonType='' text='Create' type='normal' />
-                    <Button callback={joinLighthouse} buttonType='' text='Join' type='normal' />
+                    <Button color='light' callback={createLighthouse} buttonType='' text='Create' type='normal' />
+                    <Button color='light' callback={joinLighthouse} buttonType='' text='Join' type='normal' />
                 </div>
             </div>
         </div>

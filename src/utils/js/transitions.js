@@ -1,7 +1,7 @@
 import {motion} from "framer-motion"
 import './transitions.css'
 import LogoImgBG from "../imgs/logo/Logo_White_BG.png";
-const Transition = ({children, mode = 'partial', delay = .2, scaleY = 1}) => {
+const Transition = ({modalContent, children, mode = 'partial', delay = .2, scaleY = 1}) => {
     const animationParametersOne = {
         initial: {
             scaleY: 0
@@ -42,7 +42,7 @@ const Transition = ({children, mode = 'partial', delay = .2, scaleY = 1}) => {
             y: 0
         },
         exit: {
-            y: '100%'
+            y: '-100%'
         },
         transition: {
             ease: 'easeInOut',
@@ -54,16 +54,34 @@ const Transition = ({children, mode = 'partial', delay = .2, scaleY = 1}) => {
         initial: {
             y: '-100%',
             x: '-50%',
-            scale: '0',
             opacity: 0
         },
         animate: {
             y: 0,
-            scale: '1',
             opacity: 1
         },
         exit: {
-            scale: '0',
+            y: '100%',
+            opacity: 0
+        },
+        transition: {
+            ease: 'easeInOut',
+            duration: .3
+        }
+    }
+
+    const animationParametersModalSecondStep = {
+        initial: {
+            y: 0,
+            x: 0,
+            opacity: 0
+        },
+        animate: {
+            x: '-50%',
+            opacity: 1
+        },
+        exit: {
+            y: '100%',
             opacity: 0
         },
         transition: {
@@ -78,10 +96,10 @@ const Transition = ({children, mode = 'partial', delay = .2, scaleY = 1}) => {
         // </motion.div>
         <>
             {children}
-            <motion.div style={{width: `${mode === 'partial' ? '80%' : '100%'}`}} className='animation-in' transition={animationParametersOne.transition} initial={animationParametersOne.initial} animate={animationParametersOne.animate} exit={animationParametersOne.exit} >
+            <motion.div key={`curtain-one`} style={{width: `${mode === 'partial' ? '80%' : '100%'}`}} className='animation-in' transition={animationParametersOne.transition} initial={animationParametersOne.initial} animate={animationParametersOne.animate} exit={animationParametersOne.exit} >
                 {/*<img className='logo-header' src={LogoImgBG} alt=""/>*/}
             </motion.div>
-            <motion.div style={{width: `${mode === 'partial' ? '80%' : '100%'}`}} className='animation-out' transition={animationParametersTwo.transition} initial={animationParametersTwo.initial} animate={animationParametersTwo.animate} exit={animationParametersTwo.exit} >
+            <motion.div key={`curtain-two`} style={{width: `${mode === 'partial' ? '80%' : '100%'}`}} className='animation-out' transition={animationParametersTwo.transition} initial={animationParametersTwo.initial} animate={animationParametersTwo.animate} exit={animationParametersTwo.exit} >
                 {/*<img className='logo-header' src={LogoImgBG} alt=""/>*/}
             </motion.div>
         </>
@@ -95,10 +113,19 @@ const Transition = ({children, mode = 'partial', delay = .2, scaleY = 1}) => {
             )
     else
         if(mode === 'modal')
-            return (
-                <motion.div key='modal' className='modal-animation' {...animationParametersModal} >
-                    {children}
-                </motion.div>
-            )
+            // This is to animate second steps from multi-step modals
+            // that will enter from the right
+            if(modalContent === 'joinLighthouse' || modalContent === 'createLighthouse' || modalContent === 'report-description')
+                return (
+                    <motion.div key={`modal-${modalContent}`} className='modal-animation' {...animationParametersModalSecondStep} >
+                        {children}
+                    </motion.div>
+                )
+            else
+                return (
+                    <motion.div key={`modal-${modalContent}`} className='modal-animation' {...animationParametersModal} >
+                        {children}
+                    </motion.div>
+                )
 }
 export default Transition

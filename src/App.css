@@ -52,7 +52,7 @@ a:focus:before, a:hover:before {
 }
 
 .icon-svg {
-  max-width: 30px;
+  max-width: 30px !important;
   transition: all 0.15s;
 }
 .icon-svg:focus, .icon-svg:hover {
