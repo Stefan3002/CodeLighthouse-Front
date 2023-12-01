@@ -53,4 +53,10 @@
   font-weight: 300;
 }
 
+@media screen and (max-width: 1100px) {
+  .lighthouse-details-page {
+    flex-direction: column;
+  }
+}
+
 /*# sourceMappingURL=lighthouse-details-page.css.map */

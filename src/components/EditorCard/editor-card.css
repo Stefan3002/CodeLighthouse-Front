@@ -15,4 +15,14 @@
   margin: 0;
 }
 
+.editor-wrapper {
+  width: 100%;
+}
+
+.editor-wrapper-header {
+  background: #32292F;
+  padding: 0.3rem;
+  border-radius: 10px 10px 0 0;
+}
+
 /*# sourceMappingURL=editor-card.css.map */

@@ -69,14 +69,14 @@ const ModifyChallengeModal = () => {
                 <div className="create-challenge-content-top">
                     <div className="create-challenge-content-group">
                         <p>And the <b>statement.</b> Write plain <b>html</b> for this part.</p>
-                        <EditorCard value={modalContent.data.description} onChangeHandler={description => setDescription(description)} showAuthor={false} color='light' type='challenge-code' />
+                        <EditorCard height='300px' value={modalContent.data.description} onChangeHandler={description => setDescription(description)} showAuthor={false} color='light' type='challenge-code' />
                         {/*<Input value={modalContent.data.description} type='textarea' rows='30' cols='80'/>*/}
                     </div>
                     <div className="create-challenge-content-group">
                         <p>Write the <b>true function</b> of the challenge. </p>
                         {modalContent.data.codes.filter(code => code.language === selectedLang).length ?
-                            <EditorCard value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].solution} onChangeHandler={code => setTrueFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
-                            : <EditorCard onChangeHandler={code => setTrueFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
+                            <EditorCard height='300px' value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].solution} onChangeHandler={code => setTrueFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
+                            : <EditorCard height='300px' onChangeHandler={code => setTrueFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
                         }
                     </div>
 
@@ -85,8 +85,8 @@ const ModifyChallengeModal = () => {
                     <div className="create-challenge-content-group">
                         <p>Finally, write the <b>random function</b> that will generate the random inputs.</p>
                         {modalContent.data.codes.filter(code => code.language === selectedLang).length ?
-                            <EditorCard value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].random_tests} onChangeHandler={code => setRandomFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
-                            : <EditorCard onChangeHandler={code => setRandomFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
+                            <EditorCard height='300px' value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].random_tests} onChangeHandler={code => setRandomFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
+                            : <EditorCard height='300px' onChangeHandler={code => setRandomFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
                         }
                     </div>
                 </div>

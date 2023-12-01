@@ -10,7 +10,7 @@ import DateTime from "../DateTime/date-time";
 import ClockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 import CalendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import LanguageSelector from "../LanguageSelector/language-selector";
-const EditorCard = ({value = 'No code was given for this language!', onChangeHandler = undefined, seeAllSubmissions = undefined,showAuthor = true , assignmentSubmission = false, color = 'dark', type = 'code', author, submission = null}) => {
+const EditorCard = ({height = '300px', value = 'No code was given for this language!', onChangeHandler = undefined, seeAllSubmissions = undefined,showAuthor = true , assignmentSubmission = false, color = 'dark', type = 'code', author, submission = null}) => {
     const dispatch = useDispatch()
     const lang = useSelector(getLanguage)
     const code = useSelector(getCode)
@@ -19,14 +19,14 @@ const EditorCard = ({value = 'No code was given for this language!', onChangeHan
 
     if(type === 'challenge-code')
         return (
-            <div className='editor-wrapper'>
-                <Editor value={value} onChange={code => onChangeHandler(code)} width='100%' height='100%' defaultLanguage={lang} />
+            <div className='editor-wrapper' style={{height: height}}>
+                <Editor value={value} onChange={code => onChangeHandler(code)} defaultLanguage={lang} />
             </div>
         )
     else
     if(type === 'code')
         return (
-            <div className='editor-wrapper'>
+            <div className='editor-wrapper' style={{height: height}}>
                 <div className="editor-wrapper-header">
                     <img onClick={() => {dispatch(setModal(true))
                         dispatch(setModalContent({
@@ -38,13 +38,13 @@ const EditorCard = ({value = 'No code was given for this language!', onChangeHan
                         }))
                     }} className='icon-svg code-editor-icon' src={MaximizeSVG} alt=""/>
                 </div>
-                <Editor onChange={(code) => dispatch(setCode(code))} width='100%' height='400px' defaultLanguage={lang} />
+                <Editor onChange={(code) => dispatch(setCode(code))} defaultLanguage={lang} />
             </div>
         )
     else
         if(type === 'submission')
             return (
-                <div className='editor-wrapper'>
+                <div className='editor-wrapper' style={{height: height}}>
                     <div style={{background: color === 'light' ? '#FEE1C7' : null}} className="editor-wrapper-header submission-editor-header">
                         {showAuthor ?
                             <AuthorName color={color === 'light' ? 'dark' : 'light'} author={author} />
@@ -59,7 +59,7 @@ const EditorCard = ({value = 'No code was given for this language!', onChangeHan
                         <DateTime icon={CalendarSVG} color={color === 'light' ? 'dark' : 'light'} data={submission.date} />
                         <DateTime icon={ClockSVG} color={color === 'light' ? 'dark' : 'light'} data={submission.time} />
                     </div>
-                    <Editor value={submission.code} onChange={(code) => dispatch(setCode(code))} width='100%' height='70%' defaultLanguage={lang} />
+                    <Editor value={submission.code} onChange={(code) => dispatch(setCode(code))} defaultLanguage={lang} />
                 </div>
             )
 }

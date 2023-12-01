@@ -62,7 +62,7 @@ const CodePage = () => {
                     <p dangerouslySetInnerHTML={{__html: data.description}}></p>
                 </div>
                 {/*<div className="code-page-editor">*/}
-                <EditorCard type='code' />
+                <EditorCard height='300px' type='code' />
                     <Button callback={sendCodeForCompilation} text='Send.' />
                 {/*</div>*/}
             </div>

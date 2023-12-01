@@ -30,7 +30,6 @@ const LighthouseHomePage = () => {
 
 
     if (data) {
-        console.log('ccc', data)
         return (
             <>
                 <div className='wrapper lighthouse-home-page'>

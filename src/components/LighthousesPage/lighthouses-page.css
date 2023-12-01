@@ -6,7 +6,7 @@
 .lighthouses-wrapper {
   display: flex;
   gap: 1rem;
-  justify-content: space-around;
+  justify-content: center;
   align-items: stretch;
   flex-wrap: wrap;
 }

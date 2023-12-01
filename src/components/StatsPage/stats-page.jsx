@@ -36,7 +36,7 @@ const StatsPage = () => {
                         <img src={LikeSVG} className='big-stat-icon' alt=""/>
                         <p className='stat-value'><b>{data.likes_received}</b></p>
                         <div className="stat-text">
-                            <p>Loves</p>
+                            <p>{data.likes_received === 1 ? 'Love' : data.likes_received === 0 ? 'No love' : 'Loves'}</p>
                             <p className='stat-small-text'>received</p>
                         </div>
 
@@ -48,7 +48,7 @@ const StatsPage = () => {
                         <img src={RetrySVG} className='regular-stat-icon' alt=""/>
                         <p className='stat-value'><b>{data.attempts}</b></p>
                         <div className="stat-text">
-                            <p>Attempts</p>
+                            <p>{data.attempts === 1 ? 'Attempt' : 'Attempts'}</p>
                             <p className='stat-small-text'>made</p>
                         </div>
 
@@ -57,7 +57,7 @@ const StatsPage = () => {
                         <img src={TickSVG} className='regular-stat-icon' alt=""/>
                         <p className='stat-value'><b>{data.solved}</b></p>
                         <div className="stat-text">
-                            <p>Solutions</p>
+                            <p>{data.solved === 1 ? 'Solution' : 'Solutions'}</p>
                             <p className='stat-small-text'>found</p>
                         </div>
 

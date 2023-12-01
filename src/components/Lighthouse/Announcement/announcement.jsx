@@ -7,7 +7,7 @@ const Announcement = ({data}) => {
     return (
         <div className='announcement'>
             <div className="announcement-content">
-                <p dangerouslySetInnerHTML={{__html: data.content}}></p>
+                <p className='danger-html' dangerouslySetInnerHTML={{__html: data.content}}></p>
             </div>
             <div className="announcement-meta">
                 <AuthorName color='dark' author={data.author} />
