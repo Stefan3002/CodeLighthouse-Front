@@ -1,10 +1,8 @@
 .lighthouse-details-page {
-  margin-top: 2rem;
   display: flex;
-  gap: 1rem;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  align-items: stretch;
+  gap: 3rem;
 }
 
 .enrollment-details-main {
@@ -28,6 +26,8 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  max-height: 500px;
+  overflow-y: auto;
 }
 
 .enrollment-code-wrapper {

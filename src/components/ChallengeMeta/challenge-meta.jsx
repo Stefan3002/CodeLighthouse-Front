@@ -61,7 +61,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
                 </div>
                 {/*<LanguageSelector down={false} modifiable={true} />*/}
                 <Difficulty difficulty={data.difficulty} />
-                <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><img className='question-svg' src={QuestionSVG} alt=""/></Link>
+                <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><img className='icon-svg' src={QuestionSVG} alt=""/></Link>
             </div>
         )
     else
@@ -70,10 +70,10 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
                 <div className={`challenge-meta-bottom ${solved ? 'solved' : null}`}>
                     <div className="challenge-meta-left">
                         <p><b>{data.title}</b></p>
-                        <AuthorName color='dark' author={data.author} />
+                        <AuthorName color='light' author={data.author} />
                     </div>
                     <LanguageSelector lightColored = {solved} down={false} modifiable={true} />
-                    <Link to='code'><Button text='Code!'/></Link>
+                    <Link to='code'><Button text='Code!' color='light'/></Link>
                     <img onClick={likeChallenge} src={likeIMG} className='icon-svg' alt=""/>
                     <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><img className='icon-svg' src={QuestionSVG} alt=""/></Link>
                     <p>{data.likes_received}</p>

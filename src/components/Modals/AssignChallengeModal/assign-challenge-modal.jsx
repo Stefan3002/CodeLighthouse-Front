@@ -39,7 +39,7 @@ const AssignChallengeModal = () => {
 
     const openStudentSelection = async () => {
 
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${modalContent.data}`,undefined , 'GET', false)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${modalContent.data}`,undefined , 'GET', true)
         dispatch(setSidePanel({
             opened: true,
             type: 'students',
@@ -60,7 +60,7 @@ const AssignChallengeModal = () => {
                 <div className='enroll-inputs'>
                     <ChallengePicker authorColor='dark' />
                     <p>Not for everyone? <b>Select</b> the students you want!</p>
-                    <Button callback={openStudentSelection} text='Select' />
+                    <Button color='light' callback={openStudentSelection} text='Select' />
                     <p>{modalContent.selectedPeople ? modalContent.selectedPeople.length : 'No'} students selected.</p>
                     <p><b>Due?</b> Select a date and a time!</p>
                     <form className='assignment-inputs' onSubmit={assignLighthouseChallenge}>
@@ -68,7 +68,7 @@ const AssignChallengeModal = () => {
                             <Input type='date'/>
                             <Input type='time'/>
                         </div>
-                        <Button buttonType='submit' text='Create' type='normal' />
+                        <Button color='light' marginated={true} buttonType='submit' text='Create' type='normal' />
                     </form>
                 </div>
 

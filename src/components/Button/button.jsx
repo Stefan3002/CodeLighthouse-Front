@@ -1,9 +1,9 @@
 import './button.css'
 import PlusSVG from '../../utils/imgs/SVGs/PlusSVG.svg'
-const Button = ({text, color='dark', type='normal', callback = () => {}, buttonType = ''}) => {
+const Button = ({marginated = false, text, color='dark', type='normal', callback = () => {}, buttonType = ''}) => {
     if(type === 'normal')
         return (
-            <button style={{backgroundColor: color === 'light' ? '#FEE1C7' : color === 'danger' ? 'crimson' : color === 'success' ? '#69B578' : '#32292F', color: color === 'light' ? '#32292F' : null}} onClick={() => callback ? callback() : null} type={buttonType}  className='button'>
+            <button style={{marginTop: marginated ? '1rem' : null, backgroundColor: color === 'light' ? '#FEE1C7' : color === 'danger' ? 'crimson' : color === 'success' ? '#69B578' : '#32292F', color: color === 'light' ? '#32292F' : null}} onClick={() => callback ? callback() : null} type={buttonType}  className='button'>
                 {text}
             </button>
         )

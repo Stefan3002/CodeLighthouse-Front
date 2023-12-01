@@ -42,7 +42,12 @@ const LighthouseDetailsPage = () => {
     }
 
     const archiveLighthouse = async () => {
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseID}`, undefined, 'DELETE', false, successCallback)
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'confirm',
+            content: async () => await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseID}`, undefined, 'DELETE', false, successCallback)
+        }))
+        // const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseID}`, undefined, 'DELETE', false, successCallback)
     }
 
     if(user && data)
@@ -55,6 +60,7 @@ const LighthouseDetailsPage = () => {
                             <Button callback={archiveLighthouse} text='Archive this Lighthouse' type='normal' />
                             : null
                         }
+                        <br/>
                         {data.description ? data.description : 'Why did you not provide a description???'}
                     </div>
                     {user.id === data.author.id ? <div className="enrollment-code-wrapper">

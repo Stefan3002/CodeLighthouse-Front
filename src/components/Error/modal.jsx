@@ -17,6 +17,8 @@ import AdminModal from "../Modals/AdminModal/admin-modal";
 import ReportModal from "../Modals/ReportModal/report-modal";
 import ReportDescriptionModal from "../Modals/ReportDescriptionModal/report-description-modal";
 import AnnouncementModal from "../Modals/AnnouncementModal/announcement-modal";
+import ConfirmModal from "../Modals/ConfirmModal/confirm-modal";
+import InfoModal from "../Modals/InfoModal/info-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -52,6 +54,10 @@ const Modal = ({error, type='error'}) => {
             return <ReportDescriptionModal />
         case 'announcement':
             return <AnnouncementModal />
+        case 'confirm':
+            return <ConfirmModal />
+        case 'info':
+            return <InfoModal />
         default:
             return <></>
     }

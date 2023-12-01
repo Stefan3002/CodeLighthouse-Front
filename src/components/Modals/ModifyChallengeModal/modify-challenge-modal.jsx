@@ -91,7 +91,7 @@ const ModifyChallengeModal = () => {
                     </div>
                 </div>
 
-                <Button buttonType='submit' text='Update' type='normal'/>
+                <Button color='light' marginated={true} buttonType='submit' text='Update' type='normal'/>
 
             </form>
         </div>

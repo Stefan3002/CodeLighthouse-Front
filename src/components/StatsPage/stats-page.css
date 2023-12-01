@@ -1,3 +1,51 @@
+.stats-page {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
 
+.stat {
+  opacity: 0;
+  animation-fill-mode: forwards;
+  transform: scale(0);
+  animation-duration: 0.5s;
+  animation-name: pop-up;
+  font-weight: 300;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.big-stat-icon {
+  max-width: 80px;
+}
+
+.regular-stat-icon {
+  max-width: 50px;
+}
+
+.stats-attempted, .stats-solved {
+  font-size: 1.5rem;
+}
+
+.stats-likes {
+  font-size: 2.5rem;
+}
+
+.stat-value {
+  color: #32292F;
+}
+
+.stat-text p {
+  margin: 0;
+  font-weight: 400;
+}
+
+.stat-small-text {
+  font-size: 1.1rem;
+  font-weight: 300 !important;
+}
 
 /*# sourceMappingURL=stats-page.css.map */

@@ -7,6 +7,7 @@ import {getModalContent} from "../../../utils/store/utils-store/utils-store-sele
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
+import Transition from "../../../utils/js/transitions";
 const AnnouncementModal = () => {
     const lighthouse = useSelector(getModalContent)
     const sendRequest = useFetchHook()
@@ -38,8 +39,8 @@ const AnnouncementModal = () => {
             </div>
             <form onSubmit={createAnnouncement} className="error-content">
                 <p>Type in your <b>announcement</b> in HTML. </p>
-                <Input type='textarea' rows='30' cols='70' placeholder='<h2>Exam date</h2>' />
-                <Button buttonType='submit' text='Create' type='normal' />
+                <Input type='textarea' rows='20' cols='60' placeholder='<h2>Exam date</h2>' />
+                <Button marginated={true} buttonType='submit' text='Create' type='normal' />
             </form>
         </div>
     )

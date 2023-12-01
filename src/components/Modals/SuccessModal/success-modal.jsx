@@ -17,7 +17,7 @@ const SuccessModal = () => {
             </div>
             <div className="error-content">
                 <h3>The request was <strong>successful</strong>!</h3>
-                <p dangerouslySetInnerHTML={{__html: modalContent.data}}></p>
+                <p dangerouslySetInnerHTML={{__html: modalContent.content ? modalContent.content : modalContent.data ? modalContent.data : null}}></p>
                 {/*<form className='enroll-inputs' onSubmit={enrollLighthouse}>*/}
                 {/*    <Input type='text' placeholder='Enrollment code' />*/}
                 {/*    <Input type='text' placeholder='Id of the Lighthouse.' />*/}
