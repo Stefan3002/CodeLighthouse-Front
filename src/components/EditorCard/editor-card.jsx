@@ -10,7 +10,7 @@ import DateTime from "../DateTime/date-time";
 import ClockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 import CalendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import LanguageSelector from "../LanguageSelector/language-selector";
-const EditorCard = ({height = '300px', value = 'No code was given for this language!', onChangeHandler = undefined, seeAllSubmissions = undefined,showAuthor = true , assignmentSubmission = false, color = 'dark', type = 'code', author, submission = null}) => {
+const EditorCard = ({headerText = '', height = '300px', value = 'No code was given for this language!', onChangeHandler = undefined, seeAllSubmissions = undefined,showAuthor = true , assignmentSubmission = false, color = 'dark', type = 'code', author, submission = null}) => {
     const dispatch = useDispatch()
     const lang = useSelector(getLanguage)
     const code = useSelector(getCode)
@@ -26,7 +26,7 @@ const EditorCard = ({height = '300px', value = 'No code was given for this langu
     else
     if(type === 'code')
         return (
-            <div className='editor-wrapper' style={{height: height}}>
+            <div className='editor-wrapper editor-wrapper-code' style={{height: height}}>
                 <div className="editor-wrapper-header">
                     <img onClick={() => {dispatch(setModal(true))
                         dispatch(setModalContent({
@@ -37,14 +37,15 @@ const EditorCard = ({height = '300px', value = 'No code was given for this langu
                             }
                         }))
                     }} className='icon-svg code-editor-icon' src={MaximizeSVG} alt=""/>
+                    <p className='code-editor-header-text'>{headerText}</p>
                 </div>
-                <Editor onChange={(code) => dispatch(setCode(code))} defaultLanguage={lang} />
+                <Editor value={value} onChange={(code) => dispatch(setCode(code))} defaultLanguage={lang} />
             </div>
         )
     else
         if(type === 'submission')
             return (
-                <div className='editor-wrapper' style={{height: height}}>
+                <div className='editor-wrapper editor-wrapper-submission' >
                     <div style={{background: color === 'light' ? '#FEE1C7' : null}} className="editor-wrapper-header submission-editor-header">
                         {showAuthor ?
                             <AuthorName color={color === 'light' ? 'dark' : 'light'} author={author} />

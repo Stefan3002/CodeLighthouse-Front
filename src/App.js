@@ -26,7 +26,7 @@ import ChallengesPage from "./components/ChallengesPage/challenges-page";
 import Modal from "./components/Error/modal";
 import AddChallengePage from "./components/AddChallengePage/add-challenge-page";
 import ProfilePage from "./components/ProfilePage/profile-page";
-import CodePage from "./components/CodePage/code-page";
+import CodePage from "./components/Codes/CodePage/code-page";
 import LighthousesPage from "./components/LighthousesPage/lighthouses-page";
 import LighthousePage from "./components/Lighthouse/LighthousePage/lighthouse-page";
 import LighthouseDetailsPage from "./components/Lighthouse/LighthouseDetailsPage/lighthouse-details-page";

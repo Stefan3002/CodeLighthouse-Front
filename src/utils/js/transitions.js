@@ -89,6 +89,28 @@ const Transition = ({modalContent, children, mode = 'partial', delay = .2, scale
             duration: .3
         }
     }
+
+    const animationParametersCodeStep= {
+        initial: {
+            x: '100%',
+            opacity: 0
+        },
+        animate: {
+            x: 0,
+            opacity: 1
+        },
+        exit: {
+            x: '-100%',
+            // opacity: 0
+        },
+        transition: {
+            ease: 'easeInOut',
+            duration: .5
+        }
+
+    }
+
+
     if(mode === 'partial' || mode === 'fullscreen')
     return (
         // <motion.div transition={animationParameters.transition} initial={animationParameters.initial} animate={animationParameters.animate} exit={animationParameters.exit}>
@@ -127,5 +149,13 @@ const Transition = ({modalContent, children, mode = 'partial', delay = .2, scale
                         {children}
                     </motion.div>
                 )
+        else
+        if(mode === 'codeStep')
+            return (
+                <motion.div key={`code-step-transition-${modalContent}`} className='code-step-animation' {...animationParametersCodeStep} >
+                    {children}
+                </motion.div>
+            )
+
 }
 export default Transition

@@ -31,7 +31,7 @@ const SubmissionsPage = () => {
             <TopSection title={data.title} nameOfPage='Challenge' children={<> <AuthorName author={data.author} /> <Difficulty difficulty={data.difficulty}/> </>} />
             <div className='wrapper submissions-page'>
             <Heading text='Your submissions' />
-            <div className="submissions">
+            <div className="submissions-page-list">
                 {user.submissions.map(submission => {
                     if(submission.challenge === slug)
                         return <EditorCard author={user} type='submission' showAuthor={true} submission={submission} />
@@ -40,7 +40,7 @@ const SubmissionsPage = () => {
             {user.solved_challenges.includes(data.id) ?
                 <>
                     <Heading text='Community submissions' />
-                <div className="submissions">
+                <div className="submissions-page-list">
                         {data.submissions.map(submission => {
                             if(submission.user.user_id !== user.user_id )
                                 return <EditorCard author={submission.user} showAuthor={true} type='submission' submission={submission} />
