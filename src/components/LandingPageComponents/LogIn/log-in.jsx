@@ -76,7 +76,7 @@ const LogIn = () => {
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, JSON.stringify(data), 'POST', false, successLogIn)
 
-        console.log('log in, ', status)
+        // console.log('log in, ', status)
 
     }
 

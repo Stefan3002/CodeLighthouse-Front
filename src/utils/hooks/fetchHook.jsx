@@ -45,9 +45,11 @@ const useFetchHook = () => {
                 return;
             }
             else{
+                console.log(jsonData)
                 dispatch(setError(jsonData.data))
                 dispatch(setModal(false))
                 dispatch(setSidePanel(false))
+                return;
             }
         }catch(err){
             dispatch(setError(err.toString()))

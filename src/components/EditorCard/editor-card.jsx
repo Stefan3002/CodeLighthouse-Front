@@ -10,12 +10,20 @@ import DateTime from "../DateTime/date-time";
 import ClockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 import CalendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import LanguageSelector from "../LanguageSelector/language-selector";
-const EditorCard = ({headerText = '', height = '300px', value = 'No code was given for this language!', onChangeHandler = undefined, seeAllSubmissions = undefined,showAuthor = true , assignmentSubmission = false, color = 'dark', type = 'code', author, submission = null}) => {
+import InfoSVG from '../../utils/imgs/SVGs/InfoSVG.svg'
+const EditorCard = ({info = undefined, secondCode = undefined, headerText = '', height = '300px', value = 'No code was given for this language!', onChangeHandler = undefined, seeAllSubmissions = undefined,showAuthor = true , assignmentSubmission = false, color = 'dark', type = 'code', author, submission = null}) => {
     const dispatch = useDispatch()
     const lang = useSelector(getLanguage)
     const code = useSelector(getCode)
     // const [code, setCode] = useState(undefined)
 
+    const openInfoModal = () => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'info',
+            content: info
+        }))
+    }
 
     if(type === 'challenge-code')
         return (
@@ -38,8 +46,16 @@ const EditorCard = ({headerText = '', height = '300px', value = 'No code was giv
                         }))
                     }} className='icon-svg code-editor-icon' src={MaximizeSVG} alt=""/>
                     <p className='code-editor-header-text'>{headerText}</p>
+                    {info ? <img className='icon-svg' src={InfoSVG} onClick={openInfoModal} alt='Info'></img> : null}
                 </div>
-                <Editor value={value} onChange={(code) => dispatch(setCode(code))} defaultLanguage={lang} />
+                <Editor value={value} onChange={
+                    (code) => {
+                        if(!secondCode)
+                            dispatch(setCode(code))
+                        if(secondCode)
+                            secondCode(code)
+                    }
+                } defaultLanguage={lang.toLowerCase()} />
             </div>
         )
     else

@@ -2,7 +2,7 @@
 
 .error-wrapper
   box-shadow: $box-shadow
-  max-width: 40vw
+  max-width: 80vw
   background: $dark-color
   color: $light-color
   border-radius: 10px
@@ -14,9 +14,11 @@
   //transform: translate(-50%)
   //z-index: 11
   text-align: center
+
+
 .error-header
   display: flex
-  gap: 1rem
+  gap: .5rem
   justify-content: center
   align-items: center
   img
@@ -52,12 +54,16 @@
   display: flex
   gap: .5rem
 
-.create-challenge-wrapper
-  max-width: 90%
-  width: 90%
-  height: fit-content
 .super-success
   z-index: 15
+
+.modal-header-img
+  animation-name: pop-up
+  animation-delay: .5s
+  animation-duration: .3s
+  animation-fill-mode: forwards
+  opacity: 0
+  transform: scale(0)
 
 
 .big-editor
@@ -80,3 +86,7 @@
   .error-wrapper
     max-width: 90vw
     width: 90vw
+
+@media screen and (min-width: 3000px)
+  .error-wrapper
+    max-width: 40vw

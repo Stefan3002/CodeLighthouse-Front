@@ -1,16 +1,21 @@
 import './info-modal.css'
-import LighthouseSVG from "../../../utils/imgs/SVGs/LighthouseSVG.svg";
+import InfoSVG from "../../../utils/imgs/SVGs/InfoDarkSVG.svg";
 import Button from "../../Button/button";
+import {useSelector} from "react-redux";
+import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
 const InfoModal = () => {
+
+    const info = useSelector(getModalContent).content
+
     return (
-        <div className='error-wrapper create-challenge-wrapper'>
-            <div className="error-header create-challenge-header">
-                <img src={LighthouseSVG} alt=""/>
-                <h2>Are you sure?</h2>
+        <div className='error-wrapper'>
+            <div className="error-header">
+                <img className='modal-header-img' src={InfoSVG} alt=""/>
+                <h2>What is this?</h2>
             </div>
-            {/*<form onSubmit={} className="error-content">*/}
-            <p>Please <b>confirm</b> your action! </p>
-            {/*</form>*/}
+            <div className="error-content">
+                <p>{info}</p>
+            </div>
         </div>
     )
 }

@@ -52,8 +52,8 @@ const Transition = ({modalContent, children, mode = 'partial', delay = .2, scale
 
     const animationParametersModal = {
         initial: {
-            y: '-100%',
             x: '-50%',
+            y: '-100%',
             opacity: 0
         },
         animate: {
@@ -72,8 +72,8 @@ const Transition = ({modalContent, children, mode = 'partial', delay = .2, scale
 
     const animationParametersModalSecondStep = {
         initial: {
+            x: '50%',
             y: 0,
-            x: 0,
             opacity: 0
         },
         animate: {

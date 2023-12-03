@@ -24,7 +24,7 @@ const LighthouseMenuModal = () => {
         // <Transition mode='fullscreen'>
         <div className='error-wrapper'>
             <div className="error-header">
-                <img src={LighthouseSVG} alt=""/>
+                <img className='modal-header-img' src={LighthouseSVG} alt=""/>
                 <h2>Join or create a Lighthouse?</h2>
             </div>
             <div className="error-content">
