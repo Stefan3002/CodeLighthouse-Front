@@ -73,8 +73,9 @@ const EditorCard = ({info = undefined, secondCode = undefined, headerText = '', 
                         </div>
                             : null }
                         <LanguageSelector customLanguage={submission.language} type='simple-icon' />
+                        <p style={{color: `${color === 'dark' ? '#FEE1C7' : '#32292F'}`}}>{(submission.exec_time * 1000).toString().slice(0, 6)} ms</p>
                         <DateTime icon={CalendarSVG} color={color === 'light' ? 'dark' : 'light'} data={submission.date} />
-                        <DateTime icon={ClockSVG} color={color === 'light' ? 'dark' : 'light'} data={submission.time} />
+                        <DateTime icon={ClockSVG} color={color === 'light' ? 'dark' : 'light'} data={submission.time.slice(0, 5)} />
                     </div>
                     <Editor value={submission.code} onChange={(code) => dispatch(setCode(code))} defaultLanguage={lang} />
                 </div>

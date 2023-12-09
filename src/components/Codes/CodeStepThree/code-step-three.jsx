@@ -20,6 +20,7 @@ const CodeStepThree = ({setCodeStep, data}) => {
         dispatch(setModal(true))
         dispatch(setModalContent({
             type: 'success',
+            code: true,
             data: data.data
         }))
     }
