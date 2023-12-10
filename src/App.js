@@ -46,6 +46,7 @@ import AdminNavigation from "./components/Admin/AdminNavigation/admin-navigation
 import AdminDeniedPage from "./components/Admin/AdminDeniedPage/admin-denied-page";
 import AdminReportsPage from "./components/Admin/AdminReportsPage/admin-reports-page";
 import LighthouseHomePage from "./components/Lighthouse/LighthouseHomePage/lighthouse-home-page";
+import LeaderboardPage from "./components/LeaderboardPage/leaderboard-page";
 
 function App() {
     const location = useLocation()
@@ -75,6 +76,7 @@ function App() {
                             <Route path='stats' element={<StatsPage />} />
                             <Route path='code' element={<CodePage />} />
                             <Route path='submissions' element={<SubmissionsPage />} />
+                            <Route path='leaderboard' element={<LeaderboardPage />} />
                         </Route>
                         <Route path='add' element={<AddChallengePage />} />
                         <Route path='users/:id' element={<ProfilePage />} />

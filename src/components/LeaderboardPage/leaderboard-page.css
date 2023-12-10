@@ -1,0 +1,48 @@
+.leaderboard-place {
+  background: #32292F;
+  color: #FEE1C7;
+  padding: 0.5rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 300px;
+}
+
+.second-place {
+  margin-top: 1.5rem;
+}
+
+.third-place {
+  margin-top: 2.5rem;
+}
+
+.leaderboard-podium {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaderboard-non-podium {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.leaderboard-non-podium-place {
+  background: #32292F;
+  padding: 0.5rem;
+  border-radius: 10px;
+  color: #FEE1C7;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/*# sourceMappingURL=leaderboard-page.css.map */

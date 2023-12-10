@@ -1,5 +1,6 @@
 .challenge-page {
   margin-top: 1rem;
+  margin-bottom: calc(135px + 3rem);
 }
 
 .challenge-page-meta {
