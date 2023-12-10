@@ -7,10 +7,13 @@ import AuthorName from "../AuthorName/author-name";
 import FirstPlaceSVG from '../../utils/imgs/SVGs/First place.svg'
 import SecondPlaceSVG from '../../utils/imgs/SVGs/Second place.svg'
 import ThirdPlaceSVG from '../../utils/imgs/SVGs/Third place.svg'
+import {useSelector} from "react-redux";
+import {getUser} from "../../utils/store/user-store/user-store-selectors";
 const LeaderboardPage = () => {
     const sendRequest = useFetchHook()
     const [data, setData] = useState(undefined)
     const slug = useParams().slug
+    const user = useSelector(getUser)
 
     useEffect(() => {
         (async () => {
@@ -49,9 +52,9 @@ const LeaderboardPage = () => {
                 <div className="leaderboard-non-podium">
                     {data.submissions.map((submission, idx) => {
                         if(idx > 2)
-                            return <div className='leaderboard-non-podium-place'>
+                            return <div className={`leaderboard-non-podium-place ${user.user_id === submission.user.user_id ? 'high-place' : null}`}>
                                 <p>{idx + 1}</p>
-                                <AuthorName color='light' author={submission.user} />
+                                <AuthorName color={user.user_id === submission.user.user_id ? 'dark' : 'light'} author={submission.user} />
                                 <p>{(submission.exec_time * 1000).toString().slice(0, 6)} ms</p>
                             </div>
                         else

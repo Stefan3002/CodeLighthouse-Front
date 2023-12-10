@@ -25,6 +25,11 @@
   align-items: center;
 }
 
+.high-place {
+  background: #FEE1C7 !important;
+  color: #32292F !important;
+}
+
 .leaderboard-non-podium {
   display: flex;
   flex-wrap: wrap;
