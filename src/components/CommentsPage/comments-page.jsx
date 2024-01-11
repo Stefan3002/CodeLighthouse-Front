@@ -12,6 +12,7 @@ import Comment from "../Comment/comment";
 import TopSection from "../TopSection/top-section";
 import AuthorName from "../AuthorName/author-name";
 import Difficulty from "../Difficulty/difficulty";
+import Missing from "../Missing/missing";
 const CommentsPage = () => {
     const challengeSlug = useParams()['slug']
     const [data, setData] = useState(undefined)
@@ -41,9 +42,9 @@ const CommentsPage = () => {
 
             <div className='wrapper comments-page'>
                 <div className="comments">
-                    {data.comments.map(comment => {
+                    {data.comments.length ? data.comments.map(comment => {
                         return <Comment data={comment} />
-                    })}
+                    }) : <Missing text='Nobody said anything yet!' />}
                 </div>
             </div>
             <Button callback={newComment} type='plus' />

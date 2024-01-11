@@ -16,7 +16,9 @@
 }
 
 .profile-assignments-filters {
+  display: flex;
   margin-bottom: 1rem;
+  gap: 0.1rem;
 }
 
 .profile-lighthouses {

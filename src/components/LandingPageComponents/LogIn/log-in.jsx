@@ -57,7 +57,8 @@ const LogIn = () => {
 
 
     const successLogIn = (user) => {
-        // console.log('useru', user)
+
+        dispatch(setError(null))
         dispatch(setIsLoggedIn(true))
         dispatch(setStatus('loaded'))
         dispatch(setUser(user.user))
@@ -68,23 +69,23 @@ const LogIn = () => {
         navigate('/app')
         // window.location.href = '/app/home'
     }
-    const logUserInEmail = async (form) => {
-        dispatch(setStatus('loading'))
-        form.preventDefault()
-        const formData = form.target
-        const email = formData[0].value
-        const password = formData[1].value
-
-
-        const data = {
-            email,
-            password
-        }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, JSON.stringify(data), 'POST', false, successLogIn)
-
-        // console.log('log in, ', status)
-
-    }
+    // const logUserInEmail = async (form) => {
+    //     dispatch(setStatus('loading'))
+    //     form.preventDefault()
+    //     const formData = form.target
+    //     const email = formData[0].value
+    //     const password = formData[1].value
+    //
+    //
+    //     const data = {
+    //         email,
+    //         password
+    //     }
+    //     const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, JSON.stringify(data), 'POST', false, successLogIn)
+    //
+    //     // console.log('log in, ', status)
+    //
+    // }
 
     const getFeatureIcon = (icon) => {
         switch (icon){
@@ -106,7 +107,7 @@ const LogIn = () => {
             const errorCode = e.code
             switch (errorCode){
                 case 'auth/popup-closed-by-user':
-                    dispatch(setError('You did not complete the authentication!'))
+                    dispatch(setError('The authentication did not complete!'))
                     break
                 case 'auth/cancelled-popup-request':
                     dispatch(setError('You cancelled the authentication!'))
@@ -128,27 +129,17 @@ const LogIn = () => {
     }
 
     const logInGoogleProvider = async () => {
-        dispatch(setStatus('loading'))
-        const result = await handleLogIn(logInGoogleProviderFirebase);
+       await generalLogInWithProviderHandler(logInGoogleProviderFirebase);
 
-        if(!result)
-            return;
-
-        const email = result.user.email
-        // console.log(result)
-        const idToken = await handleGetToken()
-        const data = {
-            idToken,
-            email,
-            username: result.user.displayName,
-            photoURL: result.user.photoURL
-        }
-        await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth/provider`, JSON.stringify(data), 'POST', false, successLogIn)
     }
 
     const logInGithubProvider = async () => {
+        await generalLogInWithProviderHandler(logInGithubProviderFirebase)
+    }
+
+    const generalLogInWithProviderHandler = async (providerCallback) => {
         dispatch(setStatus('loading'))
-        const result = await handleLogIn(logInGithubProviderFirebase)
+        const result = await handleLogIn(providerCallback)
 
         if(!result)
             return;
@@ -158,7 +149,7 @@ const LogIn = () => {
         const idToken = await handleGetToken()
 
         const data = {
-            idToken: idToken,
+            idToken,
             email,
             username: result.user.displayName,
             photoURL: result.user.photoURL
@@ -187,11 +178,11 @@ const LogIn = () => {
 
                     </div>
                     <div>
-                        <form onSubmit={logUserInEmail} className='inputs-form'>
-                            <Input placeholder='E-mail' />
-                            <Input type='password' placeholder='Password' />
-                            <Button text='Log In' />
-                        </form>
+                        {/*<form onSubmit={logUserInEmail} className='inputs-form'>*/}
+                        {/*    <Input placeholder='E-mail' />*/}
+                        {/*    <Input type='password' placeholder='Password' />*/}
+                        {/*    <Button text='Log In' />*/}
+                        {/*</form>*/}
                         <div className="providers">
                             <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG} alt=""/>
                             <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG} alt=""/>

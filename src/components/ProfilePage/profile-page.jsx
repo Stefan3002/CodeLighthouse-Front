@@ -18,6 +18,9 @@ import TopSection from "../TopSection/top-section";
 import AuthorName from "../AuthorName/author-name";
 import Difficulty from "../Difficulty/difficulty";
 import {AnimatePresence} from "framer-motion";
+import EnrolledLighthouses from "../EnrolledLighthouses/enrolled-lighthouses";
+import Missing from "../Missing/missing";
+import WithInfo from "../WithInfo/with-info";
 const ProfilePage = () => {
     const user = useSelector(getUser)
     const userID = useParams()['id']
@@ -56,8 +59,8 @@ const ProfilePage = () => {
                 <>
                     <AuthorName author={data} />
                     <div className='profile-top-bar'>
-                        <Score data={data.score} />
-                        {+userID === user.id ? <img onClick={logOut} className='icon-svg' src={LogOutSVG} alt=""/> : null}
+                        <WithInfo data='Your rank and points'><Score data={data.score} /></WithInfo>
+                        {+userID === user.id ? <WithInfo data='Log out'><img onClick={logOut} className='icon-svg' src={LogOutSVG} alt=""/></WithInfo> : null}
                     </div>
                 </>
             } />
@@ -69,9 +72,7 @@ const ProfilePage = () => {
                 </div>
                 <Heading text='Enrolled Lighthouses' />
                 <div className="profile-lighthouses">
-                    {data.enrolled_lighthouses.map((lighthouse, idx) => {
-                        return <LighthouseCard animationDelay={idx} data={lighthouse} />
-                    })}
+                    <EnrolledLighthouses data={data} />
                 </div>
 
                 {userID == user.id ? <><Heading text='Assignments' />
@@ -86,9 +87,9 @@ const ProfilePage = () => {
 
                 {userID == user.id ? <><Heading text='Authored Challenges' />
                     <div className="unfinished-assignments">
-                        {data.authored_challenges.map(challenge => {
+                        {data.authored_challenges.length ? data.authored_challenges.map(challenge => {
                             return <ChallengeCard authoColor='dark' type='small-card' challenge={challenge}/>
-                        })}
+                        }) : <Missing text='You did not author any challenge yet!' />}
                     </div></> : null}
         </div>
         </Transition>

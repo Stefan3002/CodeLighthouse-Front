@@ -39,7 +39,7 @@ const CreateCommentModal = () => {
                 <img src={LighthouseSVG} alt=""/>
                 <h2>Add a comment!</h2>
             </div>
-            <form onSubmit={createNewComment} className="error-content">
+            <form onSubmit={createNewComment} className="error-content comment-modal-content">
                 <p>Type in the <b>content</b> of your comment!</p>
                 <Input type='textarea' rows='20' cols='60' placeholder='I love this challenge because...' />
                 <Button marginated={true} color='light' buttonType='submit' text='Create' type='normal' />

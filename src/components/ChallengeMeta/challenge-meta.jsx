@@ -12,6 +12,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import Button from "../Button/button";
 import {setUser} from "../../utils/store/user-store/user-store-actions";
+import WithInfo from "../WithInfo/with-info";
 
 const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
     const [likeIMG, setLikeIMG] = useState(undefined)
@@ -61,7 +62,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
                 </div>
                 {/*<LanguageSelector down={false} modifiable={true} />*/}
                 <Difficulty difficulty={data.difficulty} />
-                <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><img className='icon-svg' src={QuestionSVG} alt=""/></Link>
+                <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><WithInfo data='Help'><img className='icon-svg' src={QuestionSVG} alt=""/></WithInfo></Link>
             </div>
         )
     else
@@ -75,7 +76,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
                     <LanguageSelector lightColored = {solved} down={false} modifiable={true} />
                     <Link to='code'><Button text='Code!' color={solved ? 'dark' : 'light'}/></Link>
                     <img onClick={likeChallenge} src={likeIMG} className='icon-svg' alt=""/>
-                    <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><img className='icon-svg' src={QuestionSVG} alt=""/></Link>
+                    <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><WithInfo data='Help'><img className='icon-svg' src={QuestionSVG} alt=""/></WithInfo></Link>
                     {/*<p>{data.likes_received}</p>*/}
                 </div>
             )
@@ -88,7 +89,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
                         <AuthorName author={data.author} />
                     </div>
                     <img onClick={likeChallenge} src={likeIMG} className='icon-svg' alt=""/>
-                    <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><img className='icon-svg' src={QuestionSVG} alt=""/></Link>
+                    <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><WithInfo data='Help'><img className='icon-svg' src={QuestionSVG} alt=""/></WithInfo></Link>
                     <p>{data.likes_received}</p>
                 </div>
             )

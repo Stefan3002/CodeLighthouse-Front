@@ -13,6 +13,8 @@ import {setModal, setModalContent} from "../../utils/store/utils-store/utils-sto
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import useUpdateData from "../../utils/hooks/updateDataHook";
 import Heading from "../Heading/heading";
+import Missing from "../Missing/missing";
+import EnrolledLighthouses from "../EnrolledLighthouses/enrolled-lighthouses";
 const LighthousesPage = () => {
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
@@ -47,11 +49,7 @@ const LighthousesPage = () => {
                 <div className='lighthouses-page'>
                     <Heading text='Enrolled Lighthouses' />
                     <div className="lighthouses-wrapper">
-                        {user.enrolled_lighthouses.map((lighthouse, idx) => {
-                            {
-                                console.log(idx)}
-                            return <LighthouseCard animationDelay={idx} data={lighthouse} />
-                        })}
+                        <EnrolledLighthouses data={user} />
                     </div>
 
 
