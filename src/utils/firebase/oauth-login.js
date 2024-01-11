@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { GoogleAuthProvider, getAuth, signInWithPopup, GithubAuthProvider } from "firebase/auth";
+import {initializeApp} from "firebase/app";
+import {getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {setError} from "../store/utils-store/utils-store-actions";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -20,21 +21,29 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth()
 const googleProvider = new GoogleAuthProvider()
 const githubProvider = new GithubAuthProvider()
-export const logInGoogleProviderFirebase = async () => {
-    const result = await signInWithPopup(auth, googleProvider)
-    return result
+export const logInGoogleProviderFirebase = async (setErrorCallback) => {
+    try{
+        return await signInWithPopup(auth, googleProvider)
+    }
+    catch (e) {
+        throw e
+    }
 }
 
 export const logInGithubProviderFirebase = async () => {
-    const result = await signInWithPopup(auth, githubProvider)
-    return result
+    try {
+        return await signInWithPopup(auth, githubProvider)
+    }
+    catch (e) {
+        throw e
+    }
+
 }
 
 export const getTokenFirebase = async () => {
     try{
-        const idToken = await auth.currentUser.getIdToken(true)
-        return idToken
+        return await auth.currentUser.getIdToken(true)
     }catch (e){
-        console.log(e)
+        throw e
     }
 }

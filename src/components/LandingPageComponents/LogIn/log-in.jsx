@@ -1,5 +1,5 @@
 import './log-in.css'
-import {motion} from "framer-motion"
+import {AnimatePresence, motion} from "framer-motion"
 import LogoImgNoBg from "../../../utils/imgs/logo/LogoSVG.svg";
 import Button from "../../Button/button";
 import {Link, Navigate, redirect, useNavigate} from "react-router-dom";
@@ -24,7 +24,13 @@ import {
 } from "../../../utils/firebase/oauth-login";
 import Transition from "../../../utils/js/transitions";
 import {exponentialDelay} from "../../../utils/js/exponentialDelay";
+import {setError} from "../../../utils/store/utils-store/utils-store-actions";
+import Blur from "../../Blur/blur";
+import Modal from "../../Error/modal";
+import {getError} from "../../../utils/store/utils-store/utils-store-selectors";
 const LogIn = () => {
+    const error = useSelector(getError)
+
     const status = useSelector(getStatus)
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
@@ -91,12 +97,46 @@ const LogIn = () => {
         }
     }
 
+    const handleLogIn = async (logInCallback) => {
+        try {
+            return await logInCallback()
+        }
+        catch (e){
+            console.log('AUTH:', e)
+            const errorCode = e.code
+            switch (errorCode){
+                case 'auth/popup-closed-by-user':
+                    dispatch(setError('You did not complete the authentication!'))
+                    break
+                case 'auth/cancelled-popup-request':
+                    dispatch(setError('You cancelled the authentication!'))
+                    break
+                default:
+                    dispatch(setError('Something went wrong. Please try again!'))
+            }
+            return;
+        }
+    }
+    const handleGetToken = async () => {
+        try{
+            return await getTokenFirebase()
+        }
+        catch (e){
+            dispatch(setError('Something went wrong. Please try again!'))
+            return;
+        }
+    }
+
     const logInGoogleProvider = async () => {
         dispatch(setStatus('loading'))
-        const result = await logInGoogleProviderFirebase()
+        const result = await handleLogIn(logInGoogleProviderFirebase);
+
+        if(!result)
+            return;
+
         const email = result.user.email
         // console.log(result)
-        const idToken = await getTokenFirebase()
+        const idToken = await handleGetToken()
         const data = {
             idToken,
             email,
@@ -108,10 +148,15 @@ const LogIn = () => {
 
     const logInGithubProvider = async () => {
         dispatch(setStatus('loading'))
-        const result = await logInGithubProviderFirebase()
+        const result = await handleLogIn(logInGithubProviderFirebase)
+
+        if(!result)
+            return;
+
         const email = result.user.email
-        console.log(result)
-        const idToken = await getTokenFirebase()
+
+        const idToken = await handleGetToken()
+
         const data = {
             idToken: idToken,
             email,
@@ -124,7 +169,10 @@ const LogIn = () => {
 
     return (
         <Transition mode={windowSize <= 1100 ? 'fullscreen' : 'partial'}>
-        <div className='slide'>
+            <AnimatePresence>
+                {error ? <><Blur /><Transition mode='modal'><Modal error={error} /></Transition></> : null}
+            </AnimatePresence>
+            <div className='slide'>
             <div className="slide-hero slide-hero-login">
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
                 <div className="inputs">

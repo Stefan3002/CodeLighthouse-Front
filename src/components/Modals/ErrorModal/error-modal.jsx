@@ -1,8 +1,5 @@
 import './error-modal.css'
 import ErrorSVG from "../../../utils/imgs/ErrorSVG.svg";
-import {useDispatch, useSelector} from "react-redux";
-import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
-import {useState} from "react";
 const ErrorModal = ({error}) => {
     
     return (
