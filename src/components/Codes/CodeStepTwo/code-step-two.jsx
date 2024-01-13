@@ -18,7 +18,7 @@ const CodeStepOne = ({setCodeStep, data}) => {
     const code = useSelector(getCode)
     const dispatch = useDispatch()
 
-    const [hardTests, setHardTests] = useState(data.codes[0].hard_tests)
+    const [hardTests, setHardTests] = useState(data.codes.filter(code => code.language === lang)[0]?.hard_tests)
 
     const successCallback = (data) => {
         dispatch(setModal(true))

@@ -22,12 +22,14 @@ const ModifyChallengeModal = () => {
     const [trueFunctionCode, setTrueFunctionCode] = useState(modalContent.data.codes.filter(code => code.language === selectedLang)[0]?.solution)
     const [description, setDescription] = useState(modalContent.data.description)
     const [randomFunctionCode, setRandomFunctionCode] = useState(modalContent.data.codes.filter(code => code.language === selectedLang)[0]?.random_tests)
+    const [hardFunctionCode, setHardFunctionCode] = useState(modalContent.data.codes.filter(code => code.language === selectedLang)[0]?.hard_tests)
 
 
     useEffect(() => {
         // Update the state when changing languages!
         setTrueFunctionCode(modalContent.data.codes.filter(code => code.language === selectedLang)[0]?.solution)
         setRandomFunctionCode(modalContent.data.codes.filter(code => code.language === selectedLang)[0]?.random_tests)
+        setHardFunctionCode(modalContent.data.codes.filter(code => code.language === selectedLang)[0]?.hard_tests)
         setDescription(modalContent.data.description)
     }, [selectedLang]);
 
@@ -40,7 +42,7 @@ const ModifyChallengeModal = () => {
 
 
         const data = {
-            title, description, trueFunction: trueFunctionCode || 'No code!', randomFunction: randomFunctionCode || 'No code!', language: selectedLang
+            title, description, hardFunction: hardFunctionCode, trueFunction: trueFunctionCode || 'No code!', randomFunction: randomFunctionCode || 'No code!', language: selectedLang
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${modalContent.data.slug}`,JSON.stringify(data) , 'PUT', false, () => updateChallengeSuccess(title))
 
@@ -65,28 +67,51 @@ const ModifyChallengeModal = () => {
             <form onSubmit={updateChallenge} className="error-content create-challenge-content">
                 <p>Give your challenge a <b>new, awesome name.</b></p>
                 <Input type='text' placeholder='Name' value={modalContent.data.title}/>
-                <DifficultyPicker type='languages' />
+                <DifficultyPicker type='languages'/>
                 <div className="create-challenge-content-top">
                     <div className="create-challenge-content-group">
                         <p>And the <b>statement.</b> Write plain <b>html</b> for this part.</p>
-                        <EditorCard height='300px' value={modalContent.data.description} onChangeHandler={description => setDescription(description)} showAuthor={false} color='light' type='challenge-code' />
+                        <EditorCard height='300px' value={modalContent.data.description}
+                                    onChangeHandler={description => setDescription(description)} showAuthor={false}
+                                    color='light' type='challenge-code'/>
                         {/*<Input value={modalContent.data.description} type='textarea' rows='30' cols='80'/>*/}
                     </div>
                     <div className="create-challenge-content-group">
                         <p>Write the <b>true function</b> of the challenge. </p>
                         {modalContent.data.codes.filter(code => code.language === selectedLang).length ?
-                            <EditorCard height='300px' value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].solution} onChangeHandler={code => setTrueFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
-                            : <EditorCard height='300px' onChangeHandler={code => setTrueFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
+                            <EditorCard height='300px'
+                                        value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].solution}
+                                        onChangeHandler={code => setTrueFunctionCode(code)} showAuthor={false}
+                                        color='light' type='challenge-code'/>
+                            : <EditorCard height='300px' onChangeHandler={code => setTrueFunctionCode(code)}
+                                          showAuthor={false} color='light' type='challenge-code'/>
                         }
                     </div>
 
                 </div>
+
+                <div className="create-challenge-content-group">
+                    <p>Write the <b>hard function</b> of the challenge. </p>
+                    {modalContent.data.codes.filter(code => code.language === selectedLang).length ?
+                        <EditorCard height='300px'
+                                    value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].hard_tests}
+                                    onChangeHandler={code => setHardFunctionCode(code)} showAuthor={false} color='light'
+                                    type='challenge-code'/>
+                        : <EditorCard height='300px' onChangeHandler={code => setHardFunctionCode(code)}
+                                      showAuthor={false} color='light' type='challenge-code'/>
+                    }
+                </div>
+
                 <div className="create-challenge-content-bottom">
                     <div className="create-challenge-content-group">
                         <p>Finally, write the <b>random function</b> that will generate the random inputs.</p>
                         {modalContent.data.codes.filter(code => code.language === selectedLang).length ?
-                            <EditorCard height='300px' value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].random_tests} onChangeHandler={code => setRandomFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
-                            : <EditorCard height='300px' onChangeHandler={code => setRandomFunctionCode(code)} showAuthor={false} color='light' type='challenge-code' />
+                            <EditorCard height='300px'
+                                        value={modalContent.data.codes.filter(code => code.language === selectedLang)[0].random_tests}
+                                        onChangeHandler={code => setRandomFunctionCode(code)} showAuthor={false}
+                                        color='light' type='challenge-code'/>
+                            : <EditorCard height='300px' onChangeHandler={code => setRandomFunctionCode(code)}
+                                          showAuthor={false} color='light' type='challenge-code'/>
                         }
                     </div>
                 </div>
