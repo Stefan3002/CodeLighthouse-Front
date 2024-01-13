@@ -12,6 +12,7 @@
   left: 50%;
   transform: translate(-50%);
   width: 50dvw;
+  height: fit-content;
 }
 
 /*# sourceMappingURL=tooltip.css.map */

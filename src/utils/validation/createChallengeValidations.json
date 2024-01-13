@@ -1,0 +1,24 @@
+{
+  "title":
+    {
+      "inputMin": 5,
+      "inputNull": false
+    },
+  "description":
+  {
+    "inputMin": 50,
+    "inputNull": false
+  },
+  "trueFunction":
+  {
+    "inputNull": false
+  },
+  "randomFunction":
+  {
+    "inputNull": false
+  },
+  "hardFunction":
+  {
+    "inputNull": false
+  }
+}
