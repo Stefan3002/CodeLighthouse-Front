@@ -1,4 +1,8 @@
 .lighthouse-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   animation: pop-up;
   animation-duration: 0.4s;
   animation-fill-mode: forwards;

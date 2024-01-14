@@ -22,11 +22,9 @@ const LighthouseCard = ({animationDelay, type = 'lighthouse', data}) => {
         <div style={{animationDelay: `${exponentialDelay(animationDelay)}ms`}} className='lighthouse-card'>
             <div className="lighthouse-card-header">
                 <h2>{data.archived ? `${data.name} (archived)` : data.public ? `${data.name} {community}` : data.name}</h2>
-                <AuthorName color='dark' author={data.author} />
-                {/*<p>{data.author.username}</p>*/}
             </div>
             <div className="lighthouse-card-content">
-
+                <AuthorName color='dark' author={data.author} />
             </div>
         </div>
         </Link>

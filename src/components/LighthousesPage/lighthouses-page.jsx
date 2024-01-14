@@ -48,10 +48,7 @@ const LighthousesPage = () => {
             <div className="wrapper">
                 <div className='lighthouses-page'>
                     <Heading text='Enrolled Lighthouses' />
-                    <div className="lighthouses-wrapper">
-                        <EnrolledLighthouses data={user} />
-                    </div>
-
+                    <EnrolledLighthouses data={user} />
 
                     <Heading text='Public Communities' />
                     <div className="lighthouses-wrapper">

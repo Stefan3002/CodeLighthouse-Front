@@ -3,12 +3,4 @@
   text-align: center;
 }
 
-.lighthouses-wrapper {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: stretch;
-  flex-wrap: wrap;
-}
-
 /*# sourceMappingURL=lighthouses-page.css.map */

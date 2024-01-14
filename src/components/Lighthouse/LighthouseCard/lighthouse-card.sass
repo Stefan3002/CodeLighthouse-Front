@@ -1,6 +1,10 @@
 @import '../../../variables'
 
 .lighthouse-card
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
   animation: pop-up
   animation-duration: .4s
   animation-fill-mode: forwards
@@ -32,7 +36,6 @@
     transition: all .15s
     background: $dark-color
     color: $light-color
-
 
 @keyframes pop-up
   from

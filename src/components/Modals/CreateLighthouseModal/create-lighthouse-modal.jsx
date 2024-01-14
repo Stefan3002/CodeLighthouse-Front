@@ -10,7 +10,10 @@ import {setUser} from "../../../utils/store/user-store/user-store-actions";
 import {useEffect} from "react";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
 import BackSVG from "../../../utils/imgs/SVGs/BackSVG.svg";
+import createLighthouseValidations from "../../../utils/validation/createLighthouseValidations.json";
+import useValidate from "../../../utils/hooks/validateHook";
 const CreateLighthouseModal = () => {
+    const validateInput = useValidate()
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
     const dispatch = useDispatch()
@@ -22,9 +25,18 @@ const CreateLighthouseModal = () => {
 
     const createNewLighthouse = async (event) => {
         event.preventDefault()
+        let valid = true
         const name = event.target[0].value
         const description = event.target[1].value
         const community = event.target[2].checked
+
+        valid = validateInput('Name of Lighthouse', name, {inputNull: createLighthouseValidations.name.inputNull, inputMin: createLighthouseValidations.name.inputMin})
+        if(!valid)
+            return
+
+        valid = validateInput('Description of Lighthouse', description, {inputNull: createLighthouseValidations.description.inputNull, inputMin: createLighthouseValidations.description.inputMin})
+        if(!valid)
+            return
 
         const data = {
             name,

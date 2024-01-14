@@ -66,12 +66,6 @@ const CreateChallengeModal = () => {
             return
 
         const privateChallenge = event.target[5].checked
-        // const description = event.target[1].value
-        // const trueFunction = event.target[2].value
-        // const randomFunction = event.target[3].value
-
-
-
         const data = {
             privateChallenge, title, description, trueFunction: trueFunctionCode, randomFunction: randomFunctionCode, hardFunction: hardFunctionCode, language, userId: user.user_id
         }
