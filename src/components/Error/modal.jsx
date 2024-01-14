@@ -19,6 +19,7 @@ import ReportDescriptionModal from "../Modals/ReportDescriptionModal/report-desc
 import AnnouncementModal from "../Modals/AnnouncementModal/announcement-modal";
 import ConfirmModal from "../Modals/ConfirmModal/confirm-modal";
 import InfoModal from "../Modals/InfoModal/info-modal";
+import LighthousePreviewModal from "../Modals/LighthousePreviewModal/lighthouse-preview-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -30,6 +31,8 @@ const Modal = ({error, type='error'}) => {
             return <LighthouseMenuModal/>
         case 'createLighthouse':
             return <CreateLighthouseModal/>
+        case 'lighthousePreview':
+            return <LighthousePreviewModal/>
         case 'success':
             return <SuccessModal/>
         case 'assignChallenge':

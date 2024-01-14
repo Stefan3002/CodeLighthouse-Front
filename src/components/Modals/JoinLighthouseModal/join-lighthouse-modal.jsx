@@ -10,31 +10,43 @@ import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
 import {setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import BackSVG from "../../../utils/imgs/SVGs/BackSVG.svg";
+import useValidate from "../../../utils/hooks/validateHook";
+import joinLighthouseValidations from '../../../utils/validation/joinLighhouseValidations.json'
 const JoinLighthouseModal = () => {
+    const validateInput = useValidate()
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
     const updateUserData = useUpdateData()
     const dispatch = useDispatch()
 
-    const successCallback = async () => {
+
+
+    const previewSuccessCallback = async (enrollmentCode, data) => {
         dispatch(setModalContent({
-            type: 'success',
-            data: undefined
+            type: 'lighthousePreview',
+            data: {
+                ...data,
+                code: enrollmentCode
+            }
         }))
-        await updateUserData()
+        // await updateUserData()
     }
     const enrollLighthouse = async (event) => {
         event.preventDefault()
+        let valid = true
+
         const code = event.target[0].value
         const lighthouseId = event.target[1].value
 
-        const data = {
-            user_id: user.user_id,
-            enrollment_code: code
-        }
+        valid = validateInput('Enrollment code of Lighthouse', code, {inputNull: joinLighthouseValidations.code.inputNull, inputMin: joinLighthouseValidations.code.inputMin})
+        if(!valid)
+            return
 
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseId}`,JSON.stringify(data) , 'POST', false, successCallback)
-        // setData(res)
+        valid = validateInput('ID of Lighthouse', lighthouseId, {inputNull: joinLighthouseValidations.id.inputNull, inputMin: joinLighthouseValidations.id.inputMin})
+        if(!valid)
+            return
+
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses-preview/${lighthouseId}`,null , 'GET', true, (data) => previewSuccessCallback(code, data))
 
     }
 

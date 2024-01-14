@@ -1,0 +1,11 @@
+{
+  "code":
+  {
+    "inputMin": 36,
+    "inputNull": false
+  },
+  "id": {
+    "inputMin": 0,
+    "inputNull": false
+  }
+}
