@@ -18,6 +18,8 @@ const SubmissionsPage = () => {
     const user = useSelector(getUser)
     const slug = useParams().slug
 
+    const [solved, setSolved] = useState(false)
+
     useEffect(() => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${slug}`, undefined, 'GET')
@@ -25,7 +27,17 @@ const SubmissionsPage = () => {
         })()
     }, []);
 
-    console.log(user, data)
+    useEffect(() => {
+        if(data)
+        user.solved_challenges.map(solved_challenge => {
+            if(solved_challenge.id === data.id){
+                setSolved(true)
+            }
+        })
+    }, [data]);
+
+
+
     if(data)
     return (
         <Transition mode='fullscreen'>
@@ -38,7 +50,7 @@ const SubmissionsPage = () => {
                         return <EditorCard author={user} type='submission' showAuthor={true} submission={submission} />
                 })}
             </div><Heading text='Community submissions' />
-            {user.solved_challenges.includes(data.id) ?
+            {solved ?
 
                 <div className="submissions-page-list">
                         {data.submissions.map(submission => {

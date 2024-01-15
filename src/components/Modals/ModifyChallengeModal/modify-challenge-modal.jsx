@@ -12,7 +12,10 @@ import {useNavigate} from "react-router-dom";
 import {setModal} from "../../../utils/store/utils-store/utils-store-actions";
 import {slugify} from "../../../utils/js/slugify";
 import EditorCard from "../../EditorCard/editor-card";
+import WithInfo from "../../WithInfo/with-info";
+import useUpdateData from "../../../utils/hooks/updateDataHook";
 const ModifyChallengeModal = () => {
+    // const updateData = useUpdateData()
     const modalContent = useSelector(getModalContent)
     const sendRequest = useFetchHook()
     const selectedLang = useSelector(getLanguage)
@@ -36,13 +39,13 @@ const ModifyChallengeModal = () => {
     const updateChallenge = async (event) => {
         event.preventDefault()
         const title = event.target[0].value
+        const timeLimit = event.target[4].value
         // const description = event.target[1].value
         // const trueFunction = event.target[2].value
         // const randomFunction = event.target[3].value
 
-
         const data = {
-            title, description, hardFunction: hardFunctionCode, trueFunction: trueFunctionCode || 'No code!', randomFunction: randomFunctionCode || 'No code!', language: selectedLang
+            title, timeLimit, description, hardFunction: hardFunctionCode, trueFunction: trueFunctionCode || 'No code!', randomFunction: randomFunctionCode || 'No code!', language: selectedLang
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${modalContent.data.slug}`,JSON.stringify(data) , 'PUT', false, () => updateChallengeSuccess(title))
 
@@ -50,11 +53,9 @@ const ModifyChallengeModal = () => {
 
     const updateChallengeSuccess = (newSlug) => {
         dispatch(setModal(false))
+        // updateData(true)
         navigate(`/app/challenges/${slugify(newSlug)}`)
     }
-
-
-
 
     return (
         // <Transition mode='fullscreen'>
@@ -101,6 +102,12 @@ const ModifyChallengeModal = () => {
                                       showAuthor={false} color='light' type='challenge-code'/>
                     }
                 </div>
+
+                <div className="create-challenge-content-group">
+                    <p>Add a <b>time limit</b> for the challenge? </p>
+                    <WithInfo clickHandler={() => null} data='The soft time limit for the whole suite of test cases (hard + random)'><Input type='number' placeholder='Time limit (s)' value={modalContent.data.time_limit}/></WithInfo>
+                </div>
+
 
                 <div className="create-challenge-content-bottom">
                     <div className="create-challenge-content-group">

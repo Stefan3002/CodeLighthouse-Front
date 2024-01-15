@@ -33,13 +33,14 @@ const CodeStepOne = ({setCodeStep, data}) => {
 
     const sendCodeForHardCompilation = async () => {
 
-        const data = {
+        const reqData = {
             code,
             hardTests,
             userId: user.user_id,
-            language: lang
+            language: lang,
+            // timeLimit: 1.2
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run-hard/${slug}`,JSON.stringify(data) , 'POST', false, successCallback)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run-hard/${slug}`,JSON.stringify(reqData) , 'POST', false, successCallback)
 
     }
 

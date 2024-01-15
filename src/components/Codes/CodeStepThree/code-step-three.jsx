@@ -25,15 +25,15 @@ const CodeStepThree = ({setCodeStep, data}) => {
         }))
     }
 
-
     const sendCodeForCompilation = async () => {
 
-        const data = {
+        const reqData = {
             code,
             userId: user.user_id,
-            language: lang
+            language: lang,
+            timeLimit: data.time_limit
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run/${slug}`,JSON.stringify(data) , 'POST', false, successCallback)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run/${slug}`,JSON.stringify(reqData) , 'POST', false, successCallback)
 
     }
 

@@ -14,6 +14,13 @@ const Input = ({required = false, defaultValue, placeholder, type='text', rows =
             </textarea>
         )
     else
+    if(type === 'number')
+        return (
+            <input type='number' step={0.01} onChange={changeActualValue} value={actualValue} className='input' placeholder={placeholder}>
+
+            </input>
+        )
+    else
     if(type === 'checkbox')
         return (
             <div className='checkbox-input'>
