@@ -67,7 +67,7 @@ const ChallengeCard = ({callback = undefined, report = undefined, authoColor = '
                     </Link>
                 </div>
                 <div className="assignment-metas">
-                    {detailedAssignment ? <><Link to={`/app/lighthouses/${challenge.lighthouse}/assignments`}><p>{challenge.lighthouse}</p></Link></> : null}
+                    {detailedAssignment ? <><Link to={`/app/lighthouses/${challenge.lighthouse.id}/assignments`}><p>{challenge.lighthouse.name}</p></Link></> : null}
                     <DateTime icon={clockSVG} data={challenge.due_time} />
                     <DateTime icon={calendarSVG} data={challenge.due_date} />
                 </div>

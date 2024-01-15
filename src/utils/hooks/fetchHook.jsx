@@ -7,7 +7,6 @@ import {getToken} from "../store/auth-store/auth-store-selectors";
 const useFetchHook = () => {
     const dispatch = useDispatch()
     const JWT = useSelector(getToken)
-    console.log(JWT)
     const navigate = useNavigate()
     // const [response, setResponse] = useState(initial_state)
     return useCallback(async (url, body, method, silentLoad = false, successCallback) => {

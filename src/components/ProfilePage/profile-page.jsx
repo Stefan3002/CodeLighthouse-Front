@@ -1,7 +1,7 @@
 import './profile-page.css'
 import {useEffect, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
-import {redirect, useNavigate, useParams} from "react-router-dom";
+import {Link, redirect, useNavigate, useParams} from "react-router-dom";
 import Transition from "../../utils/js/transitions";
 import LighthouseCard from "../Lighthouse/LighthouseCard/lighthouse-card";
 import Heading from "../Heading/heading";
@@ -21,6 +21,7 @@ import {AnimatePresence} from "framer-motion";
 import EnrolledLighthouses from "../EnrolledLighthouses/enrolled-lighthouses";
 import Missing from "../Missing/missing";
 import WithInfo from "../WithInfo/with-info";
+import {setError} from "../../utils/store/utils-store/utils-store-actions";
 const ProfilePage = () => {
     const user = useSelector(getUser)
     const userID = useParams()['id']
@@ -32,6 +33,7 @@ const ProfilePage = () => {
 
     useEffect(() => {
         (async () => {
+            dispatch(setError(false))
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`, undefined, 'GET', false)
             setData(res)
             if(user.id === res?.id)
@@ -51,6 +53,7 @@ const ProfilePage = () => {
     const filterAssignments = (category) => {
         setFilter(category)
     }
+    console.log('ccccc', data)
     if(data)
     return (
         <AnimatePresence>
@@ -59,8 +62,8 @@ const ProfilePage = () => {
                 <>
                     <AuthorName author={data} />
                     <div className='profile-top-bar'>
-                        <WithInfo data='Your rank and points'><Score data={data.score} /></WithInfo>
-                        {+userID === user.id ? <WithInfo data='Log out'><img onClick={logOut} className='icon-svg' src={LogOutSVG} alt=""/></WithInfo> : null}
+                        <WithInfo data='Rank and points'><Score data={data.score} /></WithInfo>
+                        {+userID === user.id ? <WithInfo clickHandler={logOut} data='Log out'><img className='icon-svg' src={LogOutSVG} alt=""/></WithInfo> : null}
                     </div>
                 </>
             } />
@@ -70,10 +73,16 @@ const ProfilePage = () => {
 
 
                 </div>
-                <Heading text='Enrolled Lighthouses' />
-                <div className="profile-lighthouses">
-                    <EnrolledLighthouses data={data} />
-                </div>
+
+                {data.enrolled_lighthouses?.length &&
+                    <>
+                        <Heading text='Enrolled Lighthouses' />
+                        <div className="profile-lighthouses">
+                            <EnrolledLighthouses data={data} />
+                        </div>
+                    </>
+                }
+
 
                 {userID == user.id ? <><Heading text='Assignments' />
                     <div className="profile-assignments-filters">
@@ -91,7 +100,25 @@ const ProfilePage = () => {
                             return <ChallengeCard authoColor='dark' type='small-card' challenge={challenge}/>
                         }) : <Missing text='You did not author any challenge yet!' />}
                     </div></> : null}
-        </div>
+
+        {/*        Public solved challenges*/}
+
+                {data.solved_challenges?.length &&
+                    <>
+                        <Heading text='Solved Challenges' />
+                        <div className='solved_challenges'>
+                            {data.solved_challenges.map(solved_challenge => {
+                                return <Link to={`/app/challenges/${solved_challenge.slug}`}><div className="solved_challenge">
+                                    <p>{solved_challenge.title}</p>
+                                </div></Link>
+                            })}
+                        </div>
+                    </>
+
+                }
+
+
+            </div>
         </Transition>
         </AnimatePresence>
     )

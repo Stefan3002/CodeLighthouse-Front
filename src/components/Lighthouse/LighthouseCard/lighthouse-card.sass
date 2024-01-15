@@ -2,7 +2,9 @@
 
 .lighthouse-card
   display: flex
+  word-break: break-word
   flex-direction: column
+  //flex-wrap: wrap
   justify-content: space-between
   align-items: center
   animation: pop-up
@@ -13,14 +15,16 @@
   transform: scale(0)
   max-width: 300px
   height: 100%
-  width: fit-content
+  //width: fit-content
   padding: 1rem
   border-radius: 10px
   box-shadow: $box-shadow
   background: $white
   position: relative
+
   h2
     margin: 0
+
   &:after
     content: ''
     background: $dark-color
