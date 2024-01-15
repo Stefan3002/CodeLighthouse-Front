@@ -7,7 +7,8 @@ import {getLanguage, getLanguagePicker} from "../../utils/store/utils-store/util
 import LanguagePickerExtension from "../LanguagePickerExtension/language-picker-extension";
 import {setLanguagePicker} from "../../utils/store/utils-store/utils-store-actions";
 import {useEffect, useState} from "react";
-const LanguageSelector = ({lightColored = false, modifiable = true, down = true, type = 'selector', customLanguage}) => {
+import WithInfo from "../WithInfo/with-info";
+const LanguageSelector = ({data = [], lightColored = false, modifiable = true, down = true, type = 'selector', customLanguage}) => {
     const isExtended = useSelector(getLanguagePicker)
     const dispatch = useDispatch()
     const languagePickerOpened = useSelector(getLanguagePicker)
@@ -69,18 +70,20 @@ const LanguageSelector = ({lightColored = false, modifiable = true, down = true,
         if (lang)
             return (
                 <div className="language-picker">
-                    <div onClick={openLanguagePicker}
-                         className={`language-picker-option ${lightColored ? 'light-colored' : null}`}>
-                        <img src={lang.img} alt=""/>
-                        <p>{lang.name}</p>
-                    </div>
+                    <WithInfo data={`Selected language: ${lang.name}`} clickHandler={openLanguagePicker}>
+                        <div
+                             className={`language-picker-option ${lightColored ? 'light-colored' : null}`}>
+                            <img src={lang.img} alt=""/>
+                            <p>{lang.name}</p>
+                        </div>
+                    </WithInfo>
+
+
                     {modifiable && isExtended ?
-                        <LanguagePickerExtension lightColored={lightColored} down={down}/> : null}
+                        <LanguagePickerExtension data={data} lightColored={lightColored} down={down}/> : null}
                 </div>
             )
-    }
-    else
-        if(type === 'simple-icon')
+    } else if (type === 'simple-icon')
             return (
                 <div className="language-picker">
                     <img className='icon-svg' src={lang.img} alt=""/>

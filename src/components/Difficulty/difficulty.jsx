@@ -10,6 +10,7 @@ import Light2 from '../../utils/imgs/difficulties/Light2.png'
 import Light3 from '../../utils/imgs/difficulties/Light3.png'
 import Light4 from '../../utils/imgs/difficulties/Light4.png'
 import Light5 from '../../utils/imgs/difficulties/Light5.png'
+import WithInfo from "../WithInfo/with-info";
 
 const Difficulty = ({difficulty}) => {
     const [img, setImg] = useState(undefined)
@@ -48,7 +49,9 @@ const Difficulty = ({difficulty}) => {
         }
     }, []);
     return (
-        <img className='difficulty-img' src={img} alt=""/>
+        <WithInfo data='Difficulty' clickHandler={() => null}>
+            <img className='difficulty-img' src={img} alt=""/>
+        </WithInfo>
     )
 }
 export default Difficulty

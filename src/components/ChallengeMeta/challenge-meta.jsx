@@ -20,6 +20,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
     const user = useSelector(getUser)
     const dispatch = useDispatch()
 
+
     useEffect(() => {
         setLikeIMG(EmptyLikeSVG)
         for(let liked_challenge of user.liked_challenges)
@@ -73,7 +74,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
                         <p><b>{data.title}</b></p>
                         <AuthorName color={solved ? 'dark' : 'light'} author={data.author} />
                     </div>
-                    <LanguageSelector lightColored = {solved} down={false} modifiable={true} />
+                    <LanguageSelector data={data.codes} lightColored = {solved} down={false} modifiable={true} />
                     <Link to='code'><Button text='Code!' color={solved ? 'dark' : 'light'}/></Link>
                     <img onClick={likeChallenge} src={likeIMG} className='icon-svg' alt=""/>
                     <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><WithInfo data='Help'><img className='icon-svg' src={QuestionSVG} alt=""/></WithInfo></Link>
