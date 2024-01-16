@@ -36,8 +36,6 @@ const SubmissionsPage = () => {
         })
     }, [data]);
 
-
-
     if(data)
     return (
         <Transition mode='fullscreen'>

@@ -8,10 +8,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
 import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import Input from "../../Input/input";
+import WithInfo from "../../WithInfo/with-info";
 
 const AdminModal = () => {
     const sendRequest = useFetchHook()
-    const slug = useSelector(getModalContent).content.slug
+    const data = useSelector(getModalContent).content
+    const {slug} = data
     const dispatch = useDispatch()
 
     const successCallback = () => {
@@ -20,9 +22,14 @@ const AdminModal = () => {
             content: 'Action registered, admin!'
         }))
     }
+    const openAdminConfirmation = () => {
+        dispatch(setModalContent({
+            type: 'admin-confirm',
+            content: data
+        }))
+    }
 
     const verdictChallenge = async (verdict) => {
-        console.log(slug)
         const data = {
             verdict
         }
@@ -40,9 +47,9 @@ const AdminModal = () => {
                 <p>Verdict for this challenge?</p>
                 {/*<Input type='text' placeholder='Reason for sending back / denying.' />*/}
                 <div className="admin-verdict-buttons">
-                    <Button callback={() => verdictChallenge('approve')} buttonType='normal' text='Approve' color='light' />
-                    <Button callback={() => verdictChallenge('send-back')} buttonType='normal' text='Send back' color='success' />
-                    <Button callback={() => verdictChallenge('deny')} buttonType='normal' text='Deny' color='danger' />
+                    <WithInfo clickHandler={() => verdictChallenge('approve')} data='Make this challenge public!'><Button buttonType='normal' text='Approve' color='light' /></WithInfo>
+                    <WithInfo clickHandler={openAdminConfirmation} data='Retire this challenge temporarely, until the author fixes it!'><Button buttonType='normal' text='Send back' color='success' /></WithInfo>
+                    <WithInfo clickHandler={() => verdictChallenge('deny')} data='Retire this challenge FOREVER!'><Button  buttonType='normal' text='Deny' color='danger' /></WithInfo>
                 </div>
                 <div className="admin-verdict-buttons">
                     <Button callback={() => verdictChallenge('approve')} buttonType='normal' text='Difficulty' color='light' />

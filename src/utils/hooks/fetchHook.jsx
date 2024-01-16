@@ -1,18 +1,27 @@
 import {useCallback} from "react";
 import {json, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {setError, setLoading, setModal, setSidePanel} from "../store/utils-store/utils-store-actions";
+import {
+    setError,
+    setLoading,
+    setLoadingContent,
+    setModal,
+    setSidePanel
+} from "../store/utils-store/utils-store-actions";
 import {getToken} from "../store/auth-store/auth-store-selectors";
 
 const useFetchHook = () => {
+    const sleep = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
     const dispatch = useDispatch()
     const JWT = useSelector(getToken)
     const navigate = useNavigate()
     // const [response, setResponse] = useState(initial_state)
-    return useCallback(async (url, body, method, silentLoad = false, successCallback) => {
-        if(!silentLoad)
+    return useCallback(async (url, body, method, silentLoad = false, successCallback, loadingContent = []) => {
+        if(!silentLoad) {
             dispatch(setLoading(true))
-
+            dispatch(setLoadingContent(loadingContent))
+        }
+        await sleep(10000)
         let authorization = undefined
         if(JWT && JWT.token)
             authorization = `Bearer ${JWT.token}`

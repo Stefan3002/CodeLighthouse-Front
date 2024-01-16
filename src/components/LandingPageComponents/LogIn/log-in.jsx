@@ -154,7 +154,7 @@ const LogIn = () => {
             username: result.user.displayName,
             photoURL: result.user.photoURL
         }
-        await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth/provider`, JSON.stringify(data), 'POST', false, successLogIn)
+        await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth/provider`, JSON.stringify(data), 'POST', false, successLogIn, ['Talking to Google', 'Talking to Github', 'Talking to our own servers'])
     }
 
 

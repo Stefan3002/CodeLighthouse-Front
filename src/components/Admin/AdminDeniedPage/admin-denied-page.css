@@ -1,3 +1,9 @@
-
+.admin-denied-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
 
 /*# sourceMappingURL=admin-denied-page.css.map */

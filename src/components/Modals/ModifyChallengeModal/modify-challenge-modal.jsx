@@ -14,7 +14,10 @@ import {slugify} from "../../../utils/js/slugify";
 import EditorCard from "../../EditorCard/editor-card";
 import WithInfo from "../../WithInfo/with-info";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
+import createChallengeValidations from "../../../utils/validation/createChallengeValidations.json";
+import useValidate from "../../../utils/hooks/validateHook";
 const ModifyChallengeModal = () => {
+    const validateInput = useValidate()
     // const updateData = useUpdateData()
     const modalContent = useSelector(getModalContent)
     const sendRequest = useFetchHook()
@@ -38,11 +41,34 @@ const ModifyChallengeModal = () => {
 
     const updateChallenge = async (event) => {
         event.preventDefault()
+        let valid = true
         const title = event.target[0].value
         const timeLimit = event.target[4].value
-        // const description = event.target[1].value
-        // const trueFunction = event.target[2].value
-        // const randomFunction = event.target[3].value
+
+
+        valid = validateInput('Title', title, {inputNull: createChallengeValidations.title.inputNull, inputMin: createChallengeValidations.title.inputMin})
+        if(!valid)
+            return
+
+        valid = validateInput('Description', description, {inputNull: createChallengeValidations.description.inputNull, inputMin: createChallengeValidations.description.inputMin})
+        if(!valid)
+            return
+
+        valid = validateInput('True Function', trueFunctionCode, {inputNull: createChallengeValidations.trueFunction.inputNull})
+        if(!valid)
+            return
+
+        valid = validateInput('True Function', trueFunctionCode, {inputNull: createChallengeValidations.trueFunction.inputNull})
+        if(!valid)
+            return
+
+        valid = validateInput("Random Function", randomFunctionCode, {inputNull: createChallengeValidations.randomFunction.inputNull})
+        if(!valid)
+            return
+
+        valid = validateInput("Time Limit", +timeLimit, {inputNull: createChallengeValidations.timeLimit.inputNull, inputMax: createChallengeValidations.timeLimit.inputMax})
+        if(!valid)
+            return
 
         const data = {
             title, timeLimit, description, hardFunction: hardFunctionCode, trueFunction: trueFunctionCode || 'No code!', randomFunction: randomFunctionCode || 'No code!', language: selectedLang

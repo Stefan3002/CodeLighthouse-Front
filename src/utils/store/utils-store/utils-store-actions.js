@@ -4,6 +4,12 @@ export const setLoading = (payload) => {
         payload
     }
 }
+export const setLoadingContent = (payload) => {
+    return {
+        type: 'SET_LOADING_CONTENT',
+        payload
+    }
+}
 
 export const setError = (payload) => {
     return {

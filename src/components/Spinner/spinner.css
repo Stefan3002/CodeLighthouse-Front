@@ -3,7 +3,28 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 12;
+  z-index: 101;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.loading-message {
+  color: #FEE1C7;
+  animation-name: fade-up;
+  animation-duration: 1s;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 100;
+    transform: translateY(0);
+  }
 }
 
 /*# sourceMappingURL=spinner.css.map */

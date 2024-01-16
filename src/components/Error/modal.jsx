@@ -20,6 +20,7 @@ import AnnouncementModal from "../Modals/AnnouncementModal/announcement-modal";
 import ConfirmModal from "../Modals/ConfirmModal/confirm-modal";
 import InfoModal from "../Modals/InfoModal/info-modal";
 import LighthousePreviewModal from "../Modals/LighthousePreviewModal/lighthouse-preview-modal";
+import AdminConfirmModal from "../Modals/AdminConfirmModal/admin-confirm-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -51,6 +52,8 @@ const Modal = ({error, type='error'}) => {
             return <PopUpModal/>
         case 'admin':
             return <AdminModal/>
+        case 'admin-confirm':
+            return <AdminConfirmModal/>
         case 'report':
             return <ReportModal/>
         case 'report-description':

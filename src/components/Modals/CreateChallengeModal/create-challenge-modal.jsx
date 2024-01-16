@@ -5,7 +5,6 @@ import Button from "../../Button/button";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {useDispatch, useSelector} from "react-redux";
 import {getLanguage} from "../../../utils/store/utils-store/utils-store-selectors";
-import LanguageSelector from "../../LanguageSelector/language-selector";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 import EditorCard from "../../EditorCard/editor-card";
 import {useState} from "react";
@@ -14,6 +13,7 @@ import useUpdateData from "../../../utils/hooks/updateDataHook";
 import {setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import useValidate from "../../../utils/hooks/validateHook";
 import createChallengeValidations from '../../../utils/validation/createChallengeValidations.json'
+import WithInfo from "../../WithInfo/with-info";
 const CreateChallengeModal = () => {
     const validateInput = useValidate()
     const language = useSelector(getLanguage)
@@ -27,11 +27,18 @@ const CreateChallengeModal = () => {
     const [randomFunctionCode, setRandomFunctionCode] = useState('')
     const [hardFunctionCode, setHardFunctionCode] = useState('')
 
-    const successCallback = async () => {
-        dispatch(setModalContent({
-            type: 'success',
-            data: 'Challenge created!'
-        }))
+    const successCallback = async (privateChallenge) => {
+        if(privateChallenge)
+            dispatch(setModalContent({
+                type: 'success',
+                data: 'Challenge created!'
+            }))
+        else
+            dispatch(setModalContent({
+                type: 'success',
+                data: 'Challenge submitted for admin review!'
+            }))
+
         await updateData(true)
     }
 
@@ -40,6 +47,7 @@ const CreateChallengeModal = () => {
 
         let valid = true
         const title = event.target[0].value
+        const timeLimit = event.target[4].value
 
         valid = validateInput('Title', title, {inputNull: createChallengeValidations.title.inputNull, inputMin: createChallengeValidations.title.inputMin})
         if(!valid)
@@ -61,15 +69,16 @@ const CreateChallengeModal = () => {
         if(!valid)
             return
 
-        valid = validateInput("Hard Function", hardFunctionCode, {inputNull: createChallengeValidations.hardFunction.inputNull})
+        valid = validateInput("Time Limit", +timeLimit, {inputNull: createChallengeValidations.timeLimit.inputNull, inputMax: createChallengeValidations.timeLimit.inputMax})
         if(!valid)
             return
 
-        const privateChallenge = event.target[5].checked
+        const privateChallenge = event.target[6].checked
         const data = {
+            timeLimit,
             privateChallenge, title, description, trueFunction: trueFunctionCode, randomFunction: randomFunctionCode, hardFunction: hardFunctionCode, language, userId: user.user_id
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges`,JSON.stringify(data) , 'POST', false, successCallback)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges`,JSON.stringify(data) , 'POST', false, (_) => successCallback(privateChallenge))
 
     }
 
@@ -114,6 +123,14 @@ const CreateChallengeModal = () => {
                                 type='challenge-code'/>
 
                 </div>
+
+                <div className="create-challenge-content-group">
+                    <p>Add a <b>time limit</b> for the challenge? </p>
+                    <WithInfo clickHandler={() => null}
+                              data='The soft time limit for the whole suite of test cases (hard + random)'><Input
+                        type='number' placeholder='Time limit (s)' value={5}/></WithInfo>
+                </div>
+
                 <div className="create-challenge-content-bottom">
                     <div className="create-challenge-content-group">
                         <p>Finally, write the <b>random function</b> that will generate the random inputs.</p>

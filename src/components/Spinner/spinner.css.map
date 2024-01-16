@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["spinner.sass"],"names":[],"mappings":"AAEA;EACE;EACA;EACA;EACA;EACA","file":"spinner.css"}
+{"version":3,"sourceRoot":"","sources":["spinner.sass","../../variables.sass"],"names":[],"mappings":"AAEA;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AACF;EACE,OCNY;EDOZ;EACA;;;AAGF;EACE;IACE;IACA;;EACF;IACE;IACA","file":"spinner.css"}

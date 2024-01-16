@@ -137,7 +137,7 @@ const Transition = ({modalContent, children, mode = 'partial', delay = .2, scale
         if(mode === 'modal')
             // This is to animate second steps from multi-step modals
             // that will enter from the right
-            if(modalContent === 'joinLighthouse' || modalContent === 'createLighthouse' || modalContent === 'report-description')
+            if(modalContent === 'joinLighthouse' || modalContent === 'createLighthouse' || modalContent === 'report-description' || modalContent === 'admin-confirm' || modalContent === 'lighthousePreview')
                 return (
                     <motion.div key={`modal-${modalContent}`} className='modal-animation' {...animationParametersModalSecondStep} >
                         {children}

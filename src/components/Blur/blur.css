@@ -10,6 +10,7 @@
 
 .blur-dark {
   background: #32292F;
+  z-index: 100;
 }
 
 /*# sourceMappingURL=blur.css.map */

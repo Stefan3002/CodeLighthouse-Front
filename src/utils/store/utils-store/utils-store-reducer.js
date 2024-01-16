@@ -1,5 +1,6 @@
 const INITIAL_VALUE = {
     loading: false,
+    loadingContent: [],
     error: null,
     languagePicker: false,
     language: 'Python',
@@ -24,6 +25,11 @@ const utilsReducer = (state = INITIAL_VALUE, action) => {
             return {
                 ...state,
                 loading: payload
+            }
+        case 'SET_LOADING_CONTENT':
+            return {
+                ...state,
+                loadingContent: payload
             }
         case 'SET_ERROR':
             return {

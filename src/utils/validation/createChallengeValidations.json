@@ -20,5 +20,10 @@
   "hardFunction":
   {
     "inputNull": false
+  },
+  "timeLimit":
+  {
+    "inputNull": true,
+    "inputMax": 5
   }
 }

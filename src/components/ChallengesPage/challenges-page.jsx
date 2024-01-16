@@ -20,7 +20,7 @@ const ChallengesPage = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/0/10`, undefined, 'GET')
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/0/10`, undefined, 'GET', false, undefined, ['Fetching the challenges', 'Wait, our office cat stole some of them', 'Getting them back!'])
             setData(res)
         })()
     }, []);
