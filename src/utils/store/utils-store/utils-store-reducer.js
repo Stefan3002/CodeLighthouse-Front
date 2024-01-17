@@ -1,6 +1,6 @@
 const INITIAL_VALUE = {
     loading: false,
-    loadingContent: [],
+    loadingContent: ['Getting the job done!'],
     error: null,
     languagePicker: false,
     language: 'Python',

@@ -15,7 +15,7 @@ const useUpdateData = (explicitUrl = undefined) => {
     if(!explicitUrl)
         url = `${process.env.REACT_APP_SERVER_URL}/users/${user.id}`
     return useCallback(async (silentLoad = true) => {
-        const updatedData = await sendRequest(url, null, 'GET', true)
+        const updatedData = await sendRequest(url, null, 'GET', silentLoad, undefined, ['Getting the data', 'It is hard to find', 'Did someone hide it?', 'Bring it back NOW!'])
         dispatch(setUser(updatedData))
     }, [])
 

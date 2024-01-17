@@ -9,7 +9,7 @@ const AdminPage = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/admin`, undefined, 'GET', false)
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/admin`, undefined, 'GET', false, undefined, ['Hey Admin!', 'Looking for something for you to do', 'Is there nothing at all?', 'Still looking!'])
             setData(res)
         })()
     }, []);

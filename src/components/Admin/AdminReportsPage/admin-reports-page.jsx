@@ -10,7 +10,7 @@ const AdminReportsPage = () => {
 
 
     const closeReport = async (id) => {
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/reports/${id}`, undefined, 'DELETE', false, successCallback)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/reports/${id}`, undefined, 'DELETE', false, successCallback, ['Closing the report!'])
         await successCallback()
     }
     const successCallback = async () => {
@@ -20,7 +20,7 @@ const AdminReportsPage = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/reports`, undefined, 'GET', false, successCallback)
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/reports`, undefined, 'GET', false, successCallback, ['Getting the reports', 'Please try and solve them Admin!', 'Why are there so many??'])
             setData(res)
         })()
     }, []);

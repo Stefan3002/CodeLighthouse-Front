@@ -9,7 +9,7 @@ const AdminDeniedPage = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/admin-denied`, undefined, 'GET', false)
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/admin-denied`, undefined, 'GET', false, undefined, ['Reminder: Denied challenge will be purged!', 'They do tend to get slippery', 'SAW one running!', 'In pursuit!!!'])
             setData(res)
         })()
     }, []);

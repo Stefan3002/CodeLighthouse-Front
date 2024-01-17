@@ -34,7 +34,7 @@ const ProfilePage = () => {
     useEffect(() => {
         (async () => {
             dispatch(setError(false))
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`, undefined, 'GET', false)
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`, undefined, 'GET', false, undefined, ['Getting your profile', 'Found it!', 'Nope, sorry, it was someone else', 'Still searching!'])
             setData(res)
             if(user.id === res?.id)
                 dispatch(setUser(res))
