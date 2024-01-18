@@ -9,9 +9,12 @@ import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-
 import CodeOfConduct from "../../CodeOfConduct/code-of-conduct";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import Input from "../../Input/input";
+import reportDescriptionValidations from "../../../utils/validation/reportDescriptionValidations.json";
+import useValidate from "../../../utils/hooks/validateHook";
 
 const ReportDescriptionModal = () => {
     const sendRequest = useFetchHook()
+    const validateInput = useValidate()
     const challenge = useSelector(getModalContent).content
     const dispatch = useDispatch()
     const backOneStep = () => {
@@ -30,8 +33,18 @@ const ReportDescriptionModal = () => {
 
     const reportChallenge = async (event) => {
         event.preventDefault()
+        let valid = true
         const comments = event.target[0].value
+
+        valid = validateInput('Reason', comments, {inputNull: reportDescriptionValidations.reason.inputNull, inputMin: reportDescriptionValidations.reason.inputMin})
+        if(!valid)
+            return
+
         const readCodeofConduct = event.target[1].checked
+
+        valid = validateInput('Read Code of Conduct', readCodeofConduct, {checked: reportDescriptionValidations.conduct.checked})
+        if(!valid)
+            return
 
         const data = {
             comments,

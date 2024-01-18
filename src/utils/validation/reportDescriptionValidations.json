@@ -1,0 +1,10 @@
+{
+  "reason":
+  {
+    "inputMin": 10,
+    "inputNull": false
+  },
+  "conduct": {
+    "checked": true
+  }
+}

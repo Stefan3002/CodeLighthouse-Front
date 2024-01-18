@@ -13,11 +13,12 @@ import Javascript from '../../utils/imgs/languages/JS.svg'
 import Python from '../../utils/imgs/languages/Python.svg'
 import Ruby from '../../utils/imgs/languages/Ruby.svg'
 import {useDispatch, useSelector} from "react-redux";
-import {setLanguage} from "../../utils/store/utils-store/utils-store-actions";
-import {getLanguage} from "../../utils/store/utils-store/utils-store-selectors";
-const DifficultyPicker = ({type = 'difficulties'}) => {
+import {setDifficulty, setLanguage} from "../../utils/store/utils-store/utils-store-actions";
+import {getDifficulty, getLanguage} from "../../utils/store/utils-store/utils-store-selectors";
+const DifficultyPicker = ({type = 'difficulties', currentChallenge = undefined}) => {
     const dispatch = useDispatch()
     const selectedLang = useSelector(getLanguage)
+    const selectedDifficulty = useSelector(getDifficulty)
 
     const languages = [
         {
@@ -34,60 +35,116 @@ const DifficultyPicker = ({type = 'difficulties'}) => {
         }
     ]
 
-    const setDifficulty = (difficulty) => {
-
+    const setDiff = (difficulty) => {
+        dispatch(setDifficulty(difficulty))
     }
 
     const setLang = (lang) => {
         dispatch(setLanguage(lang))
     }
 
+    const difficulties = [
+        {
+            img: Dark5,
+            text: -5
+        },
+        {
+            img: Dark4,
+            text: -4
+        },
+        {
+            img: Dark3,
+            text: -3
+        },
+        {
+            img: Dark2,
+            text: -2
+        },
+        {
+            img: Dark1,
+            text: -1
+        },
+        {
+            img: Light1,
+            text: 1
+        },
+        {
+            img: Light2,
+            text: 2
+        },
+        {
+            img: Light3,
+            text: 3
+        },
+        {
+            img: Light4,
+            text: 4
+        },
+        {
+            img: Light5,
+            text: 5
+        },
+    ]
+
+
     if(type === 'difficulties')
     return (
         <div className='difficulty-picker'>
-            <div onClick={() => setDifficulty(-5)} className="difficulty">
-                <img src={Dark5} alt=""/>
-            </div>
-            <div onClick={() => setDifficulty(-4)} className="difficulty">
-                <img src={Dark4} alt=""/>
-            </div>
-            <div onClick={() => setDifficulty(-3)} className="difficulty">
-                <img src={Dark3} alt=""/>
-            </div>
-            <div onClick={() => setDifficulty(-2)} className="difficulty">
-                <img src={Dark2} alt=""/>
-            </div>
-            <div onClick={() => setDifficulty(-1)} className="difficulty">
-                <img src={Dark1} alt=""/>
-            </div>
+            {difficulties.map(diff => {
+                return <div style={{transform: `${selectedDifficulty === diff.text ? 'scale(1.2)' : 'scale(1)' }` }} onClick={() => setDiff(diff.text)} className="difficulty">
+                    <img src={diff.img} alt=""/>
+                </div>
+            })}
+            {/*<div onClick={() => setDiff(-5)} className="difficulty">*/}
+            {/*    <img src={Dark5} alt=""/>*/}
+            {/*</div>*/}
+            {/*<div onClick={() => setDiff(-4)} className="difficulty">*/}
+            {/*    <img src={Dark4} alt=""/>*/}
+            {/*</div>*/}
+            {/*<div onClick={() => setDiff(-3)} className="difficulty">*/}
+            {/*    <img src={Dark3} alt=""/>*/}
+            {/*</div>*/}
+            {/*<div onClick={() => setDiff(-2)} className="difficulty">*/}
+            {/*    <img src={Dark2} alt=""/>*/}
+            {/*</div>*/}
+            {/*<div onClick={() => setDiff(-1)} className="difficulty">*/}
+            {/*    <img src={Dark1} alt=""/>*/}
+            {/*</div>*/}
 
-            <div onClick={() => setDifficulty(1)} className="difficulty">
-                <img src={Light1} alt=""/>
-            </div>
-            <div onClick={() => setDifficulty(2)} className="difficulty">
-                <img src={Light2} alt=""/>
-            </div>
-            <div onClick={() => setDifficulty(3)} className="difficulty">
-                <img src={Light3} alt=""/>
-            </div>
-            <div onClick={() => setDifficulty(4)} className="difficulty">
-                <img src={Light4} alt=""/>
-            </div>
-            <div onClick={() => setDifficulty(5)} className="difficulty">
-                <img src={Light5} alt=""/>
-            </div>
+            {/*<div onClick={() => setDiff(1)} className="difficulty">*/}
+            {/*    <img src={Light1} alt=""/>*/}
+            {/*</div>*/}
+            {/*<div onClick={() => setDiff(2)} className="difficulty">*/}
+            {/*    <img src={Light2} alt=""/>*/}
+            {/*</div>*/}
+            {/*<div onClick={() => setDiff(3)} className="difficulty">*/}
+            {/*    <img src={Light3} alt=""/>*/}
+            {/*</div>*/}
+            {/*<div onClick={() => setDiff(4)} className="difficulty">*/}
+            {/*    <img src={Light4} alt=""/>*/}
+            {/*</div>*/}
+            {/*<div onClick={() => setDiff(5)} className="difficulty">*/}
+            {/*    <img src={Light5} alt=""/>*/}
+            {/*</div>*/}
         </div>
     )
     else
-        if(type === 'languages')
+        if(type === 'difficulties-small')
             return (
-                <div className='difficulty-picker languages'>
-                    {languages.map(lang => {
-                        return <div onClick={() => setLang(lang.name)} className={`difficulty language ${selectedLang === lang.name ? 'selected-language-challenge' : null}`}>
-                            <img src={lang.img} alt=""/>
-                        </div>
-                    })}
+                <div className=''>
+
                 </div>
             )
+        else
+            if(type === 'languages')
+                return (
+                    <div className='difficulty-picker languages'>
+                        {languages.map(lang => {
+                            return <div onClick={() => setLang(lang.name)} className={`difficulty language ${selectedLang === lang.name ? 'selected-language-challenge' : null}`}>
+                                <img src={lang.img} alt=""/>
+                            </div>
+                        })}
+                    </div>
+                )
 }
 export default DifficultyPicker

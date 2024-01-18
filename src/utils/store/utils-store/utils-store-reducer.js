@@ -2,6 +2,7 @@ const INITIAL_VALUE = {
     loading: false,
     loadingContent: ['Getting the job done!'],
     error: null,
+    difficulty: -5,
     languagePicker: false,
     language: 'Python',
     modalOpened: false,
@@ -70,6 +71,11 @@ const utilsReducer = (state = INITIAL_VALUE, action) => {
             return {
                 ...state,
                 code: payload
+            }
+        case 'SET_DIFFICULTY':
+            return {
+                ...state,
+                difficulty: payload
             }
         default:
             return state

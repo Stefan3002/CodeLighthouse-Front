@@ -56,22 +56,11 @@ const AdminConfirmModal = () => {
                 <p>Add some details down below, admin.</p>
                 <form action="" onSubmit={sendVerdict}>
                     <Input type='text' placeholder='Reason for sending back' />
-                    <WithInfo clickHandler={() => null} data='Retire this challenge temporarely, until the author fixes it!'><Button buttonType='normal' text='Send back' color='success' /></WithInfo>
+                    <div className="admin-confirm-buttons">
+                        <WithInfo clickHandler={() => null} data='Retire this challenge temporarely, until the author fixes it!'><Button type='normal' buttonType='submit' text='Send back' color='success' /></WithInfo>
+                        <Button buttonType='reset' callback={closeModals} color='light' text='Cancel' />
+                    </div>
                 </form>
-                {/*<div className="admin-verdict-buttons">*/}
-                {/*    <WithInfo clickHandler={() => verdictChallenge('approve')}*/}
-                {/*              data='Make this challenge public!'><Button buttonType='normal' text='Approve'*/}
-                {/*                                                         color='light'/></WithInfo>*/}
-                {/*    <WithInfo clickHandler={openAdminConfirmation}*/}
-                {/*              data='Retire this challenge temporarely, until the author fixes it!'><Button*/}
-                {/*        buttonType='normal' text='Send back' color='success'/></WithInfo>*/}
-                {/*    <WithInfo clickHandler={() => verdictChallenge('deny')}*/}
-                {/*              data='Retire this challenge FOREVER!'><Button buttonType='normal' text='Deny'*/}
-                {/*                                                            color='danger'/></WithInfo>*/}
-                {/*</div>*/}
-                <Button callback={closeModals} color='light' text='Cancel' />
-
-
             </div>
         </div>
     )

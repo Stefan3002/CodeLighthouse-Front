@@ -36,6 +36,15 @@ const useValidate = () => {
                         dispatch(setModal(false))
                         return false
                     }
+                    break
+                case 'checked':
+                    exitCode = validateChecked(input, optionValue)
+                    if(!exitCode){
+                        dispatch(setError(`An input is not checked: ${fieldName}`))
+                        dispatch(setModal(false))
+                        return false
+                    }
+                    break
             }
 
         }
@@ -50,6 +59,9 @@ const validateNull = (input) => {
 
 const validateMin = (input, minLength) => {
     return input.trim().length >= minLength
+}
+const validateChecked = (input, checked) => {
+    return input === checked
 }
 const validateMax = (input, maxLength) => {
     if(typeof input === 'string')

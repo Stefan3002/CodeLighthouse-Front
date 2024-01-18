@@ -1,3 +1,9 @@
-
+.admin-confirm-buttons {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
 
 /*# sourceMappingURL=admin-confirm-modal.css.map */

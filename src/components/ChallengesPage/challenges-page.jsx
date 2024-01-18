@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 import AuthorName from "../AuthorName/author-name";
 import Button from "../Button/button";
 import {useDispatch} from "react-redux";
-import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import {setDifficulty, setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import Difficulty from "../Difficulty/difficulty";
 import DifficultyPicker from "../DifficultyPicker/difficulty-picker";
 

@@ -108,7 +108,10 @@ const ChallengeCard = ({callback = undefined, report = undefined, authoColor = '
                             <p>{report.reason}</p>
                         </Link>
                         <AuthorName color='dark' author={report.challenge.author} />
-                        <Button callback={callback} text='Close report' color='dark' type='normal' />
+                        <p>{report.comment}</p>
+                        <h3>Assigned admin</h3>
+                        <AuthorName color='dark' author={report.assigned_admin} />
+                        <Button marginated={true} callback={callback} text='Close report' color='dark' type='normal' />
                     </div>
 
             )

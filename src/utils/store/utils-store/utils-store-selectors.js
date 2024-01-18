@@ -9,3 +9,4 @@ export const getModalContent = (state) => state.utilsStore.modalContent
 export const getSelectedChallenge = (state) => state.utilsStore.selectedChallenge
 export const getSidePanel = (state) => state.utilsStore.sidePanel
 export const getCode = (state) => state.utilsStore.code
+export const getDifficulty = (state) => state.utilsStore.difficulty

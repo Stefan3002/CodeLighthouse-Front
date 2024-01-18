@@ -66,3 +66,9 @@ export const setCode = (payload) => {
         payload
     }
 }
+export const setDifficulty = (payload) => {
+    return {
+        type: 'SET_DIFFICULTY',
+        payload
+    }
+}

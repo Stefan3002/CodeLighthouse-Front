@@ -29,6 +29,13 @@ const AdminModal = () => {
         }))
     }
 
+    const openDifficultyAdmin = () => {
+        dispatch(setModalContent({
+            type: 'difficulty-admin',
+            content: data
+        }))
+    }
+
     const verdictChallenge = async (verdict) => {
         const data = {
             verdict
@@ -52,7 +59,7 @@ const AdminModal = () => {
                     <WithInfo clickHandler={() => verdictChallenge('deny')} data='Retire this challenge FOREVER!'><Button  buttonType='normal' text='Deny' color='danger' /></WithInfo>
                 </div>
                 <div className="admin-verdict-buttons">
-                    <Button callback={() => verdictChallenge('approve')} buttonType='normal' text='Difficulty' color='light' />
+                    <Button callback={openDifficultyAdmin} buttonType='normal' text='Difficulty' color='light' />
                 </div>
             </div>
         </div>

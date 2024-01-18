@@ -8,7 +8,7 @@ import TickSVG from '../../utils/imgs/SVGs/TickSVG.svg'
 import {useDispatch, useSelector} from "react-redux";
 import ModifySVG from '../../utils/imgs/SVGs/ModifySVG.svg'
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
-import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import {setDifficulty, setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import ChallengeMeta from "../ChallengeMeta/challenge-meta";
 import TopSection from "../TopSection/top-section";
 import AuthorName from "../AuthorName/author-name";
@@ -31,6 +31,7 @@ const ChallengePage = () => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${slug}`, undefined, 'GET', false, undefined, ['Fetching the challenge', 'The office dog got it!', 'GET IT NOW!'])
             setData(res)
+            dispatch(setDifficulty(res.difficulty))
         })()
     }, []);
 
