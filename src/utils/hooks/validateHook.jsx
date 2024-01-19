@@ -1,5 +1,6 @@
 import {useDispatch} from "react-redux";
 import {setError, setModal} from "../store/utils-store/utils-store-actions";
+import {type} from "@testing-library/user-event/dist/type";
 
 const useValidate = () => {
     const dispatch = useDispatch()
@@ -54,7 +55,11 @@ const useValidate = () => {
 
 }
 const validateNull = (input) => {
-    return input.trim().length && input !== undefined && input !== null
+    if(typeof input === 'string')
+        return input !== undefined && input.trim().length && input.length !== 0 && input !== null
+    else
+        return input !== undefined && input.length !== 0 && input !== null
+
 }
 
 const validateMin = (input, minLength) => {

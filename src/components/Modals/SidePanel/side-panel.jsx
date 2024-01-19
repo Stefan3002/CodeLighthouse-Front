@@ -1,25 +1,26 @@
 import './side-panel.css'
-import Input from "../Input/input";
-import Button from "../Button/button";
-import CapSVG from '../../utils/imgs/SVGs/CapSVG.svg'
+import Input from "../../Input/input";
+import Button from "../../Button/button";
+import CapSVG from '../../../utils/imgs/SVGs/CapSVG.svg'
 import {useDispatch, useSelector} from "react-redux";
-import {getModalContent, getSidePanel} from "../../utils/store/utils-store/utils-store-selectors";
+import {getModalContent, getSidePanel} from "../../../utils/store/utils-store/utils-store-selectors";
 import {useState} from "react";
-import useFetchHook from "../../utils/hooks/fetchHook";
-import {setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import useFetchHook from "../../../utils/hooks/fetchHook";
+import {setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 const SidePanel = ({type}) => {
-    const data = useSelector(getSidePanel).data.people
+    const data = useSelector(getSidePanel).data
     const modalData = useSelector(getModalContent)
     const sendRequest = useFetchHook()
-    const [selected, setSelected] = useState([])
-    const dispatch = useDispatch()
+    const [selected, setSelected] = useState(data.map(person => person.user_id))
 
+    const dispatch = useDispatch()
     const selectAllPeople = () => {
         const newSelected = []
         for(let i of data)
             newSelected.push(i.user_id)
 
         setSelected(newSelected)
+        pushSelected()
     }
     const addPerson = (person) => {
         let newSelected = [...selected]
@@ -31,10 +32,12 @@ const SidePanel = ({type}) => {
             newSelected = newSelected.filter(selected => selected !== person.user_id)
 
         setSelected(newSelected)
+        pushSelected()
     }
 
     const deselectAllPeople = () => {
         setSelected([])
+        pushSelected()
     }
 
     const pushSelected = () => {
@@ -64,7 +67,7 @@ const SidePanel = ({type}) => {
                         return <p className={selected.includes(person.user_id) ? 'person person-selected' : 'person'} onClick={() => addPerson(person)}>{person.username}</p>
                     })}
                 </div>
-                    <Button text='Select students' callback={pushSelected} />
+                    {/*<Button text='Select students' callback={pushSelected} />*/}
             </div>
         </div>
     )

@@ -18,12 +18,14 @@ const LeaderboardPage = () => {
     useEffect(() => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${slug}`, undefined, 'GET', false)
-            res.submissions.sort((s1, s2) => {
-                if(s1.exec_time >= s2.exec_time)
-                    return 1
-                return -1
-            })
-            setData(res)
+            if(res) {
+                res.submissions.sort((s1, s2) => {
+                    if (s1.exec_time >= s2.exec_time)
+                        return 1
+                    return -1
+                })
+                setData(res)
+            }
         })()
     }, []);
 

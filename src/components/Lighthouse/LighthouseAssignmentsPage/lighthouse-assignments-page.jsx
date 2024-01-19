@@ -18,9 +18,11 @@ const LighthouseAssignmentsPage = () => {
        dispatch(setModal(true))
        dispatch(setModalContent({
            type: 'assignChallenge',
-           data: lighthouseId
+           data,
+           selectedPeople: data.people.map(person => person.user_id)
        }))
    }
+
     useEffect(() => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseId}`, undefined , 'GET', false)

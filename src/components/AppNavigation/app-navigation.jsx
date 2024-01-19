@@ -19,7 +19,7 @@ import {
     getSidePanel
 } from "../../utils/store/utils-store/utils-store-selectors";
 import {AnimatePresence} from "framer-motion";
-import SidePanel from "../SidePanel/side-panel";
+import SidePanel from "../Modals/SidePanel/side-panel";
 const AppNavigation = () => {
     const modalType = useSelector(getModalContent).type
     const modalOpened = useSelector(getModalOpened)
@@ -42,7 +42,7 @@ const AppNavigation = () => {
                 </ul>
             </nav>
             <AnimatePresence>
-                {error ? <><Blur /><Transition mode='modal'><Modal error={error} /></Transition></> : null}
+                {error ? <><Blur redirect='/app' /><Transition mode='modal'><Modal error={error} /></Transition></> : null}
                 {sidePanel.opened ? <><Blur /><SidePanel type={sidePanel.type} /> < />: null}
                 {modalOpened && modalType !== 'pop-up' ?
                     <>

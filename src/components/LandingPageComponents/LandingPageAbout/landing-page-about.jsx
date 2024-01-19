@@ -39,24 +39,6 @@ const LandingPageAbout = () => {
                     </div>
                     <img src={CodeIMG} alt="" className="about-img"/>
                 </div>
-                {/*<div className="about-highs">*/}
-                {/*    {aboutText.highlights.map((high, idx) => {*/}
-                {/*        return <div style={{background: idx % 2 === 1 ? 'whitesmoke' : null, color: idx % 2 === 1 ? '#575366' : null, textAlign: idx % 2 === 1 ? 'right' : null}} className="about-high">*/}
-                {/*            {idx % 2 === 1 ? <div className="about-high-right">*/}
-                {/*                <img src={idx === 0 ? AboutHighIMG1 : AboutHighIMG2} alt=""/>*/}
-                {/*            </div> : null}*/}
-                {/*            <div className="about-high-left">*/}
-                {/*                <h3>{high.title}</h3>*/}
-                {/*                <p dangerouslySetInnerHTML={{__html: high.text}}></p>*/}
-                {/*                <Button color='light' text='Sign up!' />*/}
-                {/*            </div>*/}
-                {/*            {idx % 2 !== 1 ? <div className="about-high-right">*/}
-                {/*                <img src={idx === 0 ? AboutHighIMG1 : AboutHighIMG2} alt=""/>*/}
-                {/*            </div> : null}*/}
-                {/*        </div>*/}
-                {/*    })}*/}
-                {/*</div>*/}
-
             </div>
             <LandingPageAsideMenu />
         </div>

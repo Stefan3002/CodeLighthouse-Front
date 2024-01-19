@@ -30,8 +30,10 @@ const ChallengePage = () => {
     useEffect(() => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${slug}`, undefined, 'GET', false, undefined, ['Fetching the challenge', 'The office dog got it!', 'GET IT NOW!'])
-            setData(res)
-            dispatch(setDifficulty(res.difficulty))
+            if(res) {
+                setData(res)
+                dispatch(setDifficulty(res.difficulty))
+            }
         })()
     }, []);
 

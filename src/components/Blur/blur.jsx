@@ -1,8 +1,10 @@
 import './blur.css'
 import {setError, setModal, setSidePanel} from "../../utils/store/utils-store/utils-store-actions";
 import {useDispatch} from "react-redux";
-const Blur = ({type = 'transparent'}) => {
+import {useNavigate} from "react-router-dom";
+const Blur = ({type = 'transparent', redirect = undefined}) => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const closeUpperElement = () => {
         dispatch(setError(null))
         dispatch(setModal(false))
@@ -11,6 +13,8 @@ const Blur = ({type = 'transparent'}) => {
             type: 'undefined',
             data: undefined
         }))
+        if(redirect)
+            navigate(redirect)
     }
 
     if(type == 'transparent')

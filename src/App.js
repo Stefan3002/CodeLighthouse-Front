@@ -33,7 +33,7 @@ import LighthouseDetailsPage from "./components/Lighthouse/LighthouseDetailsPage
 import {setUser} from "./utils/store/user-store/user-store-actions";
 import useFetchHook from "./utils/hooks/fetchHook";
 import LighthouseAssignmentsPage from "./components/Lighthouse/LighthouseAssignmentsPage/lighthouse-assignments-page";
-import SidePanel from "./components/SidePanel/side-panel";
+import SidePanel from "./components/Modals/SidePanel/side-panel";
 import ChallengesNav from "./components/ChallengesNav/challenges-nav";
 import CommentsPage from "./components/CommentsPage/comments-page";
 import StatsPage from "./components/StatsPage/stats-page";

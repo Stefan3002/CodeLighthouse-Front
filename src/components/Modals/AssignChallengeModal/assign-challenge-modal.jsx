@@ -9,7 +9,10 @@ import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {setModal, setSidePanel} from "../../../utils/store/utils-store/utils-store-actions";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
+import useValidate from "../../../utils/hooks/validateHook";
+import createChallengeValidations from "../../../utils/validation/createChallengeValidations.json";
 const AssignChallengeModal = () => {
+    const validateInput = useValidate()
     const selectedChallenge = useSelector(getSelectedChallenge)
     const modalContent = useSelector(getModalContent)
     const user = useSelector(getUser)
@@ -23,27 +26,49 @@ const AssignChallengeModal = () => {
         dispatch(setSidePanel(false))
     }
 
+
     const assignLighthouseChallenge = async (event) => {
         event.preventDefault()
+        let valid = true
         const dueDate = event.target[0].value
+
+        valid = validateInput('Due date', dueDate, {inputNull: false})
+        if(!valid)
+            return
+
         const dueTime = event.target[1].value
+
+        valid = validateInput('Due time', dueTime, {inputNull: false})
+        if(!valid)
+            return
+
+        valid = validateInput('Selected challenge', selectedChallenge, {inputNull: false})
+        if(!valid)
+            return
+
+        valid = validateInput('Selected students', modalContent.selectedPeople, {inputNull: false})
+        if(!valid)
+            return
+
         const data = {
             selectedChallenge,
             dueDate,
             dueTime,
             users: [...modalContent.selectedPeople, user.user_id]
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/assignments/${modalContent.data}`,JSON.stringify(data) , 'POST', false, successCallback)
+
+
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/assignments/${modalContent.data.id}`,JSON.stringify(data) , 'POST', false, successCallback)
 
     }
 
     const openStudentSelection = async () => {
 
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${modalContent.data}`,undefined , 'GET', true)
+        // const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${modalContent.data}`,undefined , 'GET', true)
         dispatch(setSidePanel({
             opened: true,
             type: 'students',
-            data: res
+            data: modalContent.data.people
         }))
     }
 
