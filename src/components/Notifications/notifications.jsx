@@ -7,14 +7,17 @@ import BellSVG from '../../utils/imgs/SVGs/BellSVG.svg'
 import {setModal, setModalContent, setSocketConnection} from "../../utils/store/utils-store/utils-store-actions";
 import {useDispatch, useSelector} from "react-redux";
 import {getSocketConnection} from "../../utils/store/utils-store/utils-store-selectors";
+import {getToken} from "../../utils/store/auth-store/auth-store-selectors";
+import {getUser} from "../../utils/store/user-store/user-store-selectors";
 const Notifications = () => {
 
     const socketConnection = useSelector(getSocketConnection)
     const dispatch = useDispatch()
-    const notifications = useRef([])
-
+    const notifications = useRef(useSelector(getUser).notifications.map(notification => notification.content))
+    const userToken = useSelector(getToken).token
+    console.log('ppp', notifications)
     useEffect(() => {
-        const url = `ws://${process.env.REACT_APP_WS_URL}/ws/socket-server`
+        const url = `${process.env.REACT_APP_WS_URL}?user=${userToken}`
 
         if(!socketConnection) {
             const connection = new WebSocket(url)
@@ -31,6 +34,7 @@ const Notifications = () => {
 
         }
     }, []);
+
 
     const test = () => {
         notifyAnnouncement(socketConnection.current, 'New announcement made!')

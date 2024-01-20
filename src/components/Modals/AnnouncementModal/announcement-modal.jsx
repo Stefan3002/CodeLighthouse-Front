@@ -19,7 +19,8 @@ const AnnouncementModal = () => {
     const updateData = useUpdateData()
     const socketConnection = useSelector(getSocketConnection)
     const successCallback = async () => {
-        notifyAnnouncement(socketConnection, `New announcement!`)
+        notifyAnnouncement(socketConnection, `New announcement!`, lighthouse.data.id)
+
         dispatch(setModalContent({
             type: 'success',
             content: 'Announcement posted!'
