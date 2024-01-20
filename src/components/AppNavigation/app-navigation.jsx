@@ -20,6 +20,7 @@ import {
 } from "../../utils/store/utils-store/utils-store-selectors";
 import {AnimatePresence} from "framer-motion";
 import SidePanel from "../Modals/SidePanel/side-panel";
+import Notifications from "../Notifications/notifications";
 const AppNavigation = () => {
     const modalType = useSelector(getModalContent).type
     const modalOpened = useSelector(getModalOpened)
@@ -39,6 +40,7 @@ const AppNavigation = () => {
                     <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/creating-challenges.html'><li className='menu-item'><img className='icon-svg' src={AttachmentSVG} alt=""/>Docs</li></Link>
                     <Link to={`/app/users/${user?.id}`}><li className='menu-item'><img className='icon-svg' src={UserSVG} alt=""/>{user ? user.username : 'Profile'}</li></Link>
                     <Link to={`/app/admin/pending`}>{user.admin_user ?<li className='menu-item'><img className='icon-svg' src={AdminSVG} alt=""/>Admin</li> : null}</Link>
+                    <Notifications />
                 </ul>
             </nav>
             <AnimatePresence>

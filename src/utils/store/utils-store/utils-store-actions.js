@@ -59,6 +59,12 @@ export const setSidePanel = (payload) => {
         payload
     }
 }
+export const setSocketConnection = (payload) => {
+    return {
+        type: 'SET_SOCKET_CONNECTION',
+        payload
+    }
+}
 
 export const setCode = (payload) => {
     return {

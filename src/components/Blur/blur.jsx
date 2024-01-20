@@ -13,8 +13,8 @@ const Blur = ({type = 'transparent', redirect = undefined}) => {
             type: 'undefined',
             data: undefined
         }))
-        if(redirect)
-            navigate(redirect)
+        // if(redirect)
+        //     navigate(redirect)
     }
 
     if(type == 'transparent')

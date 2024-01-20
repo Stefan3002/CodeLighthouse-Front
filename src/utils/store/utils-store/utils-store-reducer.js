@@ -10,6 +10,7 @@ const INITIAL_VALUE = {
         type: undefined,
         data: undefined
     },
+    socketConnection: undefined,
     sidePanel: {
         opened: false,
         type: undefined,
@@ -76,6 +77,11 @@ const utilsReducer = (state = INITIAL_VALUE, action) => {
             return {
                 ...state,
                 difficulty: payload
+            }
+        case 'SET_SOCKET_CONNECTION':
+            return {
+                ...state,
+                socketConnection: payload
             }
         default:
             return state

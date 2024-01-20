@@ -3,20 +3,23 @@ import LighthouseSVG from "../../../utils/imgs/SVGs/LighthouseSVG.svg";
 import Input from "../../Input/input";
 import Button from "../../Button/button";
 import {useDispatch, useSelector} from "react-redux";
-import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
+import {getModalContent, getSocketConnection} from "../../../utils/store/utils-store/utils-store-selectors";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
 import Transition from "../../../utils/js/transitions";
 import createAnnouncementValidations from "../../../utils/validation/createAnnouncementValidations.json";
 import useValidate from "../../../utils/hooks/validateHook";
+import {notifyAnnouncement} from "../../../utils/notifications/lighthouseNotifications";
 const AnnouncementModal = () => {
     const lighthouse = useSelector(getModalContent)
     const validateInput = useValidate()
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
     const updateData = useUpdateData()
+    const socketConnection = useSelector(getSocketConnection)
     const successCallback = async () => {
+        notifyAnnouncement(socketConnection, `New announcement!`)
         dispatch(setModalContent({
             type: 'success',
             content: 'Announcement posted!'
