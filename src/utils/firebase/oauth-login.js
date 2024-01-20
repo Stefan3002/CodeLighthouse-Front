@@ -25,6 +25,7 @@ export const logInGoogleProviderFirebase = async (setErrorCallback) => {
     try{
         return await signInWithPopup(auth, googleProvider)
     }
+
     catch (e) {
         throw e
     }
