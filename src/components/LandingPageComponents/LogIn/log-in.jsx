@@ -112,6 +112,9 @@ const LogIn = () => {
                 case 'auth/cancelled-popup-request':
                     dispatch(setError('You cancelled the authentication!'))
                     break
+                case 'auth/account-exists-with-different-credential':
+                    dispatch(setError('We found your account! But, it appears to be made via a different provider?! Can you please try to change the available providers?'))
+                    break
                 default:
                     dispatch(setError('Something went wrong. Please try again!'))
             }

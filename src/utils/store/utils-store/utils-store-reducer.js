@@ -5,6 +5,7 @@ const INITIAL_VALUE = {
     difficulty: -5,
     languagePicker: false,
     language: 'Python',
+    notifications: [],
     modalOpened: false,
     modalContent: {
         type: undefined,
@@ -77,6 +78,11 @@ const utilsReducer = (state = INITIAL_VALUE, action) => {
             return {
                 ...state,
                 difficulty: payload
+            }
+        case 'SET_NOTIFICATIONS':
+            return {
+                ...state,
+                notifications: payload
             }
         case 'SET_SOCKET_CONNECTION':
             return {

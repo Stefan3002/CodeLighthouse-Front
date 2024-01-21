@@ -52,7 +52,12 @@ export const setSelectedChallenge = (payload) => {
         payload
     }
 }
-
+export const setNotifications = (payload) => {
+    return {
+        type: 'SET_NOTIFICATIONS',
+        payload
+    }
+}
 export const setSidePanel = (payload) => {
     return {
         type: 'SET_SIDE_PANEL',

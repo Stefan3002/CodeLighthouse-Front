@@ -18,14 +18,15 @@ const AnnouncementModal = () => {
     const dispatch = useDispatch()
     const updateData = useUpdateData()
     const socketConnection = useSelector(getSocketConnection)
-    const successCallback = async () => {
-        notifyAnnouncement(socketConnection, `New announcement!`, lighthouse.data.id)
+    const successCallback = async (event, content) => {
+        notifyAnnouncement(socketConnection, `<h2>New announcement</h2>${content.trim(0, 40)} <br /> in ${lighthouse.data.name}`, `/app/lighthouses/${lighthouse.data.id}`, lighthouse.data.id)
 
         dispatch(setModalContent({
             type: 'success',
             content: 'Announcement posted!'
         }))
         await updateData()
+        
     }
 
     const createAnnouncement = async (event) => {
@@ -42,7 +43,7 @@ const AnnouncementModal = () => {
             content,
             lighthouseId: lighthouse.data.id
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/announcements`, JSON.stringify(data) , 'POST', false, successCallback, ['Creating the announcement!', 'Sending e-mails to the students!', 'We lost some of their e-mails!?', 'No, here they are!'])
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/announcements`, JSON.stringify(data) , 'POST', false, (event) => successCallback(event, content), ['Creating the announcement!', 'Sending e-mails to the students!', 'We lost some of their e-mails!?', 'No, here they are!'])
     }
 
     return (

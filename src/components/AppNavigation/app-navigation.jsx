@@ -21,13 +21,17 @@ import {
 import {AnimatePresence} from "framer-motion";
 import SidePanel from "../Modals/SidePanel/side-panel";
 import Notifications from "../Notifications/notifications";
+import {useEffect} from "react";
+import {setNotifications} from "../../utils/store/utils-store/utils-store-actions";
 const AppNavigation = () => {
     const modalType = useSelector(getModalContent).type
     const modalOpened = useSelector(getModalOpened)
     const error = useSelector(getError)
     const sidePanel = useSelector(getSidePanel)
-
+    // const dispatch = useDispatch()
     const user = useSelector(getUser)
+
+
 
     return (
         <>

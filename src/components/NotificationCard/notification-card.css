@@ -1,0 +1,13 @@
+.notification {
+  border: 2px solid #FEE1C7;
+  padding: 0.4rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+.notification p {
+  margin: 0;
+}
+
+/*# sourceMappingURL=notification-card.css.map */
