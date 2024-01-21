@@ -1,0 +1,12 @@
+.uploaded-file {
+  background: #FEE1C7;
+  color: #32292F;
+  padding: 0.5rem;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/*# sourceMappingURL=uploaded-file.css.map */

@@ -1,0 +1,15 @@
+.selected-files {
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 100%;
+  overflow: auto;
+  margin-top: 0.5rem;
+}
+
+.icon-file {
+  max-width: 80px;
+}
+
+/*# sourceMappingURL=selected-files.css.map */

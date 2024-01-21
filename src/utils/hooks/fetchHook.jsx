@@ -16,7 +16,7 @@ const useFetchHook = () => {
     const JWT = useSelector(getToken)
     const navigate = useNavigate()
     // const [response, setResponse] = useState(initial_state)
-    return useCallback(async (url, body, method, silentLoad = false, successCallback, loadingContent = []) => {
+    return useCallback(async (url, body, method, silentLoad = false, successCallback, loadingContent = [], sendFiles = false) => {
         if(!silentLoad) {
             dispatch(setLoading(true))
             dispatch(setLoadingContent(loadingContent))
@@ -28,37 +28,50 @@ const useFetchHook = () => {
         else
             authorization = undefined
 
+        let headers = {}
+
+        if(!sendFiles)
+            headers = {
+                'Content-Type': 'application/json',
+                'Authorization': authorization
+            }
+        else
+            headers= {
+                'Authorization': authorization
+            }
         try {
             const data = await fetch(url, {
                 method,
                 body,
                 credentials: 'include',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': authorization
-                }
+                headers
             })
 
-            const jsonData = await data.json()
-            if(!silentLoad)
+            let jsonData
+            if(sendFiles){
+                const blob = await data.blob()
+                jsonData = URL.createObjectURL(blob)
+            }
+            else
+                jsonData = await data.json()
+            if (!silentLoad)
                 dispatch(setLoading(false))
-            if(data.ok) {
-                if(successCallback)
+            if (data.ok) {
+                if (successCallback)
                     successCallback(jsonData)
                 return jsonData
-            }
-            else if(data.status === 401) {
+            } else if (data.status === 401) {
                 dispatch(setError(jsonData.data))
                 navigate('/auth')
                 return;
-            }
-            else{
+            } else {
                 console.log(jsonData)
                 dispatch(setError(jsonData.data))
                 dispatch(setModal(false))
                 dispatch(setSidePanel(false))
                 return;
             }
+
         }catch(err){
             dispatch(setError(err.toString()))
             dispatch(setModal(false))

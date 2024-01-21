@@ -1,6 +1,6 @@
 import './input.css'
 import {useState} from "react";
-const Input = ({required = false, defaultValue, placeholder, type='text', rows = 40, cols = 100, value = undefined}) => {
+const Input = ({onChangeCallback = undefined, required = false, defaultValue, placeholder, type='text', rows = 40, cols = 100, value = undefined}) => {
     const [actualValue, setActualValue] = useState(value)
 
     const changeActualValue = (newValue) => {
@@ -17,6 +17,12 @@ const Input = ({required = false, defaultValue, placeholder, type='text', rows =
     if(type === 'number')
         return (
             <input type='number' step={0.01} onChange={changeActualValue} value={actualValue} className='input' placeholder={placeholder}>
+
+            </input>
+        )
+    if(type === 'file')
+        return (
+            <input type='file' onChange={onChangeCallback} multiple={true} className='input'>
 
             </input>
         )
