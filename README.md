@@ -1,70 +1,49 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Base App Features
+– Run your submissions and see the result right in the app. Supported
+programming languages include:
+∗ Python 3
+∗ Javascript (via Node Js.)
+∗ Ruby
+– Get to see interesting statistics for different challenges.
+– Create lighthouses (classrooms) and invite your students via access code.
+– Archive Lighthouses to make them Read Only.
+– Add files to your announcements.
+– Create a community and make it public so anybody can join.
+7
+– See all your submissions and the community submissions in the same place
+for any challenge of your choice.
+– Assign challenges in your lighthouse and select which students will receive
+them.
+– Full mobile responsiveness.
+– Reporting system for challenges that violate the Code of Conduct.
+– Admin users support for reviewing the challenges and solving reports from
+other users.
+– E-mail notifications for important updates that may happen.
+# Extra Features
+– PWA compatible.
+– Real time notifications.
+– Full admin support:
+∗ Control over the code of the challenges.
+∗ Control over meta data of challenges (difficulty).
+∗ Dashboard for solving reports and reviewing pending challenges.
+– Check your execution time.
+– Run your custom hard-coded tests to check for limit cases or run the ones
+provided by the author.
+– Modern looking landing page.
+– Slick transitions between pages (a curtain effect that draws over the page
+while it is loading). It also features an integration with the loading system
+and animation: when there is a need for a longer load, the curtain will not
+be drawn up before the page has finished loading.
+– Animations for modals on enter, exit and on step forwards / backwards.
+– Tooltip modals to explain different buttons.
+– Funny messages displayed for long loading times.
+– Documentation to help people understand the inner workings of the app
+and what they have to do.
+# Technical features
+– User input validation in two places: on the server and on the client app.
+– Atomic DB operations.
+– Files are protected. Only users that are in a Lighthouse where certain
+files were posted have access to them.
+– Notifications are distributed in a real-time fashion thanks to the Web
+Sockets protocol, but they will await your log-in if you were offline when
+they were initially distributed
