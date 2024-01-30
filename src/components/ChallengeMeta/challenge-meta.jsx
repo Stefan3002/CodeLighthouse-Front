@@ -13,6 +13,7 @@ import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import Button from "../Button/button";
 import {setUser} from "../../utils/store/user-store/user-store-actions";
 import WithInfo from "../WithInfo/with-info";
+import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 
 const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
     const [likeIMG, setLikeIMG] = useState(undefined)
@@ -20,6 +21,13 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
     const user = useSelector(getUser)
     const dispatch = useDispatch()
 
+    const openBot = () => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'bot',
+            content: undefined
+        }))
+    }
 
     useEffect(() => {
         setLikeIMG(EmptyLikeSVG)
@@ -64,6 +72,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
                 {/*<LanguageSelector down={false} modifiable={true} />*/}
                 <Difficulty difficulty={data.difficulty} />
                 <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><WithInfo data='Help'><img className='icon-svg' src={QuestionSVG} alt=""/></WithInfo></Link>
+                <p onClick={openBot}>Chat Bot</p>
             </div>
         )
     else

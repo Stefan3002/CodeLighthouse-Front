@@ -23,6 +23,7 @@ import LighthousePreviewModal from "../Modals/LighthousePreviewModal/lighthouse-
 import AdminConfirmModal from "../Modals/AdminConfirmModal/admin-confirm-modal";
 import DifficultyAdminModal from "../Modals/DifficultyAdminModal/difficulty-admin-modal";
 import ExpandedNotificationsModal from "../Modals/ExpandedNotificationsModal/expanded-notifications-modal";
+import ChatBotModal from "../Modals/ChatBotModal/chat-bot-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -42,6 +43,8 @@ const Modal = ({error, type='error'}) => {
             return <AssignChallengeModal/>
         case 'code':
             return <ExpandedCodeModal/>
+        case 'bot':
+            return <ChatBotModal/>
         case 'notifications':
             return <ExpandedNotificationsModal/>
         case 'createChallenge':
