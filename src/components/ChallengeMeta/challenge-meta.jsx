@@ -20,6 +20,11 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
     const dispatch = useDispatch()
+    // console.log('aaaaaaaa', new Date(data.user_logs[0].time_in), new Date(data.user_logs[0].time_out))
+    const timeSpent = data.user_logs.reduce((acc, user_log) => {
+        return acc + (new Date(user_log.time_out) - new Date(user_log.time_in))
+    }, 0)
+    // console.log('aaaaaaaa', new Date(timeSpent * 1000))
 
     const openBot = () => {
         dispatch(setModal(true))
@@ -73,6 +78,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
                 <Difficulty difficulty={data.difficulty} />
                 <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><WithInfo data='Help'><img className='icon-svg' src={QuestionSVG} alt=""/></WithInfo></Link>
                 <p onClick={openBot}>Chat Bot</p>
+                <p>You spent: {timeSpent > 0 ? Math.round(timeSpent / 60000) : 0} minutes</p>
             </div>
         )
     else

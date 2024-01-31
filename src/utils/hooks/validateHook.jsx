@@ -46,6 +46,14 @@ const useValidate = () => {
                         return false
                     }
                     break
+                case 'beIn':
+                    exitCode = validateBeIn(input, optionValue)
+                    if(!exitCode){
+                        dispatch(setError(`An input is not of the types allowed: ${fieldName}`))
+                        dispatch(setModal(false))
+                        return false
+                    }
+                    break
             }
 
         }
@@ -64,6 +72,12 @@ const validateNull = (input) => {
 
 const validateMin = (input, minLength) => {
     return input.trim().length >= minLength
+}
+const validateBeIn = (input, accepted) => {
+    for(const type of accepted)
+        if(input === type)
+            return true
+    return false
 }
 const validateChecked = (input, checked) => {
     return input === checked

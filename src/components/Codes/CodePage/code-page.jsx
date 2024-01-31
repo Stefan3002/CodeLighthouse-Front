@@ -25,6 +25,24 @@ const CodePage = () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${slug}`, undefined, 'GET', true)
             setData(res)
         })()
+
+        const dataReq = {
+            time: new Date().getTime(),
+            type: 'challenge-in',
+            challenge: slug
+        }
+        const res = sendRequest(`${process.env.REACT_APP_SERVER_URL}/logs`, JSON.stringify(dataReq), 'POST', true, undefined)
+
+        return () => {
+            const dataReq = {
+                time: new Date().getTime(),
+                type: 'challenge-out',
+                challenge: slug
+            }
+            const res = sendRequest(`${process.env.REACT_APP_SERVER_URL}/logs`, JSON.stringify(dataReq), 'POST', true, undefined)
+
+        }
+
     }, []);
 
     if(data)

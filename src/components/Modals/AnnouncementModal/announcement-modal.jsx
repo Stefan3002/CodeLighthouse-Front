@@ -43,19 +43,16 @@ const AnnouncementModal = () => {
 
         const files = event.target[1].files
 
+        valid = validateInput('File', files[0].type, {beIn: createAnnouncementValidations.file.beIn})
+        if(!valid)
+            return
+
         const dataFiles = new FormData()
 
         dataFiles.append('files', files[0])
-
-
         dataFiles.append('content', content)
         dataFiles.append('lighthouseId', lighthouse.data.id)
 
-        // const data = {
-        //     content,
-        //     lighthouseId: lighthouse.data.id,
-        //     files
-        // }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/announcements`, dataFiles , 'POST', false, (event) => successCallback(event, content), ['Creating the announcement!', 'Sending e-mails to the students!', 'We lost some of their e-mails!?', 'No, here they are!'], true)
     }
 

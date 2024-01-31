@@ -23,6 +23,7 @@ import SidePanel from "../Modals/SidePanel/side-panel";
 import Notifications from "../Notifications/notifications";
 import {useEffect} from "react";
 import {setNotifications} from "../../utils/store/utils-store/utils-store-actions";
+import useFetchHook from "../../utils/hooks/fetchHook";
 const AppNavigation = () => {
     const modalType = useSelector(getModalContent).type
     const modalOpened = useSelector(getModalOpened)
@@ -30,8 +31,22 @@ const AppNavigation = () => {
     const sidePanel = useSelector(getSidePanel)
     // const dispatch = useDispatch()
     const user = useSelector(getUser)
+    const sendRequest = useFetchHook()
 
-
+    useEffect(() => {
+        const data = {
+            time: new Date().getTime(),
+            type: 'log-in'
+        }
+        const res = sendRequest(`${process.env.REACT_APP_SERVER_URL}/logs`, JSON.stringify(data), 'POST', true, undefined)
+        window.addEventListener('beforeunload', () => {
+            const data = {
+                time: new Date().getTime(),
+                type: 'log-out'
+            }
+            const res = sendRequest(`${process.env.REACT_APP_SERVER_URL}/logs`, JSON.stringify(data), 'POST', true, undefined)
+        })
+    }, []);
 
     return (
         <>

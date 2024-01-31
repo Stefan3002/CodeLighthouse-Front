@@ -16,7 +16,7 @@ const useFetchHook = () => {
     const JWT = useSelector(getToken)
     const navigate = useNavigate()
     // const [response, setResponse] = useState(initial_state)
-    return useCallback(async (url, body, method, silentLoad = false, successCallback, loadingContent = [], sendFiles = false) => {
+    return useCallback(async (url, body, method, silentLoad = false, successCallback, loadingContent = [], sendFiles = false, receiveFiles = false) => {
         if(!silentLoad) {
             dispatch(setLoading(true))
             dispatch(setLoadingContent(loadingContent))
@@ -30,15 +30,21 @@ const useFetchHook = () => {
 
         let headers = {}
 
-        if(!sendFiles)
+        if(!sendFiles && !receiveFiles)
             headers = {
                 'Content-Type': 'application/json',
                 'Authorization': authorization
             }
         else
-            headers= {
-                'Authorization': authorization
-            }
+            if(!receiveFiles)
+                headers= {
+                    'Authorization': authorization
+                }
+            else
+                headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': authorization
+                }
         try {
             const data = await fetch(url, {
                 method,
@@ -48,7 +54,7 @@ const useFetchHook = () => {
             })
 
             let jsonData
-            if(sendFiles){
+            if(receiveFiles){
                 const blob = await data.blob()
                 jsonData = URL.createObjectURL(blob)
             }

@@ -3,5 +3,8 @@
   {
     "inputMin": 10,
     "inputNull": false
+  },
+  "file":{
+    "beIn": ["application/pdf", "image/png", "image.jpg", "image.jpeg"]
   }
 }
