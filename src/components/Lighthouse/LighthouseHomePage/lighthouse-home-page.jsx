@@ -17,7 +17,8 @@ const LighthouseHomePage = () => {
         dispatch(setModal(true))
         dispatch(setModalContent({
             type: 'announcement',
-            data: data
+            data: data,
+            updateLighthouseDataHook: setData
         }))
     }
 
@@ -28,14 +29,13 @@ const LighthouseHomePage = () => {
         })()
     }, []);
 
-
     if (data) {
         return (
             <>
                 <div className='wrapper lighthouse-home-page'>
                     <div className="announcements">
                         {data.announcements.map(announcement=> {
-                            return <Announcement data={announcement} />
+                            return <Announcement setPageUpdateDataHook={setData} data={announcement} />
                         })}
                     </div>
                 </div>

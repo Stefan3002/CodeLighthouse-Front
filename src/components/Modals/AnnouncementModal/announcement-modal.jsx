@@ -5,7 +5,7 @@ import Button from "../../Button/button";
 import {useDispatch, useSelector} from "react-redux";
 import {getModalContent, getSocketConnection} from "../../../utils/store/utils-store/utils-store-selectors";
 import useFetchHook from "../../../utils/hooks/fetchHook";
-import {setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
+import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
 import Transition from "../../../utils/js/transitions";
 import createAnnouncementValidations from "../../../utils/validation/createAnnouncementValidations.json";
@@ -13,22 +13,25 @@ import useValidate from "../../../utils/hooks/validateHook";
 import {notifyAnnouncement} from "../../../utils/notifications/lighthouseNotifications";
 import {useState} from "react";
 import SelectedFiles from "../../SelectedFiles/selected-files";
+import {useParams} from "react-router-dom";
 const AnnouncementModal = () => {
     const lighthouse = useSelector(getModalContent)
     const validateInput = useValidate()
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
-    const updateData = useUpdateData()
+    const lighthouseId = useParams().id
+    const updateData = useUpdateData(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseId}`)
     const socketConnection = useSelector(getSocketConnection)
     const [selectedFiles, setSelectedFiles] = useState([])
     const successCallback = async (event, content) => {
         notifyAnnouncement(socketConnection, `<h2>New announcement</h2>${content.trim(0, 40)} <br /> in ${lighthouse.data.name}`, `/app/lighthouses/${lighthouse.data.id}`, lighthouse.data.id)
 
+        dispatch(setModal(true))
         dispatch(setModalContent({
             type: 'success',
             content: 'Announcement posted!'
         }))
-        await updateData()
+        lighthouse.updateLighthouseDataHook(await updateData())
 
     }
 
@@ -42,10 +45,11 @@ const AnnouncementModal = () => {
             return
 
         const files = event.target[1].files
-
-        valid = validateInput('File', files[0].type, {beIn: createAnnouncementValidations.file.beIn})
-        if(!valid)
-            return
+        if(files.length) {
+            valid = validateInput('File', files[0].type, {beIn: createAnnouncementValidations.file.beIn})
+            if (!valid)
+                return
+        }
 
         const dataFiles = new FormData()
 

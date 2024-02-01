@@ -11,11 +11,13 @@ import useUpdateData from "../../../utils/hooks/updateDataHook";
 import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import UploadedFile from "../../UploadedFile/uploaded-file";
 import SelectedFiles from "../../SelectedFiles/selected-files";
-const Announcement = ({data}) => {
+import {useParams} from "react-router-dom";
+const Announcement = ({data, setPageUpdateDataHook}) => {
 
     const user = useSelector(getUser)
     const sendRequest = useFetchHook()
-    const updateData = useUpdateData()
+    const lighthouseId = useParams().id
+    const updateData = useUpdateData(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseId}`)
     const dispatch = useDispatch()
     const successCallback = async () => {
         dispatch(setModal(true))
@@ -23,20 +25,21 @@ const Announcement = ({data}) => {
             type: 'success',
             data: 'Announcement deleted!'
         }))
-        await updateData(true)
+        setPageUpdateDataHook(await updateData(true))
     }
 
     const deleteAnnouncement = async () => {
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/announcements-delete/${data.id}`, undefined , 'DELETE', false, successCallback, ['Deleting announcement!', 'Sending notifications!'])
     }
+    console.log('pppp', data)
     return (
         <div className='announcement'>
             <div className="announcement-content">
                 <p className='danger-html' dangerouslySetInnerHTML={{__html: data.content}}></p>
-                <SelectedFiles data={[{
+                {data.file && <SelectedFiles data={[{
                     name: data.file,
                     url: data.file
-                }]}/>
+                }]}/>}
             </div>
             <div className="announcement-meta">
                 <AuthorName color='dark' author={data.author} />
