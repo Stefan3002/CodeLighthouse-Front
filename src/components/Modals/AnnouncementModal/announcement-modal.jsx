@@ -31,7 +31,7 @@ const AnnouncementModal = () => {
             type: 'success',
             content: 'Announcement posted!'
         }))
-        lighthouse.updateLighthouseDataHook(await updateData())
+        lighthouse.updateLighthouseDataHook(await updateData(true))
 
     }
 

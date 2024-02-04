@@ -4,7 +4,9 @@ const Input = ({onChangeCallback = undefined, required = false, defaultValue, pl
     const [actualValue, setActualValue] = useState(value)
 
     const changeActualValue = (newValue) => {
-        setActualValue(newValue.value)
+        setActualValue(newValue.target.value)
+        if(onChangeCallback)
+            onChangeCallback(newValue.target.value)
     }
 
     if(type === 'textarea')
@@ -39,6 +41,13 @@ const Input = ({onChangeCallback = undefined, required = false, defaultValue, pl
                 <label htmlFor='checkbox-item'>{placeholder}</label>
             </div>
 
+        )
+    else
+        if(type === 'search')
+        return (
+            <input required={required} onChange={onChangeCallback} className='input' value={actualValue} type={type} placeholder={placeholder}>
+
+            </input>
         )
     else
         return (

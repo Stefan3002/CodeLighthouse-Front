@@ -1,6 +1,6 @@
 import './challenges-page.css'
 import Transition from "../../utils/js/transitions";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import Parallax from "../Parallax/parallax";
 import parallaxData from './parallax-data.json'
@@ -18,10 +18,21 @@ const ChallengesPage = () => {
     const [data, setData] = useState(undefined)
     const dispatch = useDispatch()
 
+    const savedData = useRef({
+        savedTrueFunction: undefined,
+        savedDescription: undefined,
+        savedRandomFunction: undefined,
+        savedHardFunction: undefined,
+        savedName: undefined,
+        savedLanguage: undefined,
+        savedTimeLimit: undefined,
+        savedPrivate: undefined
+    })
+
     useEffect(() => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/0/10`, undefined, 'GET', false, undefined, ['Fetching the challenges', 'Wait, our office cat stole some of them', 'Getting them back!'])
-            setData(res)
+            setData(res.challenges)
         })()
     }, []);
 
@@ -30,7 +41,9 @@ const ChallengesPage = () => {
         dispatch(setModal(true))
         dispatch(setModalContent({
             type: 'createChallenge',
-            data: undefined
+            data: {
+                savedData
+            }
         }))
     }
 

@@ -27,19 +27,21 @@ const AppHome = () => {
 
     const getChallenge = async () => {
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${indeces.min_index}/${indeces.max_index}`, undefined, 'GET', false)
-        setRandChallenge(res)
+        setRandChallenge(res.challenges)
     }
     const nextChallenge = async () => {
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${indeces.min_index}/${indeces.max_index}`, undefined, 'GET', false)
+        let res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${indeces.min_index}/${indeces.max_index}`, undefined, 'GET', true)
+        if(indeces.max_index > res.length)
+            return false
         const newChallenges = [...randChallenge]
-        newChallenges.push(res[res.length - 1])
+        newChallenges.push(res.challenges[res.challenges.length - 1])
         setRandChallenge(newChallenges)
+        return true
     }
 
     useEffect(() => {
         (async () => {
             await getChallenge()
-            console.log(indeces, randChallenge)
         })()
     }, []);
 
@@ -63,10 +65,16 @@ const AppHome = () => {
     const nextChallengeAnimation = async (previous = false) => {
         if(previous && indeces.min_index === 0)
             return
+        if(!previous){
+            const stop = !await nextChallenge()
+            if(stop)
+                return
+        }
         // This is only to be able to compute 100% + 1rem in JS
         // This is one rem
         let fontSizePx = window.getComputedStyle(document.body).fontSize
         fontSizePx = parseFloat(fontSizePx) * 0
+
         const elementWidth = document.querySelector('.challenge-card').offsetWidth
         const transitionAmount = fontSizePx + elementWidth
         const challenges = document.querySelectorAll('.challenge-card')
@@ -94,7 +102,6 @@ const AppHome = () => {
                     max_index: indeces.max_index + 1,
                     direction: 'right'
                 })
-                await nextChallenge()
             }
             else
                 setIndeces({
@@ -109,36 +116,44 @@ const AppHome = () => {
         }, 350)
 
     }
-    console.log(randChallenge, user)
-    if(randChallenge && randChallenge.length && user)
+
+    if(user)
     return (
         <Transition mode='fullscreen'>
         <Parallax parallaxData={parallaxData} img={ParallaxIMG} />
-        <div className='app-home wrapper'>
-            <Heading text='Latest Challenges' />
-            <div className="challenges-cards">
-                {randChallenge.map((challenge, idx) => {
-                    if(idx >= indeces.min_index && idx < indeces.max_index - 1)
-                        return <ChallengeCard authoColor='dark' challenge={challenge} idx={idx} />
-                })}
-            </div>
-            <div className="challenge-navigation">
-                <img className='prev-icon' onClick={() => nextChallengeAnimation(true)} src={NextSVG} alt=""/>
-                <Link to={`/app/challenges/${randChallenge[indeces.min_index + 1].slug}`}><img src={PlaySVG} alt=""/></Link>
-                <img onClick={() => nextChallengeAnimation(false)} src={NextSVG} alt=""/>
-            </div>
-            <Heading text='Recently joined Lighthouses' />
-            <div className='recent-lighthouses'>
-                {user.enrolled_lighthouses.length ? user.enrolled_lighthouses.map((lighthouse, idx) => {
-                    if(idx <= 4)
-                        return <LighthouseCard data={lighthouse} />
-                }) : <Missing text='You did not join any lighthouse yet!' />}
-            </div>
-            {/*<form onSubmit={runUserCode} >*/}
-            {/*    <input type="textarea"/>*/}
-            {/*    <button type='submit'>Send</button>*/}
-            {/*</form>*/}
-        </div>
+            {randChallenge && randChallenge.length &&
+                <div className='app-home wrapper'>
+                    <Heading text='Latest Challenges'/>
+                    <div className="challenges-cards">
+                        {randChallenge.map((challenge, idx) => {
+                            if (idx >= indeces.min_index && idx < indeces.max_index - 1)
+                                return <ChallengeCard authoColor='dark' challenge={challenge} idx={idx}/>
+                        })}
+                    </div>
+                    <div className="challenge-navigation">
+                        {/*{randChallenge[indeces.min_index - 1] &&*/}
+                            <img className='prev-icon' onClick={() => nextChallengeAnimation(true)} src={NextSVG}
+                                 alt=""/>
+                        {/*}*/}
+                        <Link to={`/app/challenges/${randChallenge[indeces.min_index + 1]?.slug}`}><img src={PlaySVG}
+                                                                                                        alt=""/></Link>
+                        {/*{randChallenge[indeces.max_index - 1] &&*/}
+                            <img onClick={() => nextChallengeAnimation(false)} src={NextSVG} alt=""/>
+                        {/*}*/}
+                    </div>
+                    <Heading text='Recently joined Lighthouses'/>
+                    <div className='recent-lighthouses'>
+                        {user.enrolled_lighthouses.length ? user.enrolled_lighthouses.map((lighthouse, idx) => {
+                            if (idx <= 4)
+                                return <LighthouseCard data={lighthouse}/>
+                        }) : <Missing text='You did not join any lighthouse yet!'/>}
+                    </div>
+                    {/*<form onSubmit={runUserCode} >*/}
+                    {/*    <input type="textarea"/>*/}
+                    {/*    <button type='submit'>Send</button>*/}
+                    {/*</form>*/}
+                </div>
+            }
         </Transition>
     )
 }

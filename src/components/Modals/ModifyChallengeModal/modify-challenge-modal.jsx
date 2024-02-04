@@ -70,10 +70,13 @@ const ModifyChallengeModal = () => {
         if(!valid)
             return
 
-        const data = {
-            title, timeLimit, description, hardFunction: hardFunctionCode, trueFunction: trueFunctionCode || 'No code!', randomFunction: randomFunctionCode || 'No code!', language: selectedLang
+        const privateChallenge = event.target[6].checked
+
+        const dataReq = {
+            title, timeLimit, description, hardFunction: hardFunctionCode, trueFunction: trueFunctionCode || 'No code!', randomFunction: randomFunctionCode || 'No code!', language: selectedLang,
+            private: privateChallenge
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${modalContent.data.slug}`,JSON.stringify(data) , 'PUT', false, () => updateChallengeSuccess(title))
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${modalContent.data.slug}`,JSON.stringify(dataReq) , 'PUT', false, () => updateChallengeSuccess(title))
 
     }
 
@@ -148,6 +151,9 @@ const ModifyChallengeModal = () => {
                         }
                     </div>
                 </div>
+                <Input type="checkbox" defaultValue='checked'
+                       placeholder='Private'/>
+
 
                 <Button color='light' marginated={true} buttonType='submit' text='Update' type='normal'/>
 

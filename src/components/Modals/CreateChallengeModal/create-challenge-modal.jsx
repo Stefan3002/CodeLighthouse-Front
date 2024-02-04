@@ -4,10 +4,10 @@ import Input from "../../Input/input";
 import Button from "../../Button/button";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {useDispatch, useSelector} from "react-redux";
-import {getLanguage} from "../../../utils/store/utils-store/utils-store-selectors";
+import {getLanguage, getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 import EditorCard from "../../EditorCard/editor-card";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import DifficultyPicker from "../../DifficultyPicker/difficulty-picker";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
 import {setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
@@ -22,10 +22,12 @@ const CreateChallengeModal = () => {
     const updateData = useUpdateData()
     const dispatch = useDispatch()
 
-    const [trueFunctionCode, setTrueFunctionCode] = useState('')
-    const [description, setDescription] = useState('')
-    const [randomFunctionCode, setRandomFunctionCode] = useState('')
-    const [hardFunctionCode, setHardFunctionCode] = useState('')
+    const savedData = useSelector(getModalContent).data.savedData
+
+    const [trueFunctionCode, setTrueFunctionCode] = useState(savedData.current.savedTrueFunction ? savedData.current.savedTrueFunction : '')
+    const [description, setDescription] = useState(savedData.current.savedDescription ? savedData.current.savedDescription : '')
+    const [randomFunctionCode, setRandomFunctionCode] = useState(savedData.current.savedRandomFunction ? savedData.current.savedRandomFunction : '')
+    const [hardFunctionCode, setHardFunctionCode] = useState(savedData.current.savedHardFunction ? savedData.current.savedHardFunction : '')
 
     const successCallback = async (privateChallenge) => {
         if(privateChallenge)
@@ -82,6 +84,29 @@ const CreateChallengeModal = () => {
 
     }
 
+    const updateDescription = description => {
+        setDescription(description)
+        savedData.current.savedDescription = description
+    }
+    const updateTrueFunction = code => {
+        setTrueFunctionCode(code)
+        savedData.current.savedTrueFunction = code
+    }
+    const updateRandomFunction = code => {
+        setRandomFunctionCode(code)
+        savedData.current.savedRandomFunction = code
+    }
+    const updateHardFunction = code => {
+        setHardFunctionCode(code)
+        savedData.current.savedHardFunction = code
+    }
+    const updateName = name => {
+        savedData.current.savedName = name
+    }
+    const updateTimeLimit = time => {
+        savedData.current.savedTimeLimit = time
+    }
+
 
     return (
         // <Transition mode='fullscreen'>
@@ -92,21 +117,21 @@ const CreateChallengeModal = () => {
             </div>
             <form onSubmit={createNewChallenge} className="error-content create-challenge-content">
                 <p>Give your challenge a <b>name.</b></p>
-                <Input type='text' placeholder='Name'/>
+                <Input value={savedData.current.savedName && savedData.current.savedName} onChangeCallback={updateName} type='text' placeholder='Name'/>
                 <DifficultyPicker type='languages'/>
                 <div className="create-challenge-content-top">
                     <div className="create-challenge-content-group">
                         <p>And the <b>statement.</b> Write plain <b>html</b> for this part.</p>
-                        <EditorCard value='E.g: <p>This is my challenge</p>'
-                                    onChangeHandler={description => setDescription(description)} showAuthor={false}
+                        <EditorCard value={savedData.current.savedDescription ? savedData.current.savedDescription : `E.g: <p>This is my challenge</p>`}
+                                    onChangeHandler={updateDescription} showAuthor={false}
                                     color='light' type='challenge-code'/>
                     </div>
                     <div className="create-challenge-content-group">
                         <p>Write the <b>true function</b> of the challenge. </p>
-                        <EditorCard value='E.g: def true_function(inputs):
+                        <EditorCard value={savedData.current.savedTrueFunction ? savedData.current.savedTrueFunction : `E.g: def true_function(inputs):
     a = inputs[0]
     b = inputs[1]
-    return a * b' onChangeHandler={code => setTrueFunctionCode(code)} showAuthor={false} color='light'
+    return a * b`} onChangeHandler={updateTrueFunction} showAuthor={false} color='light'
                                     type='challenge-code'/>
 
                     </div>
@@ -114,12 +139,12 @@ const CreateChallengeModal = () => {
                 </div>
                 <div className="create-challenge-content-group">
                     <p>Write the <b>hard function</b> of the challenge. </p>
-                    <EditorCard value='E.g: def hard_function():
+                    <EditorCard value={savedData.current.savedHardFunction ? savedData.current.savedHardFunction : `E.g: def hard_function():
     tests = []
     for i in range(60):
         hard_num = i
         tests.append((hard_num,))
-    return tests' onChangeHandler={code => setHardFunctionCode(code)} showAuthor={false} color='light'
+    return tests`} onChangeHandler={updateHardFunction} showAuthor={false} color='light'
                                 type='challenge-code'/>
 
                 </div>
@@ -128,20 +153,20 @@ const CreateChallengeModal = () => {
                     <p>Add a <b>time limit</b> for the challenge? </p>
                     <WithInfo clickHandler={() => null}
                               data='The soft time limit for the whole suite of test cases (hard + random)'><Input
-                        type='number' placeholder='Time limit (s)' value={5}/></WithInfo>
+                        onChangeCallback={updateTimeLimit} type='number' placeholder='Time limit (s)' value={savedData.current.savedTimeLimit ? savedData.current.savedTimeLimit : 5}/></WithInfo>
                 </div>
 
                 <div className="create-challenge-content-bottom">
                     <div className="create-challenge-content-group">
                         <p>Finally, write the <b>random function</b> that will generate the random inputs.</p>
-                        <EditorCard value='E.g: import random
+                        <EditorCard value={savedData.current.savedRandomFunction ? savedData.current.savedRandomFunction : `E.g: import random
 
 def random_function():
     tests = []
     for i in range(60):
         random_num = random.randint(0, 100)
         tests.append((random_num,))
-    return tests' onChangeHandler={code => setRandomFunctionCode(code)} showAuthor={false} color='light'
+    return tests`} onChangeHandler={updateRandomFunction} showAuthor={false} color='light'
                                     type='challenge-code'/>
 
                     </div>

@@ -23,9 +23,9 @@ const ChallengePage = () => {
     const dispatch = useDispatch()
     const updateData = useUpdateData()
 
-    useEffect(() => {
-        updateData(false)
-    }, [])
+    // useEffect(() => {
+    //     updateData(false)
+    // }, [])
 
     useEffect(() => {
         (async () => {
@@ -49,7 +49,10 @@ const ChallengePage = () => {
         dispatch(setModal(true))
         dispatch(setModalContent({
             type: 'admin',
-            content: data
+            content: {
+                data,
+                setDataHook: setData
+            }
         }))
     }
 

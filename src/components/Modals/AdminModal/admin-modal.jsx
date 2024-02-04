@@ -9,14 +9,15 @@ import {getModalContent} from "../../../utils/store/utils-store/utils-store-sele
 import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import Input from "../../Input/input";
 import WithInfo from "../../WithInfo/with-info";
+import useUpdateData from "../../../utils/hooks/updateDataHook";
 
 const AdminModal = () => {
     const sendRequest = useFetchHook()
     const data = useSelector(getModalContent).content
-    const {slug} = data
+    const {slug} = data.data
     const dispatch = useDispatch()
 
-    const successCallback = () => {
+    const successCallback = async () => {
         dispatch(setModalContent({
             type: 'success',
             content: 'Action registered, admin!'
@@ -25,7 +26,7 @@ const AdminModal = () => {
     const openAdminConfirmation = () => {
         dispatch(setModalContent({
             type: 'admin-confirm',
-            content: data
+            content: data.data
         }))
     }
 
@@ -37,10 +38,10 @@ const AdminModal = () => {
     }
 
     const verdictChallenge = async (verdict) => {
-        const data = {
+        const dataReq = {
             verdict
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges-admin/${slug}`, JSON.stringify(data), 'POST', false, successCallback)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges-admin/${slug}`, JSON.stringify(dataReq), 'POST', false, successCallback)
     }
 
     return (

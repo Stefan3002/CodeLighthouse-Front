@@ -13,6 +13,7 @@ import Button from "../../Button/button";
 import changeSVG from '../../../utils/imgs/SVGs/ModifySVG.svg'
 import WithInfo from "../../WithInfo/with-info";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
+import Input from "../../Input/input";
 const LighthouseDetailsPage = () => {
     const user = useSelector(getUser)
     const lighthouseID = useParams()['id']
@@ -20,11 +21,14 @@ const LighthouseDetailsPage = () => {
     const [data, setData] = useState(undefined)
     const dispatch = useDispatch()
     const updateData = useUpdateData(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseID}`)
+    const [people, setPeople] = useState([])
+
 
     useEffect(() => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${lighthouseID}`, undefined, 'GET', true)
             setData(res)
+            setPeople(res.people)
         })()
     }, []);
 
@@ -66,6 +70,13 @@ const LighthouseDetailsPage = () => {
     const changeEnrollmentCode = async () => {
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses-enroll-change/${lighthouseID}`, undefined, 'GET', false, changeEnrollmentSuccess)
     }
+    const searchStudent = (event) => {
+        const target = event.target.value
+
+        setPeople((oldPeople) => {
+            return data.people.filter((person) => person.username.toLowerCase().includes(target.toLowerCase()))
+        })
+    }
 
     if(user && data)
     return (
@@ -93,7 +104,8 @@ const LighthouseDetailsPage = () => {
                 <div className='enrollment-details-people'>
                     <h2>Other people in this lighthouse ({data.people.length}):</h2>
                     <div className="enrollment-details-people-inner">
-                        {data.people.length > 1 ? data.people.map(person => {
+                        <Input type='search' placeholder='Search student' onChangeCallback={searchStudent} />
+                        {people.length > 0 ? people.map(person => {
                             return <AuthorName color='dark' author={person} />
                         }) : <Missing text='You are the only one here!' />}
                     </div>
