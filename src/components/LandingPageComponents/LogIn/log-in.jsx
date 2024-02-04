@@ -9,6 +9,7 @@ import SpeedSVG from '../../../utils/imgs/features/SpeedSVG.svg'
 import PowerfulSVG from '../../../utils/imgs/features/PowerfulSVG.svg'
 import LogInFeatures from '../../../utils/text/log-in-features.json'
 import GoogleSVG from '../../../utils/imgs/log-in/GoogleSVG.svg'
+import PadlockSVG from '../../../utils/imgs/log-in/PadlockSVG.svg'
 import GithubSVG from '../../../utils/imgs/log-in/GithubSVG.svg'
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
@@ -178,19 +179,27 @@ const LogIn = () => {
                                 <p className='log-in-feature-description' dangerouslySetInnerHTML={{__html: feature.description}}></p>
                             </div>
                         })}
-
-                    </div>
-                    <div>
-                        {/*<form onSubmit={logUserInEmail} className='inputs-form'>*/}
-                        {/*    <Input placeholder='E-mail' />*/}
-                        {/*    <Input type='password' placeholder='Password' />*/}
-                        {/*    <Button text='Log In' />*/}
-                        {/*</form>*/}
-                        <div className="providers">
-                            <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG} alt=""/>
-                            <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG} alt=""/>
+                        <div className="log-in-feature" key={`Feature-log-in-options`} style={{animationDelay: `${exponentialDelay(3)}ms`}}>
+                            <img className='log-in-feature-icon' src={PadlockSVG} alt=""/>
+                            <h2 className='log-in-feature-title'>Log in</h2>
+                            <div className="providers">
+                                <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG} alt="Via Google"/>
+                                <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG} alt="Via GitHub"/>
+                            </div>
                         </div>
                     </div>
+                    {/*<div className='log-in-options'>*/}
+                    {/*    /!*<form onSubmit={logUserInEmail} className='inputs-form'>*!/*/}
+                    {/*    /!*    <Input placeholder='E-mail' />*!/*/}
+                    {/*    /!*    <Input type='password' placeholder='Password' />*!/*/}
+                    {/*    /!*    <Button text='Log In' />*!/*/}
+                    {/*    /!*</form>*!/*/}
+                    {/*    /!*<h2>Log in</h2>*!/*/}
+                    {/*    /!*<div className="providers">*!/*/}
+                    {/*    /!*    <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG} alt=""/>*!/*/}
+                    {/*    /!*    <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG} alt=""/>*!/*/}
+                    {/*    /!*</div>*!/*/}
+                    {/*</div>*/}
 
                 </div>
             </div>

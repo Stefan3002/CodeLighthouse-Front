@@ -13,6 +13,9 @@ import appFeatures from '../../../utils/text/app-features.json'
 import TickSVG from "../../../utils/imgs/features/TickSVG.svg";
 import SpeedSVG from "../../../utils/imgs/features/SpeedSVG.svg";
 import PowerfulSVG from "../../../utils/imgs/features/PowerfulSVG.svg";
+import TeacherIMG from "../../../utils/imgs/features/TeacherIMG.jpg";
+import StudentIMG from "../../../utils/imgs/features/StudentIMG.jpg";
+import CompanyIMG from "../../../utils/imgs/features/CompanyIMG.jpg";
 import {exponentialDelay} from "../../../utils/js/exponentialDelay";
 const LandingPageFeatures = () => {
 
@@ -36,6 +39,17 @@ const LandingPageFeatures = () => {
                 return CompanySVG
         }
     }
+    const getBackground = (card) => {
+        console.log('oooo', card)
+        switch (card){
+            case 'For Teachers':
+                return TeacherIMG
+            case 'For Individuals':
+                return StudentIMG
+            case 'For Companies':
+                return CompanyIMG
+        }
+    }
 
 
     return (
@@ -45,7 +59,7 @@ const LandingPageFeatures = () => {
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
                 <div className="features">
                     {appFeatures.features.map((feature, idx) => {
-                        return <div key={`Feature-${feature.title}`} style={{animationDelay: `${exponentialDelay(idx)}ms`}} className="feature">
+                        return <div key={`Feature-${feature.title}`} style={{animationDelay: `${exponentialDelay(idx)}ms`, background: `linear-gradient(to bottom, rgba(50,41,47,0), rgba(50,41,47,.9)), url(${getBackground(feature.title)})`}} className="feature">
                             <img src={getFeatureIcon(feature.title)} alt='Picture of a teacher.' className="feature-icon"/>
                             <h2 className='feature-name'>{feature.title}</h2>
                             <p className='feature-description' dangerouslySetInnerHTML={{__html: feature.description}}></p>

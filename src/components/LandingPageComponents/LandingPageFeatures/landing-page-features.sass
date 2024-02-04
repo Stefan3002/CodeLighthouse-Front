@@ -6,27 +6,37 @@
 
 .features
   display: flex
-  gap: 1rem
+  gap: .5rem
   justify-content: center
   align-items: stretch
 .feature-name
   text-align: center
+  margin: 0
 
 .feature-description
   text-align: justify
+  margin: .5rem 0 0 0
 
 .feature
+  //min-height: 350px
+  display: flex
+  flex-direction: column
+  justify-content: end
+  align-items: center
   opacity: 0
   transform: scale(0)
   animation-fill-mode: forwards
   animation-duration: .4s
   animation-name: pop-up
   font-weight: 300
-  background: $dark-color
-  padding: .9rem
+  //background: $dark-color
+  background-repeat: no-repeat !important
+  background-size: cover !important
+  background-position: center !important
+  padding: 1rem 1rem .4rem 1rem
   text-align: center
   color: $light-color
-  box-shadow: $box-shadow
+  //box-shadow: $box-shadow
   border-radius: 10px
 .feature-icon
   max-width: 100px
