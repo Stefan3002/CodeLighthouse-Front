@@ -1,7 +1,7 @@
 import './challenge-page.css'
 import Transition from "../../utils/js/transitions";
 import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import Difficulty from "../Difficulty/difficulty";
 import TickSVG from '../../utils/imgs/SVGs/TickSVG.svg'
@@ -22,15 +22,17 @@ const ChallengePage = () => {
     const user = useSelector(getUser)
     const dispatch = useDispatch()
     const updateData = useUpdateData()
-
-    // useEffect(() => {
-    //     updateData(false)
-    // }, [])
+    const solved = useRef(false)
 
     useEffect(() => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${slug}`, undefined, 'GET', false, undefined, ['Fetching the challenge', 'The office dog got it!', 'GET IT NOW!'])
             if(res) {
+                for(const solved_challenge of user.solved_challenges)
+                    if(solved_challenge.id === res.id){
+                        solved.current = true
+                        break
+                    }
                 setData(res)
                 dispatch(setDifficulty(res.difficulty))
             }
@@ -64,7 +66,6 @@ const ChallengePage = () => {
         }))
     }
 
-
     if(data)
         return (
             <Transition mode='fullscreen'>
@@ -73,10 +74,16 @@ const ChallengePage = () => {
                         <AuthorName author={data.author} />
                         <div className='challenge-top-section'>
                             <Difficulty difficulty={data.difficulty}/>
-                            <div onClick={reportChallenge}>
+                            {solved.current ?
+                                <div className='bar-item'>
+                                    <img src={TickSVG} className='icon-svg' alt="Solved!"/>
+                                    <p>Solved!</p>
+                                </div>
+                                : null }
+                            <div className='bar-item'  onClick={reportChallenge}>
                                 <img className='icon-svg' src={ExclamationSVG} alt="!"/><p>Report</p>
                             </div>
-                            <div onClick={openAdminModal}>
+                            <div className='bar-item' onClick={openAdminModal}>
                                 {user.admin_user ?
                                     <>
                                         <img className='icon-svg' src={AdminSVG} alt='Admin' />
@@ -84,7 +91,7 @@ const ChallengePage = () => {
                                     < />
                                     : null}
                             </div>
-                            <div onClick={modifyChallenge}>
+                            <div className='bar-item' onClick={modifyChallenge}>
                             {user.user_id === data.author.user_id || user.admin_user ?
                                 <>
                                     <img className='icon-svg' src={ModifySVG} alt=""/>
@@ -99,12 +106,6 @@ const ChallengePage = () => {
                 <div className='wrapper challenge-page'>
                     <div className="challenge-page-meta">
                         {/*<Difficulty difficulty={data.difficulty}/>*/}
-                        {user.solved_challenges.includes(data.id) ?
-                            <>
-                                <img src={TickSVG} className='icon-svg' alt="Solved!"/>
-                                <p>Solved!</p>
-                            </>
-                            : null }
                         {/*<h1>{data.title}</h1>*/}
 
                     </div>
@@ -116,7 +117,7 @@ const ChallengePage = () => {
                     {/*    <Link to='code'><Button text='Code!'/></Link>*/}
                     {/*</div>*/}
                 </div>
-                <ChallengeMeta type='restricted' solved={user.solved_challenges.includes(data.id)} data={data} />
+                <ChallengeMeta type='restricted' solved={false} data={data} />
             </Transition>
         );
 }

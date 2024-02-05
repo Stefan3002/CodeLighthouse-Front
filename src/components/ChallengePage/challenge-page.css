@@ -22,6 +22,10 @@
   gap: 0.5rem;
 }
 
+.solved-wrapper {
+  background: red;
+}
+
 .challenge-top-section {
   display: flex;
   justify-content: center;
