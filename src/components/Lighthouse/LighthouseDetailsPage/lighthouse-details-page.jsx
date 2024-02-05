@@ -10,7 +10,7 @@ import Missing from "../../Missing/missing";
 import CopySVG from "../../../utils/imgs/SVGs/CopySVG.svg";
 import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import Button from "../../Button/button";
-import changeSVG from '../../../utils/imgs/SVGs/ModifySVG.svg'
+import changeLightSVG from '../../../utils/imgs/SVGs/ModifyLightSVG.svg'
 import WithInfo from "../../WithInfo/with-info";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
 import Input from "../../Input/input";
@@ -95,7 +95,7 @@ const LighthouseDetailsPage = () => {
                         <img onClick={copyCodeToClipboard} src={CopySVG} className='icon-svg' alt="Copy code"/>
                         <p><b>Enrollment Code:</b></p>
                         <p className='enrollment-code'>{data.enrollment_code}</p>
-                        <WithInfo data='Regenerate another Enrollment Code' clickHandler={changeEnrollmentCode}><img src={changeSVG} className='icon-svg' alt=""/></WithInfo>
+                        <WithInfo data='Regenerate another Enrollment Code' clickHandler={changeEnrollmentCode}><img src={changeLightSVG} className='icon-svg' alt=""/></WithInfo>
                         <p><b>Lighthouse ID:</b></p>
                         <p className='enrollment-code'>{data.id}</p>
                     </div> : null}

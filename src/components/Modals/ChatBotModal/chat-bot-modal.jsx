@@ -31,7 +31,7 @@ const ChatBotModal = () => {
         responseDOM.innerHTML = ''
         console.log(response.data.split(' '))
         for(const word of response.data.split(' ')) {
-            console.log(word)
+            // console.log(word)
             await waitAnimation()
             const wordDOM = document.createElement('span')
             wordDOM.textContent = (word + ' ')

@@ -1,5 +1,5 @@
 import './profile-page.css'
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {Link, redirect, useNavigate, useParams} from "react-router-dom";
 import Transition from "../../utils/js/transitions";
@@ -22,6 +22,7 @@ import EnrolledLighthouses from "../EnrolledLighthouses/enrolled-lighthouses";
 import Missing from "../Missing/missing";
 import WithInfo from "../WithInfo/with-info";
 import {setError} from "../../utils/store/utils-store/utils-store-actions";
+import ClockSVG from "../../utils/imgs/SVGs/ClockSVG.svg";
 const ProfilePage = () => {
     const user = useSelector(getUser)
     const userID = useParams()['id']
@@ -30,11 +31,27 @@ const ProfilePage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [filter, setFilter] = useState('All')
+    const mostTimeLoggedIn = useRef(0)
+    const timeOnChallenges = useRef({})
 
     useEffect(() => {
         (async () => {
             dispatch(setError(false))
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`, undefined, 'GET', false, undefined, ['Getting your profile', 'Found it!', 'Nope, sorry, it was someone else', 'Still searching!'])
+
+            if(res.logs && res.logs.length)
+                for(const log of res.logs)
+                    if(log.type === 'auth')
+                        mostTimeLoggedIn.current = Math.max(mostTimeLoggedIn.current, (new Date(log.time_out) - new Date(log.time_in)))
+
+            if(res.logs && res.logs.length)
+                for(const log of res.logs)
+                    if(log.type === 'challenge') {
+                        if(!timeOnChallenges.current[log.challenge])
+                            timeOnChallenges.current[log.challenge] = 0
+                        timeOnChallenges.current[log.challenge] += ((new Date(log.time_out) - new Date(log.time_in)) / 60000)
+                    }
+
             setData(res)
             if(user.id === res?.id)
                 dispatch(setUser(res))
@@ -53,7 +70,7 @@ const ProfilePage = () => {
     const filterAssignments = (category) => {
         setFilter(category)
     }
-    console.log('ccccc', data)
+    // console.log('ccccc', data, Object.values(timeOnChallenges.current))
     if(data)
     return (
         <AnimatePresence>
@@ -63,10 +80,33 @@ const ProfilePage = () => {
                     <AuthorName author={data} />
                     <div className='profile-top-bar'>
                         <WithInfo data='Rank and points'><Score data={data.score} /></WithInfo>
-                        {+userID === user.id ? <WithInfo clickHandler={logOut} data='Log out'><img className='icon-svg' src={LogOutSVG} alt=""/></WithInfo> : null}
+                        {+userID === user.id &&
+                            <WithInfo clickHandler={logOut} data='Log out'>
+                                <div className='bar-item'>
+                                    <img className='icon-svg' src={LogOutSVG} alt=""/>
+                                    <p>Log out</p>
+                                </div>
+                            </WithInfo>}
+                        {+userID === user.id &&
+                            <WithInfo clickHandler={() => null} data='The largest amount of time that you spent logged in in a single session'>
+                                <div className='bar-item'>
+                                    <img src={ClockSVG} className='icon-svg' alt=""/>
+                                    <p>{Math.round(mostTimeLoggedIn.current / 60000)} minutes</p>
+                                </div>
+                            </WithInfo>
+                        }
+                        {+userID === user.id &&
+                            <WithInfo clickHandler={() => null} data='The largest amount of time that you spent trying to solve a single challenge'>
+                                <div className='bar-item'>
+                                    <img src={ClockSVG} className='icon-svg' alt=""/>
+                                    <p>{Math.round(Object.values(timeOnChallenges.current).reduce((acc, el) => Math.max(acc, el), -1))} minutes</p>
+                                </div>
+                            </WithInfo>
+                        }
                     </div>
+
                 </>
-            } />
+            }/>
 
             <div className='wrapper profile-page'>
                 <div className="profile-header">
