@@ -13,7 +13,7 @@ import Blur from "../Blur/blur";
 import Transition from "../../utils/js/transitions";
 import Modal from "../Error/modal";
 import {
-    getError,
+    getError, getLogsQueue,
     getModalContent,
     getModalOpened,
     getSidePanel
@@ -21,7 +21,7 @@ import {
 import {AnimatePresence} from "framer-motion";
 import SidePanel from "../Modals/SidePanel/side-panel";
 import Notifications from "../Notifications/notifications";
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import {setNotifications} from "../../utils/store/utils-store/utils-store-actions";
 import useFetchHook from "../../utils/hooks/fetchHook";
 const AppNavigation = () => {
@@ -32,6 +32,9 @@ const AppNavigation = () => {
     // const dispatch = useDispatch()
     const user = useSelector(getUser)
     const sendRequest = useFetchHook()
+    const logsQueue = useSelector(getLogsQueue)
+    const currentLogsQueue = useRef(logsQueue)
+    const sendLogsListener = useRef(undefined)
 
     useEffect(() => {
         const data = {
@@ -39,7 +42,9 @@ const AppNavigation = () => {
             type: 'log-in'
         }
         const res = sendRequest(`${process.env.REACT_APP_SERVER_URL}/logs`, JSON.stringify(data), 'POST', true, undefined)
+
         window.addEventListener('beforeunload', () => {
+
             const data = {
                 time: new Date().getTime(),
                 type: 'log-out'
@@ -47,6 +52,29 @@ const AppNavigation = () => {
             const res = sendRequest(`${process.env.REACT_APP_SERVER_URL}/logs`, JSON.stringify(data), 'POST', true, undefined)
         })
     }, []);
+
+    const sendLogs = () => {
+        return () => {
+            for (const log of logsQueue) {
+                const res = sendRequest(`${process.env.REACT_APP_SERVER_URL}/logs`, JSON.stringify(log), 'POST', true, undefined)
+            }
+        }
+
+    }
+    useEffect(() => {
+        currentLogsQueue.current = logsQueue
+    }, [logsQueue]);
+
+    useEffect(() => {
+        console.log('filtered2: ', currentLogsQueue.current)
+        if(sendLogsListener.current)
+            window.removeEventListener('beforeunload', sendLogsListener.current)
+        sendLogsListener.current = window.addEventListener('beforeunload', () => {
+            for (const log of currentLogsQueue.current) {
+                const res = sendRequest(`${process.env.REACT_APP_SERVER_URL}/logs`, JSON.stringify(log), 'POST', true, undefined)
+            }
+        })
+    }, [currentLogsQueue.current]);
 
     return (
         <>

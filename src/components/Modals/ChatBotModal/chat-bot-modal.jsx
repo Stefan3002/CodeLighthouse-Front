@@ -62,7 +62,7 @@ const ChatBotModal = () => {
                 {/*<h2>Hey there!</h2>*/}
                 <p>Ask <strong>Llama</strong> for some help down below.</p>
 
-                {/*<CodeOfConduct  />*/}
+                <CodeOfConduct type='chat-bot' />
                 {/*<p><strong>{challenge.title}</strong> by </p>*/}
                 {/*<AuthorName author={challenge.author}/>*/}
                 {/*<Input type='text' placeholder='Reason for sending back / denying.' />*/}

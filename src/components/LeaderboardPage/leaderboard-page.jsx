@@ -19,7 +19,7 @@ const LeaderboardPage = () => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${slug}`, undefined, 'GET', false)
             if(res) {
-                res.submissions.sort((s1, s2) => {
+                res.submissions?.sort((s1, s2) => {
                     if (s1.exec_time >= s2.exec_time)
                         return 1
                     return -1
@@ -36,23 +36,31 @@ const LeaderboardPage = () => {
                 <div className="leaderboard-podium">
                     <div className="second-place leaderboard-place">
                         <img className='icon-svg' src={SecondPlaceSVG} alt=""/>
-                        <p>{(data.submissions[1].exec_time * 1000).toString().slice(0, 6)} ms</p>
-                        <AuthorName color='light' author={data.submissions[1].user} />
+                        {data.submissions[1] ?
+                        <p>{(data.submissions[1]?.exec_time * 1000).toString().slice(0, 6)} ms</p>
+                        : <p>No time</p> }
+                            <AuthorName color='light' author={data.submissions[1]?.user} />
                     </div>
                     <div className="first-place leaderboard-place">
                         <img className='icon-svg' src={FirstPlaceSVG} alt=""/>
-                        <p>{(data.submissions[0].exec_time * 1000).toString().slice(0, 6)} ms</p>
-                        <AuthorName color='light' author={data.submissions[0].user} />
+                        {data.submissions[0] ?
+                        <p>{(data.submissions[0]?.exec_time * 1000).toString().slice(0, 6)} ms</p>
+                        : <p>No time</p> }
+                            <AuthorName color='light' author={data.submissions[0]?.user} />
                     </div>
                     <div className="third-place leaderboard-place">
                         <img className='icon-svg' src={ThirdPlaceSVG} alt=""/>
-                        <p>{(data.submissions[2].exec_time * 1000).toString().slice(0, 6)} ms</p>
-                        <AuthorName color='light' author={data.submissions[2].user} />
+                        {data.submissions[2] ?
+                            <p>{(data.submissions[2]?.exec_time * 1000).toString().slice(0, 6)} ms</p>
+                        :
+                        <p>No time</p>}
+
+                        <AuthorName color='light' author={data.submissions[2]?.user} />
                     </div>
                 </div>
 
                 <div className="leaderboard-non-podium">
-                    {data.submissions.map((submission, idx) => {
+                    {data.submissions?.map((submission, idx) => {
                         if(idx > 2)
                             return <div className={`leaderboard-non-podium-place ${user.user_id === submission.user.user_id ? 'high-place' : null}`}>
                                 <p>{idx + 1}</p>

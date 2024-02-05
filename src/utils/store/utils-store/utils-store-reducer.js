@@ -18,7 +18,8 @@ const INITIAL_VALUE = {
         data: undefined
     },
     selectedChallenge: undefined,
-    code: undefined
+    code: undefined,
+    logsQueue: []
 }
 
 const utilsReducer = (state = INITIAL_VALUE, action) => {
@@ -88,6 +89,11 @@ const utilsReducer = (state = INITIAL_VALUE, action) => {
             return {
                 ...state,
                 socketConnection: payload
+            }
+        case 'SET_LOGS_QUEUE':
+            return {
+                ...state,
+                logsQueue: payload
             }
         default:
             return state

@@ -4,9 +4,9 @@ import Transition from "../../../utils/js/transitions";
 import {useEffect, useState} from "react";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {useDispatch, useSelector} from "react-redux";
-import {getCode, getLanguage} from "../../../utils/store/utils-store/utils-store-selectors";
+import {getCode, getLanguage, getLogsQueue} from "../../../utils/store/utils-store/utils-store-selectors";
 import Button from "../../Button/button";
-import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
+import {setLogsQueue, setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import ChallengeMeta from "../../ChallengeMeta/challenge-meta";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 import EditorCard from "../../EditorCard/editor-card";
@@ -19,6 +19,8 @@ const CodePage = () => {
     const slug = useParams()['slug']
     const sendRequest = useFetchHook()
     const [data, setData] = useState(undefined)
+    const dispatch = useDispatch()
+    const logsQueue = useSelector(getLogsQueue)
 
     useEffect(() => {
         (async () => {
@@ -33,17 +35,31 @@ const CodePage = () => {
         }
         const res = sendRequest(`${process.env.REACT_APP_SERVER_URL}/logs`, JSON.stringify(dataReq), 'POST', true, undefined)
 
+        dispatch(setLogsQueue(
+            [...logsQueue,
+                {
+                    type: 'challenge-out',
+                    challenge: slug
+                }
+                ]
+        ))
+
+        const checkedOutChallenge = () => {
+            const newLogs = logsQueue.filter(log => log.slug === slug)
+            console.log('filtered: ', newLogs)
+            dispatch(setLogsQueue(newLogs))
+        }
+
         return () => {
             const dataReq = {
-                time: new Date().getTime(),
                 type: 'challenge-out',
                 challenge: slug
             }
-            const res = sendRequest(`${process.env.REACT_APP_SERVER_URL}/logs`, JSON.stringify(dataReq), 'POST', true, undefined)
-
+            const res = sendRequest(`${process.env.REACT_APP_SERVER_URL}/logs`, JSON.stringify(dataReq), 'POST', true, checkedOutChallenge)
         }
 
     }, []);
+
 
     if(data)
     return (

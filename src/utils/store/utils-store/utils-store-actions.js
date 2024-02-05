@@ -10,6 +10,12 @@ export const setLoadingContent = (payload) => {
         payload
     }
 }
+export const setLogsQueue = (payload) => {
+    return {
+        type: 'SET_LOGS_QUEUE',
+        payload
+    }
+}
 
 export const setError = (payload) => {
     return {

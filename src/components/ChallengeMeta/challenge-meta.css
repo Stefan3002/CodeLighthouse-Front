@@ -23,6 +23,19 @@
   font-weight: 300;
 }
 
+.bar-item {
+  background: #FEE1C7;
+  padding: 0.5rem;
+  border-radius: 10px;
+  color: #32292F;
+  text-align: center;
+  transition: all 0.15s;
+}
+.bar-item:hover, .bar-item:focus {
+  transform: scale(1.1);
+  transition: all 0.15s;
+}
+
 .solved {
   background: #FEE1C7;
   color: #32292F;
