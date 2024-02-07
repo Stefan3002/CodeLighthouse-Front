@@ -21,7 +21,8 @@
   p
     margin: 0
     font-weight: 300
-.bar-item
+
+.bar-item, .bar-item-dark
   background: $light-color
   padding: .5rem
   border-radius: 10px
@@ -31,6 +32,11 @@
   &:hover, &:focus
     transform: scale(1.1)
     transition: all .15s
+
+.bar-item-dark
+  background: $dark-color
+  color: $light-color
+
 .solved
   background: $light-color
   color: $dark-color

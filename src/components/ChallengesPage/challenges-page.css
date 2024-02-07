@@ -5,13 +5,13 @@
 .challenges {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
 }
 
-.challenge {
-  background: #32292F;
-  border-radius: 10px;
-  color: #FEE1C7;
+.challenge-meta-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .challenge-content {
@@ -19,11 +19,15 @@
   padding: 1rem;
   max-height: 400px;
   overflow-y: auto;
+  border-radius: 0 0 10px 10px;
+  color: #FEE1C7;
+  background: #32292F;
 }
 
 .challenge-meta {
+  border-radius: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background: #FEE1C7;
   color: #575366;

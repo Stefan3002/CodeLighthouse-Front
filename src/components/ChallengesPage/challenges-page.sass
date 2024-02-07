@@ -6,21 +6,28 @@
 .challenges
   display: flex
   flex-direction: column
-  gap: 2rem
+  gap: 1rem
 
-
+.challenge-meta-inner
+  display: flex
+  align-items: center
+  gap: 1rem
 .challenge
-  background: $dark-color
-  border-radius: 10px
-  color: $light-color
+  //background: $dark-color
+  //border-radius: 10px
+  //color: $light-color
 .challenge-content
   text-align: center
   padding: 1rem
   max-height: 400px
   overflow-y: auto
+  border-radius: 0 0 10px 10px
+  color: $light-color
+  background: $dark-color
 .challenge-meta
+  border-radius: 10px
   display: flex
-  justify-content: center
+  justify-content: space-between
   align-items: center
   background: $light-color
   color: $text-color

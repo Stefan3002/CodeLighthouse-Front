@@ -23,7 +23,7 @@
   font-weight: 300;
 }
 
-.bar-item {
+.bar-item, .bar-item-dark {
   background: #FEE1C7;
   padding: 0.5rem;
   border-radius: 10px;
@@ -31,9 +31,14 @@
   text-align: center;
   transition: all 0.15s;
 }
-.bar-item:hover, .bar-item:focus {
+.bar-item:hover, .bar-item:focus, .bar-item-dark:hover, .bar-item-dark:focus {
   transform: scale(1.1);
   transition: all 0.15s;
+}
+
+.bar-item-dark {
+  background: #32292F;
+  color: #FEE1C7;
 }
 
 .solved {

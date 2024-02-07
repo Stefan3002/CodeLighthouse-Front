@@ -5,9 +5,9 @@ import {useSelector} from "react-redux";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 import {getIsLoggedIn} from "../../../utils/store/auth-store/auth-store-selectors";
 const LandingPageAsideMenu = () => {
-    const loggedIn = useSelector(getIsLoggedIn)
-    if(loggedIn)
-        window.location.href = 'app'
+    // const loggedIn = useSelector(getUser)
+    // if(loggedIn)
+    //     window.location.href = 'app'
 
 
     return (
