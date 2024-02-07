@@ -99,7 +99,7 @@ const ProfilePage = () => {
                             <WithInfo clickHandler={() => null} data='The largest amount of time that you spent trying to solve a single challenge'>
                                 <div className='bar-item'>
                                     <img src={ClockSVG} className='icon-svg' alt=""/>
-                                    <p>{Math.round(Object.values(timeOnChallenges.current).reduce((acc, el) => Math.max(acc, el), -1))} minutes</p>
+                                    <p>{Math.round(Object.values(timeOnChallenges.current).reduce((acc, el) => Math.max(acc, el), 0))} minutes</p>
                                 </div>
                             </WithInfo>
                         }

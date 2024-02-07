@@ -36,15 +36,15 @@ const EditorCard = ({info = undefined, secondCode = undefined, headerText = '', 
         return (
             <div className='editor-wrapper editor-wrapper-code' style={{height: height}}>
                 <div className="editor-wrapper-header">
-                    <img onClick={() => {dispatch(setModal(true))
-                        dispatch(setModalContent({
-                            type: 'code',
-                            data: {
-                                lang,
-                                code
-                            }
-                        }))
-                    }} className='icon-svg code-editor-icon' src={MaximizeSVG} alt=""/>
+                    {/*<img onClick={() => {dispatch(setModal(true))*/}
+                    {/*    dispatch(setModalContent({*/}
+                    {/*        type: 'code',*/}
+                    {/*        data: {*/}
+                    {/*            lang,*/}
+                    {/*            code*/}
+                    {/*        }*/}
+                    {/*    }))*/}
+                    {/*}} className='icon-svg code-editor-icon' src={MaximizeSVG} alt=""/>*/}
                     <p className='code-editor-header-text'>{headerText}</p>
                     {info ? <img className='icon-svg' src={InfoSVG} onClick={openInfoModal} alt='Info'></img> : null}
                 </div>

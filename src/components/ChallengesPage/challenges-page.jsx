@@ -62,54 +62,83 @@ const ChallengesPage = () => {
     if(data)
     return (
         <Transition mode='fullscreen'>
-            <Parallax parallaxData={parallaxData} img={ParallaxIMG} />
+            <Parallax parallaxData={parallaxData} img={ParallaxIMG}/>
+
+
+            <div className="challenges-high">
+                {data.map((challenge, idx) => {
+                    if (idx < 3) {
+                        let solved = false
+                        for (const solved_challenge of user.solved_challenges)
+                            if (solved_challenge.id === challenge.id) {
+                                solved = true
+                                break
+                            }
+                        if (challenge.public)
+                            return <Link to={`${challenge.slug}`}>
+                                <div className='challenge-high'>
+                                    <h2>{challenge.title}</h2>
+                                    <AuthorName author={challenge.author} color='light'/>
+                                </div>
+                            </Link>
+                    }
+
+                })
+                }
+            </div>
+
+
             <div className='wrapper challenges-page'>
                 {/*<div className="challenges-filters">*/}
                 {/*    <DifficultyPicker />*/}
                 {/*</div>*/}
+
+
                 <div className="challenges">
-                    {data.map(challenge => {
+                    {data.map((challenge, idx) => {
                         let solved = false
-                        for(const solved_challenge of user.solved_challenges)
-                            if(solved_challenge.id === challenge.id){
+                        for (const solved_challenge of user.solved_challenges)
+                            if (solved_challenge.id === challenge.id) {
                                 solved = true
                                 break
                             }
-                        if(challenge.public)
-                        return <Link to={`${challenge.slug}`}>
-                            <div onMouseLeave={collapseChallenge} onMouseEnter={() => expandChallenge(challenge)} className='challenge' key={challenge.slug}>
-                                <div className="challenge-meta">
-                                    <div className='challenge-meta-inner'>
-                                        <h2>{challenge.title}</h2>
-                                        {/*<div className='challenge-meta-author-div'>*/}
-                                        {/*    <AuthorName color='dark' author={challenge.author}/>*/}
-                                        {/*</div>*/}
+                        if (challenge.public)
+                            return <Link to={`${challenge.slug}`}>
+                                <div style={{background: idx % 2 !== 0 ? '#FEE1C7' : null}}
+                                     onMouseLeave={collapseChallenge} onMouseEnter={() => expandChallenge(challenge)}
+                                     className='challenge' key={challenge.slug}>
+                                    <div className="challenge-meta">
+                                        <div className='challenge-meta-inner'>
+                                            <h2 className='challenge-title'>{challenge.title}</h2>
+                                            {/*<div className='challenge-meta-author-div'>*/}
+                                            {/*    <AuthorName color='dark' author={challenge.author}/>*/}
+                                            {/*</div>*/}
 
-                                    </div>
+                                        </div>
 
-                                    <div className='challenge-meta-inner'>
-                                        {solved &&
-                                            <div className='bar-item-dark'>
-                                                <img src={TickLightSVG} className='icon-svg' alt="Solved!"/>
-                                                <p>Solved!</p>
-                                            </div>
-                                        }
-                                        <Difficulty difficulty={challenge.difficulty}/>
+                                        <div className='challenge-meta-inner'>
+                                            {solved &&
+                                                <div className='bar-item-dark-small'>
+                                                    <img src={TickLightSVG} className='icon-svg' alt="Solved!"/>
+                                                    <p>Solved!</p>
+                                                </div>
+                                            }
+                                            <Difficulty size='65px' difficulty={challenge.difficulty}/>
+                                        </div>
                                     </div>
+                                    {/*<AnimatePresence>*/}
+                                    {/*    {expandedChallenge && expandedChallenge === challenge.id &&*/}
+                                    {/*        <motion.div key={`expanded-challenge-${challenge.slug}`} exit={{y: -170, opacity: 0}} initial={{y: -170, opacity: 0}} animate={{y: 0, opacity: 1}} className="challenge-content">*/}
+                                    {/*            <p dangerouslySetInnerHTML={{__html: challenge.description}}></p>*/}
+                                    {/*        </motion.div>*/}
+                                    {/*    }*/}
+                                    {/*</AnimatePresence>*/}
                                 </div>
-                                <AnimatePresence>
-                                    {expandedChallenge && expandedChallenge === challenge.id &&
-                                        <motion.div key={`expanded-challenge-${challenge.slug}`} exit={{y: -170, opacity: 0}} initial={{y: -170, opacity: 0}} animate={{y: 0, opacity: 1}} className="challenge-content">
-                                            <p dangerouslySetInnerHTML={{__html: challenge.description}}></p>
-                                        </motion.div>
-                                    }
-                                </AnimatePresence>
-                            </div>
-                        </Link>
+                            </Link>
                     })}
                 </div>
             </div>
-            <Button callback={createChallenge} type='plus' />
+            <Button callback={createChallenge} type='plus'/>
         </Transition>
     )
 }

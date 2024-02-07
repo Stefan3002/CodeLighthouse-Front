@@ -3,9 +3,33 @@
 }
 
 .challenges {
+  margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+}
+
+.challenges-high {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  background: #32292F;
+}
+
+.challenge-high {
+  padding: 1rem;
+  color: #FEE1C7;
+  text-align: center;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2.6px);
+  -webkit-backdrop-filter: blur(2.6px);
+  border: 1px solid rgba(255, 255, 255, 0.47);
+}
+
+.challenge-title {
+  font-size: 1.2rem;
 }
 
 .challenge-meta-inner {
@@ -29,10 +53,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #FEE1C7;
   color: #575366;
   gap: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.1rem;
 }
 
 .challenge-meta-author-div {

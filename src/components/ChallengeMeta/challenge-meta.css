@@ -23,6 +23,22 @@
   font-weight: 300;
 }
 
+.bar-item-dark-small {
+  background: #32292F;
+  color: #FEE1C7;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-align: center;
+  transition: all 0.15s;
+}
+.bar-item-dark-small:hover, .bar-item-dark-small:focus {
+  transform: scale(1.1);
+  transition: all 0.15s;
+}
+.bar-item-dark-small p {
+  margin: 0;
+}
+
 .bar-item, .bar-item-dark {
   background: #FEE1C7;
   padding: 0.5rem;

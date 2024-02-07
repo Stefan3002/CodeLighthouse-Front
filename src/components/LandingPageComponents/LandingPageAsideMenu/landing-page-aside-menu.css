@@ -1,5 +1,4 @@
 .slide-aside {
-  padding: 1rem;
   background: radial-gradient(circle at 50%, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url("../../../utils/imgs/landing-page/Header.jpg");
   background-position: center;
   background-size: cover;
@@ -7,6 +6,17 @@
 
 .landing-page-navigation {
   position: relative;
+}
+
+.landing-page-menu-item {
+  text-align: center;
+  padding: 0.5rem;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2.6px);
+  -webkit-backdrop-filter: blur(2.6px);
+  border: 1px solid rgba(255, 255, 255, 0.47);
 }
 
 .landing-page-navigation {
@@ -18,11 +28,11 @@
 }
 .landing-page-navigation .navigation-wrapper {
   padding: 0;
+  width: 100%;
   list-style-type: none;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   gap: 10px;
 }
 

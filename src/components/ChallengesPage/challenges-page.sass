@@ -4,10 +4,33 @@
   margin-top: 2rem
 
 .challenges
+  margin-top: 1rem
   display: flex
   flex-direction: column
-  gap: 1rem
+  //gap: 1rem
+.challenges-high
+  display: flex
+  justify-content: center
+  align-items: center
+  gap: .5rem
+  background: $dark-color
 
+.challenge-high
+  //background: $dark-color
+  padding: 1rem
+  color: $light-color
+  text-align: center
+  border-radius: 10px
+  background: rgba(255, 255, 255, 0.18)
+  //border-radius: 16px
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1)
+  backdrop-filter: blur(2.6px)
+  -webkit-backdrop-filter: blur(2.6px)
+  border: 1px solid rgba(255, 255, 255, 0.47)
+
+
+.challenge-title
+  font-size: 1.2rem
 .challenge-meta-inner
   display: flex
   align-items: center
@@ -29,10 +52,10 @@
   display: flex
   justify-content: space-between
   align-items: center
-  background: $light-color
+  //background: $light-color
   color: $text-color
   gap: .5rem
-  padding: .5rem
+  padding: .1rem
 
 .challenge-meta-author-div
   text-align: center
