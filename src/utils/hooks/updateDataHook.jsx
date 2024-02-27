@@ -12,6 +12,7 @@ const useUpdateData = (explicitUrl = undefined) => {
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
     let url = explicitUrl
+    // console.log('ppppppppp', user.id)
     if(!explicitUrl)
         url = `${process.env.REACT_APP_SERVER_URL}/users/${user.id}`
     return useCallback(async (silentLoad = true) => {

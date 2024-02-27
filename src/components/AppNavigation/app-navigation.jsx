@@ -1,5 +1,5 @@
 import './app-navigation.css'
-import {Link, Outlet} from "react-router-dom";
+import {Link, Outlet, useNavigate} from "react-router-dom";
 import LogoImgNoBg from "../../utils/imgs/logo/LogoSVG.svg";
 import {useDispatch, useSelector} from "react-redux";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
@@ -35,6 +35,7 @@ const AppNavigation = () => {
     const logsQueue = useSelector(getLogsQueue)
     const currentLogsQueue = useRef(logsQueue)
     const sendLogsListener = useRef(undefined)
+    const navigate = useNavigate()
 
     useEffect(() => {
         const data = {
@@ -51,6 +52,11 @@ const AppNavigation = () => {
             }
             const res = sendRequest(`${process.env.REACT_APP_SERVER_URL}/logs`, JSON.stringify(data), 'POST', true, undefined)
         })
+    //     Check for user but remember that it is async so wait a bit
+        setTimeout(() => {
+            if(!user)
+                navigate('/auth')
+        }, 800)
     }, []);
 
     const sendLogs = () => {
@@ -66,7 +72,6 @@ const AppNavigation = () => {
     }, [logsQueue]);
 
     useEffect(() => {
-        console.log('filtered2: ', currentLogsQueue.current)
         if(sendLogsListener.current)
             window.removeEventListener('beforeunload', sendLogsListener.current)
         sendLogsListener.current = window.addEventListener('beforeunload', () => {
@@ -76,6 +81,7 @@ const AppNavigation = () => {
         })
     }, [currentLogsQueue.current]);
 
+    if(user)
     return (
         <>
             <nav className='app-navigation-wrapper'>

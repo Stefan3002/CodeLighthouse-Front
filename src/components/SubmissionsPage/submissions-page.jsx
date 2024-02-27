@@ -2,7 +2,7 @@ import './submissions-page.css'
 import Transition from "../../utils/js/transitions";
 import {useEffect, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import {Editor} from "@monaco-editor/react";
 import EditorCard from "../EditorCard/editor-card";
@@ -12,16 +12,20 @@ import TopSection from "../TopSection/top-section";
 import AuthorName from "../AuthorName/author-name";
 import Difficulty from "../Difficulty/difficulty";
 import Missing from "../Missing/missing";
+import useUpdateData from "../../utils/hooks/updateDataHook";
+import {setUser} from "../../utils/store/user-store/user-store-actions";
 const SubmissionsPage = () => {
     const sendRequest = useFetchHook()
     const [data, setData] = useState(undefined)
     const user = useSelector(getUser)
     const slug = useParams().slug
+    const updateData = useUpdateData()
 
     const [solved, setSolved] = useState(false)
 
     useEffect(() => {
         (async () => {
+            await updateData(true)
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${slug}`, undefined, 'GET')
             setData(res)
         })()

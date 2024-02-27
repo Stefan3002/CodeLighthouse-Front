@@ -5,8 +5,20 @@ import {useDispatch, useSelector} from "react-redux";
 import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
+import Button from "../../Button/button";
+import {setError, setModal, setSidePanel} from "../../../utils/store/utils-store/utils-store-actions";
 const SuccessModal = () => {
     const modalContent = useSelector(getModalContent)
+    const dispatch = useDispatch()
+    const closeModal = () => {
+        dispatch(setError(null))
+        dispatch(setModal(false))
+        dispatch(setSidePanel({
+            opened: false,
+            type: 'undefined',
+            data: undefined
+        }))
+    }
 
     if(!modalContent.code)
         return (
@@ -24,6 +36,7 @@ const SuccessModal = () => {
                     {/*    <Input type='text' placeholder='Id of the Lighthouse.' />*/}
                     {/*    <Button buttonType='submit' text='Join' type='normal' />*/}
                     {/*</form>*/}
+                    <Button color='light' text='Close' callback={closeModal} />
 
                 </div>
             </div>
@@ -48,7 +61,7 @@ const SuccessModal = () => {
                     {/*    <Input type='text' placeholder='Id of the Lighthouse.' />*/}
                     {/*    <Button buttonType='submit' text='Join' type='normal' />*/}
                     {/*</form>*/}
-
+                    <Button color='light' text='Close' callback={closeModal} />
                 </div>
             </div>
             // </Transition>

@@ -69,12 +69,12 @@ const ChatBotModal = () => {
                 <form className='report-description-form' onSubmit={talkToBot}>
                     <Input placeholder='Question for Llama' required={true}/>
                     <p id='chat-bot-response'></p>
-                    <h2>Coming soon!</h2>
-                    {/*<Input type='checkbox' placeholder='I have read the Code of Conduct' required={true}/>*/}
-                    {/*<div className="admin-verdict-buttons">*/}
-                    {/*    <Button buttonType='submit' text='Ask' color='light'/>*/}
-                    {/*    <Button buttonType='reset' callback={cancelChat} text='Cancel' color='light'/>*/}
-                    {/*</div>*/}
+                    {/*<h2>Coming soon!</h2>*/}
+                    <Input type='checkbox' placeholder='I have read the Code of Conduct' required={true}/>
+                    <div className="admin-verdict-buttons">
+                        <Button buttonType='submit' text='Ask' color='light'/>
+                        <Button buttonType='reset' callback={cancelChat} text='Cancel' color='light'/>
+                    </div>
                 </form>
             </div>
         </div>

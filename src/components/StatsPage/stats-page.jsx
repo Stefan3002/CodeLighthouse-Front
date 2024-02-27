@@ -32,15 +32,15 @@ const StatsPage = () => {
             <div className='wrapper stats-page'>
 
 
-                    <div style={{animationDelay: `${exponentialDelay(0)}ms`}} className="stats-likes stat">
-                        <img src={LikeSVG} className='big-stat-icon' alt=""/>
-                        <p className='stat-value'><b>{data.likes_received}</b></p>
-                        <div className="stat-text">
-                            <p>{data.likes_received === 1 ? 'Love' : data.likes_received === 0 ? 'No love' : 'Loves'}</p>
-                            <p className='stat-small-text'>received</p>
-                        </div>
-
+                <div style={{animationDelay: `${exponentialDelay(0)}ms`}} className="stats-likes stat">
+                    <img src={LikeSVG} className='big-stat-icon' alt=""/>
+                    <p className='stat-value'><b>{data.likes_received}</b></p>
+                    <div className="stat-text">
+                        <p>{data.likes_received === 1 ? 'Love' : data.likes_received === 0 ? 'No love' : 'Loves'}</p>
+                        <p className='stat-small-text'>received</p>
                     </div>
+
+                </div>
 
 
                 <div>
@@ -63,7 +63,11 @@ const StatsPage = () => {
 
                     </div>
                 </div>
+                {/*<iframe title="CodeLighthousetest" width="1140" height="541.25"*/}
+                {/*        src="https://app.powerbi.com/reportEmbed?reportId=82aa25ad-7738-46e6-ad90-5b9a0d73b9f7&autoAuth=true&ctid=90bc7298-1c17-48c6-830b-e88b375f216d"*/}
+                {/*        frameBorder="0" allowFullScreen="true"></iframe>*/}
             </div>
+
             {/*<ChallengeMeta type='stats' data={data} />*/}
         </Transition>
     )
