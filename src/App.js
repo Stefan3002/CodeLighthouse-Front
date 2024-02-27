@@ -47,6 +47,8 @@ import AdminDeniedPage from "./components/Admin/AdminDeniedPage/admin-denied-pag
 import AdminReportsPage from "./components/Admin/AdminReportsPage/admin-reports-page";
 import LighthouseHomePage from "./components/Lighthouse/LighthouseHomePage/lighthouse-home-page";
 import LeaderboardPage from "./components/LeaderboardPage/leaderboard-page";
+import ContestsPage from "./components/ContestsPage/contests-page";
+import AdminContestsPage from "./components/AdminContestsPage/admin-contests-page";
 
 function App() {
     const location = useLocation()
@@ -70,6 +72,7 @@ function App() {
                         <Route path='complete-profile' element={<CompleteProfilePage />} />
                         <Route path='lighthouses' element={<LighthousesPage />} />
                         <Route path='challenges' element={<ChallengesPage />} />
+                        <Route path='contests' element={<ContestsPage />} />
                         <Route path='challenges/:slug' element={<ChallengesNav />}>
                             <Route index element={<ChallengePage />} />
                             <Route path='comments' element={<CommentsPage />} />
@@ -91,6 +94,7 @@ function App() {
                             <Route path='pending' element={<AdminPage />} />
                             <Route path='denied' element={<AdminDeniedPage />} />
                             <Route path='reports' element={<AdminReportsPage />} />
+                            <Route path='contests' element={<AdminContestsPage />} />
                         </Route>
                     </Route>
                 {/*    404 Route here!*/}

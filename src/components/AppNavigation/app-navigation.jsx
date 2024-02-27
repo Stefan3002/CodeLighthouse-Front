@@ -8,6 +8,7 @@ import AttachmentSVG from '../../utils/imgs/SVGs/AttachmentSVG.svg'
 import HomeSVG from '../../utils/imgs/SVGs/HomeSVG.svg'
 import CodeSVG from '../../utils/imgs/SVGs/CodeSVG.svg'
 import AdminSVG from '../../utils/imgs/SVGs/AdminSVG.svg'
+import ContestSVG from '../../utils/imgs/SVGs/ContestSVG.svg'
 import LighthouseSVG from '../../utils/imgs/SVGs/LighthouseSVG.svg'
 import Blur from "../Blur/blur";
 import Transition from "../../utils/js/transitions";
@@ -89,6 +90,7 @@ const AppNavigation = () => {
                 <ul className='app-navigation'>
                     <Link to='/app'><li className='menu-item'><img className='icon-svg' src={HomeSVG} alt=""/>Home</li></Link>
                     <Link to='/app/lighthouses'><li className='menu-item'><img className='icon-svg' src={LighthouseSVG} alt=""/>Lighthouses</li></Link>
+                    <Link to='/app/contests'><li className='menu-item'><img className='icon-svg' src={ContestSVG} alt=""/>Contests</li></Link>
                     <Link to='/app/challenges'><li className='menu-item'><img className='icon-svg' src={CodeSVG} alt=""/>Solve</li></Link>
                     <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/creating-challenges.html'><li className='menu-item'><img className='icon-svg' src={AttachmentSVG} alt=""/>Docs</li></Link>
                     <Link to={`/app/users/${user?.id}`}><li className='menu-item'><img className='icon-svg' src={UserSVG} alt=""/>{user ? user.username : 'Profile'}</li></Link>

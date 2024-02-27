@@ -83,22 +83,18 @@ const ChallengePage = () => {
                             <div className='bar-item'  onClick={reportChallenge}>
                                 <img className='icon-svg' src={ExclamationSVG} alt="!"/><p>Report</p>
                             </div>
+                            {user.admin_user ?
                             <div className='bar-item' onClick={openAdminModal}>
-                                {user.admin_user ?
-                                    <>
-                                        <img className='icon-svg' src={AdminSVG} alt='Admin' />
-                                        <p>Admin menu</p>
-                                    < />
-                                    : null}
+                                    <img className='icon-svg' src={AdminSVG} alt='Admin' />
+                                    <p>Admin menu</p>
                             </div>
-                            <div className='bar-item' onClick={modifyChallenge}>
+                                : null}
                             {user.user_id === data.author.user_id || user.admin_user ?
-                                <>
+                                <div className='bar-item' onClick={modifyChallenge}>
                                     <img className='icon-svg' src={ModifySVG} alt=""/>
                                     <p>Modify</p>
-                                </>
-                                : null}
-                            </div>
+                                </div>
+                            : null}
                         </div>
                     </>
                 }
