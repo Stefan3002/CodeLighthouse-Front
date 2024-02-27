@@ -188,18 +188,18 @@ const LogIn = () => {
                             </div>
                         </div>
                     </div>
-                    {/*<div className='log-in-options'>*/}
-                    {/*    /!*<form onSubmit={logUserInEmail} className='inputs-form'>*!/*/}
-                    {/*    /!*    <Input placeholder='E-mail' />*!/*/}
-                    {/*    /!*    <Input type='password' placeholder='Password' />*!/*/}
-                    {/*    /!*    <Button text='Log In' />*!/*/}
-                    {/*    /!*</form>*!/*/}
-                    {/*    /!*<h2>Log in</h2>*!/*/}
-                    {/*    /!*<div className="providers">*!/*/}
-                    {/*    /!*    <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG} alt=""/>*!/*/}
-                    {/*    /!*    <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG} alt=""/>*!/*/}
-                    {/*    /!*</div>*!/*/}
-                    {/*</div>*/}
+                    <div className='log-in-options'>
+                        <form  className='inputs-form'>
+                            <Input placeholder='E-mail' />
+                            <Input type='password' placeholder='Password' />
+                            <Button text='Log in for contest' />
+                        </form>
+                        {/*<h2>Log in</h2>*/}
+                        {/*<div className="providers">*/}
+                        {/*    <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG} alt=""/>*/}
+                        {/*    <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG} alt=""/>*/}
+                        {/*</div>*/}
+                    </div>
 
                 </div>
             </div>

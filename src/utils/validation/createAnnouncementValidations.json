@@ -5,6 +5,6 @@
     "inputNull": false
   },
   "file":{
-    "beIn": ["application/pdf", "image/png", "image.jpg", "image.jpeg"]
+    "beIn": ["application/pdf", "image/png", "image/jpg", "image/jpeg"]
   }
 }

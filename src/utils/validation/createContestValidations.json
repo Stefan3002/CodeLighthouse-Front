@@ -1,0 +1,14 @@
+{
+  "name":
+  {
+    "inputMin": 5,
+    "inputNull": false
+  },
+  "description": {
+    "inputMin": 15,
+    "inputNull": false
+  },
+  "file": {
+    "beIn": ["text/csv"]
+  }
+}

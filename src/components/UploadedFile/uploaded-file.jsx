@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import PdfSVG from '../../utils/imgs/SVGs/PdfSVG.svg'
 import DefaultFileSVG from '../../utils/imgs/SVGs/FileSVG.svg'
 import ImgSVG from '../../utils/imgs/SVGs/ImgFile.svg'
+import CsvSVG from '../../utils/imgs/SVGs/CsvSVG.svg'
 import {Link, useNavigate, useParams} from "react-router-dom";
 import useFetchHook from "../../utils/hooks/fetchHook";
 const UploadedFile = ({file}) => {
@@ -19,6 +20,9 @@ const UploadedFile = ({file}) => {
         switch (extension){
             case '.pdf':
                 setExtensionImg(PdfSVG)
+                break
+            case '.csv':
+                setExtensionImg(CsvSVG)
                 break
             case '.jpg':
             case '.jpeg':

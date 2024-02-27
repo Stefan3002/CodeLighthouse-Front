@@ -24,6 +24,7 @@ import AdminConfirmModal from "../Modals/AdminConfirmModal/admin-confirm-modal";
 import DifficultyAdminModal from "../Modals/DifficultyAdminModal/difficulty-admin-modal";
 import ExpandedNotificationsModal from "../Modals/ExpandedNotificationsModal/expanded-notifications-modal";
 import ChatBotModal from "../Modals/ChatBotModal/chat-bot-modal";
+import CreateContestModal from "../Modals/CreateContestModal/create-contest-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -39,6 +40,8 @@ const Modal = ({error, type='error'}) => {
             return <LighthousePreviewModal/>
         case 'success':
             return <SuccessModal/>
+        case 'create-contest':
+            return <CreateContestModal/>
         case 'assignChallenge':
             return <AssignChallengeModal/>
         case 'code':
