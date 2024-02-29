@@ -10,6 +10,7 @@ import PowerfulSVG from '../../../utils/imgs/features/PowerfulSVG.svg'
 import LogInFeatures from '../../../utils/text/log-in-features.json'
 import GoogleSVG from '../../../utils/imgs/log-in/GoogleSVG.svg'
 import PadlockSVG from '../../../utils/imgs/log-in/PadlockSVG.svg'
+import Padlock2SVG from '../../../utils/imgs/SVGs/PadlockSVG.svg'
 import GithubSVG from '../../../utils/imgs/log-in/GithubSVG.svg'
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
@@ -161,6 +162,18 @@ const LogIn = () => {
         await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth/provider`, JSON.stringify(data), 'POST', false, successLogIn, ['Talking to Google', 'Talking to Github', 'Talking to our own servers'])
     }
 
+    const logInClassic = async (event) => {
+        event.preventDefault()
+        const username = event.target[0].value
+        const password = event.target[1].value
+        const data = {
+            email: username, password
+        }
+
+        await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, JSON.stringify(data), 'POST', false, successLogIn, ['Talking to the server', "IT'S ON FIRE?!", "Nope, the fire was extinguished!"])
+
+    }
+
 
     return (
         <Transition mode={windowSize <= 1100 ? 'fullscreen' : 'partial'}>
@@ -173,38 +186,47 @@ const LogIn = () => {
                 <div className="inputs">
                     <div className="log-in-features">
                         {LogInFeatures.features.map((feature, idx) => {
-                            return <div key={`Feature-${feature.title}`} style={{animationDelay: `${exponentialDelay(idx)}ms`}} className="log-in-feature">
+                            return <div key={`Feature-${feature.title}`}
+                                        style={{animationDelay: `${exponentialDelay(idx)}ms`}}
+                                        className="log-in-feature">
                                 <img className='log-in-feature-icon' src={getFeatureIcon(feature.title)} alt=""/>
                                 <h2 className='log-in-feature-title'>{feature.title}</h2>
-                                <p className='log-in-feature-description' dangerouslySetInnerHTML={{__html: feature.description}}></p>
+                                <p className='log-in-feature-description'
+                                   dangerouslySetInnerHTML={{__html: feature.description}}></p>
                             </div>
                         })}
-                        <div className="log-in-feature" key={`Feature-log-in-options`} style={{animationDelay: `${exponentialDelay(3)}ms`}}>
+                        <div className="log-in-feature" key={`Feature-log-in-options`}
+                             style={{animationDelay: `${exponentialDelay(3)}ms`}}>
                             <img className='log-in-feature-icon' src={PadlockSVG} alt=""/>
                             <h2 className='log-in-feature-title'>Log in</h2>
                             <div className="providers">
-                                <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG} alt="Via Google"/>
-                                <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG} alt="Via GitHub"/>
+                                <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG}
+                                     alt="Via Google"/>
+                                <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG}
+                                     alt="Via GitHub"/>
                             </div>
                         </div>
+                        <div className='log-in-options log-in-feature'
+                             style={{animationDelay: `${exponentialDelay(4)}ms`}}>
+                            <img className='log-in-feature-icon' src={Padlock2SVG} alt=""/>
+                            <form className='inputs-form' onSubmit={logInClassic}>
+                                <Input placeholder='E-mail'/>
+                                <Input type='password' placeholder='Password'/>
+                                <Button text='Log in for contest'/>
+                            </form>
+                            {/*<h2>Log in</h2>*/}
+                            {/*<div className="providers">*/}
+                            {/*    <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG} alt=""/>*/}
+                            {/*    <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG} alt=""/>*/}
+                            {/*</div>*/}
+                        </div>
                     </div>
-                    <div className='log-in-options'>
-                        <form  className='inputs-form'>
-                            <Input placeholder='E-mail' />
-                            <Input type='password' placeholder='Password' />
-                            <Button text='Log in for contest' />
-                        </form>
-                        {/*<h2>Log in</h2>*/}
-                        {/*<div className="providers">*/}
-                        {/*    <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG} alt=""/>*/}
-                        {/*    <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG} alt=""/>*/}
-                        {/*</div>*/}
-                    </div>
+
 
                 </div>
             </div>
-            <LandingPageAsideMenu />
-        </div>
+                <LandingPageAsideMenu/>
+            </div>
         </Transition>
     )
 }

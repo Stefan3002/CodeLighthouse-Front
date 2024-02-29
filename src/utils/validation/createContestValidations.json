@@ -8,6 +8,18 @@
     "inputMin": 15,
     "inputNull": false
   },
+  "startDate": {
+    "inputNull": false
+  },
+  "startTime": {
+    "inputNull": false
+  },
+  "endDate": {
+    "inputNull": false
+  },
+  "endTime": {
+    "inputNull": false
+  },
   "file": {
     "beIn": ["text/csv"]
   }

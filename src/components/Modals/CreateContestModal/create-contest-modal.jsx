@@ -12,6 +12,7 @@ import useFetchHook from "../../../utils/hooks/fetchHook";
 import createAnnouncementValidations from "../../../utils/validation/createAnnouncementValidations.json";
 import {useState} from "react";
 import SelectedFiles from "../../SelectedFiles/selected-files";
+import DateTime from "../../DateTime/date-time";
 const CreateContestModal = () => {
     const validateInput = useValidate()
     const user = useSelector(getUser)
@@ -34,11 +35,33 @@ const CreateContestModal = () => {
         const description = event.target[1].value
         const publicContest = event.target[2].checked
 
+        const startDate = event.target[4].value
+        const startTime = event.target[5].value
+
+        const endDate = event.target[6].value
+        const endTime = event.target[7].value
+
         valid = validateInput('Name of the Contest', name, {inputNull: createContestValidations.name.inputNull, inputMin: createContestValidations.name.inputMin})
         if(!valid)
             return
 
         valid = validateInput('Description of the Contest', description, {inputNull: createContestValidations.description.inputNull, inputMin: createContestValidations.description.inputMin})
+        if(!valid)
+            return
+
+        valid = validateInput('Starting date', startDate, {inputNull: createContestValidations.startDate.inputNull})
+        if(!valid)
+            return
+
+        valid = validateInput('Starting time', startTime, {inputNull: createContestValidations.startTime.inputNull})
+        if(!valid)
+            return
+
+        valid = validateInput('Ending date', endDate, {inputNull: createContestValidations.endDate.inputNull})
+        if(!valid)
+            return
+
+        valid = validateInput('Ending time', endTime, {inputNull: createContestValidations.endTime.inputNull})
         if(!valid)
             return
 
@@ -56,6 +79,12 @@ const CreateContestModal = () => {
         dataFiles.append('name', name)
         dataFiles.append('description', description)
         dataFiles.append('publicContest', publicContest)
+
+        dataFiles.append('startDate', startDate)
+        dataFiles.append('startTime', startTime)
+        dataFiles.append('endDate', endDate)
+        dataFiles.append('endTime', endTime)
+
         // dataFiles.append('lighthouseId', lighthouse.data.id)
 
 
@@ -88,10 +117,24 @@ const CreateContestModal = () => {
                     <p>Make it an open contest? (public contest)</p>
                     <Input type='checkbox' placeholder='Yes, make it public!'/>
 
-                    <Input onChangeCallback={changeFilesUploaded} type='file' />
-                    <SelectedFiles data={selectedFiles} />
+                    <p>If private, upload the list of admitted competitors</p>
+                    <Input onChangeCallback={changeFilesUploaded} type='file'/>
+                    <SelectedFiles data={selectedFiles}/>
 
-                    <Button buttonType='submit' text='Create' type='normal'/>
+                    <p>Start date and time</p>
+                    <div className='assignment-inputs-due'>
+                        <Input type='date'/>
+                        <Input type='time'/>
+                    </div>
+                    <p>End date and time</p>
+                    <div className='assignment-inputs-due'>
+                        <Input type='date'/>
+                        <Input type='time'/>
+                    </div>
+
+                    <Button marginated={true} buttonType='submit' text='Create' type='normal'/>
+
+
                 </form>
             </div>
         </div>

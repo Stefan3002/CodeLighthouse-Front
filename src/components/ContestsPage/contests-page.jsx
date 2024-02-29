@@ -10,9 +10,15 @@ import Button from "../Button/button";
 import {useDispatch, useSelector} from "react-redux";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import {useEffect, useState} from "react";
+import useFetchHook from "../../utils/hooks/fetchHook";
+import LighthouseCard from "../Lighthouse/LighthouseCard/lighthouse-card";
+import ContestCard from "../ContestCard/contest-card";
 const ContestsPage = () => {
     const user = useSelector(getUser)
     const dispatch = useDispatch()
+    const sendRequest = useFetchHook()
+    const [data, setData] = useState([])
     const menuContests = () => {
         dispatch(setModal(true))
         dispatch(setModalContent({
@@ -21,17 +27,39 @@ const ContestsPage = () => {
         }))
     }
 
-    return (
-        <Transition mode='fullscreen'>
-            <Parallax parallaxData={parallaxData} img={ParallaxIMG}/>
-            {user.admin_user && <Button callback={menuContests} type='plus' />}
+
+    // useEffect(() => {
+    //     (async () => {
+    //         await updateUserData(false)
+    //     })()
+    // }, []);
+    useEffect(() => {
+        ( async () => {
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/contests`, null , 'GET', true, undefined)
+            setData(res)
+        })()
+    }, [user]);
 
 
-            <div className='wrapper contests-page'>
-                <Heading text='Enrolled contests' />
-                <Heading text='Open contests' />
-            </div>
-        </Transition>
-    )
+    if(data)
+        return (
+            <Transition mode='fullscreen'>
+                <Parallax parallaxData={parallaxData} img={ParallaxIMG}/>
+                {user.admin_user && <Button callback={menuContests} type='plus' />}
+
+
+                <div className='wrapper contests-page'>
+                    <Heading text='Enrolled contests'/>
+
+                    <div className="lighthouses-wrapper">
+                        {data.map((contest, idx) => {
+                            return <ContestCard animationDelay={idx + 1} data={contest}/>
+                        })}
+                    </div>
+
+                    <Heading text='Open contests'/>
+                </div>
+            </Transition>
+        )
 }
 export default ContestsPage

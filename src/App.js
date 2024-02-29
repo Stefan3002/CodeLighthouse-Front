@@ -49,6 +49,7 @@ import LighthouseHomePage from "./components/Lighthouse/LighthouseHomePage/light
 import LeaderboardPage from "./components/LeaderboardPage/leaderboard-page";
 import ContestsPage from "./components/ContestsPage/contests-page";
 import AdminContestsPage from "./components/AdminContestsPage/admin-contests-page";
+import ContestPage from "./components/ContestPage/contest-page";
 
 function App() {
     const location = useLocation()
@@ -72,7 +73,10 @@ function App() {
                         <Route path='complete-profile' element={<CompleteProfilePage />} />
                         <Route path='lighthouses' element={<LighthousesPage />} />
                         <Route path='challenges' element={<ChallengesPage />} />
-                        <Route path='contests' element={<ContestsPage />} />
+                        <Route path='contests' element={<ContestsPage />} >
+
+                        </Route>
+                        <Route path='contests/:id' element={<ContestPage />} />
                         <Route path='challenges/:slug' element={<ChallengesNav />}>
                             <Route index element={<ChallengePage />} />
                             <Route path='comments' element={<CommentsPage />} />
