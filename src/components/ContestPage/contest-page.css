@@ -1,3 +1,7 @@
-
+.contest-card-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 /*# sourceMappingURL=contest-page.css.map */

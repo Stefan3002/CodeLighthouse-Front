@@ -25,6 +25,7 @@ import DifficultyAdminModal from "../Modals/DifficultyAdminModal/difficulty-admi
 import ExpandedNotificationsModal from "../Modals/ExpandedNotificationsModal/expanded-notifications-modal";
 import ChatBotModal from "../Modals/ChatBotModal/chat-bot-modal";
 import CreateContestModal from "../Modals/CreateContestModal/create-contest-modal";
+import ContestChallengeModal from "../Modals/ContestChallengeModal/contest-challenge-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -42,6 +43,8 @@ const Modal = ({error, type='error'}) => {
             return <SuccessModal/>
         case 'create-contest':
             return <CreateContestModal/>
+        case 'contest-challenge':
+            return <ContestChallengeModal/>
         case 'assignChallenge':
             return <AssignChallengeModal/>
         case 'code':

@@ -12,10 +12,18 @@ import CalendarSVG from "../../utils/imgs/SVGs/CalendarSVG.svg";
 import ClockSVG from "../../utils/imgs/SVGs/ClockSVG.svg";
 import LiveSVG from "../../utils/imgs/SVGs/LiveSVG.svg";
 import Button from "../Button/button";
+import WithInfo from "../WithInfo/with-info";
+import Missing from "../Missing/missing";
+import {useDispatch, useSelector} from "react-redux";
+import {getUser} from "../../utils/store/user-store/user-store-selectors";
+import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import ChallengeCard from "../ChallengeCard/challenge-card";
 const ContestPage = () => {
     const id = useParams().id
     const [data, setData] = useState(undefined)
     const sendRequest = useFetchHook()
+    const user = useSelector(getUser)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         (async () => {
@@ -24,9 +32,21 @@ const ContestPage = () => {
         })()
     }, []);
 
+    const addChallenges = () => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+                type: 'contest-challenge',
+                content: data.id
+            }
+        ))
+    }
+    console.log('aaaa',data)
+
     if(data) {
         const timeRemaining = Date.parse(`${data.start_date} : ${data.start_time}`) - Date.now()
+        const timeRemainingSolve = Date.parse(`${data.end_date} : ${data.end_time}`) - Date.now()
         const timeRemainingReadable = Math.floor(timeRemaining / 60000)
+        const timeRemainingSolveReadable = Math.floor(timeRemainingSolve / 60000)
         return (
             <Transition mode='fullscreen'>
                 <ContestNavigation/>
@@ -38,11 +58,11 @@ const ContestPage = () => {
                         <div>
                             <img className='icon-svg' src={LiveSVG} alt=""/>
                             {timeRemainingReadable >= 0 ?
-                                <p>{timeRemainingReadable} minutes to go!</p>
+                                <WithInfo data='Time until the contest starts!' clickHandler={undefined}><p>{timeRemainingReadable} minutes to go!</p></WithInfo>
                                 :
                                 <>
-                                    <p>Contest started!</p>
-                                    <Link to='solve'><Button marginated={true} color='light' text='Start'/></Link>
+                                    <WithInfo data='Time until the end of the contest! Good luck! Note: You will be able to continue solving the challenges after the time expires, but the results will not be counted for this contest.' clickHandler={undefined} ><p>{timeRemainingSolveReadable} minutes to go!</p></WithInfo>
+                                    {/*<Link to='solve'><Button marginated={true} color='light' text='Start'/></Link>*/}
                                 </>
                             }
                         </div>
@@ -50,9 +70,23 @@ const ContestPage = () => {
                 </>}
                             title={data.archived ? `${data.name} (archived)` : data.public ? `${data.name} {community}` : data.name}/>
                 <div className='wrapper lighthouse-page'>
-                    {/*<AssignmentsList limit={1} filters={false} user={user} data={user} filter='All' />*/}
+                    {data.challenges && data.challenges.length ? data.challenges.map(challenge => {
+                        return <ChallengeCard authoColor='dark' challenge={challenge} />
+                    }) :
+                        <div>
+                            <Missing text='The organisers have not chosen the challenges yet!' />
+                            {user.admin_user &&
+                                <>
+                                    <p>Are you an admin?</p>
+                                    <p>Select challenges for this contest by pressing the button below</p>
+                                    <Button callback={addChallenges} text='Add challenges'/>
+                                </>
+                            }
+
+                        </div>
+                    }
                 </div>
-                <Outlet/>
+                {user.admin_user && <Button callback={addChallenges} type='plus' />}
             </Transition>
         )
     }
