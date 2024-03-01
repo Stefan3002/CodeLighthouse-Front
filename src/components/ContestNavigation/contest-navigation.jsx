@@ -9,7 +9,8 @@ const ContestNavigation = () => {
                 <ul className='app-navigation'>
                     <Link to=''><li>Contest</li></Link>
                     <Link to='assignments'><li>Solve</li></Link>
-                    {/*<Link to='people'><li>People</li></Link>*/}
+                    <Link to='results'><li>Results</li></Link>
+                    <Link to='people'><li>People</li></Link>
                 </ul>
             </nav>
         </Transition>

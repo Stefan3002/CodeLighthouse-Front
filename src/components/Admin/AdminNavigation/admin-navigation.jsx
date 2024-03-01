@@ -10,7 +10,7 @@ const AdminNavigation = () => {
                     <Link to='pending'><li>Pending</li></Link>
                     <Link to='denied'><li>Denied</li></Link>
                     <Link to='reports'><li>Reports</li></Link>
-                    <Link to='contests'><li>Contests</li></Link>
+                    {/*<Link to='contests'><li>Contests</li></Link>*/}
                 </ul>
             </nav>
             <Outlet />

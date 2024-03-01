@@ -4,7 +4,7 @@ import TopSection from "../TopSection/top-section";
 import AuthorName from "../AuthorName/author-name";
 import {Link, Outlet, useParams} from "react-router-dom";
 import Transition from "../../utils/js/transitions";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import ContestNavigation from "../ContestNavigation/contest-navigation";
 import DateTime from "../DateTime/date-time";
@@ -18,29 +18,23 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import ChallengeCard from "../ChallengeCard/challenge-card";
+import Heading from "../Heading/heading";
+import useUpdateData from "../../utils/hooks/updateDataHook";
+import {objectIn} from "../../utils/js/functions";
 const ContestPage = () => {
     const id = useParams().id
     const [data, setData] = useState(undefined)
     const sendRequest = useFetchHook()
-    const user = useSelector(getUser)
-    const dispatch = useDispatch()
+    const updateUser = useUpdateData()
 
     useEffect(() => {
         (async () => {
+            updateUser(true)
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/contests/${id}`, undefined, 'GET', false)
             setData(res)
         })()
     }, []);
 
-    const addChallenges = () => {
-        dispatch(setModal(true))
-        dispatch(setModalContent({
-                type: 'contest-challenge',
-                content: data.id
-            }
-        ))
-    }
-    console.log('aaaa',data)
 
     if(data) {
         const timeRemaining = Date.parse(`${data.start_date} : ${data.start_time}`) - Date.now()
@@ -56,37 +50,26 @@ const ContestPage = () => {
                         <DateTime data={data.start_date} color='light' icon={CalendarSVG}/>
                         <DateTime data={data.start_time} color='light' icon={ClockSVG}/>
                         <div>
-                            <img className='icon-svg' src={LiveSVG} alt=""/>
+                            {timeRemainingReadable < 0 && timeRemainingSolveReadable < 0 ? null :
+                                <img className='icon-svg' src={LiveSVG} alt=""/>
+
+                            }
                             {timeRemainingReadable >= 0 ?
                                 <WithInfo data='Time until the contest starts!' clickHandler={undefined}><p>{timeRemainingReadable} minutes to go!</p></WithInfo>
                                 :
+                                timeRemainingSolveReadable >= 0 ?
                                 <>
                                     <WithInfo data='Time until the end of the contest! Good luck! Note: You will be able to continue solving the challenges after the time expires, but the results will not be counted for this contest.' clickHandler={undefined} ><p>{timeRemainingSolveReadable} minutes to go!</p></WithInfo>
                                     {/*<Link to='solve'><Button marginated={true} color='light' text='Start'/></Link>*/}
                                 </>
+                                    : <p>Contest ended.</p>
                             }
                         </div>
                     </div>
                 </>}
                             title={data.archived ? `${data.name} (archived)` : data.public ? `${data.name} {community}` : data.name}/>
-                <div className='wrapper lighthouse-page'>
-                    {data.challenges && data.challenges.length ? data.challenges.map(challenge => {
-                        return <ChallengeCard authoColor='dark' challenge={challenge} />
-                    }) :
-                        <div>
-                            <Missing text='The organisers have not chosen the challenges yet!' />
-                            {user.admin_user &&
-                                <>
-                                    <p>Are you an admin?</p>
-                                    <p>Select challenges for this contest by pressing the button below</p>
-                                    <Button callback={addChallenges} text='Add challenges'/>
-                                </>
-                            }
 
-                        </div>
-                    }
-                </div>
-                {user.admin_user && <Button callback={addChallenges} type='plus' />}
+                <Outlet />
             </Transition>
         )
     }

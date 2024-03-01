@@ -4,4 +4,20 @@
   align-items: center;
 }
 
+.contest-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.contest-challenges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 /*# sourceMappingURL=contest-page.css.map */

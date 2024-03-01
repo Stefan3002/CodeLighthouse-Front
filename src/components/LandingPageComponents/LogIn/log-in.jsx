@@ -32,12 +32,9 @@ import Modal from "../../Error/modal";
 import {getError} from "../../../utils/store/utils-store/utils-store-selectors";
 const LogIn = () => {
     const error = useSelector(getError)
-
-    const status = useSelector(getStatus)
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const isLoggedIn = useSelector(getIsLoggedIn)
 
 
     const [windowSize, setWindowSize] = useState(window.innerWidth)
@@ -58,7 +55,7 @@ const LogIn = () => {
 
 
 
-    const successLogIn = (user) => {
+    const successLogIn = (user, type = 'provider') => {
 
         dispatch(setError(null))
         dispatch(setIsLoggedIn(true))
@@ -68,7 +65,10 @@ const LogIn = () => {
             token: user.access,
             refresh: user.refresh
         }))
-        navigate('/app')
+        if(type === 'provider')
+            navigate('/app')
+        else
+            navigate('/app/contests')
         // window.location.href = '/app/home'
     }
     // const logUserInEmail = async (form) => {
@@ -105,7 +105,7 @@ const LogIn = () => {
             return await logInCallback()
         }
         catch (e){
-            console.log('AUTH:', e)
+            // console.log('AUTH:', e)
             const errorCode = e.code
             switch (errorCode){
                 case 'auth/popup-closed-by-user':
@@ -170,7 +170,7 @@ const LogIn = () => {
             email: username, password
         }
 
-        await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, JSON.stringify(data), 'POST', false, successLogIn, ['Talking to the server', "IT'S ON FIRE?!", "Nope, the fire was extinguished!"])
+        await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, JSON.stringify(data), 'POST', false, (user) => successLogIn(user, 'classic'), ['Talking to the server', "IT'S ON FIRE?!", "Nope, the fire was extinguished!"])
 
     }
 
