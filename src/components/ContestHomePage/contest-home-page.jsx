@@ -28,12 +28,28 @@ const ContestHomePage = () => {
         ))
     }
     useEffect(() => {
+        const solved = []
+        if(data)
+            for(const challenge of data.challenges)
+                for (const submission of user.submissions) {
+                    if (challenge.slug === submission.challenge
+                        &&
+                        (new Date(`${submission.date} : ${submission.time}`) >= new Date(`${data.start_date} : ${data.start_time}`))
+                        &&
+                        (new Date(`${submission.date} : ${submission.time}`) <= new Date(`${data.end_date} : ${data.end_time}`))
+                    )
+                        solved.push(challenge)
+                }
+        setSolvedChallenges(solved)
+    }, [data]);
+    useEffect(() => {
         (async () => {
             updateUser(true)
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/contests/${id}`, undefined, 'GET', false)
             setData(res)
         })()
     }, []);
+    console.log('aa', solvedChallenges)
     if(data) {
         const timeRemaining = Date.parse(`${data.start_date} : ${data.start_time}`) - Date.now()
         const timeRemainingSolve = Date.parse(`${data.end_date} : ${data.end_time}`) - Date.now()

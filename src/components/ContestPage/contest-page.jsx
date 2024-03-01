@@ -36,6 +36,9 @@ const ContestPage = () => {
     }, []);
 
 
+
+
+
     if(data) {
         const timeRemaining = Date.parse(`${data.start_date} : ${data.start_time}`) - Date.now()
         const timeRemainingSolve = Date.parse(`${data.end_date} : ${data.end_time}`) - Date.now()
