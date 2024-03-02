@@ -52,6 +52,7 @@ import AdminContestsPage from "./components/AdminContestsPage/admin-contests-pag
 import ContestPage from "./components/ContestPage/contest-page";
 import ContestPeoplePage from "./components/ContestPeoplePage/contest-people-page";
 import ContestHomePage from "./components/ContestHomePage/contest-home-page";
+import ContestResultsPage from "./components/ContestResultsPage/contest-results-page";
 
 function App() {
     const location = useLocation()
@@ -79,6 +80,7 @@ function App() {
                         <Route path='contests/:id' element={<ContestPage />} >
                             <Route index element={<ContestHomePage />} />
                             <Route path='people' element={<ContestPeoplePage />} />
+                            <Route path='results' element={<ContestResultsPage />} />
                         </Route>
                         <Route path='challenges/:slug' element={<ChallengesNav />}>
                             <Route index element={<ChallengePage />} />

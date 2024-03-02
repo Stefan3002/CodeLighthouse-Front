@@ -26,6 +26,7 @@ import ExpandedNotificationsModal from "../Modals/ExpandedNotificationsModal/exp
 import ChatBotModal from "../Modals/ChatBotModal/chat-bot-modal";
 import CreateContestModal from "../Modals/CreateContestModal/create-contest-modal";
 import ContestChallengeModal from "../Modals/ContestChallengeModal/contest-challenge-modal";
+import ChangeEmailModal from "../Modals/ChangeEmailModal/change-email-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -47,6 +48,8 @@ const Modal = ({error, type='error'}) => {
             return <ContestChallengeModal/>
         case 'assignChallenge':
             return <AssignChallengeModal/>
+        case 'change-email':
+            return <ChangeEmailModal/>
         case 'code':
             return <ExpandedCodeModal/>
         case 'bot':

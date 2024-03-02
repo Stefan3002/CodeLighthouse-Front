@@ -58,11 +58,11 @@ const ContestPage = () => {
 
                             }
                             {timeRemainingReadable >= 0 ?
-                                <WithInfo data='Time until the contest starts!' clickHandler={undefined}><p>{timeRemainingReadable} minutes to go!</p></WithInfo>
+                                <WithInfo data='Time until the contest starts!' clickHandler={() => null}><p>{timeRemainingReadable} minutes to go!</p></WithInfo>
                                 :
                                 timeRemainingSolveReadable >= 0 ?
                                 <>
-                                    <WithInfo data='Time until the end of the contest! Good luck! Note: You will be able to continue solving the challenges after the time expires, but the results will not be counted for this contest.' clickHandler={undefined} ><p>{timeRemainingSolveReadable} minutes to go!</p></WithInfo>
+                                    <WithInfo data='Time until the end of the contest! Good luck! Note: You will be able to continue solving the challenges after the time expires, but the results will not be counted for this contest.' clickHandler={() => null} ><p>{timeRemainingSolveReadable} minutes to go!</p></WithInfo>
                                     {/*<Link to='solve'><Button marginated={true} color='light' text='Start'/></Link>*/}
                                 </>
                                     : <p>Contest ended.</p>

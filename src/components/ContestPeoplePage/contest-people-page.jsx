@@ -3,7 +3,8 @@ import Transition from "../../utils/js/transitions";
 import Button from "../Button/button";
 import CopySVG from "../../utils/imgs/SVGs/CopySVG.svg";
 import WithInfo from "../WithInfo/with-info";
-import changeLightSVG from "../../utils/imgs/SVGs/ModifyLightSVG.svg";
+import ReloadSVG from "../../utils/imgs/SVGs/ReloadSVG.svg";
+import ChangeSVG from "../../utils/imgs/SVGs/ModifySVG.svg";
 import Input from "../Input/input";
 import AuthorName from "../AuthorName/author-name";
 import Missing from "../Missing/missing";
@@ -41,24 +42,24 @@ const ContestPeoplePage = () => {
         }))
     }
 
-    const successCallback = () => {
-        dispatch(setModal(true))
-        dispatch(setModalContent({
-            type: 'success',
-            content: 'Contest archived!'
-        }))
-    }
+    // const successCallback = () => {
+    //     dispatch(setModal(true))
+    //     dispatch(setModalContent({
+    //         type: 'success',
+    //         content: 'Contest archived!'
+    //     }))
+    // }
+    //
+    // const archiveLighthouse = async () => {
+    //     dispatch(setModal(true))
+    //     dispatch(setModalContent({
+    //         type: 'confirm',
+    //         content: async () => await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${contestID}`, undefined, 'DELETE', false, successCallback)
+    //     }))
+    //     // const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${contestID}`, undefined, 'DELETE', false, successCallback)
+    // }
 
-    const archiveLighthouse = async () => {
-        dispatch(setModal(true))
-        dispatch(setModalContent({
-            type: 'confirm',
-            content: async () => await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${contestID}`, undefined, 'DELETE', false, successCallback)
-        }))
-        // const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${contestID}`, undefined, 'DELETE', false, successCallback)
-    }
-
-    const changeEnrollmentSuccess = async (data) => {
+    const successCallback = async (data) => {
         dispatch(setModal(true))
         dispatch(setModalContent({
             type: 'success',
@@ -67,8 +68,29 @@ const ContestPeoplePage = () => {
         setData(await updateData(true))
     }
 
-    const changeEnrollmentCode = async () => {
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses-enroll-change/${contestID}`, undefined, 'GET', false, changeEnrollmentSuccess)
+    const changeUserPassword = async (userID) => {
+        const dataFetch = {
+            userID
+        }
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/contest-reset-password/${contestID}`, JSON.stringify(dataFetch), 'POST', false, successCallback)
+    }
+    const confirmChangeUserPassword = (userID, username) => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'confirm',
+            content: () => changeUserPassword(userID),
+            extraData: `<p>Reset password of user: <b>${username}</b></p>`
+        }))
+    }
+
+    const changeUserEmail = async (userID, username, contestID) => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'change-email',
+            content: username,
+            userID,
+            contestID
+        }))
     }
     const searchStudent = (event) => {
         const target = event.target.value
@@ -84,21 +106,13 @@ const ContestPeoplePage = () => {
             <div className='wrapper lighthouse-details-page'>
                 <div className="lighthouse-details-header">
                     <div className="enrollment-details-main">
-                        {user.user_id === data.author.user_id ?
-                            <Button callback={archiveLighthouse} text='Archive this Lighthouse' type='normal' />
-                            : null
-                        }
+                        {/*{user.user_id === data.author.user_id ?*/}
+                        {/*    <Button callback={archiveLighthouse} text='Archive this Lighthouse' type='normal' />*/}
+                        {/*    : null*/}
+                        {/*}*/}
                         <br/>
                         {data.description ? data.description : 'Why did you not provide a description???'}
                     </div>
-                    {user.id === data.author.id ? <div className="enrollment-code-wrapper">
-                        <img onClick={copyCodeToClipboard} src={CopySVG} className='icon-svg' alt="Copy code"/>
-                        <p><b>Enrollment Code:</b></p>
-                        <p className='enrollment-code'>{data.enrollment_code}</p>
-                        <WithInfo data='Regenerate another Enrollment Code' clickHandler={changeEnrollmentCode}><img src={changeLightSVG} className='icon-svg' alt=""/></WithInfo>
-                        <p><b>Lighthouse ID:</b></p>
-                        <p className='enrollment-code'>{data.id}</p>
-                    </div> : null}
 
                 </div>
                 <div className='enrollment-details-people'>
@@ -106,7 +120,15 @@ const ContestPeoplePage = () => {
                     <div className="enrollment-details-people-inner">
                         <Input type='search' placeholder='Search participant' onChangeCallback={searchStudent} />
                         {people.length > 0 ? people.map(person => {
-                            return <AuthorName color='dark' author={person} />
+                            return <div className='participant-container'>
+                            <AuthorName color='dark' author={person} />
+                            {user.admin_user &&
+                                <>
+                                    <WithInfo data="Regenerate participant's password" clickHandler={() => confirmChangeUserPassword(person.id, person.username)}><img src={ReloadSVG} className='icon-svg' alt=""/></WithInfo>
+                                    <WithInfo data="Change participant's e-mail" clickHandler={() => changeUserEmail(person.id, person.username, data.id)}><img src={ChangeSVG} className='icon-svg' alt=""/></WithInfo>
+                                </>
+                            }
+                            </div>
                         }) : <Missing text='You are the only one here!' />}
                     </div>
                 </div>

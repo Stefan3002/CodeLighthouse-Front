@@ -1,0 +1,7 @@
+{
+  "email":
+  {
+    "inputMin": 5,
+    "inputNull": false
+  }
+}
