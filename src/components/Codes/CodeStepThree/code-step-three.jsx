@@ -33,7 +33,7 @@ const CodeStepThree = ({setCodeStep, data}) => {
             language: lang,
             timeLimit: data.time_limit
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run/${slug}`,JSON.stringify(reqData) , 'POST', false, successCallback)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run/${slug}`,JSON.stringify(reqData) , 'POST', false, successCallback, ['The real test!', 'Get ready!', 'Aaaaaaannnnddddd...'])
 
     }
 

@@ -19,6 +19,10 @@
   color: #FEE1C7;
 }
 
+.editor-wrapper {
+  width: 100%;
+}
+
 .editor-wrapper-code {
   max-width: 600px;
 }

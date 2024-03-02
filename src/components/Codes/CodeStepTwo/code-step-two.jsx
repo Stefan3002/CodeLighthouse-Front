@@ -40,7 +40,7 @@ const CodeStepOne = ({setCodeStep, data}) => {
             language: lang,
             // timeLimit: 1.2
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run-hard/${slug}`,JSON.stringify(reqData) , 'POST', false, successCallback)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run-hard/${slug}`,JSON.stringify(reqData) , 'POST', false, successCallback, ['Testing you submission', 'How did you perform?'])
 
     }
 

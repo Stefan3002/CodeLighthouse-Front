@@ -1,0 +1,13 @@
+.summary-card {
+  background: #FEE1C7;
+  border-radius: 10px;
+  padding: 0.5rem;
+  color: #32292F;
+}
+
+.summary-cards {
+  display: flex;
+  gap: 1rem;
+}
+
+/*# sourceMappingURL=summary-modal.css.map */

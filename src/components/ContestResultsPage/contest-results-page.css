@@ -1,3 +1,10 @@
+.results-inner {
+  text-align: center;
+}
 
+.results-challenges {
+  display: flex;
+  gap: 1rem;
+}
 
 /*# sourceMappingURL=contest-results-page.css.map */

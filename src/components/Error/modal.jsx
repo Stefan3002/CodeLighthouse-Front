@@ -27,6 +27,7 @@ import ChatBotModal from "../Modals/ChatBotModal/chat-bot-modal";
 import CreateContestModal from "../Modals/CreateContestModal/create-contest-modal";
 import ContestChallengeModal from "../Modals/ContestChallengeModal/contest-challenge-modal";
 import ChangeEmailModal from "../Modals/ChangeEmailModal/change-email-modal";
+import SummaryModal from "../Modals/SummaryModal/summary-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -42,6 +43,8 @@ const Modal = ({error, type='error'}) => {
             return <LighthousePreviewModal/>
         case 'success':
             return <SuccessModal/>
+        case 'summary':
+            return <SummaryModal/>
         case 'create-contest':
             return <CreateContestModal/>
         case 'contest-challenge':

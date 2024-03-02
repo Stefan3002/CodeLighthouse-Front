@@ -2,6 +2,7 @@ import './contest-people-page.css'
 import Transition from "../../utils/js/transitions";
 import Button from "../Button/button";
 import CopySVG from "../../utils/imgs/SVGs/CopySVG.svg";
+import TableSVG from "../../utils/imgs/SVGs/TableSVG.svg";
 import WithInfo from "../WithInfo/with-info";
 import ReloadSVG from "../../utils/imgs/SVGs/ReloadSVG.svg";
 import ChangeSVG from "../../utils/imgs/SVGs/ModifySVG.svg";
@@ -93,6 +94,23 @@ const ContestPeoplePage = () => {
             contestID
         }))
     }
+
+    const seeUserSummary = async (userID, username, contestID) => {
+
+        const dataFetch = {
+            userID
+        }
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/contest-participant-summary/${contestID}`, JSON.stringify(dataFetch), 'POST', false, successCallback)
+
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'summary',
+            content: username,
+            userID,
+            contestID,
+            summary: res
+        }))
+    }
     const searchStudent = (event) => {
         const target = event.target.value
 
@@ -150,6 +168,7 @@ const ContestPeoplePage = () => {
                                     <WithInfo data="Regenerate participant's password" clickHandler={() => confirmChangeUserPassword(person.id, person.username)}><img src={ReloadSVG} className='icon-svg' alt=""/></WithInfo>
                                     <WithInfo data="Change participant's e-mail" clickHandler={() => changeUserEmail(person.id, person.username, data.id)}><img src={ChangeSVG} className='icon-svg' alt=""/></WithInfo>
                                     <WithInfo data="See participant's submissions" clickHandler={() => seeUserSubmissions(person.id, person.username, data.id)}><img src={EyeSVG} className='icon-svg' alt=""/></WithInfo>
+                                    <WithInfo data="See how the participant performed" clickHandler={() => seeUserSummary(person.id, person.username, data.id)}><img src={TableSVG} className='icon-svg' alt=""/></WithInfo>
                                 </>
                             }
                             </div>

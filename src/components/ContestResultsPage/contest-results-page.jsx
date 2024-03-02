@@ -12,6 +12,7 @@ import {useParams} from "react-router-dom";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
 import useUpdateData from "../../utils/hooks/updateDataHook";
+import ChallengeCard from "../ChallengeCard/challenge-card";
 const ContestResultsPage = () => {
     const user = useSelector(getUser)
     const contestID = useParams()['id']
@@ -37,13 +38,16 @@ const ContestResultsPage = () => {
                     </div>
 
                 </div>
-                <div className='enrollment-details-people'>
-                    <div className="enrollment-details-people-inner">
-                        {data.people.map(person => {
-                            return <AuthorName author={person} color='dark' />
+                <div className='results-inner'>
+                    {/*{data.people.map(person => {*/}
+                    {/*    return <AuthorName author={person} color='dark' />*/}
+                    {/*})}*/}
+                    <div className="results-challenges">
+                        {data.challenges.map(challenge => {
+                            return <ChallengeCard authoColor='dark' challenge={challenge} type='small-card' />
                         })}
-
                     </div>
+
                 </div>
 
             </div>
