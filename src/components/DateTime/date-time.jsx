@@ -4,7 +4,7 @@ const DateTime = ({icon, data, color = 'dark'}) => {
     return (
         <div className="assignment-meta">
             <img className='icon-svg' src={icon} alt=""/>
-            <p style={{color: `${color === 'light' ? '#FEE1C7' : '#32292F'}`}}>{data}</p>
+            <p className='date-time-container' style={{color: `${color === 'light' ? '#FEE1C7' : '#32292F'}`}}>{data}</p>
         </div>
     )
 }

@@ -5,6 +5,7 @@ import CopySVG from "../../utils/imgs/SVGs/CopySVG.svg";
 import WithInfo from "../WithInfo/with-info";
 import ReloadSVG from "../../utils/imgs/SVGs/ReloadSVG.svg";
 import ChangeSVG from "../../utils/imgs/SVGs/ModifySVG.svg";
+import EyeSVG from "../../utils/imgs/SVGs/EyeSVG.svg";
 import Input from "../Input/input";
 import AuthorName from "../AuthorName/author-name";
 import Missing from "../Missing/missing";
@@ -14,7 +15,7 @@ import {Outlet, useParams} from "react-router-dom";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
 import useUpdateData from "../../utils/hooks/updateDataHook";
-import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import {setError, setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 const ContestPeoplePage = () => {
     const user = useSelector(getUser)
     const contestID = useParams()['id']
@@ -100,6 +101,28 @@ const ContestPeoplePage = () => {
         })
     }
 
+    const seeUserSubmissions = async (userID, username, contestID) => {
+        const dataFetch = {
+            userID
+        }
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/contest-get-submissions/${contestID}`, JSON.stringify(dataFetch), 'POST', false, undefined)
+        // console.log('aa', res)
+        if(!res || !res.length){
+            // dispatch(setModal(true))
+            dispatch(setError('<p>No submissions!</p>'))
+        }
+        else {
+            dispatch(setModal(true))
+            dispatch(setModalContent({
+                type: 'submissions',
+                data: {
+                    username,
+                    submissions: res
+                }
+            }))
+        }
+    }
+
     if(user && data)
     return (
         <Transition mode='fullscreen'>
@@ -126,6 +149,7 @@ const ContestPeoplePage = () => {
                                 <>
                                     <WithInfo data="Regenerate participant's password" clickHandler={() => confirmChangeUserPassword(person.id, person.username)}><img src={ReloadSVG} className='icon-svg' alt=""/></WithInfo>
                                     <WithInfo data="Change participant's e-mail" clickHandler={() => changeUserEmail(person.id, person.username, data.id)}><img src={ChangeSVG} className='icon-svg' alt=""/></WithInfo>
+                                    <WithInfo data="See participant's submissions" clickHandler={() => seeUserSubmissions(person.id, person.username, data.id)}><img src={EyeSVG} className='icon-svg' alt=""/></WithInfo>
                                 </>
                             }
                             </div>
