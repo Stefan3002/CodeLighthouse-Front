@@ -11,7 +11,7 @@ import clockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 import DateTime from "../DateTime/date-time";
 import Button from "../Button/button";
 
-const ChallengeCard = ({callback = undefined, report = undefined, authoColor = 'light', completed, challenge, idx, type = 'Big', detailedAssignment = false}) => {
+const ChallengeCard = ({noLink = false, callback = undefined, report = undefined, authoColor = 'light', completed, challenge, idx, type = 'Big', detailedAssignment = false}) => {
     const dispatch = useDispatch()
     const selectedChallenge = useSelector(getSelectedChallenge)
     const selectChallenge = () => {
@@ -83,25 +83,39 @@ const ChallengeCard = ({callback = undefined, report = undefined, authoColor = '
                 </div>
             )
     else
-        if(type === 'small-card')
-            return (
-                <Link to={`/app/challenges/${challenge.slug}`}>
-                <div className='challenge-card-small challenge-card-small-profile'>
-                    <h3>{challenge.title}</h3>
-                    {!challenge.private && challenge.public ? <p>Public.</p> :
-                        !challenge.private ? <>
-                        <p>Not yet public!</p>
-                        <p>{challenge.status}</p>
-                         </> : <p>Private.</p>}
+        if(type === 'small-card') {
+             if(!noLink)
+                return (
+                    <Link to={`/app/challenges/${challenge.slug}`}>
+                        <div className='challenge-card-small challenge-card-small-profile'>
+                            <h3>{challenge.title}</h3>
+                            {!challenge.private && challenge.public ? <p>Public.</p> :
+                                !challenge.private ? <>
+                                    <p>Not yet public!</p>
+                                    <p>{challenge.status}</p>
+                                </> : <p>Private.</p>}
 
-                    {/*<AuthorName author={challenge.author} />*/}
-                </div>
-                </Link>
-            )
+                            {/*<AuthorName author={challenge.author} />*/}
+                        </div>
+                    </Link>
+                )
+            else
+                 return (
+                     <div className='challenge-card-small challenge-card-small-profile'>
+                         <h3>{challenge.title}</h3>
+                         {!challenge.private && challenge.public ? <p>Public.</p> :
+                             !challenge.private ? <>
+                                 <p>Not yet public!</p>
+                                 <p>{challenge.status}</p>
+                             </> : <p>Private.</p>}
+
+                         {/*<AuthorName author={challenge.author} />*/}
+                     </div>
+                 )
+        }
         else
         if(type === 'report')
             return (
-
                     <div className='challenge-card-small challenge-card-report'>
                         <Link to={`/app/challenges/${report.challenge.slug}`}>
                             <h3>{report.challenge.title}</h3>

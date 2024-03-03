@@ -1,10 +1,16 @@
-.results-inner {
+.contest-results-page {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .results-challenges {
   display: flex;
   gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
 }
 
 /*# sourceMappingURL=contest-results-page.css.map */
