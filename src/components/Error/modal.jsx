@@ -28,6 +28,7 @@ import CreateContestModal from "../Modals/CreateContestModal/create-contest-moda
 import ContestChallengeModal from "../Modals/ContestChallengeModal/contest-challenge-modal";
 import ChangeEmailModal from "../Modals/ChangeEmailModal/change-email-modal";
 import SummaryModal from "../Modals/SummaryModal/summary-modal";
+import AccountSettingsModal from "../Modals/AccountSettingsModal/account-settings-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -57,6 +58,8 @@ const Modal = ({error, type='error'}) => {
             return <ExpandedCodeModal/>
         case 'bot':
             return <ChatBotModal/>
+        case 'account-settings':
+            return <AccountSettingsModal/>
         case 'notifications':
             return <ExpandedNotificationsModal/>
         case 'createChallenge':

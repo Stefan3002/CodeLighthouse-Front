@@ -13,6 +13,7 @@ import {setUser} from "../../utils/store/user-store/user-store-actions";
 import Score from "../Score/score";
 import Button from "../Button/button";
 import LogOutSVG from '../../utils/imgs/SVGs/SignOutSVG.svg'
+import SettingsSVG from '../../utils/imgs/SVGs/SettingsSVG.svg'
 import AssignmentsList from "../AssignmentsList/assignments-list";
 import TopSection from "../TopSection/top-section";
 import AuthorName from "../AuthorName/author-name";
@@ -21,7 +22,7 @@ import {AnimatePresence} from "framer-motion";
 import EnrolledLighthouses from "../EnrolledLighthouses/enrolled-lighthouses";
 import Missing from "../Missing/missing";
 import WithInfo from "../WithInfo/with-info";
-import {setError} from "../../utils/store/utils-store/utils-store-actions";
+import {setError, setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import ClockSVG from "../../utils/imgs/SVGs/ClockSVG.svg";
 const ProfilePage = () => {
     const user = useSelector(getUser)
@@ -66,6 +67,13 @@ const ProfilePage = () => {
         // dispatch(setUser(null))
         navigate('/auth')
     }
+    const openSettings = () => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'account-settings',
+            content: user.user_id
+        }))
+    }
 
     const filterAssignments = (category) => {
         setFilter(category)
@@ -100,6 +108,14 @@ const ProfilePage = () => {
                                 <div className='bar-item'>
                                     <img src={ClockSVG} className='icon-svg' alt=""/>
                                     <p>{Math.round(Object.values(timeOnChallenges.current).reduce((acc, el) => Math.max(acc, el), 0))} minutes</p>
+                                </div>
+                            </WithInfo>
+                        }
+                        {+userID === user.id &&
+                            <WithInfo clickHandler={openSettings} data='Account settings'>
+                                <div className='bar-item'>
+                                    <img src={SettingsSVG} className='icon-svg' alt=""/>
+                                    <p>Settings</p>
                                 </div>
                             </WithInfo>
                         }
