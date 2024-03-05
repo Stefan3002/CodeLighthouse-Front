@@ -1,9 +1,10 @@
-import './admin-denied-page.css'
+import './denied-challenges-list.css'
 import Heading from "../../Heading/heading";
 import ChallengeCard from "../../ChallengeCard/challenge-card";
 import {useEffect, useState} from "react";
 import useFetchHook from "../../../utils/hooks/fetchHook";
-const AdminDeniedPage = () => {
+import Missing from "../../Missing/missing";
+const DeniedChallengesList = () => {
     const [data, setData] = useState([])
     const sendRequest = useFetchHook()
 
@@ -16,14 +17,11 @@ const AdminDeniedPage = () => {
 
     if(data)
     return (
-        <div className='wrapper admin-denied-page'>
-            <Heading text='Denied challenges, admin.'/>
-            <div className="pending-challenges">
-                {data.map(challenge => {
-                    return <ChallengeCard challenge={challenge} type='small-card' />
-                })}
-            </div>
+        <div className="pending-challenges">
+            {data.length ? data.map(challenge => {
+                return <ChallengeCard challenge={challenge} type='small-card' />
+            }) : <Missing text='No challenges here' />}
         </div>
     )
 }
-export default AdminDeniedPage
+export default DeniedChallengesList

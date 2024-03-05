@@ -1,9 +1,11 @@
 .admin-reports-page {
-  margin-top: 3rem;
+  margin-top: 1rem;
   display: flex;
   gap: 0.5rem;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 /*# sourceMappingURL=admin-reports-page.css.map */

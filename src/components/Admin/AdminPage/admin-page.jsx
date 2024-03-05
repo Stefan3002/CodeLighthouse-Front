@@ -3,6 +3,8 @@ import {useEffect, useState} from "react";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import ChallengeCard from "../../ChallengeCard/challenge-card";
 import Heading from "../../Heading/heading";
+import Missing from "../../Missing/missing";
+import DeniedChallengesList from "../DeniedChallengesList/denied-challenges-list";
 const AdminPage = () => {
     const [data, setData] = useState([])
     const sendRequest = useFetchHook()
@@ -19,10 +21,12 @@ const AdminPage = () => {
         <div className='wrapper admin-page'>
             <Heading text='Pending challenges, admin.' />
             <div className="pending-challenges">
-                {data.map(challenge => {
+                {data.length ? data.map(challenge => {
                     return <ChallengeCard challenge={challenge} type='small-card' />
-                })}
+                }) : <Missing text='No challenges here' />}
             </div>
+            <Heading text='Denied challenges' />
+            <DeniedChallengesList />
         </div>
     )
 }

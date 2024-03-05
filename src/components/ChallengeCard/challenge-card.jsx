@@ -129,5 +129,21 @@ const ChallengeCard = ({noLink = false, callback = undefined, report = undefined
                     </div>
 
             )
+        else
+        if(type === 'report-closed')
+            return (
+                <div className='challenge-card-small challenge-card-report'>
+                    <Link to={`/app/challenges/${report.challenge.slug}`}>
+                        <h3>{report.challenge.title}</h3>
+                        <p>{report.reason}</p>
+                    </Link>
+                    {/*<AuthorName color='dark' author={report.challenge.author} />*/}
+                    <p>{report.comment}</p>
+                    {/*<h3>Assigned admin</h3>*/}
+                    {/*<AuthorName color='dark' author={report.assigned_admin} />*/}
+                    {/*<Button marginated={true} callback={callback} text='Close report' color='dark' type='normal' />*/}
+                </div>
+
+            )
 }
 export default ChallengeCard

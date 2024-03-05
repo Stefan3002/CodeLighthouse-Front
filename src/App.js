@@ -43,7 +43,7 @@ import LighthouseSubmissionsPage from "./components/Lighthouse/LighthouseSubmiss
 import Transition from "./utils/js/transitions";
 import AdminPage from "./components/Admin/AdminPage/admin-page";
 import AdminNavigation from "./components/Admin/AdminNavigation/admin-navigation";
-import AdminDeniedPage from "./components/Admin/AdminDeniedPage/admin-denied-page";
+// import AdminDeniedPage from "./components/Admin/DeniedChallengesList/admin-denied-page";
 import AdminReportsPage from "./components/Admin/AdminReportsPage/admin-reports-page";
 import LighthouseHomePage from "./components/Lighthouse/LighthouseHomePage/lighthouse-home-page";
 import LeaderboardPage from "./components/LeaderboardPage/leaderboard-page";
@@ -101,7 +101,7 @@ function App() {
                         <Route path='admin' element={<AdminNavigation />}>
                             {/*<Route index element={<AdminPage />} />*/}
                             <Route path='pending' element={<AdminPage />} />
-                            <Route path='denied' element={<AdminDeniedPage />} />
+                            {/*<Route path='denied' element={<AdminDeniedPage />} />*/}
                             <Route path='reports' element={<AdminReportsPage />} />
                             <Route path='contests' element={<AdminContestsPage />} />
                         </Route>
