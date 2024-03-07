@@ -12,12 +12,14 @@ import useUpdateData from "../../../utils/hooks/updateDataHook";
 import BackSVG from "../../../utils/imgs/SVGs/BackSVG.svg";
 import createLighthouseValidations from "../../../utils/validation/createLighthouseValidations.json";
 import useValidate from "../../../utils/hooks/validateHook";
+import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
 const CreateLighthouseModal = () => {
     const validateInput = useValidate()
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
     const dispatch = useDispatch()
     const updateUserData = useUpdateData()
+    const modalContent = useSelector(getModalContent)
 
     const successCallback = async () => {
        await updateUserData()
@@ -55,7 +57,7 @@ const CreateLighthouseModal = () => {
     const backOneStep = () => {
         dispatch(setModalContent({
             type: 'menuLighthouse',
-            content: undefined
+            content: modalContent.oldContent
         }))
     }
 

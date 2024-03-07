@@ -13,13 +13,20 @@ import createAnnouncementValidations from "../../../utils/validation/createAnnou
 import {useState} from "react";
 import SelectedFiles from "../../SelectedFiles/selected-files";
 import DateTime from "../../DateTime/date-time";
+import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
 const CreateContestModal = () => {
     const validateInput = useValidate()
     const user = useSelector(getUser)
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
     const [selectedFiles, setSelectedFiles] = useState([])
-
+    const modalContent = useSelector(getModalContent)
+    const backOneStep = () => {
+        dispatch(setModalContent({
+            type: 'menuLighthouse',
+            content: modalContent.oldContent
+        }))
+    }
     const changeFilesUploaded = (event) => {
         const files = event.target.files
         setSelectedFiles(files)
@@ -105,7 +112,7 @@ const CreateContestModal = () => {
     return (
         <div className='error-wrapper'>
             <div className="error-header">
-                {/*<img onClick={backOneStep} className='icon-svg' src={BackSVG} alt="Back"/>*/}
+                <img onClick={backOneStep} className='icon-svg' src={BackSVG} alt="Back"/>
                 <img src={LighthouseSVG} alt=""/>
                 <h2>Create Contest!</h2>
             </div>

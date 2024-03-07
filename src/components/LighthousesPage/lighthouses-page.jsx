@@ -37,7 +37,12 @@ const LighthousesPage = () => {
         dispatch(setModal(true))
         dispatch(setModalContent({
             type: 'menuLighthouse',
-            data: undefined
+            content: {
+                button1: 'joinLighthouse',
+                button1Name: 'Join',
+                button2: 'createLighthouse',
+                button2Name: 'Create'
+            }
         }))
     }
     if(user && communities)

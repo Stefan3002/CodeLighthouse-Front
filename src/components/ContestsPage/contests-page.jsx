@@ -14,6 +14,7 @@ import {useEffect, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import LighthouseCard from "../Lighthouse/LighthouseCard/lighthouse-card";
 import ContestCard from "../ContestCard/contest-card";
+import Missing from "../Missing/missing";
 const ContestsPage = () => {
     const user = useSelector(getUser)
     const dispatch = useDispatch()
@@ -22,9 +23,15 @@ const ContestsPage = () => {
     const menuContests = () => {
         dispatch(setModal(true))
         dispatch(setModalContent({
-            type: 'create-contest',
-            content: undefined
+            type: 'menuLighthouse',
+            content: {
+                button2: 'createContest',
+                button2Name: 'Create',
+                button1: 'joinContest',
+                button1Name: 'Join'
+            }
         }))
+
     }
 
 
@@ -52,9 +59,9 @@ const ContestsPage = () => {
                     <Heading text='Enrolled contests'/>
 
                     <div className="lighthouses-wrapper">
-                        {data.map((contest, idx) => {
+                        {data.length ? data.map((contest, idx) => {
                             return <ContestCard animationDelay={idx + 1} data={contest}/>
-                        })}
+                        }) : <Missing text='Nothing here' />}
                     </div>
 
                     <Heading text='Open contests'/>

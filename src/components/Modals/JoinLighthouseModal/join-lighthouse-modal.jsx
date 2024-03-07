@@ -18,15 +18,31 @@ const JoinLighthouseModal = () => {
     const user = useSelector(getUser)
     const updateUserData = useUpdateData()
     const dispatch = useDispatch()
+    const modalContent = useSelector(getModalContent)
 
 
-
+    const successCallback = async () => {
+        dispatch(setModalContent({
+            type: 'success',
+            data: undefined
+        }))
+        await updateUserData()
+    }
+    const joinLighthouse = async (code) => {
+        const dataReq = {
+            user_id: user.user_id,
+            enrollment_code: code
+        }
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/1?type=lighthouse`,JSON.stringify(dataReq) , 'POST', false, successCallback)
+        await updateUserData()
+    }
     const previewSuccessCallback = async (enrollmentCode, data) => {
         dispatch(setModalContent({
             type: 'lighthousePreview',
             data: {
                 ...data,
-                code: enrollmentCode
+                code: enrollmentCode,
+                forwardCallback: () => joinLighthouse(enrollmentCode)
             }
         }))
         // await updateUserData()
@@ -42,18 +58,21 @@ const JoinLighthouseModal = () => {
         if(!valid)
             return
 
-        valid = validateInput('ID of Lighthouse', lighthouseId, {inputNull: joinLighthouseValidations.id.inputNull, inputMin: joinLighthouseValidations.id.inputMin})
-        if(!valid)
-            return
+        // valid = validateInput('ID of Lighthouse', lighthouseId, {inputNull: joinLighthouseValidations.id.inputNull, inputMin: joinLighthouseValidations.id.inputMin})
+        // if(!valid)
+        //     return
 
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses-preview/${lighthouseId}`,null , 'GET', true, (data) => previewSuccessCallback(code, data))
+        const dataFetch = {
+            enrollmentCode: code
+        }
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/content-preview?type=lighthouse`,JSON.stringify(dataFetch) , 'POST', true, (data) => previewSuccessCallback(code, data))
 
     }
 
     const backOneStep = () => {
         dispatch(setModalContent({
             type: 'menuLighthouse',
-            content: undefined
+            content: modalContent.oldContent
         }))
     }
 
@@ -69,7 +88,7 @@ const JoinLighthouseModal = () => {
                 <p>Enter the <b>enrollment code</b> of the lighthouse:</p>
                 <form className='enroll-inputs' onSubmit={enrollLighthouse}>
                     <Input type='text' placeholder='Enrollment code' />
-                    <Input type='text' placeholder='Id of the Lighthouse.' />
+                    {/*<Input type='text' placeholder='Id of the Lighthouse.' />*/}
                     <Button color='light' buttonType='submit' text='Join' type='normal' />
                 </form>
 

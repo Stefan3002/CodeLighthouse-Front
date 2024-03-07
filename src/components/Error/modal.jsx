@@ -6,7 +6,7 @@ import ModifyChallengeModal from "../Modals/ModifyChallengeModal/modify-challeng
 import JoinLighthouseModal from "../Modals/JoinLighthouseModal/join-lighthouse-modal";
 import SuccessModal from "../Modals/SuccessModal/success-modal";
 import CreateLighthouseModal from "../Modals/CreateLighthouseModal/create-lighthouse-modal";
-import LighthouseMenuModal from "../Modals/LighthouseMenuModal/lighthouse-menu-modal";
+import MenuModal from "../Modals/MenuModal/menu-modal";
 import ErrorModal from "../Modals/ErrorModal/error-modal";
 import ExpandedCodeModal from "../Modals/ExpandedCodeModal/expanded-code-modal";
 import SubmissionsModal from "../Modals/SubmissionsModal/submissions-modal";
@@ -19,7 +19,7 @@ import ReportDescriptionModal from "../Modals/ReportDescriptionModal/report-desc
 import AnnouncementModal from "../Modals/AnnouncementModal/announcement-modal";
 import ConfirmModal from "../Modals/ConfirmModal/confirm-modal";
 import InfoModal from "../Modals/InfoModal/info-modal";
-import LighthousePreviewModal from "../Modals/LighthousePreviewModal/lighthouse-preview-modal";
+import PreviewModal from "../Modals/PreviewModal/preview-modal";
 import AdminConfirmModal from "../Modals/AdminConfirmModal/admin-confirm-modal";
 import DifficultyAdminModal from "../Modals/DifficultyAdminModal/difficulty-admin-modal";
 import ExpandedNotificationsModal from "../Modals/ExpandedNotificationsModal/expanded-notifications-modal";
@@ -29,6 +29,7 @@ import ContestChallengeModal from "../Modals/ContestChallengeModal/contest-chall
 import ChangeEmailModal from "../Modals/ChangeEmailModal/change-email-modal";
 import SummaryModal from "../Modals/SummaryModal/summary-modal";
 import AccountSettingsModal from "../Modals/AccountSettingsModal/account-settings-modal";
+import JoinContestModal from "../Modals/JoinContestModal/join-contest-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -37,17 +38,19 @@ const Modal = ({error, type='error'}) => {
         case 'joinLighthouse':
             return <JoinLighthouseModal/>
         case 'menuLighthouse':
-            return <LighthouseMenuModal/>
+            return <MenuModal/>
         case 'createLighthouse':
             return <CreateLighthouseModal/>
         case 'lighthousePreview':
-            return <LighthousePreviewModal/>
+            return <PreviewModal/>
         case 'success':
             return <SuccessModal/>
         case 'summary':
             return <SummaryModal/>
-        case 'create-contest':
+        case 'createContest':
             return <CreateContestModal/>
+        case 'joinContest':
+            return <JoinContestModal/>
         case 'contest-challenge':
             return <ContestChallengeModal/>
         case 'assignChallenge':
