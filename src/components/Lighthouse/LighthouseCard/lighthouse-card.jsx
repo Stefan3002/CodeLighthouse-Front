@@ -42,7 +42,7 @@ const LighthouseCard = ({animationDelay, type = 'lighthouse', data}) => {
                     </div>
                     <div className="lighthouse-card-content">
                         <p>Enrollment Code: {data.enrollment_code}</p>
-                        <p>ID: {data.id}</p>
+                        {/*<p>ID: {data.id}</p>*/}
                     </div>
                     </Link>
                 </div>

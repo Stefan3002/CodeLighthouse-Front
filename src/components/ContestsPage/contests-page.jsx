@@ -15,11 +15,14 @@ import useFetchHook from "../../utils/hooks/fetchHook";
 import LighthouseCard from "../Lighthouse/LighthouseCard/lighthouse-card";
 import ContestCard from "../ContestCard/contest-card";
 import Missing from "../Missing/missing";
+import useUpdateData from "../../utils/hooks/updateDataHook";
 const ContestsPage = () => {
     const user = useSelector(getUser)
     const dispatch = useDispatch()
     const sendRequest = useFetchHook()
     const [data, setData] = useState([])
+    const updateUserData = useUpdateData()
+    const [publicContests, setPublicContests] = useState([])
     const menuContests = () => {
         dispatch(setModal(true))
         dispatch(setModalContent({
@@ -46,7 +49,16 @@ const ContestsPage = () => {
             setData(res)
         })()
     }, [user]);
-
+    useEffect(() => {
+        (async () => {
+            await updateUserData(false)
+        })()
+    }, []);
+    useEffect(() => {
+        ( async () => {
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/public-entities?type=contest`, null , 'GET', true, (contests) => setPublicContests(contests))
+        })()
+    }, [user]);
 
     if(data)
         return (
@@ -61,10 +73,15 @@ const ContestsPage = () => {
                     <div className="lighthouses-wrapper">
                         {data.length ? data.map((contest, idx) => {
                             return <ContestCard animationDelay={idx + 1} data={contest}/>
-                        }) : <Missing text='Nothing here' />}
+                        }) : <Missing text='Nothing here'/>}
                     </div>
 
                     <Heading text='Open contests'/>
+                    <div className="lighthouses-wrapper">
+                        {publicContests.length ? publicContests.map((contest, idx) => {
+                            return <ContestCard type='open' animationDelay={idx + 1} data={contest}/>
+                        }) : <Missing text='Nothing here'/>}
+                    </div>
                 </div>
             </Transition>
         )

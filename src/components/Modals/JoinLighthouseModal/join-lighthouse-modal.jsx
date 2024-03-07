@@ -33,7 +33,7 @@ const JoinLighthouseModal = () => {
             user_id: user.user_id,
             enrollment_code: code
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/1?type=lighthouse`,JSON.stringify(dataReq) , 'POST', false, successCallback)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/entities/1?type=lighthouse`,JSON.stringify(dataReq) , 'POST', false, successCallback)
         await updateUserData()
     }
     const previewSuccessCallback = async (enrollmentCode, data) => {

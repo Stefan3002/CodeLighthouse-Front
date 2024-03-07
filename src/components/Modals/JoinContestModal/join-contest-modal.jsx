@@ -37,7 +37,7 @@ const JoinContestModal = () => {
         const dataReq = {
             enrollment_code: code
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/1?type=contest`,JSON.stringify(dataReq) , 'POST', false, successCallback)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/entities/1?type=contest`,JSON.stringify(dataReq) , 'POST', false, successCallback)
         // await updateUserData()
     }
 

@@ -29,7 +29,7 @@ const LighthousesPage = () => {
     }, []);
     useEffect(() => {
         ( async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/communities`, null , 'GET', true, (communities) => setCommunities(communities))
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/public-entities?type=lighthouse`, null , 'GET', true, (communities) => setCommunities(communities))
         })()
     }, [user]);
 
