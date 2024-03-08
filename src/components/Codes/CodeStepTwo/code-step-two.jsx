@@ -48,7 +48,9 @@ const CodeStepOne = ({setCodeStep, data}) => {
     if(data)
     return (
         <div key='code-step-two' className='wrapper code-page-wrapper code-page code-step code-step-one'>
-            <EditorCard info="Run these hard tests by the author, or write your own! Remember, they must be a list containing tuples / lists / arrays of your test data. Use the author's example for reference." secondCode={setHardTests} value={hardTests} height='300px' type='code' headerText='Hard test cases' />
+            <div className="editor-wrapper-small">
+                <EditorCard info="Run these hard tests by the author, or write your own! Remember, they must be a list containing tuples / lists / arrays of your test data. Use the author's example for reference." secondCode={setHardTests} value={hardTests} height='300px' type='code' headerText='Hard test cases' />
+            </div>
             <div className='code-step-three-choice'>
                 <Heading text='Hard test?' />
                 <div className="code-step-buttons">

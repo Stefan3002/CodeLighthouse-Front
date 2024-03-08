@@ -23,10 +23,6 @@
   width: 100%;
 }
 
-.editor-wrapper-code {
-  max-width: 600px;
-}
-
 .editor-wrapper-submission {
   height: 400px;
   max-height: 400px;

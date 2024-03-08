@@ -13,18 +13,23 @@ import TopSection from "../TopSection/top-section";
 import AuthorName from "../AuthorName/author-name";
 import Difficulty from "../Difficulty/difficulty";
 import Missing from "../Missing/missing";
+import useUpdateData from "../../utils/hooks/updateDataHook";
 const CommentsPage = () => {
     const challengeSlug = useParams()['slug']
     const [data, setData] = useState(undefined)
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
-
+    const updateData = useUpdateData(`${process.env.REACT_APP_SERVER_URL}/challenges/${challengeSlug}`)
     const newComment = () => {
         dispatch(setModal(true))
         dispatch(setModalContent({
             type: 'newComment',
-            data
+            data,
+            updateDataCallback
         }))
+    }
+    const updateDataCallback = async () => {
+        setData(await updateData())
     }
 
 
@@ -34,7 +39,7 @@ const CommentsPage = () => {
             setData(res)
         })()
     }, []);
-    console.log('===', data)
+    // console.log('===', data)
     if(data)
     return (
         <Transition mode='fullscreen'>
@@ -43,7 +48,7 @@ const CommentsPage = () => {
             <div className='wrapper comments-page'>
                 <div className="comments">
                     {data.comments.length ? data.comments.map(comment => {
-                        return <Comment data={comment} />
+                        return <Comment updateDataCallback={updateDataCallback} data={comment} />
                     }) : <Missing text='Nobody said anything yet!' />}
                 </div>
             </div>

@@ -11,7 +11,7 @@ import ClockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 import CalendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import LanguageSelector from "../LanguageSelector/language-selector";
 import InfoSVG from '../../utils/imgs/SVGs/InfoSVG.svg'
-const EditorCard = ({info = undefined, secondCode = undefined, headerText = '', height = '300px', value = 'No code was given for this language!', onChangeHandler = undefined, seeAllSubmissions = undefined,showAuthor = true , assignmentSubmission = false, color = 'dark', type = 'code', author, submission = null}) => {
+const EditorCard = ({showExpand = true, info = undefined, secondCode = undefined, headerText = '', height = '300px', value = 'No code was given for this language!', onChangeHandler = undefined, seeAllSubmissions = undefined,showAuthor = true , assignmentSubmission = false, color = 'dark', type = 'code', author, submission = null}) => {
     const dispatch = useDispatch()
     const lang = useSelector(getLanguage)
     const code = useSelector(getCode)
@@ -36,21 +36,22 @@ const EditorCard = ({info = undefined, secondCode = undefined, headerText = '', 
         return (
             <div className='editor-wrapper editor-wrapper-code' style={{height: height}}>
                 <div className="editor-wrapper-header">
-                    {/*<img onClick={() => {dispatch(setModal(true))*/}
-                    {/*    dispatch(setModalContent({*/}
-                    {/*        type: 'code',*/}
-                    {/*        data: {*/}
-                    {/*            lang,*/}
-                    {/*            code*/}
-                    {/*        }*/}
-                    {/*    }))*/}
-                    {/*}} className='icon-svg code-editor-icon' src={MaximizeSVG} alt=""/>*/}
+                    {showExpand && <img onClick={() => {
+                        dispatch(setModal(true))
+                        dispatch(setModalContent({
+                            type: 'code',
+                            data: {
+                                lang
+                            }
+                        }))
+                    }} className='icon-svg code-editor-icon' src={MaximizeSVG} alt=""/>}
+
                     <p className='code-editor-header-text'>{headerText}</p>
                     {info ? <img className='icon-svg' src={InfoSVG} onClick={openInfoModal} alt='Info'></img> : null}
                 </div>
                 <Editor value={value} onChange={
                     (code) => {
-                        if(!secondCode)
+                        if (!secondCode)
                             dispatch(setCode(code))
                         if(secondCode)
                             secondCode(code)

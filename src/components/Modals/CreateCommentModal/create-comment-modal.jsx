@@ -7,11 +7,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
 import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
+import createCommentValidations from "../../../utils/validation/createCommentValidations.json";
+import useValidate from "../../../utils/hooks/validateHook";
 const CreateCommentModal = () => {
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
     const modalContent = useSelector(getModalContent)
     const dispatch = useDispatch()
+    const validateInput = useValidate()
 
     const successCallback = () => {
         dispatch(setModal(true))
@@ -19,10 +22,16 @@ const CreateCommentModal = () => {
             type: 'success',
             content: 'Comment added!'
         }))
+        modalContent.updateDataCallback()
     }
     const createNewComment = async (event) => {
         event.preventDefault()
         const content = event.target[0].value
+
+        let valid = true
+        valid = validateInput('Content', content, {inputNull: createCommentValidations.content.inputNull, inputMin: createCommentValidations.content.inputMin})
+        if(!valid)
+            return
 
         const data = {
             content,

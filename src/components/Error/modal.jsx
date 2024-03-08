@@ -30,6 +30,7 @@ import ChangeEmailModal from "../Modals/ChangeEmailModal/change-email-modal";
 import SummaryModal from "../Modals/SummaryModal/summary-modal";
 import AccountSettingsModal from "../Modals/AccountSettingsModal/account-settings-modal";
 import JoinContestModal from "../Modals/JoinContestModal/join-contest-modal";
+import ReportBrokenModal from "../Modals/ReportBrokenModal/report-broken-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -85,6 +86,8 @@ const Modal = ({error, type='error'}) => {
             return <ReportModal/>
         case 'report-description':
             return <ReportDescriptionModal />
+        case 'reportBroken':
+            return <ReportBrokenModal />
         case 'announcement':
             return <AnnouncementModal />
         case 'confirm':

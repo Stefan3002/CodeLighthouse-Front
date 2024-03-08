@@ -19,8 +19,8 @@ const PreviewModal = () => {
     }
 
     return (
-        <div className='error-wrapper success-wrapper super-success'>
-            <div className="error-header code-success-header">
+        <div className='error-wrapper preview-wrapper'>
+            <div className="error-header">
                 <div>
                     <img src={LighthouseSVG} alt=""/>
                     <h2>Is this what you are looking for?</h2>

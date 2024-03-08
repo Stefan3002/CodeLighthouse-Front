@@ -5,4 +5,9 @@
   align-items: center;
 }
 
+.editor-wrapper-small {
+  max-width: 700px;
+  width: 100%;
+}
+
 /*# sourceMappingURL=code-step-two.css.map */

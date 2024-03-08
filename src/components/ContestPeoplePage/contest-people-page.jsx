@@ -35,32 +35,6 @@ const ContestPeoplePage = () => {
         })()
     }, []);
 
-    const copyCodeToClipboard = () => {
-        navigator.clipboard.writeText(data.enrollment_code)
-        dispatch(setModal(true))
-        dispatch(setModalContent({
-            type: 'pop-up',
-            data: 'Copied to clipboard!'
-        }))
-    }
-
-    // const successCallback = () => {
-    //     dispatch(setModal(true))
-    //     dispatch(setModalContent({
-    //         type: 'success',
-    //         content: 'Contest archived!'
-    //     }))
-    // }
-    //
-    // const archiveLighthouse = async () => {
-    //     dispatch(setModal(true))
-    //     dispatch(setModalContent({
-    //         type: 'confirm',
-    //         content: async () => await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${contestID}`, undefined, 'DELETE', false, successCallback)
-    //     }))
-    //     // const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/lighthouses/${contestID}`, undefined, 'DELETE', false, successCallback)
-    // }
-
     const successCallback = async (data) => {
         dispatch(setModal(true))
         dispatch(setModalContent({
@@ -101,15 +75,20 @@ const ContestPeoplePage = () => {
             userID
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/contest-participant-summary/${contestID}`, JSON.stringify(dataFetch), 'POST', false, successCallback)
-
-        dispatch(setModal(true))
-        dispatch(setModalContent({
-            type: 'summary',
-            content: username,
-            userID,
-            contestID,
-            summary: res
-        }))
+        if(!res || !res.length){
+            // dispatch(setModal(true))
+            dispatch(setError('<p>No submissions, no summary!</p>'))
+        }
+        else {
+            dispatch(setModal(true))
+            dispatch(setModalContent({
+                type: 'summary',
+                content: username,
+                userID,
+                contestID,
+                summary: res
+            }))
+        }
     }
     const searchStudent = (event) => {
         const target = event.target.value

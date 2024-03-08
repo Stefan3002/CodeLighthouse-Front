@@ -13,7 +13,9 @@ const CodeStepOne = ({data, setCodeStep}) => {
                 <p dangerouslySetInnerHTML={{__html: data.description}}></p>
             </div>
             {/*<div className="code-page-editor">*/}
-            <EditorCard  info='Write your solution to the challenge here.' value={code} height='300px' type='code' headerText='Your solution' />
+            <div className="editor-wrapper-small">
+                <EditorCard  info='Write your solution to the challenge here.' value={code} height='300px' type='code' headerText='Your solution' />
+            </div>
             <Button callback={() => setCodeStep(2)} text='Next' />
             {/*</div>*/}
         </div>

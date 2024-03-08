@@ -26,7 +26,7 @@ const ReportModal = () => {
 
     const reportBroken =  () => {
         dispatch(setModalContent({
-            type: 'report-broken',
+            type: 'reportBroken',
             content: challenge
         }))
     }
