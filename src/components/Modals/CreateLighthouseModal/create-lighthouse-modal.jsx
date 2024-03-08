@@ -13,6 +13,7 @@ import BackSVG from "../../../utils/imgs/SVGs/BackSVG.svg";
 import createLighthouseValidations from "../../../utils/validation/createLighthouseValidations.json";
 import useValidate from "../../../utils/hooks/validateHook";
 import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
+import Form from "../../Form/form";
 const CreateLighthouseModal = () => {
     const validateInput = useValidate()
     const sendRequest = useFetchHook()
@@ -71,13 +72,14 @@ const CreateLighthouseModal = () => {
             </div>
             <div className="error-content create-lighthouse-content">
                 <p>Let's configure the <b>Lighthouse</b> to enlighten people!</p>
-                <form className='enroll-inputs' onSubmit={createNewLighthouse}>
+                <Form onSubmit={createNewLighthouse} className='enroll-inputs' >
                     <Input type='text' placeholder='Name.' />
                     <Input type='textarea' rows='12' cols='40' placeholder='Description.' />
                     <p>Make it a community? (public lighthouse)</p>
                     <Input type='checkbox' placeholder='Yes, make it public!' />
                     <Button buttonType='submit' text='Create' type='normal' />
-                </form>
+                </Form>
+
             </div>
         </div>
         // </Transition>

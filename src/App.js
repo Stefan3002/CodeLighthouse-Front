@@ -58,6 +58,15 @@ function App() {
     const location = useLocation()
     const loading = useSelector(getLoading)
 
+    useEffect(() => {
+        const captcha = document.createElement('script')
+        captcha.src = `https://www.google.com/recaptcha/api.js?render=${process.env.REACT_APP_CAPTCHA_KEY}`
+
+        captcha.async = true
+        document.body.appendChild(captcha)
+    }, []);
+
+
     return (
         <div className="App">
 

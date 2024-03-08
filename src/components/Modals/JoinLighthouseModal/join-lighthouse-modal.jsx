@@ -12,6 +12,7 @@ import {setModalContent} from "../../../utils/store/utils-store/utils-store-acti
 import BackSVG from "../../../utils/imgs/SVGs/BackSVG.svg";
 import useValidate from "../../../utils/hooks/validateHook";
 import joinLighthouseValidations from '../../../utils/validation/joinLighhouseValidations.json'
+import Form from "../../Form/form";
 const JoinLighthouseModal = () => {
     const validateInput = useValidate()
     const sendRequest = useFetchHook()
@@ -48,7 +49,7 @@ const JoinLighthouseModal = () => {
         // await updateUserData()
     }
     const enrollLighthouse = async (event) => {
-        event.preventDefault()
+        // event.preventDefault()
         let valid = true
 
         const code = event.target[0].value
@@ -86,11 +87,16 @@ const JoinLighthouseModal = () => {
             </div>
             <div className="error-content">
                 <p>Enter the <b>enrollment code</b> of the lighthouse:</p>
-                <form className='enroll-inputs' onSubmit={enrollLighthouse}>
+                <Form onSubmit={enrollLighthouse} className='enroll-inputs'>
                     <Input type='text' placeholder='Enrollment code' />
                     {/*<Input type='text' placeholder='Id of the Lighthouse.' />*/}
                     <Button color='light' buttonType='submit' text='Join' type='normal' />
-                </form>
+                </Form>
+                {/*<form className='enroll-inputs' onSubmit={enrollLighthouse}>*/}
+                {/*    <Input type='text' placeholder='Enrollment code' />*/}
+                {/*    /!*<Input type='text' placeholder='Id of the Lighthouse.' />*!/*/}
+                {/*    <Button color='light' buttonType='submit' text='Join' type='normal' />*/}
+                {/*</form>*/}
 
             </div>
         </div>
