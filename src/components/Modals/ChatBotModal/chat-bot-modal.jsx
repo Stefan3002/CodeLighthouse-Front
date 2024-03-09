@@ -10,6 +10,7 @@ import {useDispatch} from "react-redux";
 import Replicate from "replicate";
 import {useEffect, useRef, useState} from "react";
 import useFetchHook from "../../../utils/hooks/fetchHook";
+import Form from "../../Form/form";
 
 const ChatBotModal = () => {
     const dispatch = useDispatch()
@@ -66,7 +67,7 @@ const ChatBotModal = () => {
                 {/*<p><strong>{challenge.title}</strong> by </p>*/}
                 {/*<AuthorName author={challenge.author}/>*/}
                 {/*<Input type='text' placeholder='Reason for sending back / denying.' />*/}
-                <form className='report-description-form' onSubmit={talkToBot}>
+                <Form className='report-description-form' onSubmit={talkToBot}>
                     <Input placeholder='Question for Llama' required={true}/>
                     <p id='chat-bot-response'></p>
                     {/*<h2>Coming soon!</h2>*/}
@@ -75,7 +76,7 @@ const ChatBotModal = () => {
                         <Button buttonType='submit' text='Ask' color='light'/>
                         <Button buttonType='reset' callback={cancelChat} text='Cancel' color='light'/>
                     </div>
-                </form>
+                </Form>
             </div>
         </div>
     )

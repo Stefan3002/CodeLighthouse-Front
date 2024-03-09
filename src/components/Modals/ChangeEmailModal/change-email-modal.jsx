@@ -9,6 +9,7 @@ import {getModalContent} from "../../../utils/store/utils-store/utils-store-sele
 import changeUserEmailValidations from "../../../utils/validation/changeUserEmailValidations.json";
 import useValidate from "../../../utils/hooks/validateHook";
 import useFetchHook from "../../../utils/hooks/fetchHook";
+import Form from "../../Form/form";
 const ChangeEmailModal = () => {
     const data = useSelector(getModalContent)
     const dispatch = useDispatch()
@@ -57,10 +58,10 @@ const ChangeEmailModal = () => {
             </div>
             <div className="error-content create-lighthouse-content">
                 <p>Change e-mail of the user: <b>{data.content}</b></p>
-                <form className='enroll-inputs' onSubmit={confirmAction}>
+                <Form className='enroll-inputs' onSubmit={confirmAction}>
                     <Input placeholder='New e-mail' />
                     <Button color='light' marginated={true} buttonType='submit' text='Change' type='normal'/>
-                </form>
+                </Form>
             </div>
         </div>
     )

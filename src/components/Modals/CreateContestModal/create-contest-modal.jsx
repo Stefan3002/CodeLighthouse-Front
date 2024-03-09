@@ -14,6 +14,7 @@ import {useState} from "react";
 import SelectedFiles from "../../SelectedFiles/selected-files";
 import DateTime from "../../DateTime/date-time";
 import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
+import Form from "../../Form/form";
 const CreateContestModal = () => {
     const validateInput = useValidate()
     const user = useSelector(getUser)
@@ -118,7 +119,7 @@ const CreateContestModal = () => {
             </div>
             <div className="error-content create-lighthouse-content">
                 <p>Let's configure the <b>Contest</b> to verify the enlightment of the people!</p>
-                <form className='enroll-inputs' onSubmit={createNewContest}>
+                <Form className='enroll-inputs' onSubmit={createNewContest}>
                     <Input type='text' placeholder='Name of contest.'/>
                     <Input type='textarea' rows='12' cols='40' placeholder='Description of contest.'/>
                     <p>Make it an open contest? (public contest)</p>
@@ -142,7 +143,7 @@ const CreateContestModal = () => {
                     <Button marginated={true} buttonType='submit' text='Create' type='normal'/>
 
 
-                </form>
+                </Form>
             </div>
         </div>
     )

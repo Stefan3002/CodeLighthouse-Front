@@ -14,6 +14,7 @@ import {setModalContent} from "../../../utils/store/utils-store/utils-store-acti
 import useValidate from "../../../utils/hooks/validateHook";
 import createChallengeValidations from '../../../utils/validation/createChallengeValidations.json'
 import WithInfo from "../../WithInfo/with-info";
+import Form from "../../Form/form";
 const CreateChallengeModal = () => {
     const validateInput = useValidate()
     const language = useSelector(getLanguage)
@@ -115,7 +116,7 @@ const CreateChallengeModal = () => {
                 <img src={LighthouseSVG} alt=""/>
                 <h2>Create a new challenge!</h2>
             </div>
-            <form onSubmit={createNewChallenge} className="error-content create-challenge-content">
+            <Form onSubmit={createNewChallenge} className="error-content create-challenge-content">
                 <p>Give your challenge a <b>name.</b></p>
                 <Input value={savedData.current.savedName && savedData.current.savedName} onChangeCallback={updateName} type='text' placeholder='Name'/>
                 <DifficultyPicker type='languages'/>
@@ -176,7 +177,7 @@ def random_function():
 
                 <Button buttonType='submit' text='Create' type='normal'/>
 
-            </form>
+            </Form>
         </div>
         // </Transition>
     )

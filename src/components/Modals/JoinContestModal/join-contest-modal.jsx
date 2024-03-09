@@ -16,6 +16,7 @@ import DateTime from "../../DateTime/date-time";
 import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
 import joinLighthouseValidations from "../../../utils/validation/joinLighhouseValidations.json";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
+import Form from "../../Form/form";
 const JoinContestModal = () => {
     const validateInput = useValidate()
     const user = useSelector(getUser)
@@ -89,11 +90,11 @@ const JoinContestModal = () => {
             </div>
             <div className="error-content create-lighthouse-content">
                 <p>Enter the <b>enrollment code</b> of the contest:</p>
-                <form className='enroll-inputs' onSubmit={enrollContest}>
+                <Form className='enroll-inputs' onSubmit={enrollContest}>
                     <Input type='text' placeholder='Enrollment code'/>
                     {/*<Input type='text' placeholder='Id of the Lighthouse.'/>*/}
                     <Button color='light' buttonType='submit' text='Join' type='normal'/>
-                </form>
+                </Form>
             </div>
         </div>
     )

@@ -14,6 +14,7 @@ import {notifyAnnouncement} from "../../../utils/notifications/lighthouseNotific
 import {useState} from "react";
 import SelectedFiles from "../../SelectedFiles/selected-files";
 import {useParams} from "react-router-dom";
+import Form from "../../Form/form";
 const AnnouncementModal = () => {
     const lighthouse = useSelector(getModalContent)
     const validateInput = useValidate()
@@ -71,13 +72,13 @@ const AnnouncementModal = () => {
                 <img src={LighthouseSVG} alt=""/>
                 <h2>Make an announcement!</h2>
             </div>
-            <form onSubmit={createAnnouncement} className="error-content announcement-content-modal">
+            <Form onSubmit={createAnnouncement} className="error-content announcement-content-modal">
                 <p>Type in your <b>announcement</b> in HTML. </p>
                 <Input type='textarea' rows='20' cols='60' placeholder='<h2>Exam date</h2>' />
                 <Input onChangeCallback={changeFilesUploaded} type='file' />
                 <SelectedFiles data={selectedFiles} />
-                <Button color='light' marginated={true} buttonType='submit' text='Create' type='normal' />
-            </form>
+                <Button color='light' buttonType='submit' text='Create' type='normal' />
+            </Form>
         </div>
     )
 }

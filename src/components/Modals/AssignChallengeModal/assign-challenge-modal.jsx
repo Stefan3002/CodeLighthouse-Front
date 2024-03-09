@@ -11,6 +11,7 @@ import {setModal, setSidePanel} from "../../../utils/store/utils-store/utils-sto
 import useUpdateData from "../../../utils/hooks/updateDataHook";
 import useValidate from "../../../utils/hooks/validateHook";
 import createChallengeValidations from "../../../utils/validation/createChallengeValidations.json";
+import Form from "../../Form/form";
 const AssignChallengeModal = () => {
     const validateInput = useValidate()
     const selectedChallenge = useSelector(getSelectedChallenge)
@@ -88,13 +89,13 @@ const AssignChallengeModal = () => {
                     <Button color='light' callback={openStudentSelection} text='Select' />
                     <p>{modalContent.selectedPeople ? modalContent.selectedPeople.length : 'No'} students selected.</p>
                     <p><b>Due?</b> Select a date and a time!</p>
-                    <form className='assignment-inputs' onSubmit={assignLighthouseChallenge}>
+                    <Form className='assignment-inputs' onSubmit={assignLighthouseChallenge}>
                         <div className='assignment-inputs-due'>
                             <Input type='date'/>
                             <Input type='time'/>
                         </div>
                         <Button color='light' marginated={true} buttonType='submit' text='Create' type='normal' />
-                    </form>
+                    </Form>
                 </div>
 
             </div>

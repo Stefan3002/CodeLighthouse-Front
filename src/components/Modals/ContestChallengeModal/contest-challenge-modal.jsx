@@ -8,6 +8,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {getModalContent, getSelectedChallenge} from "../../../utils/store/utils-store/utils-store-selectors";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
+import Form from "../../Form/form";
 const ContestChallengeModal = () => {
     const selectedChallenge = useSelector(getSelectedChallenge)
     const data = useSelector(getModalContent).content
@@ -40,12 +41,9 @@ const ContestChallengeModal = () => {
                 <p>Let's configure the <b>Contest</b> to verify the enlightment of the people!</p>
                 <ChallengePicker authorColor='dark' />
 
-                <form className='enroll-inputs' onSubmit={addChallenges}>
-
+                <Form className='enroll-inputs' onSubmit={addChallenges}>
                     <Button color='light' marginated={true} buttonType='submit' text='Add challenges' type='normal'/>
-
-
-                </form>
+                </Form>
             </div>
         </div>
     )

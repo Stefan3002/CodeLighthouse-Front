@@ -28,33 +28,7 @@ const ExpandedCodeModal = () => {
                 <EditorCard showExpand={false} value={code} type='code' />
             </div>
          </div>
-        // </Transition>
-        // <div className='error-wrapper report-description-modal'>
-        //     <div className="error-header">
-        //         {/*<img onClick={backOneStep} className='icon-svg' src={BackSVG} alt="Back"/>*/}
-        //         <img src={LighthouseSVG} alt=""/>
-        //         <h2>Ask Llama</h2>
-        //     </div>
-        //     <div className="error-content report-description-content">
-        //         {/*<h2>Hey there!</h2>*/}
-        //         <p>Ask <strong>Llama</strong> for some help down below.</p>
-        //
-        //         <CodeOfConduct type='chat-bot'/>
-        //         {/*<p><strong>{challenge.title}</strong> by </p>*/}
-        //         {/*<AuthorName author={challenge.author}/>*/}
-        //         {/*<Input type='text' placeholder='Reason for sending back / denying.' />*/}
-        //         {/*<form className='report-description-form' onSubmit={talkToBot}>*/}
-        //         {/*    <Input placeholder='Question for Llama' required={true}/>*/}
-        //         {/*    <p id='chat-bot-response'></p>*/}
-        //         {/*    <h2>Coming soon!</h2>*/}
-        //             {/*<Input type='checkbox' placeholder='I have read the Code of Conduct' required={true}/>*/}
-        //             {/*<div className="admin-verdict-buttons">*/}
-        //             {/*    <Button buttonType='submit' text='Ask' color='light'/>*/}
-        //             {/*    <Button buttonType='reset' callback={cancelChat} text='Cancel' color='light'/>*/}
-        //             {/*</div>*/}
-        //         {/*</form>*/}
-        //     </div>
-        // </div>
+
     )
 }
 export default ExpandedCodeModal

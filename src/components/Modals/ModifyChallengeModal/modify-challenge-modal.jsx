@@ -16,6 +16,7 @@ import WithInfo from "../../WithInfo/with-info";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
 import createChallengeValidations from "../../../utils/validation/createChallengeValidations.json";
 import useValidate from "../../../utils/hooks/validateHook";
+import Form from "../../Form/form";
 const ModifyChallengeModal = () => {
     const validateInput = useValidate()
     // const updateData = useUpdateData()
@@ -94,7 +95,7 @@ const ModifyChallengeModal = () => {
                 <h2>Update your challenge!</h2>
             </div>
 
-            <form onSubmit={updateChallenge} className="error-content create-challenge-content">
+            <Form onSubmit={updateChallenge} className="error-content create-challenge-content">
                 <p>Give your challenge a <b>new, awesome name.</b></p>
                 <Input type='text' placeholder='Name' value={modalContent.data.title}/>
                 <DifficultyPicker type='languages'/>
@@ -157,7 +158,7 @@ const ModifyChallengeModal = () => {
 
                 <Button color='light' marginated={true} buttonType='submit' text='Update' type='normal'/>
 
-            </form>
+            </Form>
         </div>
     )
 }

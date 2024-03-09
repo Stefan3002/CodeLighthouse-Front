@@ -11,6 +11,7 @@ import useFetchHook from "../../../utils/hooks/fetchHook";
 import Input from "../../Input/input";
 import reportDescriptionValidations from "../../../utils/validation/reportDescriptionValidations.json";
 import useValidate from "../../../utils/hooks/validateHook";
+import Form from "../../Form/form";
 
 const ReportDescriptionModal = () => {
     const sendRequest = useFetchHook()
@@ -74,14 +75,14 @@ const ReportDescriptionModal = () => {
                 <p><strong>{challenge.title}</strong> by </p>
                 <AuthorName author={challenge.author} />
                 {/*<Input type='text' placeholder='Reason for sending back / denying.' />*/}
-                <form className='report-description-form' onSubmit={reportChallenge}>
+                <Form className='report-description-form' onSubmit={reportChallenge}>
                     <Input placeholder='Reason for reporting' required={true}  />
                     <Input type='checkbox' placeholder='I have read the Code of Conduct' required={true}  />
                     <div className="admin-verdict-buttons">
                         <Button buttonType='submit' text='Report' color='light' />
                         <Button buttonType='reset' callback={cancelReport} text='Cancel' color='light' />
                     </div>
-                </form>
+                </Form>
             </div>
         </div>
     )

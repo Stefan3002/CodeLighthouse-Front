@@ -10,6 +10,7 @@ import Input from "../../Input/input";
 import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
 import createLighthouseValidations from "../../../utils/validation/createLighthouseValidations.json";
 import useValidate from "../../../utils/hooks/validateHook";
+import Form from "../../Form/form";
 const AdminConfirmModal = () => {
     const dispatch = useDispatch()
     const sendRequest = useFetchHook()
@@ -54,13 +55,13 @@ const AdminConfirmModal = () => {
             <div className="error-content admin-content">
                 <h2>Confirm?</h2>
                 <p>Add some details down below, admin.</p>
-                <form action="" onSubmit={sendVerdict}>
+                <Form onSubmit={sendVerdict}>
                     <Input type='text' placeholder='Reason for sending back' />
                     <div className="admin-confirm-buttons">
                         <WithInfo clickHandler={() => null} data='Retire this challenge temporarely, until the author fixes it!'><Button type='normal' buttonType='submit' text='Send back' color='success' /></WithInfo>
                         <Button buttonType='reset' callback={closeModals} color='light' text='Cancel' />
                     </div>
-                </form>
+                </Form>
             </div>
         </div>
     )
