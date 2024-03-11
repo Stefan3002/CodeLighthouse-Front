@@ -8,6 +8,7 @@ import useFetchHook from "../../../utils/hooks/fetchHook";
 import {Link, useParams} from "react-router-dom";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 import ChallengeCard from "../../ChallengeCard/challenge-card";
+import Assignment from "../../Assignment/assignment";
 const LighthouseAssignmentsPage = () => {
     const dispatch = useDispatch()
     const [data, setData] = useState(undefined)
@@ -39,12 +40,7 @@ const LighthouseAssignmentsPage = () => {
                         return assignment.users.map(assignedUser => {
                             if(assignedUser.user_id === user.user_id)
                                 if(user.user_id === data.author.user_id)
-                                    return <div className='expanded-challenge-card'>
-                                        <div className='expanded-challenge-card-header'>
-                                            <Link to={`/app/lighthouses/${lighthouseId}/submissions/${assignment.id}`}><p>See submissions</p></Link>
-                                        </div>
-                                        <ChallengeCard authoColor='dark' completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
-                                </div>
+                                    return <Assignment assignment={assignment} />
                                 else return <ChallengeCard authoColor='dark' completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
                         })
 

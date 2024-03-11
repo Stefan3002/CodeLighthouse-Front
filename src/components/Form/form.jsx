@@ -5,6 +5,7 @@ import {setModal} from "../../utils/store/utils-store/utils-store-actions";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
+import dompurify from "dompurify";
 const Form = ({className, onSubmit, children}) => {
     const dispatch = useDispatch()
     const sendRequest = useFetchHook()
@@ -17,6 +18,19 @@ const Form = ({className, onSubmit, children}) => {
         if (honeyPot1.value || honeyPot1.value?.length || honeyPot2.value || honeyPot2.value?.length) {
             dispatch(setModal(false))
             return
+        }
+
+        // Sanitize eventual HTML code that you may have requested from users
+        for(let index = 0 ; index < event.target.length; index++) {
+            const input = event.target[index]
+            if (input.value) {
+                const target = input.value
+                event.target[index].value = dompurify.sanitize(target, {
+                    USE_PROFILES: {
+                        html: true
+                    }
+                })
+            }
         }
 
         // eslint-disable-next-line no-undef

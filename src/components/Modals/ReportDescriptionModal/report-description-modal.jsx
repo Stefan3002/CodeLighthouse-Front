@@ -16,12 +16,14 @@ import Form from "../../Form/form";
 const ReportDescriptionModal = () => {
     const sendRequest = useFetchHook()
     const validateInput = useValidate()
-    const challenge = useSelector(getModalContent).content
+    const data = useSelector(getModalContent)
+    const entity = data.content
     const dispatch = useDispatch()
+    const mode = data.mode ? data.mode : 'challenge-description'
     const backOneStep = () => {
         dispatch(setModalContent({
             type: 'report',
-            content: challenge
+            content: entity
         }))
     }
 
@@ -32,7 +34,7 @@ const ReportDescriptionModal = () => {
         }))
     }
 
-    const reportChallenge = async (event) => {
+    const reportentity = async (event) => {
         event.preventDefault()
         let valid = true
         const comments = event.target[0].value
@@ -50,9 +52,9 @@ const ReportDescriptionModal = () => {
         const data = {
             comments,
             readCodeofConduct,
-            reason: 'description'
+            reason: mode
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges-report/${challenge.slug}`, JSON.stringify(data), 'POST', false, successCallback)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/entity-report/${mode === 'comment' ? entity.id : entity.slug}?type=${mode}`, JSON.stringify(data), 'POST', false, successCallback)
     }
 
     const cancelReport = () => {
@@ -62,20 +64,29 @@ const ReportDescriptionModal = () => {
     return (
         <div className='error-wrapper report-description-modal'>
             <div className="error-header">
-                <img onClick={backOneStep} className='icon-svg' src={BackSVG} alt="Back"/>
+                {mode === 'entity-description' &&
+                    <img onClick={backOneStep} className='icon-svg' src={BackSVG} alt="Back"/>
+                }
                 <img src={LighthouseSVG} alt=""/>
-                <h2>Report description</h2>
+                <h2>Report {mode}</h2>
             </div>
             <div className="error-content report-description-content">
                 {/*<h2>Hey there!</h2>*/}
-                <p>Before reporting the <b>description</b>, please read the <strong>Code of Conduct</strong> below.</p>
-
+                <p>Before reporting the <b>{mode}</b>, please read the <strong>Code of Conduct</strong> below.</p>
                 <CodeOfConduct />
                 <p>Report, </p>
-                <p><strong>{challenge.title}</strong> by </p>
-                <AuthorName author={challenge.author} />
+                <p><strong>{entity.title ? entity.title : mode}</strong> by </p>
+                <AuthorName author={entity.author} />
+                {mode === 'comment' &&
+                    <>
+                        <p>{entity.content.slice(0, 100)}</p>
+                        {entity.content.length > 100 &&
+                        <p>More...(not shown)</p>
+                        }
+                    </>
+                }
                 {/*<Input type='text' placeholder='Reason for sending back / denying.' />*/}
-                <Form className='report-description-form' onSubmit={reportChallenge}>
+                <Form className='report-description-form' onSubmit={reportentity}>
                     <Input placeholder='Reason for reporting' required={true}  />
                     <Input type='checkbox' placeholder='I have read the Code of Conduct' required={true}  />
                     <div className="admin-verdict-buttons">

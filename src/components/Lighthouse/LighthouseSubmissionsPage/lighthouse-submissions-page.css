@@ -5,6 +5,20 @@
   flex-wrap: wrap;
 }
 
+.submission-footer {
+  background: #32292F;
+  padding: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.grade-wrapper {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
 .submission {
   display: flex;
   flex-direction: column;

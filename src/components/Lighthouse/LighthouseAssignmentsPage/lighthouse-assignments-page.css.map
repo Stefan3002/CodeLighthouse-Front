@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["lighthouse-assignments-page.sass","../../../variables.sass"],"names":[],"mappings":"AAEA;EACE;EACA;EACA;EACA;EACA;EACA;;;AAEF;EACE;EACA;EACA;EACA;;;AAEF;EACE,YCZW;EDaX,OCXY;EDYZ;EACA;EACA;;;AAEF;EACE;IACE;IACA","file":"lighthouse-assignments-page.css"}
+{"version":3,"sourceRoot":"","sources":["lighthouse-assignments-page.sass"],"names":[],"mappings":"AAEA;EACE;EACA;EACA;EACA;EACA;EACA;;;AAIF;EACE;IACE;IACA","file":"lighthouse-assignments-page.css"}

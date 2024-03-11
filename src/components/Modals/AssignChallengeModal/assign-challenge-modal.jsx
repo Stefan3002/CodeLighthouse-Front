@@ -31,13 +31,19 @@ const AssignChallengeModal = () => {
     const assignLighthouseChallenge = async (event) => {
         event.preventDefault()
         let valid = true
-        const dueDate = event.target[0].value
+        const description = event.target[0].value
+        const dueDate = event.target[1].value
+
+
+        valid = validateInput('Details', description, {inputNull: false})
+        if(!valid)
+            return
 
         valid = validateInput('Due date', dueDate, {inputNull: false})
         if(!valid)
             return
 
-        const dueTime = event.target[1].value
+        const dueTime = event.target[2].value
 
         valid = validateInput('Due time', dueTime, {inputNull: false})
         if(!valid)
@@ -55,6 +61,7 @@ const AssignChallengeModal = () => {
             selectedChallenge,
             dueDate,
             dueTime,
+            description,
             users: [...modalContent.selectedPeople, user.user_id]
         }
 
@@ -88,13 +95,16 @@ const AssignChallengeModal = () => {
                     <p>Not for everyone? <b>Select</b> the students you want!</p>
                     <Button color='light' callback={openStudentSelection} text='Select' />
                     <p>{modalContent.selectedPeople ? modalContent.selectedPeople.length : 'No'} students selected.</p>
-                    <p><b>Due?</b> Select a date and a time!</p>
+
                     <Form className='assignment-inputs' onSubmit={assignLighthouseChallenge}>
+                        <p><b>Details?</b> They go here!</p>
+                        <Input type='textarea' rows='20' cols='60' placeholder='<h2>Exam date</h2>'/>
+                        <p><b>Due?</b> Select a date and a time!</p>
                         <div className='assignment-inputs-due'>
                             <Input type='date'/>
                             <Input type='time'/>
                         </div>
-                        <Button color='light' marginated={true} buttonType='submit' text='Create' type='normal' />
+                        <Button color='light' marginated={true} buttonType='submit' text='Create' type='normal'/>
                     </Form>
                 </div>
 

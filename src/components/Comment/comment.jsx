@@ -40,6 +40,15 @@ const Comment = ({data, updateDataCallback}) => {
         updateDataCallback()
     }
 
+    const reportComment = () => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'report-description',
+            content: data,
+            mode: 'comment'
+        }))
+    }
+
     return (
         <div className='comment'>
             <div className="comment-content">
@@ -47,13 +56,15 @@ const Comment = ({data, updateDataCallback}) => {
             </div>
             <div className="comment-meta">
                 <AuthorName author={data.author} />
-                <img src={ReportSVG} className='icon-svg' alt="Delete"/>
-                {((user.admin_user) || (user.id === data.author.id)) &&
-                    <WithInfo clickHandler={deleteCommentConfirm} data='Delete this comment'><img src={DeleteSVG} className='icon-svg' alt="Delete"/></WithInfo>
-                }
-                {user.id === data.author.id &&
-                    <img src={ModifySVG} className='icon-svg' alt="Modify"/>
-                }
+                <div className="comment-actions">
+                    <WithInfo data='Report this comment' clickHandler={reportComment}><img src={ReportSVG} className='icon-svg' alt="Delete"/></WithInfo>
+                    {((user.admin_user) || (user.id === data.author.id)) &&
+                        <WithInfo clickHandler={deleteCommentConfirm} data='Delete this comment'><img src={DeleteSVG} className='icon-svg' alt="Delete"/></WithInfo>
+                    }
+                    {user.id === data.author.id &&
+                        <img src={ModifySVG} className='icon-svg' alt="Modify"/>
+                    }
+                </div>
             </div>
         </div>
     )

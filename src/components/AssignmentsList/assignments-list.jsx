@@ -1,6 +1,7 @@
 import './assignments-list.css'
 import ChallengeCard from "../ChallengeCard/challenge-card";
 import {AnimatePresence} from "framer-motion";
+import Assignment from "../Assignment/assignment";
 const AssignmentsList = ({limit = 10, filters = true, data, filter, user}) => {
     return (
         <>
@@ -10,16 +11,13 @@ const AssignmentsList = ({limit = 10, filters = true, data, filter, user}) => {
                     return assignment.users.map((assignedUser, idx) => {
                         if (idx < limit && assignedUser.user_id === user.user_id)
                             if(filter === 'Unfinished' && completed === false)
-                                return <ChallengeCard completed={completed} type='assignment' detailedAssignment={true}
-                                                      challenge={assignment}/>
+                                return <Assignment lighthouse={assignment.lighthouse} assignment={assignment} />
                             else
                             if(filter === 'Finished' && completed === true)
-                                return <ChallengeCard completed={completed} type='assignment' detailedAssignment={true}
-                                                                       challenge={assignment}/>
+                                return <Assignment lighthouse={assignment.lighthouse} assignment={assignment} />
                             else
                             if(filter === 'All')
-                                return <ChallengeCard completed={completed} type='assignment' detailedAssignment={true}
-                                                      challenge={assignment}/>
+                                return <Assignment lighthouse={assignment.lighthouse} assignment={assignment} />
                     })
                 })
             })}

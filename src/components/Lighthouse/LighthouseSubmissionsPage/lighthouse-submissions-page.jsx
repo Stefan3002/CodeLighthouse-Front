@@ -6,6 +6,9 @@ import {useParams} from "react-router-dom";
 import EditorCard from "../../EditorCard/editor-card";
 import {useDispatch} from "react-redux";
 import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
+import Form from "../../Form/form";
+import Button from "../../Button/button";
+import Input from "../../Input/input";
 const LighthouseSubmissionsPage = () => {
     const sendRequest = useFetchHook()
     const [data, setData] = useState(undefined)
@@ -31,6 +34,9 @@ const LighthouseSubmissionsPage = () => {
         }))
     }
 
+    const sendGrade = (event) => {
+        const grade = event.target[0].value
+    }
 
     if(data) {
         const usernames = Object.keys(data)
@@ -43,6 +49,12 @@ const LighthouseSubmissionsPage = () => {
                                 if(idx < 1)
                                     return <EditorCard seeAllSubmissions={() => seeAllSubmissions(username)} assignmentSubmission={true} submission={submission} author={submission.user} type='submission' />
                             })}
+                            <div className="submission-footer">
+                                <Form className='grade-wrapper' onSubmit={sendGrade}>
+                                    <Input step='1' type="number"/>
+                                    <Button color='light' text='Grade' />
+                                </Form>
+                            </div>
                         </div>
                     })}
                 </div>

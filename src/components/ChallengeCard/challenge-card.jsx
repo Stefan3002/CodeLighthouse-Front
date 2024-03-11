@@ -11,7 +11,7 @@ import clockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 import DateTime from "../DateTime/date-time";
 import Button from "../Button/button";
 
-const ChallengeCard = ({noLink = false, callback = undefined, report = undefined, authoColor = 'light', completed, challenge, idx, type = 'Big', detailedAssignment = false}) => {
+const ChallengeCard = ({assignment = undefined, noLink = false, callback = undefined, report = undefined, authoColor = 'light', completed, challenge, idx, type = 'Big', detailedAssignment = false}) => {
     const dispatch = useDispatch()
     const selectedChallenge = useSelector(getSelectedChallenge)
     const selectChallenge = () => {
@@ -55,15 +55,20 @@ const ChallengeCard = ({noLink = false, callback = undefined, report = undefined
     else
     if(type === 'assignment')
         return (
-            <motion.div key={`challenge-${challenge.id}`} {...assignmentCardAnimationParams} style={{opacity: completed ? '.4' : null}} className="challenge-card">
-                <div className="challenge-meta-card" >
-                    <AuthorName color={authoColor} author={challenge.challenge.author} />
-                    <Difficulty difficulty={challenge.challenge.difficulty} />
-                </div>
+            <motion.div key={`challenge-${challenge.id}`} {...assignmentCardAnimationParams} style={{opacity: completed ? '.4' : null}} className="assignment-challenge-card">
+                {/*<div className="challenge-meta-card" >*/}
+                {/*    <AuthorName color={authoColor} author={challenge.challenge.author} />*/}
+                {/*    <Difficulty difficulty={challenge.challenge.difficulty} />*/}
+                {/*</div>*/}
                 <div className="challenge-description-card" >
+                    <p dangerouslySetInnerHTML={{__html: assignment.description.slice(0, 200)}}></p>
+
                     <Link to={`/app/challenges/${challenge.challenge.slug}`}>
-                        <h2>{challenge.challenge.title}</h2>
-                        <p dangerouslySetInnerHTML={{__html: challenge.challenge.description.slice(0, 200)}}></p>
+                        <div className="assignment-challenge">
+                            <p>Challenge:</p>
+                            <h2>{challenge.challenge.title}</h2>
+                            {/*<p dangerouslySetInnerHTML={{__html: challenge.challenge.description.slice(0, 30)}}></p>*/}
+                        </div>
                     </Link>
                 </div>
                 <div className="assignment-metas">
