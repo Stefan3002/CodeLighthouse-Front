@@ -105,7 +105,7 @@ function App() {
                             <Route index element={<LighthouseHomePage />} />
                             <Route path='people' element={<LighthouseDetailsPage />} />
                             <Route path='assignments' element={<LighthouseAssignmentsPage />} />
-                            <Route path='submissions/:assignmentId' element={<LighthouseSubmissionsPage />} />
+                            <Route path='assignments/:assignmentId' element={<LighthouseSubmissionsPage />} />
                         </Route>
                         <Route path='admin' element={<AdminNavigation />}>
                             {/*<Route index element={<AdminPage />} />*/}

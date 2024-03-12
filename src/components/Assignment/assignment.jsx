@@ -11,9 +11,6 @@ const Assignment = ({isAuthor, lighthouse = undefined, assignment}) => {
             <div className='expanded-challenge-card-header'>
                 {isAuthor && !lighthouse &&
                     <>
-                        <Link to={`/app/lighthouses/${lighthouseId}/submissions/${assignment.id}`}>
-                            <p>See submissions</p>
-                        </Link>
                         <Link to={`/app/lighthouses/${lighthouseId}/assignments/${assignment.id}`}>
                             <p>See assignment</p>
                         </Link>

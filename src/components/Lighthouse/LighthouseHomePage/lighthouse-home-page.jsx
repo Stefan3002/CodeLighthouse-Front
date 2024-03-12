@@ -7,6 +7,7 @@ import useFetchHook from "../../../utils/hooks/fetchHook";
 import {useParams} from "react-router-dom";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
 import Announcement from "../Announcement/announcement";
+import Missing from "../../Missing/missing";
 const LighthouseHomePage = () => {
     const dispatch = useDispatch()
     const [data, setData] = useState(undefined)
@@ -34,9 +35,9 @@ const LighthouseHomePage = () => {
             <>
                 <div className='wrapper lighthouse-home-page'>
                     <div className="announcements">
-                        {data.announcements.map(announcement=> {
+                        {(data.announcements && data.announcements.length) ? data.announcements.map(announcement=> {
                             return <Announcement setPageUpdateDataHook={setData} data={announcement} />
-                        })}
+                        }) : <Missing text='No announcements yet' />}
                     </div>
                 </div>
                 {!data.archived && user.user_id === data.author.user_id ?
