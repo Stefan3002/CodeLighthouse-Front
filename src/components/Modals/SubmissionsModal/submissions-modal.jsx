@@ -9,6 +9,7 @@ import {useSelector} from "react-redux";
 import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
 const SubmissionsModal = () => {
     const data = useSelector(getModalContent)
+    console.log('aaa', data)
     return (
         <div className='error-wrapper submissions-modal'>
             <div className="error-header">
@@ -16,11 +17,12 @@ const SubmissionsModal = () => {
                 <h2>Submissions</h2>
             </div>
             <div className="error-content submissions-content">
-                {data.data.submissions.map(submission => {
-                    return <div>
-                        <p>{submission.challenge}</p>
-                        <EditorCard color='light' submission={submission} author={submission.user} type='submission' />
-                    </div>
+                {data.data.submissions.map((submission, idx) => {
+                    if(idx % 2 === 0)
+                        return <div>
+                            <p>{submission.challenge}</p>
+                            <EditorCard color='light' submission={submission} author={submission.user} type='submission' />
+                        </div>
                 })}
             </div>
         </div>

@@ -30,18 +30,19 @@ const LighthouseAssignmentsPage = () => {
             setData(res)
         })()
     }, []);
-
    if (data)
     return (
         <div className='wrapper assignments-page'>
             {!data.assignments.length ? <Missing text='No assignments yet!' /> :
                 <>
                     {data.assignments.map(assignment => {
+                        console.log('aaa', assignment.id)
                         return assignment.users.map(assignedUser => {
                             if(assignedUser.user_id === user.user_id)
                                 if(user.user_id === data.author.user_id)
-                                    return <Assignment assignment={assignment} />
-                                else return <ChallengeCard authoColor='dark' completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
+                                    return <Assignment isAuthor={true} assignment={assignment} />
+                                else return <Assignment isAuthor={false} assignment={assignment} />
+                                // else return <ChallengeCard authoColor='dark' completed={user.solved_challenges.includes(assignment.challenge.id)} challenge={assignment} type='assignment' />
                         })
 
 

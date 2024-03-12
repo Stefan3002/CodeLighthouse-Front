@@ -3,6 +3,7 @@ import ChallengeCard from "../ChallengeCard/challenge-card";
 import {AnimatePresence} from "framer-motion";
 import Assignment from "../Assignment/assignment";
 const AssignmentsList = ({limit = 10, filters = true, data, filter, user}) => {
+    console.log('aaa', data)
     return (
         <>
             {data.enrolled_lighthouses.map(lighthouse => {

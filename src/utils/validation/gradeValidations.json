@@ -1,0 +1,8 @@
+{
+  "grade":
+  {
+    "inputMin": 0,
+    "inputMax": 100,
+    "inputNull": false
+  }
+}

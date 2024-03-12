@@ -7,7 +7,7 @@ const useValidate = () => {
 
     return (fieldName, input, options) => {
         const validationOptions = Object.entries(options)
-        console.log('ttttt', validationOptions)
+        // console.log('ttttt', validationOptions)
         for(const option of validationOptions){
             let exitCode = true
             const optionName = option[0]
@@ -66,12 +66,15 @@ const validateNull = (input) => {
     if(typeof input === 'string')
         return input !== undefined && input.trim().length && input.length !== 0 && input !== null
     else
-        return input !== undefined && input.length !== 0 && input !== null
-
+        return input !== undefined && input.length !== 0 && input !== null && input
 }
 
 const validateMin = (input, minLength) => {
-    return input.trim().length >= minLength
+    if(typeof input === 'string')
+        return input.trim().length >= minLength
+    else
+        if(typeof input === 'number')
+            return input >= minLength
 }
 const validateBeIn = (input, accepted) => {
     for(const type of accepted)
