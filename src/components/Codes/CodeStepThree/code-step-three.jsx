@@ -8,6 +8,8 @@ import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-
 import EditorCard from "../../EditorCard/editor-card";
 import Button from "../../Button/button";
 import Heading from "../../Heading/heading";
+import SubmitSVG from '../../../utils/imgs/SVGs/CommitSVG.svg'
+import ReturnSVG from '../../../utils/imgs/SVGs/GoBackSVG.svg'
 const CodeStepThree = ({setCodeStep, data}) => {
     const user = useSelector(getUser)
     const slug = useParams()['slug']
@@ -40,18 +42,20 @@ const CodeStepThree = ({setCodeStep, data}) => {
 
     if(data)
         return (
-            <div key='code-step-two' className='wrapper code-page-wrapper code-page code-step code-step-one'>
+            <div key='code-step-two' className='wrapper code-page-wrapper code-page code-step code-step-three'>
                 {/*<div className="code-page-text">*/}
                 {/*    <p dangerouslySetInnerHTML={{__html: data.description}}></p>*/}
                 {/*</div>*/}
                 {/*<EditorCard value={data.codes[0].hard_tests} height='300px' type='code' headerText='Hard test cases' />*/}
                 <div className='code-step-three-choice'>
                     <Heading text='Ready to submit?' />
+                    <img className='illustration-svg' src={SubmitSVG} alt=""/>
                     <Button color='success' callback={sendCodeForCompilation} text='Submit.' />
                 </div>
                 <div className='code-step-three-choice'>
-                    <Heading text='Nevermind' />
-                    <Button callback={() => setCodeStep(1)} text='Back' />
+                    <Heading text='Nevermind'/>
+                    <img className='illustration-svg' src={ReturnSVG} alt=""/>
+                    <Button callback={() => setCodeStep(1)} text='Back'/>
                 </div>
 
             </div>

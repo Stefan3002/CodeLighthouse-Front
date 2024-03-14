@@ -1,6 +1,6 @@
 import './input.css'
 import {useState} from "react";
-const Input = ({step = .01, onChangeCallback = undefined, required = false, defaultValue, placeholder, type='text', rows = 40, cols = 100, value = undefined}) => {
+const Input = ({marginated = false, step = .01, onChangeCallback = undefined, required = false, defaultValue, placeholder, type='text', rows = 40, cols = 100, value = undefined}) => {
     const [actualValue, setActualValue] = useState(value)
 
     const changeActualValue = (newValue) => {
@@ -45,7 +45,7 @@ const Input = ({step = .01, onChangeCallback = undefined, required = false, defa
     else
         if(type === 'search')
         return (
-            <input required={required} onChange={onChangeCallback} className='input' value={actualValue} type={type} placeholder={placeholder}>
+            <input style={{marginTop: marginated ? '1rem' : 0}} required={required} onChange={onChangeCallback} className='input' value={actualValue} type={type} placeholder={placeholder}>
 
             </input>
         )

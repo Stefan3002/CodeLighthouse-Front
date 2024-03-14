@@ -48,11 +48,23 @@ const Comment = ({data, updateDataCallback}) => {
             mode: 'comment'
         }))
     }
-
+    const modifyComment = () => {
+        dispatch(setModal(true))
+        dispatch(setModalContent({
+            type: 'modifyComment',
+            content: data.content,
+            commentID: data.id,
+            updateDataCallback
+        }))
+    }
+    console.log(data)
     return (
         <div className='comment'>
             <div className="comment-content">
                 <p>{data.content}</p>
+                {data.modified &&
+                <p className='stat-small-text'>(Modified)</p>
+                }
             </div>
             <div className="comment-meta">
                 <AuthorName author={data.author} />
@@ -62,7 +74,7 @@ const Comment = ({data, updateDataCallback}) => {
                         <WithInfo clickHandler={deleteCommentConfirm} data='Delete this comment'><img src={DeleteSVG} className='icon-svg' alt="Delete"/></WithInfo>
                     }
                     {user.id === data.author.id &&
-                        <img src={ModifySVG} className='icon-svg' alt="Modify"/>
+                        <WithInfo clickHandler={modifyComment} data='Modify this comment'><img src={ModifySVG} className='icon-svg' alt="Modify"/></WithInfo>
                     }
                 </div>
             </div>

@@ -60,7 +60,7 @@ const ChallengeCard = ({assignment = undefined, noLink = false, callback = undef
                 {/*    <AuthorName color={authoColor} author={challenge.challenge.author} />*/}
                 {/*    <Difficulty difficulty={challenge.challenge.difficulty} />*/}
                 {/*</div>*/}
-                <div className="challenge-description-card" >
+                <div className="challenge-description-card-assignment" >
                     <p dangerouslySetInnerHTML={{__html: assignment.description.slice(0, 200)}}></p>
 
                     <Link to={`/app/challenges/${challenge.challenge.slug}`}>

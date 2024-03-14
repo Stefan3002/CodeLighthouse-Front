@@ -3,6 +3,11 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
+  justify-content: center;
+}
+
+.submissions-assignment-page {
+  text-align: center;
 }
 
 .submission-footer {

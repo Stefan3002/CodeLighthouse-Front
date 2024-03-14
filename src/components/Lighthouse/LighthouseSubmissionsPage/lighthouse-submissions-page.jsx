@@ -14,6 +14,7 @@ import useValidate from "../../../utils/hooks/validateHook";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
 import Assignment from "../../Assignment/assignment";
 import {getUser} from "../../../utils/store/user-store/user-store-selectors";
+import Search from "../../Search/search";
 const LighthouseSubmissionsPage = () => {
     const sendRequest = useFetchHook()
     const [data, setData] = useState(undefined)
@@ -24,6 +25,7 @@ const LighthouseSubmissionsPage = () => {
     const updateData = useUpdateData(`${process.env.REACT_APP_SERVER_URL}/submissions/${assignmentID}`)
     const lighthouseId = useParams().id
     const user = useSelector(getUser)
+    const [submissions, setSubmissions] = useState([])
 
     useEffect(() => {
         (async () => {
@@ -31,6 +33,7 @@ const LighthouseSubmissionsPage = () => {
             if(dataAssignment && user.id === dataAssignment.lighthouse.author) {
                 const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/submissions/${assignmentID}`, undefined, 'GET', false)
                 setData(res)
+                setSubmissions(res)
             }
         })()
     }, [dataAssignment]);
@@ -78,6 +81,14 @@ const LighthouseSubmissionsPage = () => {
 
     }
 
+    const filterFunction = (target) => {
+        const filteredUsernames = Object.keys(data).filter((person) => person.toLowerCase().includes(target.toLowerCase()))
+        const filteredSubmissions = {}
+        for(const username of filteredUsernames)
+            filteredSubmissions[username] = data[username]
+        return filteredSubmissions
+    }
+
     if(dataAssignment) {
         return (
             <Transition mode='fullscreen'>
@@ -85,8 +96,10 @@ const LighthouseSubmissionsPage = () => {
 
                     <Assignment assignment={dataAssignment} />
 
+                    <Search text='Search person' marginated={true} setEntity={setSubmissions} filterFunction={filterFunction}  />
+
                     <div className="assignment-submissions">
-                        {data && Object.keys(data).map(username => {
+                        {submissions && Object.keys(submissions).map(username => {
                             return <div className='submission'>
                                 <EditorCard seeAllSubmissions={() => seeAllSubmissions(username)} assignmentSubmission={true} submission={data[username][0]} author={data[username][0].user} type='submission' />
                                 <div className="submission-footer">

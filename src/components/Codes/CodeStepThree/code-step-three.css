@@ -1,5 +1,14 @@
 .code-step-three-choice {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.code-step-three {
+  margin-top: 0;
 }
 
 /*# sourceMappingURL=code-step-three.css.map */

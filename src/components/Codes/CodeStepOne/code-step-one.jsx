@@ -17,6 +17,7 @@ const CodeStepOne = ({data, setCodeStep}) => {
                 <EditorCard  info='Write your solution to the challenge here.' value={code} height='300px' type='code' headerText='Your solution' />
             </div>
             <Button callback={() => setCodeStep(2)} text='Next' />
+
             {/*</div>*/}
         </div>
     )
