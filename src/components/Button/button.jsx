@@ -1,9 +1,9 @@
 import './button.css'
 import PlusSVG from '../../utils/imgs/SVGs/PlusSVG.svg'
-const Button = ({marginatedHorizontal = false, marginated = false, text, color='dark', type='normal', callback = () => {}, buttonType = ''}) => {
+const Button = ({disabled = false, marginatedHorizontal = false, marginated = false, text, color='dark', type='normal', callback = () => {}, buttonType = ''}) => {
     if(type === 'normal')
         return (
-            <button style={
+            <button disabled={disabled} style={
                 {
                     marginTop: marginated ? '1rem' : null,
                     marginRight: marginatedHorizontal ? '1rem' : null,
