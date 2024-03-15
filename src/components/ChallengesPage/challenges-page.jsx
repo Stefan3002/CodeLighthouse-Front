@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 import AuthorName from "../AuthorName/author-name";
 import Button from "../Button/button";
 import {useDispatch, useSelector} from "react-redux";
-import {setDifficulty, setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import {setDifficulty, setError, setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import Difficulty from "../Difficulty/difficulty";
 import DifficultyPicker from "../DifficultyPicker/difficulty-picker";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
@@ -17,11 +17,18 @@ import TickLightSVG from "../../utils/imgs/SVGs/TickLightSVG.svg";
 import {AnimatePresence, motion} from "framer-motion"
 
 const ChallengesPage = () => {
+    const LOAD_SIZE = 10
     const sendRequest = useFetchHook()
     const [data, setData] = useState(undefined)
     const dispatch = useDispatch()
     const user = useSelector(getUser)
     const [expandedChallenge, setExpandedChallenge] = useState(undefined)
+    const stop = useRef(false)
+
+    const [indexes, setIndexes] = useState({
+        lowIndex: 0,
+        highIndex : LOAD_SIZE
+    })
 
     const savedData = useRef({
         savedTrueFunction: undefined,
@@ -36,10 +43,18 @@ const ChallengesPage = () => {
 
     useEffect(() => {
         (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/0/10`, undefined, 'GET', false, undefined, ['Fetching the challenges', 'Wait, our office cat stole some of them', 'Getting them back!'])
-            setData(res.challenges)
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${indexes.lowIndex}/${indexes.highIndex}`, undefined, 'GET', true, undefined, ['Fetching the challenges', 'Wait, our office cat stole some of them', 'Getting them back!'])
+            if(res.challenges.length) {
+                stop.current = false
+                setData(res.challenges)
+            }
+            else {
+                stop.current = true
+                // dispatch(setModal(true))
+                dispatch(setError('No more challenges at this time.'))
+            }
         })()
-    }, []);
+    }, [indexes]);
 
 
     const createChallenge = () => {
@@ -59,14 +74,37 @@ const ChallengesPage = () => {
         setExpandedChallenge(undefined)
     }
 
-    if(data)
+    const loadMoreChallenges = () => {
+        if(!stop.current)
+            setIndexes(oldIndexes => {
+                return {
+                    lowIndex: oldIndexes.lowIndex + LOAD_SIZE,
+                    highIndex: oldIndexes.highIndex + LOAD_SIZE
+                }
+            })
+        else
+            dispatch(setError('No more challenges at this time.'))
+    }
+
+    const backChallenges = () => {
+        setIndexes(oldIndexes => {
+            if(oldIndexes.lowIndex - LOAD_SIZE >= 0)
+                return {
+                    lowIndex: oldIndexes.lowIndex - LOAD_SIZE,
+                    highIndex: oldIndexes.highIndex - LOAD_SIZE
+                }
+            else
+                return oldIndexes
+        })
+    }
+
     return (
         <Transition mode='fullscreen'>
             <Parallax parallaxData={parallaxData} img={ParallaxIMG}/>
 
 
             <div className="challenges-high">
-                {data.map((challenge, idx) => {
+                {data && data.map((challenge, idx) => {
                     if (idx < 3) {
                         let solved = false
                         for (const solved_challenge of user.solved_challenges)
@@ -95,7 +133,7 @@ const ChallengesPage = () => {
 
 
                 <div className="challenges">
-                    {data.map((challenge, idx) => {
+                    {data && data.map((challenge, idx) => {
                         let solved = false
                         for (const solved_challenge of user.solved_challenges)
                             if (solved_challenge.id === challenge.id) {
@@ -126,37 +164,15 @@ const ChallengesPage = () => {
                                             <Difficulty size='65px' difficulty={challenge.difficulty}/>
                                         </div>
                                     </div>
-                                    {/*<AnimatePresence>*/}
-                                    {/*    {expandedChallenge && expandedChallenge === challenge.id &&*/}
-                                    {/*        <motion.div key={`expanded-challenge-${challenge.slug}`} exit={{y: -170, opacity: 0}} initial={{y: -170, opacity: 0}} animate={{y: 0, opacity: 1}} className="challenge-content">*/}
-                                    {/*            <p dangerouslySetInnerHTML={{__html: challenge.description}}></p>*/}
-                                    {/*        </motion.div>*/}
-                                    {/*    }*/}
-                                    {/*</AnimatePresence>*/}
                                 </div>
                             </Link>
                     })}
                 </div>
+                <Button marginatedHorizontal={true} marginated={true} text='Back' callback={backChallenges} />
+                <Button marginated={true} text='More' callback={loadMoreChallenges} />
             </div>
             <Button callback={createChallenge} type='plus'/>
         </Transition>
     )
 }
-// initial: {
-//     x: '50%',
-//         y: 0,
-//         opacity: 0
-// },
-// animate: {
-//     x: '-50%',
-//         opacity: 1
-// },
-// exit: {
-//     y: '100%',
-//         opacity: 0
-// },
-// transition: {
-//     ease: 'easeInOut',
-//         duration: .3
-// }
 export default ChallengesPage
