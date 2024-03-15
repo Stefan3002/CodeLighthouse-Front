@@ -10,6 +10,7 @@ import useFetchHook from "../../../utils/hooks/fetchHook";
 import {getCode, getLanguage} from "../../../utils/store/utils-store/utils-store-selectors";
 import {setModal, setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
 import Heading from "../../Heading/heading";
+import usePollHook from "../../../utils/hooks/pollHook";
 const CodeStepOne = ({setCodeStep, data}) => {
     const user = useSelector(getUser)
     const slug = useParams()['slug']
@@ -17,7 +18,7 @@ const CodeStepOne = ({setCodeStep, data}) => {
     const lang = useSelector(getLanguage)
     const code = useSelector(getCode)
     const dispatch = useDispatch()
-
+    const pollRequest = usePollHook()
     const [hardTests, setHardTests] = useState(data.codes.filter(code => code.language === lang)[0]?.hard_tests)
 
     const successCallback = (data) => {
@@ -31,6 +32,7 @@ const CodeStepOne = ({setCodeStep, data}) => {
     }
 
 
+
     const sendCodeForHardCompilation = async () => {
 
         const reqData = {
@@ -40,7 +42,9 @@ const CodeStepOne = ({setCodeStep, data}) => {
             language: lang,
             // timeLimit: 1.2
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run-hard/${slug}`,JSON.stringify(reqData) , 'POST', false, successCallback, ['Testing you submission', 'How did you perform?'])
+        const reqUrl = `${process.env.REACT_APP_SERVER_URL}/run-hard/${slug}`
+        await pollRequest(reqData, reqUrl)
+        // const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/run-hard/${slug}`,JSON.stringify(reqData) , 'POST', false, successCallback, ['Testing you submission', 'How did you perform?'])
 
     }
 
