@@ -1,7 +1,7 @@
 import './button.css'
 import PlusSVG from '../../utils/imgs/SVGs/PlusSVG.svg'
 import {Link} from "react-router-dom";
-const Button = ({ariaLabel, href='#', disabled = false, marginatedHorizontal = false, marginated = false, text, color='dark', type='normal', callback = () => {}, buttonType = ''}) => {
+const Button = ({size, imgSRC, ariaLabel, href='#', disabled = false, marginatedHorizontal = false, marginated = false, text, color='dark', type='normal', callback = () => {}, buttonType = ''}) => {
     if(type === 'anchor')
         return (
             <Link aria-label={ariaLabel} to={href}
@@ -50,6 +50,11 @@ const Button = ({ariaLabel, href='#', disabled = false, marginatedHorizontal = f
         if(type === 'plus')
             return (
                 <img aria-label={ariaLabel} onClick={() => callback()} src={PlusSVG} className='plus-button' />
+            )
+    else
+        if(type === 'image')
+            return (
+                <img style={{maxWidth: `${size}px`, marginTop: marginated ? '1rem' : null}} aria-label={ariaLabel} onClick={() => callback()} src={imgSRC} className='icon-svg' />
             )
 }
 export default Button

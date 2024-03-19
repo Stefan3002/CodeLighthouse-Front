@@ -16,6 +16,8 @@ import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import TickLightSVG from "../../utils/imgs/SVGs/TickLightSVG.svg";
 import {AnimatePresence, motion} from "framer-motion"
 import useLazyLoadHook from "../../utils/hooks/lazyLoadHook";
+import leftCaretSVG from "../../utils/imgs/SVGs/LeftCaretSVG.svg";
+import rightCaretSVG from "../../utils/imgs/SVGs/RightCaretSVG.svg";
 
 const ChallengesPage = () => {
     const LOAD_SIZE = 10
@@ -132,8 +134,11 @@ const ChallengesPage = () => {
                             </Link>
                     })}
                 </div>
-                <Button ariaLabel='Change to the previous challenges page' marginatedHorizontal={true} marginated={true} text='Back' callback={lazyLoad.previousEntitites} />
-                <Button ariaLabel='Next challenges page' marginated={true} text='More' callback={lazyLoad.nextEntities} />
+                <Button size='50' imgSRC={leftCaretSVG} type='image' ariaLabel='Change to the previous challenges page' marginatedHorizontal={true} marginated={true} text='Back' callback={lazyLoad.previousEntitites} />
+                <Button size='50' imgSRC={rightCaretSVG} type='image' ariaLabel='Next challenges page' marginated={true} text='More' callback={lazyLoad.nextEntities} />
+
+                {/*<Button ariaLabel='Change to the previous challenges page' marginatedHorizontal={true} marginated={true} text='Back' callback={lazyLoad.previousEntitites} />*/}
+                {/*<Button ariaLabel='Next challenges page' marginated={true} text='More' callback={lazyLoad.nextEntities} />*/}
             </div>
             <Button ariaLabel='Create a new challenge' callback={createChallenge} type='plus'/>
         </Transition>

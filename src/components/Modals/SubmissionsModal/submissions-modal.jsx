@@ -1,15 +1,12 @@
 import './submissions-modal.css'
 import LighthouseSVG from "../../../utils/imgs/SVGs/LighthouseSVG.svg";
-import Input from "../../Input/input";
-import DifficultyPicker from "../../DifficultyPicker/difficulty-picker";
+import rightCaretSVG from "../../../utils/imgs/SVGs/RightCaretLightSVG.svg";
+import leftCaretSVG from "../../../utils/imgs/SVGs/LeftCaretLightSVG.svg";
 import Button from "../../Button/button";
-import ErrorSVG from "../../../utils/imgs/ErrorSVG.svg";
 import EditorCard from "../../EditorCard/editor-card";
 import {useSelector} from "react-redux";
 import {getModalContent} from "../../../utils/store/utils-store/utils-store-selectors";
-import {useEffect, useRef, useState} from "react";
-import useFetchHook from "../../../utils/hooks/fetchHook";
-import {setError} from "../../../utils/store/utils-store/utils-store-actions";
+import {useState} from "react";
 import useLazyLoadHook from "../../../utils/hooks/lazyLoadHook";
 const SubmissionsModal = () => {
     const LOAD_SIZE = 3
@@ -33,8 +30,9 @@ const SubmissionsModal = () => {
                 <img src={LighthouseSVG} alt=""/>
                 <h2>Submissions</h2>
             </div>
-            <Button color='light' ariaLabel='See more submissions' marginatedHorizontal={true} marginated={true} text='Back' callback={lazyLoad.previousEntitites} />
-            <Button color='light' ariaLabel='Previous submissions' marginated={true} text='More' callback={lazyLoad.nextEntities} />
+
+            <Button size='50' imgSRC={leftCaretSVG} type='image' color='light' ariaLabel='See more submissions' marginatedHorizontal={true} marginated={true} text='Back' callback={lazyLoad.previousEntitites} />
+            <Button size='50' imgSRC={rightCaretSVG} type='image' color='light' ariaLabel='Previous submissions' marginated={true} text='More' callback={lazyLoad.nextEntities} />
             <div className="error-content submissions-content">
                 {data.map((submission, idx) => {
                     if(idx % 2 === 0)

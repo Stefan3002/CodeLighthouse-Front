@@ -15,23 +15,31 @@ import useUpdateData from "../../utils/hooks/updateDataHook";
 import Heading from "../Heading/heading";
 import Missing from "../Missing/missing";
 import EnrolledLighthouses from "../EnrolledLighthouses/enrolled-lighthouses";
+import useLazyLoadHook from "../../utils/hooks/lazyLoadHook";
+import rightCaretSVG from '../../utils/imgs/SVGs/RightCaretSVG.svg'
+import leftCaretSVG from '../../utils/imgs/SVGs/LeftCaretSVG.svg'
 const LighthousesPage = () => {
+    const LOAD_SIZE = 3
     const sendRequest = useFetchHook()
     const user = useSelector(getUser)
     const dispatch = useDispatch()
     const updateUserData = useUpdateData()
     const [communities, setCommunities] = useState([])
+    const lazyLoad = useLazyLoadHook(LOAD_SIZE, setCommunities, `${process.env.REACT_APP_SERVER_URL}/public-entities?type=lighthouse`)
+
+
+
 
     useEffect(() => {
         (async () => {
             await updateUserData(false)
         })()
     }, []);
-    useEffect(() => {
-        ( async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/public-entities?type=lighthouse`, null , 'GET', true, (communities) => setCommunities(communities))
-        })()
-    }, [user]);
+    // useEffect(() => {
+    //     ( async () => {
+    //         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/public-entities?type=lighthouse`, null , 'GET', true, (communities) => setCommunities(communities))
+    //     })()
+    // }, [user]);
 
     const menuLighthouse = () => {
         dispatch(setModal(true))
@@ -45,7 +53,6 @@ const LighthousesPage = () => {
             }
         }))
     }
-    if(user && communities)
     return (
         <Transition mode='fullscreen'>
             <Parallax parallaxData={parallaxData} img={LighthouseIMG}/>
@@ -57,13 +64,16 @@ const LighthousesPage = () => {
 
                     <Heading text='Public Communities' />
                     <div className="lighthouses-wrapper">
-                        {communities.map((community, idx) => {
+                        <Button size='50' imgSRC={leftCaretSVG} type='image' ariaLabel='See more communities' marginatedHorizontal={true} marginated={true} text='Back' callback={lazyLoad.previousEntitites} />
+
+                        {communities && communities.map((community, idx) => {
                             if(!community.archived)
                                 return <LighthouseCard animationDelay={idx + 1} type='community' data={community} />
                         })}
+                        <Button size='50' imgSRC={rightCaretSVG} type='image' ariaLabel='Previous communities' marginated={true} text='More' callback={lazyLoad.nextEntities} />
                     </div>
 
-                    </div>
+                </div>
             </div>
         </Transition>
     )

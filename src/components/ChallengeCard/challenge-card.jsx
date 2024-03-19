@@ -62,10 +62,13 @@ const ChallengeCard = ({assignment = undefined, noLink = false, callback = undef
                 {/*</div>*/}
                 <div className="challenge-description-card-assignment" >
                     <h2>{assignment.title}</h2>
-                    <p dangerouslySetInnerHTML={{__html: assignment.description.slice(0, 200)}}></p>
+                    <div>
+                        <p>Description:</p>
+                        <p dangerouslySetInnerHTML={{__html: assignment.description.slice(0, 200)}}></p>
+                    </div>
 
                     <Link to={`/app/challenges/${challenge.challenge.slug}`}>
-                        <div className="assignment-challenge">
+                    <div className="assignment-challenge">
                             <p>Challenge:</p>
                             <h2>{challenge.challenge.title}</h2>
                             {/*<p dangerouslySetInnerHTML={{__html: challenge.challenge.description.slice(0, 30)}}></p>*/}

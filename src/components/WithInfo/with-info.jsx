@@ -18,7 +18,7 @@ const WithInfo = ({children, data, clickHandler}) => {
             <AnimatePresence>
                 {opened && <Transition mode='modal'><Tooltip data={data} /></Transition>}
             </AnimatePresence>
-            <div onClick={() => clickHandler()} className='with-info' onMouseOver={showTooltip} onMouseOut={hideTooltip}>
+            <div role='button' onClick={() => clickHandler()} className='with-info' onMouseOver={showTooltip} onMouseOut={hideTooltip}>
                 {children}
             </div>
         </>
