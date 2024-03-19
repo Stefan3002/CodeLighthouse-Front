@@ -15,6 +15,7 @@ import DifficultyPicker from "../DifficultyPicker/difficulty-picker";
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import TickLightSVG from "../../utils/imgs/SVGs/TickLightSVG.svg";
 import {AnimatePresence, motion} from "framer-motion"
+import useLazyLoadHook from "../../utils/hooks/lazyLoadHook";
 
 const ChallengesPage = () => {
     const LOAD_SIZE = 10
@@ -23,12 +24,7 @@ const ChallengesPage = () => {
     const dispatch = useDispatch()
     const user = useSelector(getUser)
     const [expandedChallenge, setExpandedChallenge] = useState(undefined)
-    const stop = useRef(false)
-
-    const [indexes, setIndexes] = useState({
-        lowIndex: 0,
-        highIndex : LOAD_SIZE
-    })
+    const lazyLoad = useLazyLoadHook(LOAD_SIZE, setData, `${process.env.REACT_APP_SERVER_URL}/challenges?`)
 
     const savedData = useRef({
         savedTrueFunction: undefined,
@@ -41,20 +37,12 @@ const ChallengesPage = () => {
         savedPrivate: undefined
     })
 
-    useEffect(() => {
-        (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${indexes.lowIndex}/${indexes.highIndex}`, undefined, 'GET', true, undefined, ['Fetching the challenges', 'Wait, our office cat stole some of them', 'Getting them back!'])
-            if(res.challenges.length) {
-                stop.current = false
-                setData(res.challenges)
-            }
-            else {
-                stop.current = true
-                // dispatch(setModal(true))
-                dispatch(setError('No more challenges at this time.'))
-            }
-        })()
-    }, [indexes]);
+    // useEffect(() => {
+    //     (async () => {
+    //         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges?start=0&end=${LOAD_SIZE}`, undefined, 'GET', true, undefined, ['Fetching the challenges', 'Wait, our office cat stole some of them', 'Getting them back!'])
+    //         setData(res.challenges)
+    //     })()
+    // }, []);
 
 
     const createChallenge = () => {
@@ -73,31 +61,7 @@ const ChallengesPage = () => {
     const collapseChallenge = () => {
         setExpandedChallenge(undefined)
     }
-
-    const loadMoreChallenges = () => {
-        if(!stop.current)
-            setIndexes(oldIndexes => {
-                return {
-                    lowIndex: oldIndexes.lowIndex + LOAD_SIZE,
-                    highIndex: oldIndexes.highIndex + LOAD_SIZE
-                }
-            })
-        else
-            dispatch(setError('No more challenges at this time.'))
-    }
-
-    const backChallenges = () => {
-        setIndexes(oldIndexes => {
-            if(oldIndexes.lowIndex - LOAD_SIZE >= 0)
-                return {
-                    lowIndex: oldIndexes.lowIndex - LOAD_SIZE,
-                    highIndex: oldIndexes.highIndex - LOAD_SIZE
-                }
-            else
-                return oldIndexes
-        })
-    }
-
+    console.log('aaaa', data)
     return (
         <Transition mode='fullscreen'>
             <Parallax parallaxData={parallaxData} img={ParallaxIMG}/>
@@ -168,8 +132,8 @@ const ChallengesPage = () => {
                             </Link>
                     })}
                 </div>
-                <Button ariaLabel='Change to the previous challenges page' marginatedHorizontal={true} marginated={true} text='Back' callback={backChallenges} />
-                <Button ariaLabel='Next challenges page' marginated={true} text='More' callback={loadMoreChallenges} />
+                <Button ariaLabel='Change to the previous challenges page' marginatedHorizontal={true} marginated={true} text='Back' callback={lazyLoad.previousEntitites} />
+                <Button ariaLabel='Next challenges page' marginated={true} text='More' callback={lazyLoad.nextEntities} />
             </div>
             <Button ariaLabel='Create a new challenge' callback={createChallenge} type='plus'/>
         </Transition>

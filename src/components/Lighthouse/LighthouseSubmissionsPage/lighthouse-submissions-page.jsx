@@ -45,14 +45,19 @@ const LighthouseSubmissionsPage = () => {
         })()
     }, []);
 
-    const seeAllSubmissions = (username) => {
+    const seeAllSubmissions = (username, userId) => {
         dispatch(setModal(true))
         dispatch(setModalContent({
             type: 'submissions',
             data: {
                 username,
-                submissions: data[username]
+                userId,
+                assignmentId: assignmentID
             }
+            // data: {
+            //     username,
+            //     submissions: data[username]
+            // }
         }))
     }
 
@@ -101,9 +106,9 @@ const LighthouseSubmissionsPage = () => {
                     <div className="assignment-submissions">
                         {submissions && Object.keys(submissions).map(username => {
                             return <div className='submission'>
-                                <EditorCard seeAllSubmissions={() => seeAllSubmissions(username)} assignmentSubmission={true} submission={data[username][0]} author={data[username][0].user} type='submission' />
+                                <EditorCard seeAllSubmissions={() => seeAllSubmissions(username, data[username][1])} assignmentSubmission={true} submission={data[username][0]} author={data[username][0].user} type='submission' />
                                 <div className="submission-footer">
-                                    <p>Grade: {data[username][1] ? <strong>{data[username][1]}</strong> : '-'}</p>
+                                    <p>Grade: {data[username][1] ? <strong>{data[username][2]}</strong> : '-'}</p>
                                     <Form className='grade-wrapper' onSubmit={sendGrade}>
                                         <Input step='1' type="number"/>
                                         <input type="text" style={{display: 'none'}} value={data[username][0].user.id} disabled/>
