@@ -14,10 +14,10 @@ const LandingPageAsideMenu = () => {
         <div className="slide-aside">
             <div className='landing-page-navigation'>
                 <ul className='navigation-wrapper'>
-                    <Link to='/' ><li className='landing-page-menu-item'>Home</li></Link>
-                    <Link to='/about' ><li className='landing-page-menu-item'>About</li></Link>
-                    <Link to='/features'><li className='landing-page-menu-item'>Features</li></Link>
-                    <Link to='/auth'><li className='landing-page-menu-item'>Log in</li></Link>
+                    <li className='landing-page-menu-item'><Link to='/' >Home</Link></li>
+                    <li className='landing-page-menu-item'><Link to='/about' >About</Link></li>
+                    <li className='landing-page-menu-item'><Link to='/features'>Features</Link></li>
+                    <li className='landing-page-menu-item'><Link to='/auth'>Log in</Link></li>
                 </ul>
                 <LandingPageAsideFooter />
             </div>

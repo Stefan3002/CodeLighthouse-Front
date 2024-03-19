@@ -26,7 +26,7 @@ const LandingPageHeader = () => {
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
                 {/*<h1 className='title'>CodeLighthouse</h1>*/}
                 <p className='subtitle'>Enlighten your <b>coding</b> skills.</p>
-                <Link to='/about'><Button text='But how?' /></Link>
+                <Button ariaLabel='Go to the About page' type='anchor' href='/about' text='But how?' />
             </div>
             <LandingPageAsideMenu />
         </div>

@@ -52,7 +52,7 @@ const CommentsPage = () => {
                     }) : <Missing text='Nobody said anything yet!' />}
                 </div>
             </div>
-            <Button callback={newComment} type='plus' />
+            <Button ariaLabel='Add a new comment' callback={newComment} type='plus' />
 
             {/*<ChallengeMeta type='stats' data={data} />*/}
         </Transition>

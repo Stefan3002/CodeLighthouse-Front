@@ -41,7 +41,7 @@ const LighthouseHomePage = () => {
                     </div>
                 </div>
                 {!data.archived && user.user_id === data.author.user_id ?
-                    <Button type='plus' callback={openAnnouncementModal}/>
+                    <Button ariaLabel='Make a new announcement' type='plus' callback={openAnnouncementModal}/>
                     : null
                 }
             </>

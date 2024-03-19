@@ -85,7 +85,7 @@ const LighthouseDetailsPage = () => {
                 <div className="lighthouse-details-header">
                     <div className="enrollment-details-main">
                         {user.user_id === data.author.user_id ?
-                            <Button callback={archiveLighthouse} text='Archive this Lighthouse' type='normal' />
+                            <Button ariaLabel='Archive the lighthouse' callback={archiveLighthouse} text='Archive this Lighthouse' type='normal' />
                             : null
                         }
                         <br/>

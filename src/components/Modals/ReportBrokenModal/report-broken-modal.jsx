@@ -50,8 +50,8 @@ const ReportBrokenModal = () => {
                 <p>{challenge.title} by </p>
                 <AuthorName author={challenge.author} />
                     <div className="admin-verdict-buttons">
-                        <Button buttonType='submit' callback={sendReport} text='Report' color='light' />
-                        <Button buttonType='reset' callback={cancelReport} text='Cancel' color='light' />
+                        <Button ariaLabel='Report as broken challenge' buttonType='submit' callback={sendReport} text='Report' color='light' />
+                        <Button ariaLabel='Cancel action' buttonType='reset' callback={cancelReport} text='Cancel' color='light' />
                     </div>
             </div>
         </div>

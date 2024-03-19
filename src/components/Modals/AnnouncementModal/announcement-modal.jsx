@@ -77,7 +77,7 @@ const AnnouncementModal = () => {
                 <Input type='textarea' rows='20' cols='60' placeholder='<h2>Exam date</h2>' />
                 <Input onChangeCallback={changeFilesUploaded} type='file' />
                 <SelectedFiles data={selectedFiles} />
-                <Button color='light' buttonType='submit' text='Create' type='normal' />
+                <Button ariaLabel='Create announcement' color='light' buttonType='submit' text='Create' type='normal' />
             </Form>
         </div>
     )

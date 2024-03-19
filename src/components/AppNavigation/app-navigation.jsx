@@ -88,13 +88,13 @@ const AppNavigation = () => {
             <nav className='app-navigation-wrapper'>
                 <img className='logo-header-app-nav' src={LogoImgNoBg} alt=""/>
                 <ul className='app-navigation'>
-                    <Link to='/app'><li className='menu-item'><img className='icon-svg' src={HomeSVG} alt=""/>Home</li></Link>
-                    <Link to='/app/lighthouses'><li className='menu-item'><img className='icon-svg' src={LighthouseSVG} alt=""/>Lighthouses</li></Link>
-                    <Link to='/app/contests'><li className='menu-item'><img className='icon-svg' src={ContestSVG} alt=""/>Contests</li></Link>
-                    <Link to='/app/challenges'><li className='menu-item'><img className='icon-svg' src={CodeSVG} alt=""/>Solve</li></Link>
-                    <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/creating-challenges.html'><li className='menu-item'><img className='icon-svg' src={AttachmentSVG} alt=""/>Docs</li></Link>
-                    <Link to={`/app/users/${user?.id}`}><li className='menu-item'><img className='icon-svg' src={UserSVG} alt=""/>{user ? user.username : 'Profile'}</li></Link>
-                    <Link to={`/app/admin/pending`}>{user.admin_user ?<li className='menu-item'><img className='icon-svg' src={AdminSVG} alt=""/>Admin</li> : null}</Link>
+                    <li className='menu-item'><Link to='/app'><img className='icon-svg' src={HomeSVG} alt=""/>Home</Link></li>
+                    <li className='menu-item'><Link to='/app/lighthouses'><img className='icon-svg' src={LighthouseSVG} alt=""/>Lighthouses</Link></li>
+                    <li className='menu-item'><Link to='/app/contests'><img className='icon-svg' src={ContestSVG} alt=""/>Contests</Link></li>
+                    <li className='menu-item'><Link to='/app/challenges'><img className='icon-svg' src={CodeSVG} alt=""/>Solve</Link></li>
+                    <li className='menu-item'> <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/creating-challenges.html'><img className='icon-svg' src={AttachmentSVG} alt=""/>Docs</Link></li>
+                    <li className='menu-item'><Link to={`/app/users/${user?.id}`}><img className='icon-svg' src={UserSVG} alt=""/>{user ? user.username : 'Profile'}</Link></li>
+                    {user.admin_user ?<li className='menu-item'> <Link to={`/app/admin/pending`}><img className='icon-svg' src={AdminSVG} alt=""/>Admin</Link></li> : null}
                     <Notifications />
                 </ul>
             </nav>

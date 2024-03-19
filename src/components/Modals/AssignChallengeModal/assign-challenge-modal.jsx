@@ -31,19 +31,22 @@ const AssignChallengeModal = () => {
     const assignLighthouseChallenge = async (event) => {
         event.preventDefault()
         let valid = true
-        const description = event.target[0].value
-        const dueDate = event.target[1].value
+        const title = event.target[0].value
+        const description = event.target[1].value
+        const dueDate = event.target[2].value
+        const dueTime = event.target[3].value
 
+        valid = validateInput('Title', title, {inputNull: false, inputMin: 10})
+        if(!valid)
+            return
 
-        valid = validateInput('Details', description, {inputNull: false})
+        valid = validateInput('Details', description, {inputNull: false, inputMin: 30})
         if(!valid)
             return
 
         valid = validateInput('Due date', dueDate, {inputNull: false})
         if(!valid)
             return
-
-        const dueTime = event.target[2].value
 
         valid = validateInput('Due time', dueTime, {inputNull: false})
         if(!valid)
@@ -62,6 +65,7 @@ const AssignChallengeModal = () => {
             dueDate,
             dueTime,
             description,
+            title,
             users: [...modalContent.selectedPeople, user.user_id]
         }
 
@@ -93,10 +97,14 @@ const AssignChallengeModal = () => {
                 <div className='enroll-inputs'>
                     <ChallengePicker authorColor='dark' />
                     <p>Not for everyone? <b>Select</b> the students you want!</p>
-                    <Button color='light' callback={openStudentSelection} text='Select' />
+                    <Button ariaLabel='Select students' color='light' callback={openStudentSelection} text='Select' />
                     <p>{modalContent.selectedPeople ? modalContent.selectedPeople.length : 'No'} students selected.</p>
 
                     <Form className='assignment-inputs' onSubmit={assignLighthouseChallenge}>
+
+                        <p><b>Title</b> of the assignment!</p>
+                        <Input placeholder='The first assignment'/>
+
                         <p><b>Details?</b> They go here!</p>
                         <Input type='textarea' rows='20' cols='60' placeholder='<h2>Exam date</h2>'/>
                         <p><b>Due?</b> Select a date and a time!</p>
@@ -104,7 +112,8 @@ const AssignChallengeModal = () => {
                             <Input type='date'/>
                             <Input type='time'/>
                         </div>
-                        <Button color='light' marginated={true} buttonType='submit' text='Create' type='normal'/>
+                        <Button ariaLabel='Create assignment' color='light' marginated={true} buttonType='submit'
+                                text='Create' type='normal'/>
                     </Form>
                 </div>
 

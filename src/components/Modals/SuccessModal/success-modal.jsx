@@ -36,7 +36,7 @@ const SuccessModal = () => {
                     {/*    <Input type='text' placeholder='Id of the Lighthouse.' />*/}
                     {/*    <Button buttonType='submit' text='Join' type='normal' />*/}
                     {/*</form>*/}
-                    <Button color='light' text='Close' callback={closeModal} />
+                    <Button ariaLabel='Close information modal' color='light' text='Close' callback={closeModal} />
 
                 </div>
             </div>
@@ -61,7 +61,7 @@ const SuccessModal = () => {
                     {/*    <Input type='text' placeholder='Id of the Lighthouse.' />*/}
                     {/*    <Button buttonType='submit' text='Join' type='normal' />*/}
                     {/*</form>*/}
-                    <Button color='light' text='Close' callback={closeModal} />
+                    <Button ariaLabel='Close the information modal' color='light' text='Close' callback={closeModal} />
                 </div>
             </div>
             // </Transition>

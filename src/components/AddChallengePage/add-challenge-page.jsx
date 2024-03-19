@@ -60,7 +60,7 @@ const AddChallengePage = () => {
                 <form onSubmit={addChallenge}>
                     <Input type='text' placeholder='Title of the challenge' />
                     <Input type='textarea' placeholder='Description of the challenge' />
-                    <Button text='Add Challenge'  />
+                    <Button ariaLabel='Add a new challenge' text='Add Challenge'  />
                 </form>
             </div>
             <div className="add-challenge-right">

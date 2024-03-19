@@ -60,7 +60,7 @@ const AdminModal = () => {
                     <WithInfo clickHandler={() => verdictChallenge('deny')} data='Retire this challenge FOREVER!'><Button  buttonType='normal' text='Deny' color='danger' /></WithInfo>
                 </div>
                 <div className="admin-verdict-buttons">
-                    <Button callback={openDifficultyAdmin} buttonType='normal' text='Difficulty' color='light' />
+                    <Button ariaLabel='Change the difficulty of the challenge' callback={openDifficultyAdmin} buttonType='normal' text='Difficulty' color='light' />
                 </div>
             </div>
         </div>

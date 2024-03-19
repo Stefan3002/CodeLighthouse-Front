@@ -49,7 +49,7 @@ const LighthousesPage = () => {
     return (
         <Transition mode='fullscreen'>
             <Parallax parallaxData={parallaxData} img={LighthouseIMG}/>
-            <Button callback={menuLighthouse} type='plus' />
+            <Button ariaLabel='Create or join a lighthouse' callback={menuLighthouse} type='plus' />
             <div className="wrapper">
                 <div className='lighthouses-page'>
                     <Heading text='Enrolled Lighthouses' />

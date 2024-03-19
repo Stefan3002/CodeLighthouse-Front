@@ -59,7 +59,7 @@ const AdminConfirmModal = () => {
                     <Input type='text' placeholder='Reason for sending back' />
                     <div className="admin-confirm-buttons">
                         <WithInfo clickHandler={() => null} data='Retire this challenge temporarely, until the author fixes it!'><Button type='normal' buttonType='submit' text='Send back' color='success' /></WithInfo>
-                        <Button buttonType='reset' callback={closeModals} color='light' text='Cancel' />
+                        <Button ariaLabel='Cancel action' buttonType='reset' callback={closeModals} color='light' text='Cancel' />
                     </div>
                 </Form>
             </div>

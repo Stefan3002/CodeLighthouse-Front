@@ -168,10 +168,10 @@ const ChallengesPage = () => {
                             </Link>
                     })}
                 </div>
-                <Button marginatedHorizontal={true} marginated={true} text='Back' callback={backChallenges} />
-                <Button marginated={true} text='More' callback={loadMoreChallenges} />
+                <Button ariaLabel='Change to the previous challenges page' marginatedHorizontal={true} marginated={true} text='Back' callback={backChallenges} />
+                <Button ariaLabel='Next challenges page' marginated={true} text='More' callback={loadMoreChallenges} />
             </div>
-            <Button callback={createChallenge} type='plus'/>
+            <Button ariaLabel='Create a new challenge' callback={createChallenge} type='plus'/>
         </Transition>
     )
 }

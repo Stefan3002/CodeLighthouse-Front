@@ -200,9 +200,9 @@ const LogIn = () => {
                             <img className='log-in-feature-icon' src={PadlockSVG} alt=""/>
                             <h2 className='log-in-feature-title'>Log in</h2>
                             <div className="providers">
-                                <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG}
+                                <img role='button' aria-label='Log in via Google' onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG}
                                      alt="Via Google"/>
-                                <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG}
+                                <img role='button' aria-label='Log in via Github' onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG}
                                      alt="Via GitHub"/>
                             </div>
                         </div>
@@ -212,7 +212,7 @@ const LogIn = () => {
                             <form className='inputs-form' onSubmit={logInClassic}>
                                 <Input placeholder='E-mail'/>
                                 <Input type='password' placeholder='Password'/>
-                                <Button text='Log in for contest'/>
+                                <Button ariaLabel='Log in' text='Log in for contest'/>
                             </form>
                             {/*<h2>Log in</h2>*/}
                             {/*<div className="providers">*/}

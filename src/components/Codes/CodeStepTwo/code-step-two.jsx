@@ -58,9 +58,9 @@ const CodeStepOne = ({setCodeStep, data}) => {
             <div className='code-step-three-choice'>
                 <Heading text='Hard test?' />
                 <div className="code-step-buttons">
-                    <Button color='success' callback={sendCodeForHardCompilation} text='Submit' />
-                    <Button callback={() => setCodeStep(1)} text='Back' />
-                    <Button callback={() => setCodeStep(3)} text='Next' />
+                    <Button ariaLabel='Submit solution for hard-coded tests' color='success' callback={sendCodeForHardCompilation} text='Submit' />
+                    <Button ariaLabel='Back to coding step' callback={() => setCodeStep(1)} text='Back' />
+                    <Button ariaLabel='Forward to final submission step' callback={() => setCodeStep(3)} text='Next' />
                 </div>
             </div>
         </div>

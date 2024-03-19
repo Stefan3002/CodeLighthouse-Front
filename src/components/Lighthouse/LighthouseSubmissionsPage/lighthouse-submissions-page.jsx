@@ -107,7 +107,7 @@ const LighthouseSubmissionsPage = () => {
                                     <Form className='grade-wrapper' onSubmit={sendGrade}>
                                         <Input step='1' type="number"/>
                                         <input type="text" style={{display: 'none'}} value={data[username][0].user.id} disabled/>
-                                        <Button color='light' text='Grade' />
+                                        <Button ariaLabel="Grade this student's work" color='light' text='Grade' />
                                     </Form>
                                 </div>
                             </div>

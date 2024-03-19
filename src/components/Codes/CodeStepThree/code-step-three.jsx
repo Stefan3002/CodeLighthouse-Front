@@ -49,12 +49,12 @@ const CodeStepThree = ({setCodeStep, data}) => {
                 <div className='code-step-three-choice'>
                     <Heading text='Ready to submit?' />
                     <img className='illustration-svg' src={SubmitSVG} alt=""/>
-                    <Button disabled={!donePolling.current} color='success' callback={sendCodeForCompilation} text='Submit.' />
+                    <Button ariaLabel='Submit your solution' disabled={!donePolling.current} color='success' callback={sendCodeForCompilation} text='Submit.' />
                 </div>
                 <div className='code-step-three-choice'>
                     <Heading text='Nevermind'/>
                     <img className='illustration-svg' src={ReturnSVG} alt=""/>
-                    <Button callback={() => setCodeStep(1)} text='Back'/>
+                    <Button ariaLabel='Go back' callback={() => setCodeStep(1)} text='Back'/>
                 </div>
 
             </div>

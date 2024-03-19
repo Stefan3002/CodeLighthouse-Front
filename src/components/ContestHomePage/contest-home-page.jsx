@@ -49,7 +49,7 @@ const ContestHomePage = () => {
             setData(res)
         })()
     }, []);
-    console.log('aa', solvedChallenges)
+    // console.log('aa', solvedChallenges)
     if(data) {
         const timeRemaining = Date.parse(`${data.start_date} : ${data.start_time}`) - Date.now()
         const timeRemainingSolve = Date.parse(`${data.end_date} : ${data.end_time}`) - Date.now()
@@ -70,7 +70,7 @@ const ContestHomePage = () => {
                                 <>
                                     <p>Are you an admin?</p>
                                     <p>Select challenges for this contest by pressing the button below</p>
-                                    <Button callback={addChallenges} text='Add challenges'/>
+                                    <Button ariaLabel='Add challenges to the contest' callback={addChallenges} text='Add challenges'/>
                                 </>
                             }
 

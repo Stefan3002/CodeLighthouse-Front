@@ -61,6 +61,7 @@ const ChallengeCard = ({assignment = undefined, noLink = false, callback = undef
                 {/*    <Difficulty difficulty={challenge.challenge.difficulty} />*/}
                 {/*</div>*/}
                 <div className="challenge-description-card-assignment" >
+                    <h2>{assignment.title}</h2>
                     <p dangerouslySetInnerHTML={{__html: assignment.description.slice(0, 200)}}></p>
 
                     <Link to={`/app/challenges/${challenge.challenge.slug}`}>
@@ -130,7 +131,7 @@ const ChallengeCard = ({assignment = undefined, noLink = false, callback = undef
                         <p>{report.comment}</p>
                         <h3>Assigned admin</h3>
                         <AuthorName color='dark' author={report.assigned_admin} />
-                        <Button marginated={true} callback={callback} text='Close report' color='dark' type='normal' />
+                        <Button ariaLabel='Close the report' marginated={true} callback={callback} text='Close report' color='dark' type='normal' />
                     </div>
 
             )

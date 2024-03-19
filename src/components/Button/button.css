@@ -7,24 +7,13 @@
   color: #FEE1C7;
   border-radius: 10px;
 }
-.button:before {
-  content: "";
-  height: 100%;
-  width: 100%;
-  background: #32292F;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  transition: all 0.15s ease-in-out;
-}
-.button:hover:before, .button:focus:before {
-  width: 5px;
-  transition: all 0.15s ease-in-out;
-  z-index: -1;
-}
 .button:hover, .button:focus {
   color: #575366;
+}
+
+.button-anchor {
+  border-radius: 10px !important;
+  font-size: 0.8rem;
 }
 
 .plus-button {

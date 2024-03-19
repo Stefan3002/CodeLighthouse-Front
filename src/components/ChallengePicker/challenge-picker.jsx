@@ -43,7 +43,7 @@ const ChallengePicker = ({authorColor}) => {
         <div className='challenge-picker'>
             <form onSubmit={searchChallenge} className="challenge-picker-input">
                 <Input type='text' placeholder='Name of challenge.'/>
-                <Button color='light' buttonType='submit' text='Search'/>
+                <Button ariaLabel='Search for the desired challenge' color='light' buttonType='submit' text='Search'/>
             </form>
             <p>Your challenges</p>
             <div className="challenges-picker">
