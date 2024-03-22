@@ -119,8 +119,8 @@ const ContestPeoplePage = () => {
             }))
         }
     }
-
-    if(user && data)
+    console.log('aaa', data)
+    if(user)
     return (
         <Transition mode='fullscreen'>
             <div className='wrapper lighthouse-details-page'>
@@ -131,12 +131,12 @@ const ContestPeoplePage = () => {
                         {/*    : null*/}
                         {/*}*/}
                         <br/>
-                        {data.description ? data.description : 'Why did you not provide a description???'}
+                        {data && data.description ? data.description : 'Why did you not provide a description???'}
                     </div>
 
                 </div>
                 <div className='enrollment-details-people'>
-                    <h2>Participants in the contest ({data.people.length}):</h2>
+                    <h2>Participants in the contest ({data && data.people.length}):</h2>
                     <div className="enrollment-details-people-inner">
                         <Input type='search' placeholder='Search participant' onChangeCallback={searchStudent} />
                         {people.length > 0 ? people.map(person => {

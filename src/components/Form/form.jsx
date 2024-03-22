@@ -23,7 +23,8 @@ const Form = ({className, onSubmit, children}) => {
         // Sanitize eventual HTML code that you may have requested from users
         for(let index = 0 ; index < event.target.length; index++) {
             const input = event.target[index]
-            if (input.value) {
+            // console.log('aaaa', input.type)
+            if (input.type !== 'file' && input.value) {
                 const target = input.value
                 event.target[index].value = dompurify.sanitize(target, {
                     USE_PROFILES: {

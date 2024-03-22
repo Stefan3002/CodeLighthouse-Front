@@ -18,28 +18,11 @@ import EnrolledLighthouses from "../EnrolledLighthouses/enrolled-lighthouses";
 import useLazyLoadHook from "../../utils/hooks/lazyLoadHook";
 import rightCaretSVG from '../../utils/imgs/SVGs/RightCaretSVG.svg'
 import leftCaretSVG from '../../utils/imgs/SVGs/LeftCaretSVG.svg'
+import Communities from "../Communities/communities";
+
+
 const LighthousesPage = () => {
-    const LOAD_SIZE = 3
-    const sendRequest = useFetchHook()
-    const user = useSelector(getUser)
     const dispatch = useDispatch()
-    const updateUserData = useUpdateData()
-    const [communities, setCommunities] = useState([])
-    const lazyLoad = useLazyLoadHook(LOAD_SIZE, setCommunities, `${process.env.REACT_APP_SERVER_URL}/public-entities?type=lighthouse`)
-
-
-
-
-    useEffect(() => {
-        (async () => {
-            await updateUserData(false)
-        })()
-    }, []);
-    // useEffect(() => {
-    //     ( async () => {
-    //         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/public-entities?type=lighthouse`, null , 'GET', true, (communities) => setCommunities(communities))
-    //     })()
-    // }, [user]);
 
     const menuLighthouse = () => {
         dispatch(setModal(true))
@@ -60,18 +43,10 @@ const LighthousesPage = () => {
             <div className="wrapper">
                 <div className='lighthouses-page'>
                     <Heading text='Enrolled Lighthouses' />
-                    <EnrolledLighthouses data={user} />
+                    <EnrolledLighthouses />
 
                     <Heading text='Public Communities' />
-                    <div className="lighthouses-wrapper">
-                        <Button size='50' imgSRC={leftCaretSVG} type='image' ariaLabel='See more communities' marginatedHorizontal={true} marginated={true} text='Back' callback={lazyLoad.previousEntitites} />
-
-                        {communities && communities.map((community, idx) => {
-                            if(!community.archived)
-                                return <LighthouseCard animationDelay={idx + 1} type='community' data={community} />
-                        })}
-                        <Button size='50' imgSRC={rightCaretSVG} type='image' ariaLabel='Previous communities' marginated={true} text='More' callback={lazyLoad.nextEntities} />
-                    </div>
+                    <Communities />
 
                 </div>
             </div>

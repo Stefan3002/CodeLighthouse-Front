@@ -56,10 +56,18 @@ a:focus:before, a:hover:before {
 }
 
 .icon-svg {
-  max-width: 30px;
+  max-width: 30px !important;
   transition: all 0.15s;
 }
 .icon-svg:focus, .icon-svg:hover {
+  transform: scale(1.1);
+  transition: all 0.15s;
+}
+
+.icon-svg2 {
+  transition: all 0.15s;
+}
+.icon-svg2:focus, .icon-svg2:hover {
   transform: scale(1.1);
   transition: all 0.15s;
 }

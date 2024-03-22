@@ -26,15 +26,15 @@ const AppHome = () => {
     const [randChallenge, setRandChallenge] = useState([])
 
     const getChallenge = async () => {
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${indeces.min_index}/${indeces.max_index}`, undefined, 'GET', false)
-        setRandChallenge(res.challenges)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges?start=${indeces.min_index}&end=${indeces.max_index}`, undefined, 'GET', false)
+        setRandChallenge(res)
     }
     const nextChallenge = async () => {
-        let res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/${indeces.min_index}/${indeces.max_index}`, undefined, 'GET', true)
+        let res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges?start=${indeces.min_index}&end=${indeces.max_index}`, undefined, 'GET', true)
         if(indeces.max_index > res.length)
             return false
         const newChallenges = [...randChallenge]
-        newChallenges.push(res.challenges[res.challenges.length - 1])
+        newChallenges.push(res[res.length - 1])
         setRandChallenge(newChallenges)
         return true
     }

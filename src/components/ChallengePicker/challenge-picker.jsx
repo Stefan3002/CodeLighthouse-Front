@@ -17,8 +17,8 @@ const ChallengePicker = ({authorColor}) => {
 
     useEffect(() => {
         (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges/0/10`, undefined, 'GET')
-            setChallenges(res.challenges)
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges?start=0&end=10`, undefined, 'GET')
+            setChallenges(res)
         })()
     }, []);
 

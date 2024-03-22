@@ -4,17 +4,18 @@ import {setLoading, setModal, setModalContent} from "../store/utils-store/utils-
 import useFetchHook from "./fetchHook";
 import {useParams} from "react-router-dom";
 
-const useLazyLoadHook = (loadSize, setData, url) => {
+const useLazyLoadHook = (loadSize, setData, url, START_INDEX = 0) => {
     const LOAD_SIZE = loadSize
     const sendRequest = useFetchHook()
     const [indexes, setIndexes] = useState({
-        lowIndex: 0,
-        highIndex : LOAD_SIZE
+        lowIndex: START_INDEX,
+        highIndex : START_INDEX + LOAD_SIZE
     })
     const stop = useRef(false)
 
 
     useEffect(() => {
+        if(indexes)
         (async () => {
             // console.log('ss', dataAssignment)
             // if(dataAssignment && user.id === dataAssignment.lighthouse.author) {

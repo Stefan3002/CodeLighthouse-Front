@@ -2,8 +2,6 @@ import './contests-page.css'
 import Parallax from "../Parallax/parallax";
 import parallaxData from "../ContestsPage/parallax-data.json";
 import ParallaxIMG from "../../utils/imgs/headers/ContestsHeader.jpg";
-import {Link} from "react-router-dom";
-import AuthorName from "../AuthorName/author-name";
 import Transition from "../../utils/js/transitions";
 import Heading from "../Heading/heading";
 import Button from "../Button/button";
@@ -12,16 +10,15 @@ import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import {setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import {useEffect, useState} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
-import LighthouseCard from "../Lighthouse/LighthouseCard/lighthouse-card";
 import ContestCard from "../ContestCard/contest-card";
 import Missing from "../Missing/missing";
 import useUpdateData from "../../utils/hooks/updateDataHook";
+import ContestsList from "../ContestsList/contests-list";
 const ContestsPage = () => {
     const user = useSelector(getUser)
     const dispatch = useDispatch()
     const sendRequest = useFetchHook()
     const [data, setData] = useState([])
-    const updateUserData = useUpdateData()
     const [publicContests, setPublicContests] = useState([])
     const menuContests = () => {
         dispatch(setModal(true))
@@ -37,28 +34,18 @@ const ContestsPage = () => {
 
     }
 
-
     // useEffect(() => {
-    //     (async () => {
-    //         await updateUserData(false)
+    //     ( async () => {
+    //         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/contests`, null , 'GET', true, undefined)
+    //         setData(res)
     //     })()
-    // }, []);
-    useEffect(() => {
-        ( async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/contests`, null , 'GET', true, undefined)
-            setData(res)
-        })()
-    }, [user]);
-    useEffect(() => {
-        (async () => {
-            await updateUserData(false)
-        })()
-    }, []);
+    // }, [user]);
+
     useEffect(() => {
         ( async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/public-entities?type=contest`, null , 'GET', true, (contests) => setPublicContests(contests))
         })()
-    }, [user]);
+    }, []);
 
     if(data)
         return (
@@ -70,14 +57,11 @@ const ContestsPage = () => {
                 <div className='wrapper contests-page'>
                     <Heading text='Enrolled contests'/>
 
-                    <div className="lighthouses-wrapper">
-                        {data.length ? data.map((contest, idx) => {
-                            return <ContestCard animationDelay={idx + 1} data={contest}/>
-                        }) : <Missing text='Nothing here'/>}
-                    </div>
+                    <ContestsList />
+
 
                     <Heading text='Open contests'/>
-                    <div className="lighthouses-wrapper">
+                    <div className="lighthouses-inner-wrapper">
                         {publicContests.length ? publicContests.map((contest, idx) => {
                             return <ContestCard type='open' animationDelay={idx + 1} data={contest}/>
                         }) : <Missing text='Nothing here'/>}

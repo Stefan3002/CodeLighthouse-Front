@@ -37,6 +37,7 @@ const CreateContestModal = () => {
     }
 
     const createNewContest = async (event) => {
+        console.log('aaa')
         event.preventDefault()
         let valid = true
         const name = event.target[0].value
@@ -48,7 +49,7 @@ const CreateContestModal = () => {
 
         const endDate = event.target[6].value
         const endTime = event.target[7].value
-
+        console.log('aaa', )
         valid = validateInput('Name of the Contest', name, {inputNull: createContestValidations.name.inputNull, inputMin: createContestValidations.name.inputMin})
         if(!valid)
             return
@@ -74,7 +75,7 @@ const CreateContestModal = () => {
             return
 
         const files = event.target[3].files
-        // console.log('aaaaaaaaa', files)
+        console.log('aaaaaaaaa', files)
         if(files.length) {
             valid = validateInput('File', files[0].type, {beIn: createContestValidations.file.beIn})
             if (!valid)

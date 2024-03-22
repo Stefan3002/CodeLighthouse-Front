@@ -54,7 +54,7 @@ const Button = ({size, imgSRC, ariaLabel, href='#', disabled = false, marginated
     else
         if(type === 'image')
             return (
-                <img style={{maxWidth: `${size}px`, marginTop: marginated ? '1rem' : null}} aria-label={ariaLabel} onClick={() => callback()} src={imgSRC} className='icon-svg' />
+                <img style={{maxWidth: `${size}px`, marginTop: marginated ? '1rem' : null}} aria-label={ariaLabel} onClick={() => callback()} src={imgSRC} className='icon-svg2' />
             )
 }
 export default Button
