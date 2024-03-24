@@ -30,6 +30,7 @@ import {setError} from "../../../utils/store/utils-store/utils-store-actions";
 import Blur from "../../Blur/blur";
 import Modal from "../../Error/modal";
 import {getError} from "../../../utils/store/utils-store/utils-store-selectors";
+import Form from "../../Form/form";
 const LogIn = () => {
     const error = useSelector(getError)
     const sendRequest = useFetchHook()
@@ -185,40 +186,46 @@ const LogIn = () => {
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
                 <div className="inputs">
                     <div className="log-in-features">
-                        {LogInFeatures.features.map((feature, idx) => {
-                            return <div key={`Feature-${feature.title}`}
-                                        style={{animationDelay: `${exponentialDelay(idx)}ms`}}
-                                        className="log-in-feature">
-                                <img className='log-in-feature-icon' src={getFeatureIcon(feature.title)} alt=""/>
-                                <h2 className='log-in-feature-title'>{feature.title}</h2>
-                                <p className='log-in-feature-description'
-                                   dangerouslySetInnerHTML={{__html: feature.description}}></p>
-                            </div>
-                        })}
-                        <div className="log-in-feature" key={`Feature-log-in-options`}
-                             style={{animationDelay: `${exponentialDelay(3)}ms`}}>
-                            <img className='log-in-feature-icon' src={PadlockSVG} alt=""/>
-                            <h2 className='log-in-feature-title'>Log in</h2>
-                            <div className="providers">
-                                <img role='button' aria-label='Log in via Google' onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG}
-                                     alt="Via Google"/>
-                                <img role='button' aria-label='Log in via Github' onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG}
-                                     alt="Via GitHub"/>
-                            </div>
+                        <div className='log-in-group'>
+                            {LogInFeatures.features.map((feature, idx) => {
+                                return <div key={`Feature-${feature.title}`}
+                                            style={{animationDelay: `${exponentialDelay(idx)}ms`}}
+                                            className="log-in-feature">
+                                    <img className='log-in-feature-icon' src={getFeatureIcon(feature.title)} alt=""/>
+                                    <h2 className='log-in-feature-title'>{feature.title}</h2>
+                                    <p className='log-in-feature-description'
+                                       dangerouslySetInnerHTML={{__html: feature.description}}></p>
+                                </div>
+                            })}
                         </div>
-                        <div className='log-in-options log-in-feature'
-                             style={{animationDelay: `${exponentialDelay(4)}ms`}}>
-                            <img className='log-in-feature-icon' src={Padlock2SVG} alt=""/>
-                            <form className='inputs-form' onSubmit={logInClassic}>
-                                <Input placeholder='E-mail'/>
-                                <Input type='password' placeholder='Password'/>
-                                <Button ariaLabel='Log in' text='Log in for contest'/>
-                            </form>
-                            {/*<h2>Log in</h2>*/}
-                            {/*<div className="providers">*/}
-                            {/*    <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG} alt=""/>*/}
-                            {/*    <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG} alt=""/>*/}
-                            {/*</div>*/}
+                        <div className='log-in-group'>
+                            <div className="log-in-feature" key={`Feature-log-in-options`}
+                                 style={{animationDelay: `${exponentialDelay(3)}ms`}}>
+                                <img aria-hidden={true} className='log-in-feature-icon' src={PadlockSVG} alt=""/>
+                                <h2 className='log-in-feature-title'>Log in via:</h2>
+                                <div className="providers">
+                                    <img role='button' aria-label='Log in via Google' onClick={logInGoogleProvider}
+                                         className='log-in-icon' src={GoogleSVG}
+                                         alt="Via Google"/>
+                                    <img role='button' aria-label='Log in via Github' onClick={logInGithubProvider}
+                                         className='log-in-icon' src={GithubSVG}
+                                         alt="Via GitHub"/>
+                                </div>
+                            </div>
+                            <div className='log-in-options log-in-feature'
+                                 style={{animationDelay: `${exponentialDelay(4)}ms`}}>
+                                <img className='log-in-feature-icon' src={Padlock2SVG} alt=""/>
+                                <Form type='no-auth' className='inputs-form' onSubmit={logInClassic}>
+                                    <Input id="log-in-username" placeholder='E-mail'/>
+                                    <Input id='log-in-password' type='password' placeholder='Password'/>
+                                    <Button ariaLabel='Log in' id='log-in-button' text='Log in for contest'/>
+                                </Form>
+                                {/*<h2>Log in</h2>*/}
+                                {/*<div className="providers">*/}
+                                {/*    <img onClick={logInGoogleProvider} className='log-in-icon' src={GoogleSVG} alt=""/>*/}
+                                {/*    <img onClick={logInGithubProvider} className='log-in-icon' src={GithubSVG} alt=""/>*/}
+                                {/*</div>*/}
+                            </div>
                         </div>
                     </div>
 

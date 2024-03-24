@@ -22,6 +22,7 @@ import ChallengesList from "../ChallengesList/challenges-list";
 import ChallengesHighlighted from "../ChallengesHighlighted/challenges-highlighted";
 
 const ChallengesPage = () => {
+    const [START_INDEX, set_START_INDEX] = useState(-2)
     const [data, setData] = useState(undefined)
     const dispatch = useDispatch()
     const user = useSelector(getUser)
@@ -37,7 +38,12 @@ const ChallengesPage = () => {
         savedPrivate: undefined
     })
 
-
+    useEffect(() => {
+        if(window.innerWidth < 1100)
+            set_START_INDEX(1)
+        else
+            set_START_INDEX(3)
+    }, []);
 
 
     const createChallenge = () => {
@@ -56,7 +62,10 @@ const ChallengesPage = () => {
             <Parallax parallaxData={parallaxData} img={ParallaxIMG}/>
             <ChallengesHighlighted />
             <div className='wrapper challenges-page'>
-                <ChallengesList startIndex={3} />
+                {/*I have not decided yet how many to load, wait a bit more!*/}
+                {START_INDEX !== -2 &&
+                    <ChallengesList startIndex={START_INDEX} />
+                }
             </div>
             <Button ariaLabel='Create a new challenge' callback={createChallenge} type='plus'/>
         </Transition>

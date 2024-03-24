@@ -1,10 +1,10 @@
 import './button.css'
 import PlusSVG from '../../utils/imgs/SVGs/PlusSVG.svg'
 import {Link} from "react-router-dom";
-const Button = ({size, imgSRC, ariaLabel, href='#', disabled = false, marginatedHorizontal = false, marginated = false, text, color='dark', type='normal', callback = () => {}, buttonType = ''}) => {
+const Button = ({id, size, imgSRC, ariaLabel, href='#', disabled = false, marginatedHorizontal = false, marginated = false, text, color='dark', type='normal', callback = () => {}, buttonType = ''}) => {
     if(type === 'anchor')
         return (
-            <Link aria-label={ariaLabel} to={href}
+            <Link id={id} aria-label={ariaLabel} to={href}
                   style={
                     {
                         marginTop: marginated ? '1rem' : null,
@@ -27,7 +27,7 @@ const Button = ({size, imgSRC, ariaLabel, href='#', disabled = false, marginated
         )
     if (type === 'normal')
         return (
-            <button aria-label={ariaLabel} disabled={disabled} style={
+            <button id={id} aria-label={ariaLabel} disabled={disabled} style={
                 {
                     marginTop: marginated ? '1rem' : null,
                     marginRight: marginatedHorizontal ? '1rem' : null,
@@ -49,12 +49,12 @@ const Button = ({size, imgSRC, ariaLabel, href='#', disabled = false, marginated
     else
         if(type === 'plus')
             return (
-                <img aria-label={ariaLabel} onClick={() => callback()} src={PlusSVG} className='plus-button' />
+                <img id={id} aria-label={ariaLabel} onClick={() => callback()} src={PlusSVG} className='plus-button' />
             )
     else
         if(type === 'image')
             return (
-                <img style={{maxWidth: `${size}px`, marginTop: marginated ? '1rem' : null}} aria-label={ariaLabel} onClick={() => callback()} src={imgSRC} className='icon-svg2' />
+                <img id={id} style={{maxWidth: `${size}px`, marginTop: marginated ? '1rem' : null}} aria-label={ariaLabel} onClick={() => callback()} src={imgSRC} className='icon-svg2' />
             )
 }
 export default Button

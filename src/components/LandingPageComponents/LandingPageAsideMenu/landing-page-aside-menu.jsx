@@ -17,7 +17,7 @@ const LandingPageAsideMenu = () => {
                     <li className='landing-page-menu-item'><Link to='/' >Home</Link></li>
                     <li className='landing-page-menu-item'><Link to='/about' >About</Link></li>
                     <li className='landing-page-menu-item'><Link to='/features'>Features</Link></li>
-                    <li className='landing-page-menu-item'><Link to='/auth'>Log in</Link></li>
+                    <li className='landing-page-menu-item'><Link id='log-in-anchor' to='/auth'>Log in</Link></li>
                 </ul>
                 <LandingPageAsideFooter />
             </div>

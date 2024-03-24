@@ -99,6 +99,10 @@
   overflow: auto;
 }
 
+.challenge-card-report-closed {
+  width: 300px;
+}
+
 .challenge-card-report {
   padding: 1rem;
   text-align: center;

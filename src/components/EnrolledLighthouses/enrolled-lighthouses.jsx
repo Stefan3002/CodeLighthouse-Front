@@ -18,7 +18,7 @@ const EnrolledLighthouses = () => {
             <Button size='50' imgSRC={leftCaretSVG} type='image' ariaLabel='Change to the previous challenges page' marginatedHorizontal={true} marginated={true} text='Back' callback={lazyLoad.previousEntitites} />
             <Button size='50' imgSRC={rightCaretSVG} type='image' ariaLabel='Next challenges page' marginated={true} text='More' callback={lazyLoad.nextEntities} />
             <div className="lighthouses-inner-wrapper">
-                {data.length ? data.map((lighthouse, idx) => {
+                {data && data.length ? data.map((lighthouse, idx) => {
                     return <LighthouseCard animationDelay={idx} data={lighthouse}/>
                 }) : <Missing text='You did not join any lighthouse yet!'/>}
             </div>

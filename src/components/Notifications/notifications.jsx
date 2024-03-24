@@ -67,9 +67,9 @@ const Notifications = () => {
     }
 
     return (
-            <li onClick={openNotificationsModal} className='menu-item'>
+            <li role='button' onClick={openNotificationsModal} className='menu-item-notifications'>
                 <img src={BellSVG} className='icon-svg' alt=""/>
-                Updates
+                <p>Updates</p>
                 <p>{notifications.length > 0 && `(${notifications.length})`}</p>
             </li>
 )

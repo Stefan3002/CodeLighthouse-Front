@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import useFetchHook from "../../utils/hooks/fetchHook";
 import dompurify from "dompurify";
-const Form = ({className, onSubmit, children}) => {
+const Form = ({type = 'yes-auth', className, onSubmit, children}) => {
     const dispatch = useDispatch()
     const sendRequest = useFetchHook()
     const ohMyGodHoneyWrapper = (event) => {
@@ -43,8 +43,14 @@ const Form = ({className, onSubmit, children}) => {
                 const dataFetch = {
                     token,
                 }
-                const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/check-captcha`, JSON.stringify(dataFetch), 'POST', true)
-                if(!res.data.success)
+                let res;
+                if(type === 'yes-auth')
+                    res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/check-captcha`, JSON.stringify(dataFetch), 'POST', true)
+                else
+                    if(type === 'no-auth')
+                        res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/check-captcha-log-in`, JSON.stringify(dataFetch), 'POST', true)
+
+                if(!res || !res.data.success)
                     return
                 onSubmit(event)
             });
@@ -58,21 +64,31 @@ const Form = ({className, onSubmit, children}) => {
     // }, []);
 
     return (
-        <form className={className} onSubmit={ohMyGodHoneyWrapper}>
-            {/*    H O N E Y P O T H E R E T R A P S P A M M E R S  */}
-            {children}
-            {/*<button className="g-recaptcha"*/}
-            {/*        data-sitekey={process.env.REACT_APP_CAPTCHA_KEY}*/}
-            {/*        data-callback='onSubmit'*/}
-            {/*        data-action='submit'>Submit*/}
-            {/*</button>*/}
-            <div id="recaptcha-container"></div>
-            <label className='ohmygodhoney' htmlFor="name"></label>
-            <input className='ohmygodhoney' type="text" name='name' id='name' placeholder='Name' autoComplete='off'/>
-            <label className='ohmygodhoney' htmlFor="email"></label>
-            <input className='ohmygodhoney' type="text" name='email' id='email' placeholder='E-mail'
-                   autoComplete='off'/>
-        </form>
+        <>
+            <form className={className} onSubmit={ohMyGodHoneyWrapper}>
+                {/*    H O N E Y P O T H E R E T R A P S P A M M E R S  */}
+                {children}
+                {/*<button className="g-recaptcha"*/}
+                {/*        data-sitekey={process.env.REACT_APP_CAPTCHA_KEY}*/}
+                {/*        data-callback='onSubmit'*/}
+                {/*        data-action='submit'>Submit*/}
+                {/*</button>*/}
+                <div id="recaptcha-container"></div>
+                <label className='ohmygodhoney' htmlFor="name"></label>
+                <input className='ohmygodhoney' type="text" name='name' id='name' placeholder='Name' autoComplete='off'/>
+                <label className='ohmygodhoney' htmlFor="email"></label>
+                <input className='ohmygodhoney' type="text" name='email' id='email' placeholder='E-mail'
+                       autoComplete='off'/>
+            </form>
+            {window.innerWidth <= 1100 &&
+            <div className='hidden-recaptcha-text'>
+                This site is protected by reCAPTCHA and the Google
+                <a href="https://policies.google.com/privacy">Privacy Policy</a> and
+                <a href="https://policies.google.com/terms">Terms of Service</a> apply.
+            </div>}
+
+        </>
+
     )
 }
 export default Form

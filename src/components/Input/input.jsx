@@ -1,6 +1,6 @@
 import './input.css'
 import {useState} from "react";
-const Input = ({marginated = false, step = .01, onChangeCallback = undefined, required = false, defaultValue, placeholder, type='text', rows = 40, cols = 100, value = undefined}) => {
+const Input = ({id, marginated = false, step = .01, onChangeCallback = undefined, required = false, defaultValue, placeholder, type='text', rows = 40, cols = 100, value = undefined}) => {
     const [actualValue, setActualValue] = useState(value)
 
     const changeActualValue = (newValue) => {
@@ -11,20 +11,20 @@ const Input = ({marginated = false, step = .01, onChangeCallback = undefined, re
 
     if(type === 'textarea')
         return (
-            <textarea onChange={changeActualValue} value={actualValue} rows={rows} cols={cols} className='input text-area-input' placeholder={placeholder}>
+            <textarea id={id} onChange={changeActualValue} value={actualValue} rows={rows} cols={cols} className='input text-area-input' placeholder={placeholder}>
 
             </textarea>
         )
     else
     if(type === 'number')
         return (
-            <input type='number' step={step} onChange={changeActualValue} value={actualValue} className='input' placeholder={placeholder}>
+            <input id={id} type='number' step={step} onChange={changeActualValue} value={actualValue} className='input' placeholder={placeholder}>
 
             </input>
         )
     if(type === 'file')
         return (
-            <input type='file' onChange={onChangeCallback} multiple={true} className='input'>
+            <input id={id} type='file' onChange={onChangeCallback} multiple={true} className='input'>
 
             </input>
         )
@@ -45,13 +45,13 @@ const Input = ({marginated = false, step = .01, onChangeCallback = undefined, re
     else
         if(type === 'search')
         return (
-            <input style={{marginTop: marginated ? '1rem' : 0}} required={required} onChange={onChangeCallback} className='input' value={actualValue} type={type} placeholder={placeholder}>
+            <input id={id} style={{marginTop: marginated ? '1rem' : 0}} required={required} onChange={onChangeCallback} className='input' value={actualValue} type={type} placeholder={placeholder}>
 
             </input>
         )
     else
         return (
-            <input required={required} onChange={changeActualValue} className='input' value={actualValue} type={type} placeholder={placeholder}>
+            <input id={id} required={required} onChange={changeActualValue} className='input' value={actualValue} type={type} placeholder={placeholder}>
 
             </input>
         )

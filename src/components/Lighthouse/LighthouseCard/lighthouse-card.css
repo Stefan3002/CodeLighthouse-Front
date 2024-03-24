@@ -9,7 +9,7 @@
   animation-fill-mode: forwards;
   opacity: 0;
   transform: scale(0);
-  max-width: 300px;
+  width: 300px;
   height: 100%;
   padding: 1rem;
   border-radius: 10px;

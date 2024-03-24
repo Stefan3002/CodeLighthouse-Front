@@ -5,12 +5,15 @@ import useFetchHook from "../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
 import useLazyLoadHook from "../../utils/hooks/lazyLoadHook";
 const ChallengesHighlighted = () => {
+    let LOAD_SIZE = 3
     const sendRequest = useFetchHook()
     const [data, setData] = useState([])
 
     useEffect(() => {
         (async () => {
-            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges?start=0&end=3`, undefined, 'GET', true)
+            if(window.innerWidth < 1100)
+                LOAD_SIZE = 1
+            const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges?start=0&end=${LOAD_SIZE}`, undefined, 'GET', true)
             setData(res)
         })()
     }, []);

@@ -3,6 +3,7 @@ import {useEffect, useRef, useState} from "react";
 import {setLoading, setModal, setModalContent} from "../store/utils-store/utils-store-actions";
 import useFetchHook from "./fetchHook";
 import {useParams} from "react-router-dom";
+import useUpdateData from "./updateDataHook";
 
 const useLazyLoadHook = (loadSize, setData, url, START_INDEX = 0) => {
     const LOAD_SIZE = loadSize
@@ -12,6 +13,7 @@ const useLazyLoadHook = (loadSize, setData, url, START_INDEX = 0) => {
         highIndex : START_INDEX + LOAD_SIZE
     })
     const stop = useRef(false)
+    const updateDataHook = useUpdateData(url + `&start=${START_INDEX}&end=${START_INDEX + LOAD_SIZE}`)
 
 
     useEffect(() => {
@@ -60,9 +62,16 @@ const useLazyLoadHook = (loadSize, setData, url, START_INDEX = 0) => {
                 return oldIndexes
         })
     }
+
+    const updateData = async () => {
+        const updatedData = await updateDataHook(true)
+        setData(updatedData)
+    }
+
     return {
         nextEntities,
-        previousEntitites
+        previousEntitites,
+        updateData
     }
 }
 export default useLazyLoadHook

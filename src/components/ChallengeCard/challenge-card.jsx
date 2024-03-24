@@ -141,7 +141,7 @@ const ChallengeCard = ({assignment = undefined, noLink = false, callback = undef
         else
         if(type === 'report-closed')
             return (
-                <div className='challenge-card-small challenge-card-report'>
+                <div className='challenge-card-small challenge-card-report challenge-card-report-closed'>
                     <Link to={`/app/challenges/${report.challenge.slug}`}>
                         <h3>{report.challenge.title}</h3>
                         <p>{report.reason}</p>

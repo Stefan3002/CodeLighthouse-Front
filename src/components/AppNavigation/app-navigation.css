@@ -7,7 +7,7 @@
 }
 
 .app-navigation {
-  overflow-x: auto;
+  overflow: auto;
   width: 100dvw;
   margin: 0;
   padding: 1rem;
@@ -19,7 +19,7 @@
   gap: 1rem;
 }
 
-.menu-item {
+.menu-item a, .menu-item-notifications {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,6 +28,12 @@
 
 .logo-header-app-nav {
   max-width: 200px;
+}
+
+@media screen and (max-width: 845px) {
+  .app-navigation {
+    justify-content: normal;
+  }
 }
 
 /*# sourceMappingURL=app-navigation.css.map */

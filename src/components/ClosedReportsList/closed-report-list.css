@@ -3,6 +3,7 @@
   align-items: stretch;
   justify-content: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 /*# sourceMappingURL=closed-report-list.css.map */

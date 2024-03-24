@@ -45,7 +45,7 @@ const ContestCard = ({type = 'regular', data, animationDelay}) => {
             return (
 
                     <div style={{animationDelay: `${exponentialDelay(animationDelay)}ms`}} className='lighthouse-card'>
-                        <img onClick={copyCodeToClipboard} src={CopySVG} className='icon-svg' alt="Copy code"/>
+                        <img onClick={copyCodeToClipboard} src={CopySVG} className='icon-svg copy-to-clipboard' alt="Copy code"/>
                         <Link to={`/app/contests/${data.id}`}>
                         <div className="lighthouse-card-header">
                             <h2>{data.name}</h2>
@@ -55,7 +55,7 @@ const ContestCard = ({type = 'regular', data, animationDelay}) => {
                             <DateTime data={data.start_date} icon={CalendarSVG}/>
                             <DateTime data={data.start_time} icon={ClockSVG}/>
                         </div>
-                        <p>{data.enrollment_code}</p>
+                        <p className='community-enrollment_code'>{data.enrollment_code}</p>
 
                         {/*<div>*/}
                         {/*    <img className='icon-svg' src={LiveSVG} alt=""/>*/}

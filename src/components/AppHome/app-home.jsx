@@ -15,6 +15,7 @@ import {getUser} from "../../utils/store/user-store/user-store-selectors";
 import LighthouseCard from "../Lighthouse/LighthouseCard/lighthouse-card";
 import Heading from "../Heading/heading";
 import Missing from "../Missing/missing";
+import EnrolledLighthouses from "../EnrolledLighthouses/enrolled-lighthouses";
 const AppHome = () => {
     const [indeces, setIndeces] = useState({
         min_index: 0,
@@ -142,16 +143,14 @@ const AppHome = () => {
                         {/*}*/}
                     </div>
                     <Heading text='Recently joined Lighthouses'/>
-                    <div className='recent-lighthouses'>
-                        {user.enrolled_lighthouses.length ? user.enrolled_lighthouses.map((lighthouse, idx) => {
-                            if (idx <= 4)
-                                return <LighthouseCard data={lighthouse}/>
-                        }) : <Missing text='You did not join any lighthouse yet!'/>}
-                    </div>
-                    {/*<form onSubmit={runUserCode} >*/}
-                    {/*    <input type="textarea"/>*/}
-                    {/*    <button type='submit'>Send</button>*/}
-                    {/*</form>*/}
+                    {/*<div className='recent-lighthouses'>*/}
+                    {/*    {user.enrolled_lighthouses.length ? user.enrolled_lighthouses.map((lighthouse, idx) => {*/}
+                    {/*        if (idx <= 4)*/}
+                    {/*            return <LighthouseCard data={lighthouse}/>*/}
+                    {/*    }) : <Missing text='You did not join any lighthouse yet!'/>}*/}
+                    {/*</div>*/}
+                    <EnrolledLighthouses />
+
                 </div>
             }
         </Transition>

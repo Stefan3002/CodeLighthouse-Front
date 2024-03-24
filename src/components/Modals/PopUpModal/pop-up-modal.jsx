@@ -20,7 +20,7 @@ const PopUpModal = () => {
     return (
         <Transition mode='pop-up'>
             <div key='pop-up' className='pop-up-modal'>
-                <p>{data.data}</p>
+                <p id='pop-up-data'>{data.data}</p>
             </div>
         </Transition>
 

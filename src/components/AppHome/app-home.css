@@ -24,6 +24,7 @@
 }
 
 .challenges-cards {
+  overflow: auto;
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -39,6 +40,12 @@
 
 .prev-icon {
   transform: rotate(180deg);
+}
+
+@media screen and (max-width: 1100px) {
+  .challenges-cards {
+    justify-content: normal;
+  }
 }
 
 /*# sourceMappingURL=app-home.css.map */

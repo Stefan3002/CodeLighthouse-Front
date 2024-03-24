@@ -15,8 +15,8 @@ const LandingPageHeader = () => {
         const handleResize = () => {
             setWindowSize(window.innerWidth)
         }
-        window.addEventListener('resize', () => handleResize)
-        return () => window.removeEventListener('resize', () => handleResize)
+        const resizeEvent = window.addEventListener('resize', () => handleResize)
+        return () => window.removeEventListener('resize', resizeEvent)
     }, []);
 
     return (
