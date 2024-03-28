@@ -25,33 +25,33 @@ const Notifications = () => {
 
     useEffect(() => {
 
-        dispatch(setNotifications(user.notifications))
-        notifications = user.notifications
-
-        const url = `${process.env.REACT_APP_WS_URL}?user=${userToken}`
-
-        if(!socketConnection) {
-            const connection = new WebSocket(url)
-
-            connection.onmessage = (event) => {
-                const message = JSON.parse(event.data)
-
-                if(message.type === 'connected')
-                    return
-
-                notifications.push(message)
-                //
-                dispatch(setNotifications(notifications))
-                //
-                dispatch(setModal(true))
-                dispatch(setModalContent({
-                    type: 'pop-up',
-                    data: 'New update!'
-                }))
-            }
-            dispatch(setSocketConnection(connection))
-
-        }
+        // dispatch(setNotifications(user.notifications))
+        // notifications = user.notifications
+        //
+        // const url = `${process.env.REACT_APP_WS_URL}?user=${userToken}`
+        //
+        // if(!socketConnection) {
+        //     const connection = new WebSocket(url)
+        //
+        //     connection.onmessage = (event) => {
+        //         const message = JSON.parse(event.data)
+        //
+        //         if(message.type === 'connected')
+        //             return
+        //
+        //         notifications.push(message)
+        //         //
+        //         dispatch(setNotifications(notifications))
+        //         //
+        //         dispatch(setModal(true))
+        //         dispatch(setModalContent({
+        //             type: 'pop-up',
+        //             data: 'New update!'
+        //         }))
+        //     }
+        //     dispatch(setSocketConnection(connection))
+        //
+        // }
     }, [user]);
 
 

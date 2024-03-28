@@ -14,6 +14,7 @@ const AdminReportsPage = () => {
 
             <Heading text='Closed reports' />
             <ClosedReportsList type='closed' />
+
         </div>
     )
 }
