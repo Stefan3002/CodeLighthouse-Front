@@ -118,10 +118,10 @@ const Transition = ({modalContent, children, mode = 'partial', delay = .2, scale
         // </motion.div>
         <>
             {children}
-            <motion.div key={`curtain-one`} style={{width: `${mode === 'partial' ? '80%' : '100%'}`}} className='animation-in' transition={animationParametersOne.transition} initial={animationParametersOne.initial} animate={animationParametersOne.animate} exit={animationParametersOne.exit} >
+            <motion.div key={`curtain-one`} style={{width: `${mode === 'partial' ? '83.5%' : '100%'}`}} className='animation-in' transition={animationParametersOne.transition} initial={animationParametersOne.initial} animate={animationParametersOne.animate} exit={animationParametersOne.exit} >
                 {/*<img className='logo-header' src={LogoImgBG} alt=""/>*/}
             </motion.div>
-            <motion.div key={`curtain-two`} style={{width: `${mode === 'partial' ? '80%' : '100%'}`}} className='animation-out' transition={animationParametersTwo.transition} initial={animationParametersTwo.initial} animate={animationParametersTwo.animate} exit={animationParametersTwo.exit} >
+            <motion.div key={`curtain-two`} style={{width: `${mode === 'partial' ? '83.5%' : '100%'}`}} className='animation-out' transition={animationParametersTwo.transition} initial={animationParametersTwo.initial} animate={animationParametersTwo.animate} exit={animationParametersTwo.exit} >
                 {/*<img className='logo-header' src={LogoImgBG} alt=""/>*/}
             </motion.div>
         </>

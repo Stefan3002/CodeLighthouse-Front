@@ -7,6 +7,8 @@ import transition from "../../../utils/js/transitions";
 import Transition from "../../../utils/js/transitions";
 import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
 import {useEffect, useState} from "react";
+import LandingPageBulletList from "../LandingPageBulletList/landing-page-bullet-list";
+import LandingPageSlides from "../LandingPageSlides/landing-page-slides";
 // import transition from "../../utils/js/transitions";
 const LandingPageHeader = () => {
     const [windowSize, setWindowSize] = useState(window.innerWidth)
@@ -22,12 +24,10 @@ const LandingPageHeader = () => {
     return (
         <Transition mode={windowSize <= 1100 ? 'fullscreen' : 'partial'}>
         <div className='landing-page-header slide'>
-            <div className="slide-hero slide-hero-home">
-                <img className='logo-header' src={LogoImgNoBg} alt=""/>
-                {/*<h1 className='title'>CodeLighthouse</h1>*/}
-                <p className='subtitle'>Enlighten your <b>coding</b> skills.</p>
-                <Button ariaLabel='Go to the About page' type='anchor' href='/about' text='But how?' />
-            </div>
+
+            <LandingPageSlides />
+
+
             <LandingPageAsideMenu />
         </div>
         </Transition>

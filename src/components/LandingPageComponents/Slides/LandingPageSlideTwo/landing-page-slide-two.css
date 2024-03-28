@@ -1,0 +1,42 @@
+.landing-page-slide-two-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.card-inversed-text {
+  text-align: right;
+}
+
+.landing-page-slide-two-card {
+  display: flex;
+  background: #32292F;
+  padding: 1rem;
+  color: #FEE1C7;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-right-img {
+  max-width: 600px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1100px) {
+  .landing-page-slide-two-card {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .landing-page-slide-two-card .card-inversed-text {
+    text-align: justify;
+  }
+  .landing-page-slide-two-card .card-right-img {
+    max-width: 100%;
+    margin: 1rem 0 0 0;
+  }
+}
+
+/*# sourceMappingURL=landing-page-slide-two.css.map */

@@ -1,0 +1,33 @@
+@import '../../../variables'
+
+.landing-page-bullet-list
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  gap: 2px
+  position: fixed
+  left: 50px
+  top: 50%
+  transform: translateY(-50%)
+
+.bullet:focus, .bullet:hover
+  cursor: pointer
+
+.bullet
+  border: 2px solid $dark-color
+  padding: .4rem
+  border-radius: 50%
+.active-slide
+  background: $dark-color
+
+
+@media screen and (max-width: 1100px)
+  .landing-page-bullet-list
+    flex-direction: row
+    bottom: 10px
+    left: 50%
+    transform: translateX(-50%)
+    top: auto
+    //margin-top: 5rem
+    z-index: 10
