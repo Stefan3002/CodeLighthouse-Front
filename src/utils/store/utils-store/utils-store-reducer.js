@@ -19,7 +19,10 @@ const INITIAL_VALUE = {
     },
     selectedChallenge: undefined,
     code: undefined,
-    logsQueue: []
+    logsQueue: [],
+    userPreferences: {
+        showArchived: true
+    }
 }
 
 const utilsReducer = (state = INITIAL_VALUE, action) => {
@@ -94,6 +97,11 @@ const utilsReducer = (state = INITIAL_VALUE, action) => {
             return {
                 ...state,
                 logsQueue: payload
+            }
+        case 'SET_USER_PREFERENCES':
+            return {
+                ...state,
+                userPreferences: payload
             }
         default:
             return state

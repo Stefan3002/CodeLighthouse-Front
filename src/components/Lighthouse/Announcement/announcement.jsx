@@ -31,7 +31,7 @@ const Announcement = ({data, setPageUpdateDataHook}) => {
     const deleteAnnouncement = async () => {
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/announcements-delete/${data.id}`, undefined , 'DELETE', false, successCallback, ['Deleting announcement!', 'Sending notifications!'])
     }
-    console.log('pppp', data)
+    // console.log('pppp', data)
     return (
         <div className='announcement'>
             <div className="announcement-content">

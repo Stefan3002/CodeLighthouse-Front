@@ -89,3 +89,10 @@ export const setDifficulty = (payload) => {
         payload
     }
 }
+
+export const setUserPreferences = (payload) => {
+    return {
+        type: 'SET_USER_PREFERENCES',
+        payload
+    }
+}

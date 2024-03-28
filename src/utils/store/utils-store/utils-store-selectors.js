@@ -13,3 +13,4 @@ export const getSelectedChallenge = (state) => state.utilsStore.selectedChalleng
 export const getSidePanel = (state) => state.utilsStore.sidePanel
 export const getCode = (state) => state.utilsStore.code
 export const getDifficulty = (state) => state.utilsStore.difficulty
+export const getUserPreferences = (state) => state.utilsStore.userPreferences
