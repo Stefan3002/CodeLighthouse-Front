@@ -8,6 +8,7 @@ import rightCaretSVG from "../../utils/imgs/SVGs/RightCaretSVG.svg";
 import {useEffect, useState} from "react";
 import useLazyLoadHook from "../../utils/hooks/lazyLoadHook";
 import useFetchHook from "../../utils/hooks/fetchHook";
+import Missing from "../Missing/missing";
 const ChallengesList = ({startIndex = 0}) => {
     const LOAD_SIZE = 5
     const sendRequest = useFetchHook()
@@ -27,7 +28,7 @@ const ChallengesList = ({startIndex = 0}) => {
     return (
         <>
             <div className="challenges">
-                {data && data.map((challenge, idx) => {
+                {(data && data.length) ? data.map((challenge, idx) => {
                     let solved = false
                     for (const solved_challenge of solvedChallenges)
                         if (solved_challenge.id === challenge.id) {
@@ -59,12 +60,19 @@ const ChallengesList = ({startIndex = 0}) => {
                                 </div>
                             </div>
                         </Link>
-                })}
+                }): <Missing text='No challenges here' />}
             </div>
-            <Button size='50' imgSRC={leftCaretSVG} type='image' ariaLabel='Change to the previous challenges page'
-                    marginatedHorizontal={true} marginated={true} text='Back' callback={lazyLoad.previousEntitites}/>
-            <Button size='50' imgSRC={rightCaretSVG} type='image' ariaLabel='Next challenges page' marginated={true}
-                    text='More' callback={lazyLoad.nextEntities}/>
+            {
+                (data && data.length) ?
+                    <>
+                        <Button size='50' imgSRC={leftCaretSVG} type='image' ariaLabel='Change to the previous challenges page'
+                                marginatedHorizontal={true} marginated={true} text='Back' callback={lazyLoad.previousEntitites}/>
+                        <Button size='50' imgSRC={rightCaretSVG} type='image' ariaLabel='Next challenges page' marginated={true}
+                                text='More' callback={lazyLoad.nextEntities}/>
+                    </>
+                    : null
+            }
+
 
         </>
     )

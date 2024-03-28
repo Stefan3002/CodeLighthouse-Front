@@ -32,26 +32,11 @@ const ProfilePage = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [filter, setFilter] = useState('All')
-    const mostTimeLoggedIn = useRef(0)
-    const timeOnChallenges = useRef({})
 
     useEffect(() => {
         (async () => {
             dispatch(setError(false))
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/users/${userID}`, undefined, 'GET', false, undefined, ['Getting your profile', 'Found it!', 'Nope, sorry, it was someone else', 'Still searching!'])
-
-            if(res.logs && res.logs.length)
-                for(const log of res.logs)
-                    if(log.type === 'auth')
-                        mostTimeLoggedIn.current = Math.max(mostTimeLoggedIn.current, (new Date(log.time_out) - new Date(log.time_in)))
-
-            if(res.logs && res.logs.length)
-                for(const log of res.logs)
-                    if(log.type === 'challenge') {
-                        if(!timeOnChallenges.current[log.challenge])
-                            timeOnChallenges.current[log.challenge] = 0
-                        timeOnChallenges.current[log.challenge] += ((new Date(log.time_out) - new Date(log.time_in)) / 60000)
-                    }
 
             setData(res)
             if(user.id === res?.id)
@@ -59,6 +44,7 @@ const ProfilePage = () => {
         })()
     }, []);
 
+    console.log(data)
     const logOut = () => {
         dispatch(setIsLoggedIn(false))
         dispatch(setUser(null))
@@ -99,7 +85,7 @@ const ProfilePage = () => {
                             <WithInfo clickHandler={() => null} data='The largest amount of time that you spent logged in in a single session'>
                                 <div className='bar-item'>
                                     <img src={ClockSVG} className='icon-svg' alt=""/>
-                                    <p>{Math.round(mostTimeLoggedIn.current / 60000)} minutes</p>
+                                    <p>{Math.round(data.logs.auth / 60)} minutes</p>
                                 </div>
                             </WithInfo>
                         }
@@ -107,7 +93,7 @@ const ProfilePage = () => {
                             <WithInfo clickHandler={() => null} data='The largest amount of time that you spent trying to solve a single challenge'>
                                 <div className='bar-item'>
                                     <img src={ClockSVG} className='icon-svg' alt=""/>
-                                    <p>{Math.round(Object.values(timeOnChallenges.current).reduce((acc, el) => Math.max(acc, el), 0))} minutes</p>
+                                    <p>{Math.round(Object.values(data.logs.challenges).reduce((acc, el) => Math.max(acc, el), 0)) / 60} minutes</p>
                                 </div>
                             </WithInfo>
                         }
