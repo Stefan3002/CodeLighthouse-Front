@@ -10,7 +10,7 @@ import {animate, exit, initial, transition} from "../../../../utils/js/landingPa
 const LandingPageSlideFour = () => {
 
     return (
-        <motion.div key='landing-page-slide-two' transition={{...transition}} initial={{...initial}} animate={{...animate}} exit={{...exit}} className="slide-hero slide-hero-home">
+        <motion.div key='landing-page-slide-four' transition={{...transition}} initial={{...initial}} animate={{...animate}} exit={{...exit}} className="slide-hero slide-hero-home">
             <img className='logo-header' src={LogoImgNoBg} alt=""/>
             <h2 className='landing-subtitle'>Coding is about <span className='highlight-subtitle'>taking initiative</span>!</h2>
             <p className='subtitle'>Let's go and <b>register</b>!</p>

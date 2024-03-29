@@ -55,7 +55,7 @@ const LandingPageFeatures = () => {
     return (
         <Transition mode={windowSize <= 1100 ? 'fullscreen' : 'partial'}>
         <div className='slide'>
-            <div className="slide-hero features-hero slide-hero-features">
+            <div className="slide-hero features-hero ">
                 <img className='logo-header' src={LogoImgNoBg} alt=""/>
                 <div className="features">
                     {appFeatures.features.map((feature, idx) => {

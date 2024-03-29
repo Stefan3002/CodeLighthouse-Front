@@ -16,7 +16,7 @@ body {
   padding: 0;
   font-family: "Inconsolata", monospace;
   color: #575366;
-  background-color: whitesmoke;
+  background: linear-gradient(to right, rgba(254, 225, 199, 0.83), rgba(0, 0, 0, 0), rgba(50, 41, 47, 0.47));
 }
 
 h1, h2, h3, h4, h5 {

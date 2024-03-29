@@ -16,9 +16,9 @@ const LandingPageSlides = ({slide}) => {
                 {currentSlide === 1 ?
                     <LandingPageSlideOne setCurrentSlide={setCurrentSlide} />
                     : currentSlide === 2 ?
-                        <LandingPageSlideTwo />
+                        <LandingPageSlideTwo setCurrentSlide={setCurrentSlide} />
                         : currentSlide === 3 ?
-                            <LandingPageSlideThree />
+                            <LandingPageSlideThree setCurrentSlide={setCurrentSlide} />
                             : currentSlide === 4 ?
                                 <LandingPageSlideFour />
                                 : null

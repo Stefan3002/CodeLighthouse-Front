@@ -25,14 +25,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    // console.log('aaaaaaaa', new Date(data.user_logs[0].time_in), new Date(data.user_logs[0].time_out))
-    const timeSpent = data.user_logs.reduce((acc, user_log) => {
-        if(user_log.time_out)
-            return acc + (new Date(user_log.time_out) - new Date(user_log.time_in))
-        else
-            return acc
-    }, 0)
-    // console.log('aaaaaaaa', new Date(timeSpent * 1000))
+
 
     const openBot = () => {
         dispatch(setModal(true))
@@ -74,7 +67,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
         }
     }
 
-
+    console.log('aaa', data)
     if(type === 'expanded')
         return (
             <div className='challenge-meta-bottom'>
@@ -101,7 +94,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
                 <WithInfo clickHandler={() => null} data='The total amount of time that you spent trying to solve this challenge'>
                     <div className='bar-item'>
                         <img src={ClockSVG} className='icon-svg' alt=""/>
-                        <p>{timeSpent > 0 ? Math.round(timeSpent / 60000) : 0} minutes</p>
+                        <p>{Math.round(data.user_logs.challenges[data.id] / 60)} minutes</p>
                     </div>
                 </WithInfo>
 

@@ -7,7 +7,7 @@ import LandingPageBulletList from "../../LandingPageBulletList/landing-page-bull
 import LogoImgNoBg from "../../../../utils/imgs/logo/LogoSVG.svg";
 import Button from "../../../Button/button";
 import {animate, exit, initial, transition} from "../../../../utils/js/landingPageSlideAnimate";
-const LandingPageSlideTwo = () => {
+const LandingPageSlideTwo = ({setCurrentSlide}) => {
 
     const cards = [
         {
@@ -15,14 +15,16 @@ const LandingPageSlideTwo = () => {
             description: 'Companies, universities, teachers, everyone can create communities with open access. Just join and start coding!',
             image: image1
         },
-        {
-            title: 'Private lighthouses',
-            description: 'Maybe you have a private group of friends or a university class that wants to code together. Create a private lighthouse and start coding!',
-            image: image2
-        }
+        // {
+        //     title: 'Private lighthouses',
+        //     description: 'Maybe you have a private group of friends or a university class that wants to code together. Create a private lighthouse and start coding!',
+        //     image: image2
+        // }
     ]
 
-
+    const changeSlide = () => {
+        setCurrentSlide(3)
+    }
     return (
         <motion.div key='landing-page-slide-two' transition={{...transition}} initial={{...initial}} animate={{...animate}} exit={{...exit}} className="slide-hero">
             <img className='logo-header' src={LogoImgNoBg} alt=""/>
@@ -36,7 +38,7 @@ const LandingPageSlideTwo = () => {
                             <div className="card-left-side">
                                 <h3>{card.title}</h3>
                                 <p>{card.description}</p>
-                                <Button color='light' text='More' />
+                                <Button type='anchor' href='/features' color='light' text='More' />
                             </div>
                             <img className='card-right-img' src={card.image} alt=""/>
                         </div>
@@ -50,7 +52,9 @@ const LandingPageSlideTwo = () => {
                             </div>
                         </div>
                 })}
+
             </div>
+            <Button marginated={true} ariaLabel='Go to the next slide' callback={changeSlide} text='But how?'/>
 
         </motion.div>
     )

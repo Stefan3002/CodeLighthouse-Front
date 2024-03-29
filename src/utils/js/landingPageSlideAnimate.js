@@ -5,7 +5,7 @@ export const initial = {
     y: '100%'
 }
 export const exit = {
-    y: '100%'
+    y: '-100%'
 }
 
 export const transition = {

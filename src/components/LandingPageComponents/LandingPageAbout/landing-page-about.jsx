@@ -32,8 +32,8 @@ const LandingPageAbout = () => {
                     <div className="about-left">
                         <div className="about-typewriter">
                             <p><b>CodeLighthouse</b> is for:</p>
-                            <Typewriter />
                             <Heading />
+                            <Typewriter />
                         </div>
                         <p dangerouslySetInnerHTML={{__html: aboutText.description[0].text}}></p>
                     </div>
