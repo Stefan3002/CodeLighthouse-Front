@@ -8,7 +8,7 @@ import TickSVG from '../../utils/imgs/SVGs/TickSVG.svg'
 import {useDispatch, useSelector} from "react-redux";
 import ModifySVG from '../../utils/imgs/SVGs/ModifySVG.svg'
 import {getUser} from "../../utils/store/user-store/user-store-selectors";
-import {setDifficulty, setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
+import {setDifficulty, setLanguage, setModal, setModalContent} from "../../utils/store/utils-store/utils-store-actions";
 import ChallengeMeta from "../ChallengeMeta/challenge-meta";
 import TopSection from "../TopSection/top-section";
 import AuthorName from "../AuthorName/author-name";
@@ -33,12 +33,13 @@ const ChallengePage = () => {
                         solved.current = true
                         break
                     }
+                dispatch(setLanguage(res.codes[0].language))
                 setData(res)
                 dispatch(setDifficulty(res.difficulty))
             }
         })()
     }, []);
-
+    // console.log('data', data)
     const modifyChallenge = () => {
         dispatch(setModal(true))
         dispatch(setModalContent({

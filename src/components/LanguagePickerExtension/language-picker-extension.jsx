@@ -28,6 +28,7 @@ const LanguagePickerExtension = ({data = [], lightColored = false, down}) => {
         <div className="language-picker-extension" style={{transform: down ? 'translate(-50%, +26%)' : 'translate(-50%, -126%)'}}>
             {data.map(code => {
                 const {language} = code
+                console.log(language)
                 return <div onClick={() => selectLanguage(language)}
                             className={`language-picker-option ${lightColored ? 'light-colored' : null}`}>
                     <img src={getLangIcon(language)} alt=""/>

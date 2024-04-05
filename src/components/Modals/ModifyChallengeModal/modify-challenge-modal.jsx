@@ -86,7 +86,7 @@ const ModifyChallengeModal = () => {
         // updateData(true)
         navigate(`/app/challenges/${slugify(newSlug)}`)
     }
-
+    // console.log('modalContent', modalContent.data)
     return (
         // <Transition mode='fullscreen'>
         <div className='error-wrapper create-challenge-wrapper'>
@@ -152,7 +152,7 @@ const ModifyChallengeModal = () => {
                         }
                     </div>
                 </div>
-                <Input type="checkbox" defaultValue='checked'
+                <Input type="checkbox" defaultValue={modalContent.data.private ? 'checked' : ''}
                        placeholder='Private'/>
 
 

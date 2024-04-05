@@ -69,7 +69,7 @@ const Comment = ({data, updateDataCallback}) => {
             <div className="comment-meta">
                 <AuthorName author={data.author} />
                 <div className="comment-actions">
-                    <WithInfo data='Report this comment' clickHandler={reportComment}><img src={ReportSVG} className='icon-svg' alt="Delete"/></WithInfo>
+                    <WithInfo id='challenge-report' data='Report this comment' clickHandler={reportComment}><img src={ReportSVG} className='icon-svg' alt="Delete"/></WithInfo>
                     {((user.admin_user) || (user.id === data.author.id)) &&
                         <WithInfo clickHandler={deleteCommentConfirm} data='Delete this comment'><img src={DeleteSVG} className='icon-svg' alt="Delete"/></WithInfo>
                     }

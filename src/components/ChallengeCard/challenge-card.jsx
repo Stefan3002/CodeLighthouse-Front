@@ -4,16 +4,21 @@ import {AnimatePresence, motion} from "framer-motion"
 import AuthorName from "../AuthorName/author-name";
 import Difficulty from "../Difficulty/difficulty";
 import {useDispatch, useSelector} from "react-redux";
-import {setSelectedChallenge} from "../../utils/store/utils-store/utils-store-actions";
+import {setModal, setModalContent, setSelectedChallenge} from "../../utils/store/utils-store/utils-store-actions";
 import {getSelectedChallenge} from "../../utils/store/utils-store/utils-store-selectors";
 import calendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import clockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
 import DateTime from "../DateTime/date-time";
 import Button from "../Button/button";
+import Heading from "../Heading/heading";
+import WithInfo from "../WithInfo/with-info";
+import DeleteDarkSVG from "../../utils/imgs/SVGs/DeleteDarkSVG.svg";
+import useFetchHook from "../../utils/hooks/fetchHook";
 
-const ChallengeCard = ({assignment = undefined, noLink = false, callback = undefined, report = undefined, authoColor = 'light', completed, challenge, idx, type = 'Big', detailedAssignment = false}) => {
+const ChallengeCard = ({deleteCommentConfirm = undefined, assignment = undefined, noLink = false, callback = undefined, report = undefined, authoColor = 'light', completed, challenge, idx, type = 'Big', detailedAssignment = false}) => {
     const dispatch = useDispatch()
     const selectedChallenge = useSelector(getSelectedChallenge)
+    const sendRequest = useFetchHook()
     const selectChallenge = () => {
         dispatch(setSelectedChallenge(challenge.slug))
     }
@@ -37,6 +42,7 @@ const ChallengeCard = ({assignment = undefined, noLink = false, callback = undef
         }
     }
 
+    console.log('re', report)
     if(type === 'Big')
     return (
         <div style={{transform: idx === 2 || idx === 0 ? 'scale(.8)' : 'scale(1)'}} className="challenge-card challenge-card-home-page">
@@ -129,11 +135,22 @@ const ChallengeCard = ({assignment = undefined, noLink = false, callback = undef
                         <Link to={`/app/challenges/${report.challenge.slug}`}>
                             <h3>{report.challenge.title}</h3>
                             <p>{report.reason}</p>
+                            {report.reason === 'comment' &&
+                                <WithInfo clickHandler={() => {}} data={report.challenge.content}><p>{report.challenge.content.substring(0, 20)}...</p></WithInfo>
+                            }
                         </Link>
+                        {/*<p></p>*/}
+                        {/*<Heading text='Report Author' />*/}
                         <AuthorName color='dark' author={report.challenge.author} />
-                        <p>{report.comment}</p>
-                        <h3>Assigned admin</h3>
-                        <AuthorName color='dark' author={report.assigned_admin} />
+                        {/*<Heading text='Comments' />*/}
+                        <p className='report-comment'>{report.comment}</p>
+                        {/*<h3>Assigned admin</h3>*/}
+                        {/*<AuthorName color='dark' author={report.assigned_admin} />*/}
+
+                        {report.reason === 'comment' &&
+                            <WithInfo clickHandler={deleteCommentConfirm} data='Delete this comment'><img src={DeleteDarkSVG} className='icon-svg' alt="Delete"/></WithInfo>
+                        }
+
                         <Button ariaLabel='Close the report' marginated={true} callback={callback} text='Close report' color='dark' type='normal' />
                     </div>
 
@@ -147,7 +164,7 @@ const ChallengeCard = ({assignment = undefined, noLink = false, callback = undef
                         <p>{report.reason}</p>
                     </Link>
                     {/*<AuthorName color='dark' author={report.challenge.author} />*/}
-                    <p>{report.comment}</p>
+                    <p className='report-comment'>{report.comment}</p>
                     {/*<h3>Assigned admin</h3>*/}
                     {/*<AuthorName color='dark' author={report.assigned_admin} />*/}
                     {/*<Button marginated={true} callback={callback} text='Close report' color='dark' type='normal' />*/}

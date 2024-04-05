@@ -11,6 +11,11 @@
   text-decoration: none !important;
 }
 
+.report-comment {
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
 .challenge-description-card-assignment {
   width: 100%;
   display: flex;
@@ -68,7 +73,6 @@
   transition: all 0.15s;
 }
 .challenge-card-small:hover, .challenge-card-small:focus {
-  transform: scale(1.1);
   animation: all 0.15s;
   color: #FEE1C7;
   background: #32292F;

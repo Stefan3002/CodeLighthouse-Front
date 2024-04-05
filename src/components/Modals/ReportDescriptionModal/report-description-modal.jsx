@@ -87,10 +87,10 @@ const ReportDescriptionModal = () => {
                 }
                 {/*<Input type='text' placeholder='Reason for sending back / denying.' />*/}
                 <Form className='report-description-form' onSubmit={reportentity}>
-                    <Input placeholder='Reason for reporting' required={true}  />
+                    <Input id='report-reason' placeholder='Reason for reporting' required={true}  />
                     <Input type='checkbox' placeholder='I have read the Code of Conduct' required={true}  />
                     <div className="admin-verdict-buttons">
-                        <Button buttonType='submit' text='Report' color='light' />
+                        <Button id='send-report' buttonType='submit' text='Report' color='light' />
                         <Button buttonType='reset' callback={cancelReport} text='Cancel' color='light' />
                     </div>
                 </Form>
