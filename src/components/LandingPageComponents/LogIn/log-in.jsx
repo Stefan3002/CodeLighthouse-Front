@@ -15,7 +15,7 @@ import GithubSVG from '../../../utils/imgs/log-in/GithubSVG.svg'
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {setIsLoggedIn, setStatus, setToken} from "../../../utils/store/auth-store/auth-store-actions";
+import {setExpireDate, setIsLoggedIn, setStatus, setToken} from "../../../utils/store/auth-store/auth-store-actions";
 import {getIsLoggedIn, getStatus} from "../../../utils/store/auth-store/auth-store-selectors";
 import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
 import {setUser} from "../../../utils/store/user-store/user-store-actions";
@@ -31,20 +31,21 @@ import Blur from "../../Blur/blur";
 import Modal from "../../Error/modal";
 import {getError} from "../../../utils/store/utils-store/utils-store-selectors";
 import Form from "../../Form/form";
+import {authExpireDate} from "../../../utils/store/auth-store/auth-store-reducer";
 const LogIn = () => {
     const error = useSelector(getError)
     const sendRequest = useFetchHook()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    const isLoggedIn = useSelector(getIsLoggedIn)
 
     const [windowSize, setWindowSize] = useState(window.innerWidth)
 
 
-    // useEffect(() => {
-    //     if(isLoggedIn)
-    //         navigate('/app')
-    // }, []);
+    useEffect(() => {
+        if(isLoggedIn)
+            navigate('/app')
+    }, []);
 
     useEffect(() => {
         const handleResize = () => {
@@ -61,6 +62,7 @@ const LogIn = () => {
         dispatch(setError(null))
         dispatch(setIsLoggedIn(true))
         dispatch(setStatus('loaded'))
+        dispatch(setExpireDate(authExpireDate))
         dispatch(setUser(user.user))
         dispatch(setToken({
             token: user.access,
@@ -111,15 +113,19 @@ const LogIn = () => {
             switch (errorCode){
                 case 'auth/popup-closed-by-user':
                     dispatch(setError('The authentication did not complete!'))
+                    dispatch(setStatus('idle'))
                     break
                 case 'auth/cancelled-popup-request':
                     dispatch(setError('You cancelled the authentication!'))
+                    dispatch(setStatus('idle'))
                     break
                 case 'auth/account-exists-with-different-credential':
                     dispatch(setError('We found your account! But, it appears to be made via a different provider?! Can you please try to change the available providers?'))
+                    dispatch(setStatus('idle'))
                     break
                 default:
                     dispatch(setError('Something went wrong. Please try again!'))
+                    dispatch(setStatus('idle'))
             }
             return;
         }

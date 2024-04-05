@@ -18,3 +18,10 @@ export const setToken = (payload) => {
         payload
     }
 }
+
+export const setExpireDate = (payload) => {
+    return {
+        type: 'SET_EXPIRE_DATE',
+        payload
+    }
+}

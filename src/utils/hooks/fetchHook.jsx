@@ -9,6 +9,7 @@ import {
     setSidePanel
 } from "../store/utils-store/utils-store-actions";
 import {getToken} from "../store/auth-store/auth-store-selectors";
+import {setStatus} from "../store/auth-store/auth-store-actions";
 
 const useFetchHook = () => {
     // const sleep = (ms = 0) => new Promise(resolve => setTimeout(resolve, ms));
@@ -71,6 +72,9 @@ const useFetchHook = () => {
                 navigate('/auth')
                 return;
             } else {
+                if(url.substring(url.length - 14, url.length - 8) === '/auth/')
+                    dispatch(setStatus('idle'))
+
                 console.log(jsonData)
                 dispatch(setError(jsonData.data))
                 dispatch(setModal(false))
@@ -84,6 +88,9 @@ const useFetchHook = () => {
             dispatch(setSidePanel(false))
             if(!silentLoad)
                 dispatch(setLoading(false))
+
+            if(url.substring(url.length - 14, url.length - 8) === '/auth/')
+                dispatch(setStatus('idle'))
         }
     }, [])
 
