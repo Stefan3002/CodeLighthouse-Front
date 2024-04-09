@@ -74,13 +74,15 @@ const ChallengePage = () => {
                     <>
                         <AuthorName author={data.author} />
                         <div className='challenge-top-section'>
-                            <Difficulty difficulty={data.difficulty}/>
                             {solved.current ?
                                 <div className='bar-item'>
                                     <img src={TickSVG} className='icon-svg' alt="Solved!"/>
                                     <p>Solved!</p>
                                 </div>
                                 : null }
+                            <Difficulty difficulty={data.difficulty}/>
+
+
                             <div className='bar-item'  onClick={reportChallenge}>
                                 <img className='icon-svg' src={ExclamationSVG} alt="!"/><p>Report</p>
                             </div>

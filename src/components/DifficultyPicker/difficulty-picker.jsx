@@ -95,37 +95,6 @@ const DifficultyPicker = ({type = 'difficulties', currentChallenge = undefined})
                     <img src={diff.img} alt=""/>
                 </div>
             })}
-            {/*<div onClick={() => setDiff(-5)} className="difficulty">*/}
-            {/*    <img src={Dark5} alt=""/>*/}
-            {/*</div>*/}
-            {/*<div onClick={() => setDiff(-4)} className="difficulty">*/}
-            {/*    <img src={Dark4} alt=""/>*/}
-            {/*</div>*/}
-            {/*<div onClick={() => setDiff(-3)} className="difficulty">*/}
-            {/*    <img src={Dark3} alt=""/>*/}
-            {/*</div>*/}
-            {/*<div onClick={() => setDiff(-2)} className="difficulty">*/}
-            {/*    <img src={Dark2} alt=""/>*/}
-            {/*</div>*/}
-            {/*<div onClick={() => setDiff(-1)} className="difficulty">*/}
-            {/*    <img src={Dark1} alt=""/>*/}
-            {/*</div>*/}
-
-            {/*<div onClick={() => setDiff(1)} className="difficulty">*/}
-            {/*    <img src={Light1} alt=""/>*/}
-            {/*</div>*/}
-            {/*<div onClick={() => setDiff(2)} className="difficulty">*/}
-            {/*    <img src={Light2} alt=""/>*/}
-            {/*</div>*/}
-            {/*<div onClick={() => setDiff(3)} className="difficulty">*/}
-            {/*    <img src={Light3} alt=""/>*/}
-            {/*</div>*/}
-            {/*<div onClick={() => setDiff(4)} className="difficulty">*/}
-            {/*    <img src={Light4} alt=""/>*/}
-            {/*</div>*/}
-            {/*<div onClick={() => setDiff(5)} className="difficulty">*/}
-            {/*    <img src={Light5} alt=""/>*/}
-            {/*</div>*/}
         </div>
     )
     else

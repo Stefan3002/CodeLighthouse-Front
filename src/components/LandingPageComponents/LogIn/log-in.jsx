@@ -20,17 +20,19 @@ import {getIsLoggedIn, getStatus} from "../../../utils/store/auth-store/auth-sto
 import LandingPageAsideMenu from "../LandingPageAsideMenu/landing-page-aside-menu";
 import {setUser} from "../../../utils/store/user-store/user-store-actions";
 import {
+    auth,
     getTokenFirebase,
     logInGithubProviderFirebase,
     logInGoogleProviderFirebase
 } from "../../../utils/firebase/oauth-login";
 import Transition from "../../../utils/js/transitions";
 import {exponentialDelay} from "../../../utils/js/exponentialDelay";
-import {setError} from "../../../utils/store/utils-store/utils-store-actions";
+import {setError, setLoading} from "../../../utils/store/utils-store/utils-store-actions";
 import Blur from "../../Blur/blur";
 import Modal from "../../Error/modal";
 import {getError} from "../../../utils/store/utils-store/utils-store-selectors";
 import Form from "../../Form/form";
+import {getRedirectResult} from "firebase/auth";
 import {authExpireDate} from "../../../utils/store/auth-store/auth-store-reducer";
 const LogIn = () => {
     const error = useSelector(getError)
@@ -41,6 +43,28 @@ const LogIn = () => {
 
     const [windowSize, setWindowSize] = useState(window.innerWidth)
 
+    // useEffect(() => {
+    //     (async () => {
+    //
+    //         // const result = await getRedirectResult(auth)
+    //         // if(!result) {
+    //         //     return;
+    //         // }
+    //         // // dispatch(setLoading(true))
+    //         //
+    //         // const email = result.user.email
+    //         //
+    //         // const idToken = await handleGetToken()
+    //         //
+    //         // const data = {
+    //         //     idToken,
+    //         //     email,
+    //         //     username: result.user.displayName,
+    //         //     photoURL: result.user.photoURL
+    //         // }
+    //         // await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth/provider`, JSON.stringify(data), 'POST', false, successLogIn, ['Talking to Google', 'Talking to Github', 'Talking to our own servers'])
+    //     })()
+    // }, []);
 
     useEffect(() => {
         if(isLoggedIn)
@@ -152,9 +176,12 @@ const LogIn = () => {
     const generalLogInWithProviderHandler = async (providerCallback) => {
         dispatch(setStatus('loading'))
         const result = await handleLogIn(providerCallback)
+    //     The result will be picked up in the useEffect hook
 
-        if(!result)
+        if(!result) {
             return;
+        }
+        // dispatch(setLoading(true))
 
         const email = result.user.email
 
@@ -168,6 +195,9 @@ const LogIn = () => {
         }
         await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth/provider`, JSON.stringify(data), 'POST', false, successLogIn, ['Talking to Google', 'Talking to Github', 'Talking to our own servers'])
     }
+
+
+
 
     const logInClassic = async (event) => {
         event.preventDefault()

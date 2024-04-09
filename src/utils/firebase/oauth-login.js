@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import {initializeApp} from "firebase/app";
-import {getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithPopup, signInWithRedirect} from "firebase/auth";
 import {setError} from "../store/utils-store/utils-store-actions";
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -18,7 +18,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth()
+export const auth = getAuth()
 const googleProvider = new GoogleAuthProvider()
 const githubProvider = new GithubAuthProvider()
 export const logInGoogleProviderFirebase = async (setErrorCallback) => {

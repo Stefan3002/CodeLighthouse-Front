@@ -67,16 +67,12 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
         }
     }
 
-    console.log('aaa', data)
     if(type === 'expanded')
         return (
             <div className='challenge-meta-bottom'>
                 <div className="challenge-meta-left">
-                    {/*<p><b>{data.title}</b></p>*/}
                     <AuthorName color='light' author={user} />
                 </div>
-                {/*<LanguageSelector down={false} modifiable={true} />*/}
-                {/*<Difficulty difficulty={data.difficulty} />*/}
                 <WithInfo clickHandler={() => window.location.href = 'https://stefan3002.github.io/CodeLighthouse-Docs/'} data='Get help in case you are stuck with the concepts of solving a CodeLighthouse challenge'>
                     <div className="bar-item">
                         <img
