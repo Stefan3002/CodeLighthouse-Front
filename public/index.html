@@ -32,7 +32,19 @@
       <!--    FONTS-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;700&family=Pixelify+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link
+            onload="this.onload=null;this.rel='stylesheet'"
+            href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;700&family=Pixelify+Sans:wght@400;700&display=swap"
+            rel="preload"
+            as="style"
+    >
+      <noscript>
+          <link
+                  href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300;400;700&family=Pixelify+Sans:wght@400;700&display=swap"
+                  rel="stylesheet"
+          >
+      </noscript>
+
 <!--    END FONTS-->
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
