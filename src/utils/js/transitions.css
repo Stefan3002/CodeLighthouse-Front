@@ -23,6 +23,17 @@
   transform-origin: top;
 }
 
+.side-panel-animation {
+  position: fixed;
+  right: 0;
+  top: 10px;
+  height: calc(100dvh - 20px);
+  width: 26%;
+  z-index: 11;
+  color: #FEE1C7;
+  background: #32292F;
+}
+
 .pop-up-animation {
   padding: 0.5rem;
   z-index: 4;

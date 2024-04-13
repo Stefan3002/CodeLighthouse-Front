@@ -98,7 +98,7 @@ const AssignChallengeModal = () => {
                     <ChallengePicker authorColor='dark' />
                     <p>Not for everyone? <b>Select</b> the students you want!</p>
                     <Button ariaLabel='Select students' color='light' callback={openStudentSelection} text='Select' />
-                    <p>{modalContent.selectedPeople ? modalContent.selectedPeople.length : 'No'} students selected.</p>
+                    <p>{modalContent.selectedPeople && modalContent.selectedPeople.length ? modalContent.selectedPeople.length : 'No'} students selected.</p>
 
                     <Form className='assignment-inputs' onSubmit={assignLighthouseChallenge}>
 

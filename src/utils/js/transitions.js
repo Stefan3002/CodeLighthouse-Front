@@ -110,6 +110,26 @@ const Transition = ({modalContent, children, mode = 'partial', delay = .2, scale
 
     }
 
+    const animationParametersSidePanel= {
+        initial: {
+            x: '100%',
+            opacity: 0
+        },
+        animate: {
+            x: 0,
+            opacity: 1
+        },
+        exit: {
+            x: '100%',
+            // opacity: 0
+        },
+        transition: {
+            ease: 'easeInOut',
+            duration: .3
+        }
+
+    }
+
 
     if(mode === 'partial' || mode === 'fullscreen')
     return (
@@ -153,6 +173,13 @@ const Transition = ({modalContent, children, mode = 'partial', delay = .2, scale
         if(mode === 'codeStep')
             return (
                 <motion.div key={`code-step-transition-${modalContent}`} className='code-step-animation' {...animationParametersCodeStep} >
+                    {children}
+                </motion.div>
+            )
+        else
+        if(mode === 'side')
+            return (
+                <motion.div key='side-panel' className='side-panel-animation' {...animationParametersSidePanel} >
                     {children}
                 </motion.div>
             )

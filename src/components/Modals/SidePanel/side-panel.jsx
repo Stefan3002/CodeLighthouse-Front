@@ -6,12 +6,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {getModalContent, getSidePanel} from "../../../utils/store/utils-store/utils-store-selectors";
 import {useState} from "react";
 import useFetchHook from "../../../utils/hooks/fetchHook";
-import {setModalContent} from "../../../utils/store/utils-store/utils-store-actions";
+import {setModalContent, setSidePanel} from "../../../utils/store/utils-store/utils-store-actions";
+import BackSVG from "../../../utils/imgs/SVGs/BackSVG.svg";
 const SidePanel = ({type}) => {
-    const data = useSelector(getSidePanel).data
+    const data = useSelector(getSidePanel)?.data
+
     const modalData = useSelector(getModalContent)
     const sendRequest = useFetchHook()
-    const [selected, setSelected] = useState(data.map(person => person.user_id))
+    const [selected, setSelected] = useState(data?.map(person => person.user_id))
 
     const dispatch = useDispatch()
     const selectAllPeople = () => {
@@ -20,7 +22,7 @@ const SidePanel = ({type}) => {
             newSelected.push(i.user_id)
 
         setSelected(newSelected)
-        pushSelected()
+        pushSelected(newSelected)
     }
     const addPerson = (person) => {
         let newSelected = [...selected]
@@ -32,23 +34,28 @@ const SidePanel = ({type}) => {
             newSelected = newSelected.filter(selected => selected !== person.user_id)
 
         setSelected(newSelected)
-        pushSelected()
+        pushSelected(newSelected)
     }
 
     const deselectAllPeople = () => {
         setSelected([])
-        pushSelected()
+        pushSelected([])
     }
 
-    const pushSelected = () => {
-        const newModalData = {...modalData, selectedPeople: selected}
+    const pushSelected = (newSelectedPeople) => {
+        const newModalData = {...modalData, selectedPeople: newSelectedPeople}
         dispatch(setModalContent(newModalData))
+    }
+
+    const closeSidePanel = () => {
+        dispatch(setSidePanel(null))
     }
 
     if(data && type === 'students')
     return (
         <div className='side-panel'>
             <div className="side-panel-header">
+                <img onClick={closeSidePanel} className='icon-svg' src={BackSVG} alt="Back"/>
                 <img className='header-icon' src={CapSVG} alt=""/>
                 <h2>Select students. ({selected.length})</h2>
             </div>

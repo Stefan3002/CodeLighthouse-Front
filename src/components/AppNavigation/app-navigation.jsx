@@ -99,8 +99,14 @@ const AppNavigation = () => {
                 </ul>
             </nav>
             <AnimatePresence>
+                {sidePanel && sidePanel.opened ?
+                    <Transition mode='side'>
+                        <SidePanel type={sidePanel.type} />
+                    </Transition>
+                    : null}
+            </AnimatePresence>
+            <AnimatePresence>
                 {error ? <><Blur redirect='/app' /><Transition mode='modal'><Modal error={error} /></Transition></> : null}
-                {sidePanel.opened ? <><Blur /><SidePanel type={sidePanel.type} /> < />: null}
                 {modalOpened && modalType !== 'pop-up' ?
                     <>
                         <Blur />

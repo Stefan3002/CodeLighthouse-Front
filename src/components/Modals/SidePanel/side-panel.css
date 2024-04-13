@@ -1,14 +1,3 @@
-.side-panel {
-  position: fixed;
-  right: 0;
-  top: 10px;
-  height: calc(100dvh - 20px);
-  width: 26%;
-  z-index: 11;
-  color: #FEE1C7;
-  background: #32292F;
-}
-
 .side-panel-header {
   background: #FEE1C7;
   color: #575366;
