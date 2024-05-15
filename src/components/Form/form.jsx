@@ -16,6 +16,7 @@ const Form = ({type = 'yes-auth', className, onSubmit, children}) => {
         const honeyPot1 = event.target[formLength - 2]
         const honeyPot2 = event.target[formLength - 1]
         if (honeyPot1.value || honeyPot1.value?.length || honeyPot2.value || honeyPot2.value?.length) {
+            console.log(honeyPot1.value, honeyPot2.value)
             dispatch(setModal(false))
             return
         }
@@ -23,7 +24,6 @@ const Form = ({type = 'yes-auth', className, onSubmit, children}) => {
         // Sanitize eventual HTML code that you may have requested from users
         for(let index = 0 ; index < event.target.length; index++) {
             const input = event.target[index]
-            // console.log('aaaa', input.type)
             if (input.type !== 'file' && input.value) {
                 const target = input.value
                 event.target[index].value = dompurify.sanitize(target, {

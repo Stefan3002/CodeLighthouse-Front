@@ -43,29 +43,6 @@ const LogIn = () => {
 
     const [windowSize, setWindowSize] = useState(window.innerWidth)
 
-    // useEffect(() => {
-    //     (async () => {
-    //
-    //         // const result = await getRedirectResult(auth)
-    //         // if(!result) {
-    //         //     return;
-    //         // }
-    //         // // dispatch(setLoading(true))
-    //         //
-    //         // const email = result.user.email
-    //         //
-    //         // const idToken = await handleGetToken()
-    //         //
-    //         // const data = {
-    //         //     idToken,
-    //         //     email,
-    //         //     username: result.user.displayName,
-    //         //     photoURL: result.user.photoURL
-    //         // }
-    //         // await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth/provider`, JSON.stringify(data), 'POST', false, successLogIn, ['Talking to Google', 'Talking to Github', 'Talking to our own servers'])
-    //     })()
-    // }, []);
-
     useEffect(() => {
         if(isLoggedIn)
             navigate('/app')
@@ -98,23 +75,7 @@ const LogIn = () => {
             navigate('/app/contests')
         // window.location.href = '/app/home'
     }
-    // const logUserInEmail = async (form) => {
-    //     dispatch(setStatus('loading'))
-    //     form.preventDefault()
-    //     const formData = form.target
-    //     const email = formData[0].value
-    //     const password = formData[1].value
-    //
-    //
-    //     const data = {
-    //         email,
-    //         password
-    //     }
-    //     const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, JSON.stringify(data), 'POST', false, successLogIn)
-    //
-    //     // console.log('log in, ', status)
-    //
-    // }
+
 
     const getFeatureIcon = (icon) => {
         switch (icon){
@@ -132,7 +93,6 @@ const LogIn = () => {
             return await logInCallback()
         }
         catch (e){
-            // console.log('AUTH:', e)
             const errorCode = e.code
             switch (errorCode){
                 case 'auth/popup-closed-by-user':
@@ -206,7 +166,7 @@ const LogIn = () => {
         const data = {
             email: username, password
         }
-
+        console.log('problem:', data)
         await sendRequest(`${process.env.REACT_APP_SERVER_URL}/auth`, JSON.stringify(data), 'POST', false, (user) => successLogIn(user, 'classic'), ['Talking to the server', "IT'S ON FIRE?!", "Nope, the fire was extinguished!"])
 
     }

@@ -19,9 +19,10 @@ const Notifications = () => {
 
     const socketConnection = useSelector(getSocketConnection)
     const dispatch = useDispatch()
-    let notifications = useSelector(getNotifications)
+
     const userToken = useSelector(getToken).token
     const user = useSelector(getUser)
+    let notifications = user.notifications
 
     useEffect(() => {
 
@@ -62,7 +63,8 @@ const Notifications = () => {
     const openNotificationsModal = () => {
         dispatch(setModal(true))
         dispatch(setModalContent({
-            type: 'notifications'
+            type: 'notifications',
+            data: notifications
         }))
     }
 

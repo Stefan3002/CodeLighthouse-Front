@@ -18,8 +18,6 @@ const ProtectedRoute = ({children}) => {
         // navigate('/auth')
     }
 
-    console.log('status', status)
-
     if(status === 'loaded') {
         if (!isLoggedIn)
             return <Navigate to='/auth'/>

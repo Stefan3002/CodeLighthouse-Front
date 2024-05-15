@@ -1,5 +1,6 @@
 .challenge-description-card {
   width: 100%;
+  word-break: break-word;
   height: 100%;
   padding: 1rem;
   background: #32292F;

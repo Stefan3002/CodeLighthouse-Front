@@ -117,7 +117,7 @@ const AppHome = () => {
         }, 350)
 
     }
-
+    console.log('aaaa', randChallenge[indeces.min_index + 1])
     if(user)
     return (
         <Transition mode='fullscreen'>
@@ -136,7 +136,7 @@ const AppHome = () => {
                             <img className='prev-icon' onClick={() => nextChallengeAnimation(true)} src={NextSVG}
                                  alt=""/>
                         {/*}*/}
-                        <Link to={`/app/challenges/${randChallenge[indeces.min_index + 1]?.slug}`}><img src={PlaySVG}
+                        <Link to={`/app/challenges/${randChallenge[indeces.min_index + 1] ? randChallenge[indeces.min_index + 1].slug : ''}`}><img src={PlaySVG}
                                                                                                         alt=""/></Link>
                         {/*{randChallenge[indeces.max_index - 1] &&*/}
                             <img onClick={() => nextChallengeAnimation(false)} src={NextSVG} alt=""/>

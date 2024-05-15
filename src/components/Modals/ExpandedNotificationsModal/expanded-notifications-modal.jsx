@@ -8,7 +8,7 @@ import Button from "../../Button/button";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 const ExpandedNotificationsModal = () => {
-    const data = useSelector(getNotifications)
+    const data = useSelector(getModalContent).data
     const updateData = useUpdateData()
     const sendRequest = useFetchHook()
     const successCallback = async () => {
