@@ -5,15 +5,27 @@ const ChallengesNav = () => {
     return (
         <div>
             <nav className='app-navigation-wrapper'>
-                <ul className='app-navigation'>
-                    <Link to=''><li>Challenge</li></Link>
-                    <Link id='challenge-comments-anchor' to='comments'><li>Comments</li></Link>
-                    <Link to='stats'><li>Stats</li></Link>
-                    <Link to='submissions'><li>Submissions</li></Link>
-                    <Link to='leaderboard'><li>Leaderboard</li></Link>
-                </ul>
+                <div className="app-navigation-outer">
+                    <ul className='app-navigation'>
+                        <Link to=''>
+                            <li>Challenge</li>
+                        </Link>
+                        <Link id='challenge-comments-anchor' to='comments'>
+                            <li>Comments</li>
+                        </Link>
+                        <Link to='stats'>
+                            <li>Stats</li>
+                        </Link>
+                        <Link to='submissions'>
+                            <li>Submissions</li>
+                        </Link>
+                        <Link to='leaderboard'>
+                            <li>Leaderboard</li>
+                        </Link>
+                    </ul>
+                </div>
             </nav>
-            <Outlet />
+            <Outlet/>
         </div>
     )
 }

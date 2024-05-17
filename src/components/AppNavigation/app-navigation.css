@@ -1,13 +1,20 @@
+.app-navigation-outer {
+  overflow: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .app-navigation-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: white;
 }
 
 .app-navigation {
-  overflow: auto;
+  width: fit-content;
   border-radius: 10px;
   margin: 10px 0 10px 0;
   padding: 1rem;

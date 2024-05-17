@@ -90,7 +90,7 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
                 <WithInfo clickHandler={() => null} data='The total amount of time that you spent trying to solve this challenge'>
                     <div className='bar-item'>
                         <img src={ClockSVG} className='icon-svg' alt=""/>
-                        <p>{Math.round(data.user_logs.challenges[data.id] / 60)} minutes</p>
+                        <p>{Math.round(data.user_logs.challenges[data.id] / 60) || 0} minutes</p>
                     </div>
                 </WithInfo>
 

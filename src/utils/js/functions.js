@@ -4,3 +4,12 @@ export const objectIn = (arr, obj) => {
             return true
     return false
 }
+
+export const overdue = (targetTime, targetDate) => {
+    const currentDate = new Date()
+    const currentTime = currentDate.getTime()
+
+    const targetStamp = new Date(`${targetDate}T${targetTime}Z`).getTime()
+
+    return currentTime < targetStamp
+}

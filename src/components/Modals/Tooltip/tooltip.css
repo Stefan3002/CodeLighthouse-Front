@@ -15,4 +15,10 @@
   height: fit-content;
 }
 
+@media screen and (max-width: 1100px) {
+  .tooltip {
+    width: 95dvw;
+  }
+}
+
 /*# sourceMappingURL=tooltip.css.map */

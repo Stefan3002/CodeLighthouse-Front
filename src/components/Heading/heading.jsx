@@ -1,7 +1,7 @@
 import './heading.css'
-const Heading = ({text}) => {
+const Heading = ({text, extraClass = ''}) => {
     return (
-        <div className='heading'>
+        <div className={`heading ${extraClass}`}>
             {text ? <h2>{text}</h2> : null}
             <p>•• ━━━━━ ••●•• ━━━━━ ••</p>
         </div>

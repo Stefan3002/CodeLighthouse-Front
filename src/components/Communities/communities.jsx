@@ -17,7 +17,7 @@ const Communities = () => {
         <div className='lighthouses-wrapper'>
             <Button size='50' imgSRC={leftCaretSVG} type='image' ariaLabel='See more communities' marginatedHorizontal={true} marginated={true} text='Back' callback={lazyLoad.previousEntitites} />
             <Button size='50' imgSRC={rightCaretSVG} type='image' ariaLabel='Previous communities' marginated={true} text='More' callback={lazyLoad.nextEntities} />
-            <div className="lighthouses-inner-wrapper">
+            <div className="communities-inner-wrapper">
                 {data && data.length ? data.map((community, idx) => {
                     if(!community.archived)
                         return <LighthouseCard animationDelay={idx + 1} type='community' data={community} />

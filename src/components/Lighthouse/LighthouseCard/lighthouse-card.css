@@ -1,4 +1,8 @@
-.lighthouse-card {
+.community-card {
+  height: unset !important;
+}
+
+.lighthouse-card, .community-card {
   display: flex;
   word-break: break-word;
   flex-direction: column;
@@ -18,10 +22,10 @@
   position: relative;
   transition: all 0.15s;
 }
-.lighthouse-card h2 {
+.lighthouse-card h2, .community-card h2 {
   margin: 0;
 }
-.lighthouse-card:after {
+.lighthouse-card:after, .community-card:after {
   content: "";
   background: #32292F;
   height: 10px;
@@ -31,7 +35,7 @@
   left: 0;
   bottom: 0;
 }
-.lighthouse-card:focus, .lighthouse-card:hover {
+.lighthouse-card:focus, .lighthouse-card:hover, .community-card:focus, .community-card:hover {
   transform: scale(1.1);
   transition: all 0.15s;
   background: #32292F;

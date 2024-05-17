@@ -32,7 +32,7 @@ const LighthouseCard = ({animationDelay, type = 'lighthouse', data}) => {
     else
         if(type === 'community')
             return (
-                <div style={{animationDelay: `${exponentialDelay(animationDelay)}ms`}} className='lighthouse-card'>
+                <div style={{animationDelay: `${exponentialDelay(animationDelay)}ms`}} className='community-card'>
                     <img onClick={copyCodeToClipboard} src={CopySVG} className='icon-svg' alt="Copy code"/>
                     <Link to={`/app/lighthouses/${data.id}`}>
                     <div className="lighthouse-card-header">

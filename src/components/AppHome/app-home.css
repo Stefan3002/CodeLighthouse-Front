@@ -24,7 +24,6 @@
 }
 
 .challenges-cards {
-  overflow: auto;
   display: flex;
   justify-content: center;
   align-items: stretch;

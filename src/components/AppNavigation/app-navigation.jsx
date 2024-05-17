@@ -87,42 +87,60 @@ const AppNavigation = () => {
         <>
             <nav className='app-navigation-wrapper'>
                 <img className='logo-header-app-nav' src={LogoImgNoBg} alt=""/>
-                <ul className='app-navigation'>
-                    <li className='menu-item'><Link to='/app'><img className='icon-svg' src={HomeSVG} alt=""/>Home</Link></li>
-                    <li className='menu-item'><Link to='/app/lighthouses'><img className='icon-svg' src={LighthouseSVG} alt=""/>Lighthouses</Link></li>
-                    <li className='menu-item'><Link to='/app/contests'><img className='icon-svg' src={ContestSVG} alt=""/>Contests</Link></li>
-                    <li className='menu-item'><Link to='/app/challenges' id='solve-anchor'><img className='icon-svg' src={CodeSVG} alt=""/>Solve</Link></li>
-                    <li className='menu-item'> <Link to='https://stefan3002.github.io/CodeLighthouse-Docs/creating-challenges.html'><img className='icon-svg' src={AttachmentSVG} alt=""/>Docs</Link></li>
-                    <li className='menu-item'><Link to={`/app/users/${user?.id}`}><img className='icon-svg' src={UserSVG} alt=""/>{user ? user.username : 'Profile'}</Link></li>
-                    {user.admin_user ?<li className='menu-item'> <Link to={`/app/admin/pending`}><img className='icon-svg' src={AdminSVG} alt=""/>Admin</Link></li> : null}
-                    <Notifications />
-                </ul>
+                <div className="app-navigation-outer">
+                    <ul className='app-navigation'>
+                        <li className='menu-item'><Link to='/app'><img className='icon-svg' src={HomeSVG}
+                                                                       alt=""/>Home</Link></li>
+                        <li className='menu-item'><Link to='/app/lighthouses'><img className='icon-svg'
+                                                                                   src={LighthouseSVG} alt=""/>Lighthouses</Link>
+                        </li>
+                        <li className='menu-item'><Link to='/app/contests'><img className='icon-svg' src={ContestSVG}
+                                                                                alt=""/>Contests</Link></li>
+                        <li className='menu-item'><Link to='/app/challenges' id='solve-anchor'><img className='icon-svg'
+                                                                                                    src={CodeSVG}
+                                                                                                    alt=""/>Solve</Link>
+                        </li>
+                        <li className='menu-item'><Link
+                            to='https://stefan3002.github.io/CodeLighthouse-Docs/creating-challenges.html'><img
+                            className='icon-svg' src={AttachmentSVG} alt=""/>Docs</Link></li>
+                        <li className='menu-item'><Link to={`/app/users/${user?.id}`}><img className='icon-svg'
+                                                                                           src={UserSVG}
+                                                                                           alt=""/>{user ? user.username : 'Profile'}
+                        </Link></li>
+                        {user.admin_user ?
+                            <li className='menu-item'><Link to={`/app/admin/pending`}><img className='icon-svg'
+                                                                                           src={AdminSVG} alt=""/>Admin</Link>
+                            </li> : null}
+                        <Notifications/>
+                    </ul>
+                </div>
             </nav>
             <AnimatePresence>
                 {sidePanel && sidePanel.opened ?
                     <Transition mode='side'>
-                        <SidePanel type={sidePanel.type} />
+                        <SidePanel type={sidePanel.type}/>
                     </Transition>
                     : null}
             </AnimatePresence>
             <AnimatePresence>
-                {error ? <><Blur redirect='/app' /><Transition mode='modal'><Modal error={error} /></Transition></> : null}
+                {error ? <><Blur redirect='/app'/><Transition mode='modal'><Modal
+                    error={error}/></Transition></> : null}
                 {modalOpened && modalType !== 'pop-up' ?
                     <>
-                        <Blur />
+                        <Blur/>
                         <Transition modalContent={modalType} mode='modal'>
-                            <Modal type={modalType} />
+                            <Modal type={modalType}/>
                         </Transition>
                     </> :
                     modalOpened && modalType === 'pop-up' ?
                         <Transition mode='pop-up'>
-                            <Modal type={modalType} />
+                            <Modal type={modalType}/>
                         </Transition> :
                         null
                 }
             </AnimatePresence>
 
-            <Outlet />
+            <Outlet/>
         </>
     )
 }

@@ -21,6 +21,7 @@
   width: 100%;
   display: flex;
   align-items: center;
+  word-break: break-word;
   justify-content: space-between;
   padding: 1rem;
   background: #32292F;
@@ -111,11 +112,16 @@
 .challenge-card-report {
   padding: 1rem;
   text-align: center;
+  max-width: 400px;
 }
 
 @media screen and (max-width: 1100px) {
   .challenge-card {
     min-width: 100%;
+  }
+
+  .assignment-challenge-card, .challenge-description-card-assignment {
+    flex-direction: column;
   }
 }
 

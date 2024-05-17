@@ -68,11 +68,6 @@ const Form = ({type = 'yes-auth', className, onSubmit, children}) => {
             <form className={className} onSubmit={ohMyGodHoneyWrapper}>
                 {/*    H O N E Y P O T H E R E T R A P S P A M M E R S  */}
                 {children}
-                {/*<button className="g-recaptcha"*/}
-                {/*        data-sitekey={process.env.REACT_APP_CAPTCHA_KEY}*/}
-                {/*        data-callback='onSubmit'*/}
-                {/*        data-action='submit'>Submit*/}
-                {/*</button>*/}
                 <div id="recaptcha-container"></div>
                 <label className='ohmygodhoney' htmlFor="name"></label>
                 <input className='ohmygodhoney' type="text" name='name' id='name' placeholder='Name' autoComplete='off'/>

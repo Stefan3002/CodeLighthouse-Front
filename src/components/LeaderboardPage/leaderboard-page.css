@@ -51,4 +51,10 @@
   align-items: center;
 }
 
+@media screen and (max-width: 1100px) {
+  .leaderboard-podium {
+    flex-direction: column;
+  }
+}
+
 /*# sourceMappingURL=leaderboard-page.css.map */

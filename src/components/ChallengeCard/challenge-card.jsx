@@ -8,16 +8,20 @@ import {setModal, setModalContent, setSelectedChallenge} from "../../utils/store
 import {getSelectedChallenge} from "../../utils/store/utils-store/utils-store-selectors";
 import calendarSVG from '../../utils/imgs/SVGs/CalendarSVG.svg'
 import clockSVG from '../../utils/imgs/SVGs/ClockSVG.svg'
+import DangerSVG from '../../utils/imgs/SVGs/DangerSVG.svg'
 import DateTime from "../DateTime/date-time";
 import Button from "../Button/button";
 import Heading from "../Heading/heading";
 import WithInfo from "../WithInfo/with-info";
 import DeleteDarkSVG from "../../utils/imgs/SVGs/DeleteDarkSVG.svg";
 import useFetchHook from "../../utils/hooks/fetchHook";
+import {overdue} from "../../utils/js/functions";
+import {getUser} from "../../utils/store/user-store/user-store-selectors";
 
 const ChallengeCard = ({deleteCommentConfirm = undefined, assignment = undefined, noLink = false, callback = undefined, report = undefined, authoColor = 'light', completed, challenge, idx, type = 'Big', detailedAssignment = false}) => {
     const dispatch = useDispatch()
     const selectedChallenge = useSelector(getSelectedChallenge)
+    const user = useSelector(getUser)
     const sendRequest = useFetchHook()
     const selectChallenge = () => {
         dispatch(setSelectedChallenge(challenge.slug))
@@ -62,10 +66,6 @@ const ChallengeCard = ({deleteCommentConfirm = undefined, assignment = undefined
     if(type === 'assignment')
         return (
             <motion.div key={`challenge-${challenge.id}`} {...assignmentCardAnimationParams} style={{opacity: completed ? '.4' : null}} className="assignment-challenge-card">
-                {/*<div className="challenge-meta-card" >*/}
-                {/*    <AuthorName color={authoColor} author={challenge.challenge.author} />*/}
-                {/*    <Difficulty difficulty={challenge.challenge.difficulty} />*/}
-                {/*</div>*/}
                 <div className="challenge-description-card-assignment" >
                     <h2>{assignment.title}</h2>
                     <div>
@@ -85,6 +85,9 @@ const ChallengeCard = ({deleteCommentConfirm = undefined, assignment = undefined
                     {detailedAssignment ? <><Link to={`/app/lighthouses/${challenge.lighthouse.id}/assignments`}><p>{challenge.lighthouse.name}</p></Link></> : null}
                     <DateTime icon={clockSVG} data={challenge.due_time} />
                     <DateTime icon={calendarSVG} data={challenge.due_date} />
+                    {overdue(challenge.due_time, challenge.due_date) &&
+                        <span><img className='icon-svg' src={DangerSVG} alt="Danger. "/><p>Overdue</p></span>
+                    }
                 </div>
 
             </motion.div>
@@ -147,7 +150,7 @@ const ChallengeCard = ({deleteCommentConfirm = undefined, assignment = undefined
                         {/*<h3>Assigned admin</h3>*/}
                         {/*<AuthorName color='dark' author={report.assigned_admin} />*/}
 
-                        {report.reason === 'comment' &&
+                        {user.admin_user && report.reason === 'comment' &&
                             <WithInfo clickHandler={deleteCommentConfirm} data='Delete this comment'><img src={DeleteDarkSVG} className='icon-svg' alt="Delete"/></WithInfo>
                         }
 

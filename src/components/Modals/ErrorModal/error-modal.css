@@ -2,4 +2,8 @@
   z-index: 16;
 }
 
+.error-content {
+  word-break: break-word;
+}
+
 /*# sourceMappingURL=error-modal.css.map */

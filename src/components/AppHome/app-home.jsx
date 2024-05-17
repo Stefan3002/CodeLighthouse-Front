@@ -117,7 +117,6 @@ const AppHome = () => {
         }, 350)
 
     }
-    console.log('aaaa', randChallenge[indeces.min_index + 1])
     if(user)
     return (
         <Transition mode='fullscreen'>
@@ -125,16 +124,23 @@ const AppHome = () => {
             {randChallenge && randChallenge.length &&
                 <div className='app-home wrapper'>
                     <Heading text='Latest Challenges'/>
-                    <div className="challenges-cards">
-                        {randChallenge.map((challenge, idx) => {
-                            if (idx >= indeces.min_index && idx < indeces.max_index - 1)
-                                return <ChallengeCard authoColor='dark' challenge={challenge} idx={idx}/>
-                        })}
-                    </div>
+                    {window.innerWidth > 1100 ?
+                        <div className="challenges-cards">
+                            {randChallenge.map((challenge, idx) => {
+                                if (idx >= indeces.min_index && idx < indeces.max_index - 1)
+                                    return <ChallengeCard authoColor='dark' challenge={challenge} idx={idx}/>
+                            })}
+                        </div>
+                        :
+                        <div className="challenges-cards">
+                            <ChallengeCard authoColor='dark' challenge={randChallenge[1]} idx={1}/>
+                        </div>
+                    }
+                    {window.innerWidth > 1100 &&
                     <div className="challenge-navigation">
                         {/*{randChallenge[indeces.min_index - 1] &&*/}
-                            <img className='prev-icon' onClick={() => nextChallengeAnimation(true)} src={NextSVG}
-                                 alt=""/>
+                        <img className='prev-icon' onClick={() => nextChallengeAnimation(true)} src={NextSVG}
+                             alt=""/>
                         {/*}*/}
                         <Link to={`/app/challenges/${randChallenge[indeces.min_index + 1] ? randChallenge[indeces.min_index + 1].slug : ''}`}><img src={PlaySVG}
                                                                                                         alt=""/></Link>
@@ -142,6 +148,7 @@ const AppHome = () => {
                             <img onClick={() => nextChallengeAnimation(false)} src={NextSVG} alt=""/>
                         {/*}*/}
                     </div>
+                    }
                     <Heading text='Recently joined Lighthouses'/>
                     {/*<div className='recent-lighthouses'>*/}
                     {/*    {user.enrolled_lighthouses.length ? user.enrolled_lighthouses.map((lighthouse, idx) => {*/}

@@ -1,3 +1,7 @@
-
+@media screen and (max-width: 1100px) {
+  .heading-step-two {
+    margin: 2rem 0 0 0;
+  }
+}
 
 /*# sourceMappingURL=heading.css.map */

@@ -1,5 +1,6 @@
 .challenge-meta-bottom {
-  width: 100dvw;
+  width: 100%;
+  overflow: auto;
   background: #32292F;
   height: 135px;
   position: fixed;

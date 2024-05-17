@@ -5,7 +5,7 @@ import useFetchHook from "./fetchHook";
 import {useParams} from "react-router-dom";
 
 const usePollHook = () => {
-    const MAXIMUM_POLLS = 10
+    const MAXIMUM_POLLS = 15
     const dispatch = useDispatch()
     const taskId = useRef()
     const intervalPolling = useRef()

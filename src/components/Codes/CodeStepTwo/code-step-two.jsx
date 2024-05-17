@@ -56,7 +56,7 @@ const CodeStepOne = ({setCodeStep, data}) => {
                 <EditorCard info="Run these hard tests by the author, or write your own! Remember, they must be a list containing tuples / lists / arrays of your test data. Use the author's example for reference." secondCode={setHardTests} value={hardTests} height='300px' type='code' headerText='Hard test cases' />
             </div>
             <div className='code-step-three-choice'>
-                <Heading text='Hard test?' />
+                <Heading extraClass='heading-step-two' text='Hard test?' />
                 <div className="code-step-buttons">
                     <Button ariaLabel='Submit solution for hard-coded tests' color='success' callback={sendCodeForHardCompilation} text='Submit' />
                     <Button ariaLabel='Back to coding step' callback={() => setCodeStep(1)} text='Back' />
