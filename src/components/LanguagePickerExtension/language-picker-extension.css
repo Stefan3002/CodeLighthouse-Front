@@ -6,6 +6,7 @@
 }
 
 .language-picker-option {
+  word-break: normal;
   background: #32292F;
   color: #FEE1C7;
   display: flex;
