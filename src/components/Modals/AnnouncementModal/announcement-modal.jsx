@@ -46,6 +46,7 @@ const AnnouncementModal = () => {
             return
 
         const files = event.target[1].files
+        // console.log(files)
         if(files.length) {
             valid = validateInput('File', files[0].type, {beIn: createAnnouncementValidations.file.beIn})
             if (!valid)

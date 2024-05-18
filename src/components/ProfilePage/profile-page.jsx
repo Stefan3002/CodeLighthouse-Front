@@ -31,7 +31,7 @@ const ProfilePage = () => {
     const [data, setData] = useState(undefined)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [filter, setFilter] = useState('All')
+    const [filter, setFilter] = useState('Unfinished')
 
     useEffect(() => {
         (async () => {
@@ -128,9 +128,9 @@ const ProfilePage = () => {
 
                 {userID == user.id ? <><Heading text='Assignments' />
                     <div className="profile-assignments-filters">
-                        <Button callback={() => filterAssignments('All')} type='normal' text='All' />
-                        <Button callback={() => filterAssignments('Finished')} type='normal' text='Finished' />
-                        <Button callback={() => filterAssignments('Unfinished')} type='normal' text='Unfinished' />
+                        <Button color={`${filter === 'All' ? 'light' : 'dark'}`} callback={() => filterAssignments('All')} type='normal' text='All' />
+                        <Button color={`${filter === 'Finished' ? 'light' : 'dark'}`}  callback={() => filterAssignments('Finished')} type='normal' text='Finished' />
+                        <Button color={`${filter === 'Unfinished' ? 'light' : 'dark'}`}  callback={() => filterAssignments('Unfinished')} type='normal' text='Unfinished' />
                     </div>
                     <div className="unfinished-assignments">
                         <AssignmentsList filters={true} user={user} data={data} filter={filter} />

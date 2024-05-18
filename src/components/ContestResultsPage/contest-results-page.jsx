@@ -16,6 +16,7 @@ import ChallengeCard from "../ChallengeCard/challenge-card";
 import SecondPlaceSVG from "../../utils/imgs/SVGs/Second place.svg";
 import FirstPlaceSVG from "../../utils/imgs/SVGs/First place.svg";
 import ThirdPlaceSVG from "../../utils/imgs/SVGs/Third place.svg";
+import {overdue} from "../../utils/js/functions";
 const ContestResultsPage = () => {
     const user = useSelector(getUser)
     const contestID = useParams()['id']
@@ -26,6 +27,7 @@ const ContestResultsPage = () => {
     useEffect(() => {
         (async () => {
             const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/contests/${contestID}`, undefined, 'GET', true)
+            console.log('res', res)
             setData(res)
         })()
     }, []);
@@ -45,7 +47,7 @@ const ContestResultsPage = () => {
             })
         }
     }
-
+    console.log('aaa', dataChallenge)
     if(data)
     return (
         <Transition mode='fullscreen'>
@@ -59,6 +61,7 @@ const ContestResultsPage = () => {
                     {/*{data.people.map(person => {*/}
                     {/*    return <AuthorName author={person} color='dark' />*/}
                     {/*})}*/}
+                {(user.admin_user || overdue(data.start_date, data.start_time)) &&
                     <div className="results-challenges">
                         {data.challenges.map(challenge => {
                             return <div onClick={() => filterChallengeLeaderboard(challenge.slug)}>
@@ -66,9 +69,11 @@ const ContestResultsPage = () => {
                             </div>
                         })}
                     </div>
+                }
+
 
                 {/*</div>*/}
-                {dataChallenge &&
+                {(dataChallenge && (user.admin_user || overdue(data.start_date, data.start_time))) &&
                     <>
                         <div className="leaderboard-podium">
                             <div className="second-place leaderboard-place">

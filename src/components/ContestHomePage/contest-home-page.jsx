@@ -30,7 +30,8 @@ const ContestHomePage = () => {
     useEffect(() => {
         const solved = []
         if(data)
-            for(const challenge of data.challenges)
+            for(const challenge of data.challenges){
+                let found = false
                 for (const submission of user.submissions) {
                     if (challenge.slug === submission.challenge
                         &&
@@ -38,7 +39,10 @@ const ContestHomePage = () => {
                         &&
                         (new Date(`${submission.date} : ${submission.time}`) <= new Date(`${data.end_date} : ${data.end_time}`))
                     )
-                        solved.push(challenge)
+                        found = true
+                }
+                if(found)
+                    solved.push(challenge)
                 }
         setSolvedChallenges(solved)
     }, [data]);

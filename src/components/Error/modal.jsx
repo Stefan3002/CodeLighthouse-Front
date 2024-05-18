@@ -32,6 +32,7 @@ import AccountSettingsModal from "../Modals/AccountSettingsModal/account-setting
 import JoinContestModal from "../Modals/JoinContestModal/join-contest-modal";
 import ReportBrokenModal from "../Modals/ReportBrokenModal/report-broken-modal";
 import ModifyCommentModal from "../Modals/ModifyComment/modify-comment-modal";
+import ContestSubmissionsModal from "../Modals/ContestSubmissionsModal/contest-submissions-modal";
 const Modal = ({error, type='error'}) => {
 
     switch (type) {
@@ -77,6 +78,8 @@ const Modal = ({error, type='error'}) => {
             return <ModifyChallengeModal/>
         case 'submissions':
             return <SubmissionsModal/>
+        case 'contest-submissions':
+            return <ContestSubmissionsModal/>
         case 'pop-up':
             return <PopUpModal/>
         case 'admin':

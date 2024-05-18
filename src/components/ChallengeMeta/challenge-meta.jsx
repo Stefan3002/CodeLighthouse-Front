@@ -100,10 +100,15 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
         return (
             <div className={`challenge-meta-bottom ${solved ? 'solved' : null}`}>
                 <div className="challenge-meta-left">
-                        {/*<p><b>{data.title}</b></p>*/}
-                        <AuthorName color={solved ? 'dark' : 'light'} author={user} />
-                    </div>
-                    <LanguageSelector data={data.codes} lightColored = {solved} down={false} modifiable={true} />
+                    <AuthorName color={solved ? 'dark' : 'light'} author={user}/>
+                </div>
+                <LanguageSelector data={data.codes} lightColored={solved} down={false} modifiable={true}/>
+                <WithInfo data='Show your appreciation for this challenge!'
+                          clickHandler={likeChallenge}
+                >
+                    <img src={likeIMG} className='icon-svg' alt="Like"/>
+                </WithInfo>
+
                 <WithInfo clickHandler={() => navigate('code')} data="Let's solve the challenge!">
                     <div className="bar-item">
                         <img
@@ -112,23 +117,23 @@ const ChallengeMeta = ({data, type = 'expanded', solved = false}) => {
                     </div>
                 </WithInfo>
 
-                    {/*<img onClick={likeChallenge} src={likeIMG} className='icon-svg' alt=""/>*/}
-                    <WithInfo clickHandler={() => window.location.href = 'https://stefan3002.github.io/CodeLighthouse-Docs/'} data='Get help in case you are stuck with the concepts of solving a CodeLighthouse challenge'>
-                        <div className="bar-item">
-                            <img
-                                className='icon-svg' src={QuestionSVG} alt=""/>
-                            <p>Docs</p>
-                        </div>
-                    </WithInfo>
+                <WithInfo
+                    clickHandler={() => window.location.href = 'https://stefan3002.github.io/CodeLighthouse-Docs/'}
+                    data='Get help in case you are stuck with the concepts of solving a CodeLighthouse challenge'>
+                    <div className="bar-item">
+                        <img
+                            className='icon-svg' src={QuestionSVG} alt=""/>
+                        <p>Docs</p>
+                    </div>
+                </WithInfo>
 
                 {/*<Link to='https://stefan3002.github.io/CodeLighthouse-Docs/'><WithInfo data='Help' clickHandler={() => null}><img className='icon-svg' src={QuestionSVG} alt=""/></WithInfo></Link>*/}
-                    {/*<p>{data.likes_received}</p>*/}
-                </div>
-            )
-        else
-        if(type === 'stats')
-            return (
-                <div className='challenge-meta-bottom'>
+                {/*<p>{data.likes_received}</p>*/}
+            </div>
+        )
+    else if (type === 'stats')
+        return (
+            <div className='challenge-meta-bottom'>
                     <div className="challenge-meta-left">
                         <p><b>{data.title}</b></p>
                         <AuthorName author={data.author} />

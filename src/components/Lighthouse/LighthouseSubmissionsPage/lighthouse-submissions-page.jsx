@@ -52,7 +52,8 @@ const LighthouseSubmissionsPage = () => {
             data: {
                 username,
                 userId,
-                assignmentId: assignmentID
+                assignmentId: assignmentID,
+                mode: 'assignment'
             }
             // data: {
             //     username,
@@ -93,14 +94,13 @@ const LighthouseSubmissionsPage = () => {
             filteredSubmissions[username] = data[username]
         return filteredSubmissions
     }
-
     if(dataAssignment) {
         return (
             <Transition mode='fullscreen'>
                 <div className='wrapper submissions-assignment-page'>
 
                     <Assignment assignment={dataAssignment} />
-
+                    <p>{`${Object.keys(submissions).length}/${dataAssignment.users.length}`} submitted</p>
                     <Search text='Search person' marginated={true} setEntity={setSubmissions} filterFunction={filterFunction}  />
 
                     <div className="assignment-submissions">

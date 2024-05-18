@@ -5,7 +5,7 @@ import LandingPageHome from "./components/LandingPageComponents/LandingPageHome/
 import LandingPageFeatures from "./components/LandingPageComponents/LandingPageFeatures/landing-page-features";
 import LandingPageAbout from "./components/LandingPageComponents/LandingPageAbout/landing-page-about";
 import {useEffect} from "react";
-import jsonParser from "./utils/js/json-parser";
+// import jsonParser from "./utils/js/json-parser";
 import AppHome from "./components/AppHome/app-home";
 import Authenticate from "./components/Authenticate/authenticate";
 import {AnimatePresence} from "framer-motion";

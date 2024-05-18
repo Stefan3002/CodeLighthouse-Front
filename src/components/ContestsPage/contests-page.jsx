@@ -51,7 +51,7 @@ const ContestsPage = () => {
         return (
             <Transition mode='fullscreen'>
                 <Parallax parallaxData={parallaxData} img={ParallaxIMG}/>
-                {user.admin_user && <Button callback={menuContests} type='plus' />}
+                {<Button callback={menuContests} type='plus' />}
 
 
                 <div className='wrapper contests-page'>

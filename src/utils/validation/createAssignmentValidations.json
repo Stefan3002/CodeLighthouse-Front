@@ -1,4 +1,19 @@
 {
+  "title": {
+    "inputNull": false,
+    "inputMin": 5,
+    "inputMax": 100
+  },
+  "description": {
+    "inputNull": false,
+    "inputMin": "20"
+  },
+  "dueDate": {
+    "inputNull": false
+  },
+  "dueTime": {
+    "inputNull": false
+  },
   "target":
   {
     "inputNull": false

@@ -10,7 +10,7 @@ import useFetchHook from "../../../utils/hooks/fetchHook";
 import {setModal, setSidePanel} from "../../../utils/store/utils-store/utils-store-actions";
 import useUpdateData from "../../../utils/hooks/updateDataHook";
 import useValidate from "../../../utils/hooks/validateHook";
-import createChallengeValidations from "../../../utils/validation/createChallengeValidations.json";
+import createAssignmentValidation from "../../../utils/validation/createAssignmentValidations.json";
 import Form from "../../Form/form";
 const AssignChallengeModal = () => {
     const validateInput = useValidate()
@@ -36,19 +36,19 @@ const AssignChallengeModal = () => {
         const dueDate = event.target[2].value
         const dueTime = event.target[3].value
 
-        valid = validateInput('Title', title, {inputNull: false, inputMin: 10})
+        valid = validateInput('Title', title, {inputNull: createAssignmentValidation.title.inputNull, inputMin: createAssignmentValidation.title.inputMin, inputMax: createAssignmentValidation.title.inputMax})
         if(!valid)
             return
 
-        valid = validateInput('Details', description, {inputNull: false, inputMin: 30})
+        valid = validateInput('Details', description, {inputNull: createAssignmentValidation.description.inputNull, inputMin: createAssignmentValidation.description.inputMin})
         if(!valid)
             return
 
-        valid = validateInput('Due date', dueDate, {inputNull: false})
+        valid = validateInput('Due date', dueDate, {inputNull: createAssignmentValidation.dueDate.inputNull})
         if(!valid)
             return
 
-        valid = validateInput('Due time', dueTime, {inputNull: false})
+        valid = validateInput('Due time', dueTime, {inputNull: createAssignmentValidation.dueTime.inputNull})
         if(!valid)
             return
 

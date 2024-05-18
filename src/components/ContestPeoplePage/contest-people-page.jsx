@@ -74,8 +74,8 @@ const ContestPeoplePage = () => {
         const dataFetch = {
             userID
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/contest-participant-summary/${contestID}`, JSON.stringify(dataFetch), 'POST', false, successCallback)
-        if(!res || !res.length){
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/contest-participant-summary/${contestID}`, JSON.stringify(dataFetch), 'POST', false)
+        if(!Object.keys(res).length || !res){
             // dispatch(setModal(true))
             dispatch(setError('<p>No submissions, no summary!</p>'))
         }
@@ -103,7 +103,6 @@ const ContestPeoplePage = () => {
             userID
         }
         const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/contest-get-submissions/${contestID}`, JSON.stringify(dataFetch), 'POST', false, undefined)
-        // console.log('aa', res)
         if(!res || !res.length){
             // dispatch(setModal(true))
             dispatch(setError('<p>No submissions!</p>'))
@@ -111,15 +110,14 @@ const ContestPeoplePage = () => {
         else {
             dispatch(setModal(true))
             dispatch(setModalContent({
-                type: 'submissions',
+                type: 'contest-submissions',
                 data: {
                     username,
-                    submissions: res
+                    submissions: res,
                 }
             }))
         }
     }
-    console.log('aaa', data)
     if(user)
     return (
         <Transition mode='fullscreen'>
@@ -144,8 +142,12 @@ const ContestPeoplePage = () => {
                             <AuthorName color='dark' author={person} />
                             {user.admin_user &&
                                 <>
-                                    <WithInfo data="Regenerate participant's password" clickHandler={() => confirmChangeUserPassword(person.id, person.username)}><img src={ReloadSVG} className='icon-svg' alt=""/></WithInfo>
-                                    <WithInfo data="Change participant's e-mail" clickHandler={() => changeUserEmail(person.id, person.username, data.id)}><img src={ChangeSVG} className='icon-svg' alt=""/></WithInfo>
+                                    { !person.provider &&
+                                        <WithInfo data="Regenerate participant's password" clickHandler={() => confirmChangeUserPassword(person.id, person.username)}><img src={ReloadSVG} className='icon-svg' alt=""/></WithInfo>
+                                    }
+                                    { !person.provider &&
+                                        <WithInfo data="Change participant's e-mail" clickHandler={() => changeUserEmail(person.id, person.username, data.id)}><img src={ChangeSVG} className='icon-svg' alt=""/></WithInfo>
+                                    }
                                     <WithInfo data="See participant's submissions" clickHandler={() => seeUserSubmissions(person.id, person.username, data.id)}><img src={EyeSVG} className='icon-svg' alt=""/></WithInfo>
                                     <WithInfo data="See how the participant performed" clickHandler={() => seeUserSummary(person.id, person.username, data.id)}><img src={TableSVG} className='icon-svg' alt=""/></WithInfo>
                                 </>
