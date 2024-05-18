@@ -35,7 +35,7 @@ const ReportModal = () => {
         const data = {
             reason: 'difficulty'
         }
-        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/challenges-report/${challenge.slug}`, JSON.stringify(data), 'POST', false, successCallback)
+        const res = await sendRequest(`${process.env.REACT_APP_SERVER_URL}/entity-report/${challenge.slug}?type=challenge-difficulty`, JSON.stringify(data), 'POST', false, successCallback)
     }
 
     return (

@@ -11,11 +11,14 @@ import Replicate from "replicate";
 import {useEffect, useRef, useState} from "react";
 import useFetchHook from "../../../utils/hooks/fetchHook";
 import Form from "../../Form/form";
+import reportDescriptionValidations from "../../../utils/validation/reportDescriptionValidations.json";
+import useValidate from "../../../utils/hooks/validateHook";
 
 const ChatBotModal = () => {
     const dispatch = useDispatch()
     const sendRequest = useFetchHook()
     const [chatBotResponse, setChatBotResponse] = useState('')
+    const validateInput = useValidate()
 
     const waitAnimation = () => {
         return new Promise((resolve, reject) => {
@@ -30,7 +33,7 @@ const ChatBotModal = () => {
         const responseDOM = document.querySelector('#chat-bot-response')
 
         responseDOM.innerHTML = ''
-        console.log(response.data.split(' '))
+        // console.log(response.data.split(' '))
         for(const word of response.data.split(' ')) {
             // console.log(word)
             await waitAnimation()
@@ -43,6 +46,15 @@ const ChatBotModal = () => {
     const talkToBot = async (event) => {
         event.preventDefault()
         const prompt = event.target[0].value
+
+        let valid = true
+
+        const readCodeofConduct = event.target[1].checked
+
+        valid = validateInput('Read Code of Conduct', readCodeofConduct, {checked: true})
+        if(!valid)
+            return
+
         const data = {
             prompt
         }
