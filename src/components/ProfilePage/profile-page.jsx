@@ -81,14 +81,14 @@ const ProfilePage = () => {
                                     <p>Log out</p>
                                 </div>
                             </WithInfo>}
-                        {+userID === user.id &&
-                            <WithInfo clickHandler={() => null} data='The largest amount of time that you spent logged in in a single session'>
-                                <div className='bar-item'>
-                                    <img src={ClockSVG} className='icon-svg' alt=""/>
-                                    <p>{Math.round(data.logs.auth / 60)} minutes</p>
-                                </div>
-                            </WithInfo>
-                        }
+                        {/*{+userID === user.id &&*/}
+                        {/*    <WithInfo clickHandler={() => null} data='The largest amount of time that you spent logged in in a single session'>*/}
+                        {/*        <div className='bar-item'>*/}
+                        {/*            <img src={ClockSVG} className='icon-svg' alt=""/>*/}
+                        {/*            <p>{Math.round(data.logs.auth / 60)} minutes</p>*/}
+                        {/*        </div>*/}
+                        {/*    </WithInfo>*/}
+                        {/*}*/}
                         {+userID === user.id &&
                             <WithInfo clickHandler={() => null} data='The largest amount of time that you spent trying to solve a single challenge'>
                                 <div className='bar-item'>
